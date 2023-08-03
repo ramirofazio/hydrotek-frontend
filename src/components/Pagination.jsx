@@ -1,5 +1,6 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
+//Falta incorporar la logica del setPage, se necesita un estado (react/redux) al que cambiar
 export function Pagination({ nButtons, currentPage = 0, setPage }) {
   const quantity = Array(nButtons).fill(1);
 
