@@ -1,12 +1,12 @@
 import { Outlet, NavLink, useNavigation } from "react-router-dom";
 
 const links = [
-  { name: "Ruta default", path: "/" },
-  { name: "Ruta 2", path: "/ruta2" },
+  { name: "Inicio", path: "/" },
+  { name: "productos", path: "/home" },
   //   { name: "Ruta 3", path: "/ruta3" },
 ];
 
-export default function Root() {
+export function Navbar() {
   const navigation = useNavigation();
 
   return (
