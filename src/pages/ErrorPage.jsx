@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
@@ -6,16 +6,13 @@ const ErrorPage = () => {
   console.error(error);
 
   return (
-    <div id="error-page" className="flex h-[30vh] flex-col items-center justify-evenly">
-      <h1>Not Found (aka 404)</h1>
+    <div id="error-page" className="flex h-[30vh] mt-[35vh] flex-col items-center justify-evenly">
+      <h1>Error</h1>
+      <p>{error.statusText || error.message}</p>
       <p>
-        Estás buscando algo que no existe, no ha existido, no existirá, tal vez no exista
-        o no deba existir ...
-      </p>
-      <p>
-        ... pero siempre eres bienvenido/a a volver al{" "}
+        Volver al {" "}
         <a href="/" className="text-primary underline">
-          Home.
+          inicio.
         </a>
       </p>
       <p>-GID ;)</p>
