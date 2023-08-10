@@ -1,9 +1,5 @@
-const ala = Array(10).fill(1)
-//console.log(a)
-const arr = [1,1,1]
-ala.map((n, i) => {
-  console.log('entre en ' + i)
-})
+// En este archivo van funciones utiles que usaremos a lo largo del proyecto
+
 // export function arrayPaginator(arr, cardsPerPage, page) {
 //   const start = page * cardsPerPage
 //   const end = start + cardsPerPage

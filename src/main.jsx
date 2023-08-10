@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./redux";
 import { Navbar } from "./pages/Navbar.jsx";
 import { Landing } from "./pages/landing/Landing.jsx";
-import { Home } from "./pages/home/Home.jsx";
+import { Products } from "./pages/products/Products.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 //! Root seria la navbar, dentro del "Outlet" se renderizan los children.
 //! Leer docs de react-router-dom para usar loaders y actions dependiendo el proyecto.
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <Landing /> },
-      { path: "/home", element: <Home /> },
+      { path: "/products", element: <Products /> },
     ],
   },
 ]);

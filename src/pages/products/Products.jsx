@@ -1,7 +1,7 @@
-import { Pagination } from "../../components/Pagination";
+import { Pagination } from "../../components/Pagination.jsx";
 
 
-export function Home() {
+export function Products() {
   
   return (
     <div className="container">

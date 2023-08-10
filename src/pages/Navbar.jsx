@@ -2,7 +2,7 @@ import { Outlet, NavLink, useNavigation } from "react-router-dom";
 
 const links = [
   { name: "Inicio", path: "/" },
-  { name: "productos", path: "/home" },
+  { name: "productos", path: "/products" },
   //   { name: "Ruta 3", path: "/ruta3" },
 ];
 
