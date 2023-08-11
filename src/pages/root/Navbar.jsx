@@ -31,9 +31,9 @@ export function Navbar() {
           ))}
         </ul>
       </div>
-      <div className={navigation.state === "loading" ? "loading" : ""}>
+      {/* <div className={navigation.state === "loading" ? "loading" : ""}>
         <Outlet />
-      </div>
+      </div> */}
     </>
   );
 }
