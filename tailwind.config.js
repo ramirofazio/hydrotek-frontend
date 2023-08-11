@@ -1,5 +1,5 @@
 const colors = require("tailwindcss/colors");
-
+//Arreglar para poder usar todos los colores de tailwind
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
