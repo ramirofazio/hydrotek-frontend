@@ -8,6 +8,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  # Incorporar a la hora de agregar el deployment
   # avoid_redundancy:
   #   runs-on: ubuntu-20.04
   #   concurrency:

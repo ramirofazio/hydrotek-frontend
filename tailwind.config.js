@@ -1,4 +1,4 @@
-const colors = require("tailwindcss/colors");
+import colors from "tailwindcss/colors";
 //Arreglar para poder usar todos los colores de tailwind
 /** @type {import('tailwindcss').Config} */
 export default {
