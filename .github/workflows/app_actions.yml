@@ -5,7 +5,7 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
-    types: [opened, synchronize, auto_merge_disabled]
+    types: [opened, synchronize]
 
 jobs:
   # Incorporar a la hora de agregar el deployment
