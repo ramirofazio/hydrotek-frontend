@@ -1,23 +1,24 @@
-
 import { useRouteError } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const ErrorPage = () => {
+export default function DefaultError() {
   const error = useRouteError();
   console.error(error);
 
   return (
-    <div id="error-page" className="flex h-[30vh] mt-[35vh] flex-col items-center justify-evenly">
-      <h1>Error</h1>
+    <div
+      id="error-page"
+      className="mt-[35vh] flex h-[30vh] flex-col items-center justify-evenly"
+    >
+      <h1 className="font-bold">Ooops!</h1>
       <p>{error.statusText || error.message}</p>
       <p>
-        Volver al {" "}
-        <a href="/" className="text-primary underline">
+        Volver al{" "}
+        <Link to="/" className="text-primary underline">
           inicio.
-        </a>
+        </Link>
       </p>
       <p>-GID ;)</p>
     </div>
   );
-};
-
-export default ErrorPage;
+}

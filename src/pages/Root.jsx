@@ -1,10 +1,9 @@
-import {Navbar, Footer} from "../root"
+
 
 export default function Root() {
   return (
     <div>
-      <Navbar/>
-      <Footer/>
+      <h1>La raiz pa</h1>
     </div>
   )
 }

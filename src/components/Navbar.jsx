@@ -6,7 +6,7 @@ const links = [
   //   { name: "Ruta 3", path: "/ruta3" },
 ];
 
-export function Navbar() {
+export default function Navbar() {
   const navigation = useNavigation();
 
   return (

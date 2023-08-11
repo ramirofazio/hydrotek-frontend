@@ -38,3 +38,4 @@ export function Pagination({ nButtons, currentPage = 0, setPage }) {
     </div>
   );
 }
+
