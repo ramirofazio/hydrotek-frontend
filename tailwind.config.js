@@ -5,17 +5,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: "#D7D7D7",
-        primary: "#006473",
-        secondary: "#3B4F5F",
-        transparent: "transparent",
-        touch: "#3B4F5F20",
-        success: "#287300",
-        process: "#6B7300",
-        error: "#FF0000",
-        white: "#fff",
-        black: "#000",
+        base: "#030303",
+        gold: "#B8912D",
+        purple: "#3b5591",
+        blue: "#1a3c5a",
+        white: colors.white,
+        black: colors.black,
         gray: colors.gray,
+      },
+      fontFamily: {
+        primary: ["Orbitron", "sans-serif"],
       },
     },
   },
