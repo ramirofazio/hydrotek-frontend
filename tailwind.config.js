@@ -15,6 +15,7 @@ export default {
       },
       fontFamily: {
         primary: ["Orbitron", "sans-serif"],
+        secondary: ["Quicksand", "sans-serif"],
       },
     },
   },

@@ -5,10 +5,10 @@ import shoppingCart from "../assets/shoppingCart.png";
 import arrowDown from "../assets/arrowDown.png";
 
 const links = [
-  { name: "Productos", path: "/products" },
-  { name: "Categorias", path: "/products/category" },
-  { name: "Blog", path: "/blog" },
-  { name: "Sobre Nosotros", path: "/aboutUs" },
+  { name: "PRODUCTOS", path: "/products" },
+  { name: "CATEGORIAS", path: "/products/category" },
+  { name: "BLOG", path: "/blog" },
+  { name: "SOBRE NOSOTROS", path: "/aboutUs" },
 ];
 
 export default function Navbar() {
@@ -31,7 +31,9 @@ export default function Navbar() {
               }
             >
               {l.name}
-              {l.name === "Categorias" && <img src={arrowDown} className="ml-2 h-1" />}
+              {l.name === "CATEGORIAS" && (
+                <img src={arrowDown} className="ml-2 h-[5px]" />
+              )}
             </NavLink>
           </li>
         ))}

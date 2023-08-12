@@ -4,20 +4,23 @@
 
 @layer base {
   body {
-    @apply h-full w-full space-x-2 overflow-x-hidden bg-base font-primary;
+    @apply h-full w-full overflow-x-hidden bg-base font-primary tracking-widest;
   }
 
   h1 {
     @apply text-lg text-white;
   }
 
+  p {
+    @apply font-secondary text-xs text-white;
+  }
+
   ::-webkit-scrollbar {
-    width: 5px;
+    @apply w-1;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #fff;
-    border-radius: 5px;
+    @apply rounded-md bg-gold;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -31,5 +34,21 @@
   /*ACA VAN LOS ESTILOS GLOBALES DE TAILWIND CON @APPLY*/
   .outletPrimaryContainer {
     @apply grid h-full w-full place-items-center;
+  }
+
+  .goldGradient {
+    background: linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%);
+  }
+
+  .textGoldGradient {
+    @apply goldGradient bg-clip-text text-transparent;
+  }
+
+  .footerNetworksIcons {
+    @apply goldGradient mr-4 flex h-8 w-8 items-center justify-center rounded-full hover:animate-pulse hover:cursor-pointer;
+  }
+
+  .footerSections {
+    @apply mx-8 flex h-full flex-col justify-center;
   }
 }
