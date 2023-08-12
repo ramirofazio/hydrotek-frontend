@@ -51,4 +51,12 @@
   .footerSections {
     @apply mx-8 flex h-full flex-col justify-center;
   }
+
+  .aurora {
+    @apply pointer-events-none absolute transform rounded-full blur-3xl transition-transform;
+    width: 250px;
+    height: 250px;
+    background-image: radial-gradient(circle, #b8912d0e, #b8912d70);
+    mix-blend-mode: screen;
+  }
 }
