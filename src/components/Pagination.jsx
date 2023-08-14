@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 //Falta incorporar la logica del setPage, se necesita un estado (react/redux) al que cambiar
@@ -44,4 +44,4 @@ Pagination.propTypes = {
   nButtons: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired,
-}
+};

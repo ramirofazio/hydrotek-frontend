@@ -3,7 +3,6 @@
 // export function arrayPaginator(arr, cardsPerPage, page) {
 //   const start = page * cardsPerPage
 //   const end = start + cardsPerPage
-const arr = [1, 2, 3];
 
 //   return {
 //     newArr,

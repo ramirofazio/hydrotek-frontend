@@ -2,7 +2,7 @@ import { Pagination } from "../../components/Pagination.jsx";
 
 
 export default function Products() {
-  
+
   return (
     <div className="container">
       <Pagination

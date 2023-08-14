@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {shoppingCartRdr} from './reducers'
+import { shoppingCartRdr } from './reducers';
 
 const store = configureStore({
   reducer: {
@@ -7,4 +7,4 @@ const store = configureStore({
   },
 });
 
-export default store
+export default store;
