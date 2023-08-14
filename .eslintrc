@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2020": true, "node": true },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "settings": { "react": { "version": "18.2" } },
+  "ignorePatterns": ["dist", ".eslintrc"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["prettier", "react"],
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": "off",
+    // "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "eqeqeq": "error",
+    "no-trailing-spaces": "error",
+    "object-curly-spacing": ["error", "always"],
+    "arrow-spacing": ["error", { "before": true, "after": true }],
+    "no-unused-vars": "error",
+    "no-console": "warn",
+    "comma-spacing": "warn",
+    "curly": "warn",
+    "operator-linebreak": "warn",
+    "camelcase": "warn",
+    "comma-dangle": "off",
+    "new-cap": "warn",
+    "no-duplicate-imports": "error",
+    "no-floating-decimal": "error",
+    "jsx-quotes": "off"
+  }
+}

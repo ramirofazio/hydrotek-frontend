@@ -1,6 +1,7 @@
-
 export default function ProductDetail() {
   return (
-    <div></div>
-  )
+    <div>
+      <a href="a"></a>
+    </div>
+  );
 }
