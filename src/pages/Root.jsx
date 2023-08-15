@@ -28,7 +28,8 @@ export default function Root() {
 
   return (
     <div className="relative h-full w-full">
-      <div className="aurora absolute" ref={auroraRef}></div>
+      <div className="aurora absolute z-10" ref={auroraRef}></div>
+      {/* <div id="circuit" className="absolute z-20 h-full w-full"></div> */}
       <Navbar />
       <Outlet />
       <Footer />
