@@ -5,9 +5,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: "#030303",
+        base: "#1B142C",
         gold: "#B8912D",
-        purple: "#3b5591",
         blue: "#1a3c5a",
         white: colors.white,
         black: colors.black,
