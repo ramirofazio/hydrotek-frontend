@@ -22,7 +22,7 @@ module.exports = {
     "object-curly-spacing": ["error", "always"],
     "arrow-spacing": ["error", { before: true, after: true }],
     "no-unused-vars": "error",
-    "no-console": "warn",
+    "no-console": "off",
     "comma-spacing": "warn",
     curly: "warn",
     "operator-linebreak": "warn",
