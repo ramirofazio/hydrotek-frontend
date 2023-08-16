@@ -33,5 +33,6 @@ module.exports = {
     "no-floating-decimal": "error",
     "jsx-quotes": "off",
     "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
   },
 };
