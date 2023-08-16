@@ -31,9 +31,7 @@ export default function Navbar() {
               }
             >
               {l.name}
-              {l.name === "CATEGORIAS" && (
-                <img src={arrowDown} className="ml-2 h-[5px]" />
-              )}
+              {l.name === "CATEGORIAS" && <img src={arrowDown} className="ml-2 h-[5px]" />}
             </NavLink>
           </li>
         ))}
