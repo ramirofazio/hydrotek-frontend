@@ -26,14 +26,12 @@ export default function Navbar() {
                 isActive
                   ? "border-b-2 p-2  text-white"
                   : isPending
-                    ? "pending"
-                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
+                  ? "pending"
+                  : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
               }
             >
               {l.name}
-              {l.name === "CATEGORIAS" && (
-                <img src={arrowDown} className="ml-2 h-[5px]" />
-              )}
+              {l.name === "CATEGORIAS" && <img src={arrowDown} className="ml-2 h-[5px]" />}
             </NavLink>
           </li>
         ))}

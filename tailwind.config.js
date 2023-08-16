@@ -16,6 +16,9 @@ export default {
         primary: ["Orbitron", "sans-serif"],
         secondary: ["Quicksand", "sans-serif"],
       },
+      backgroundImage: {
+        circuit: "url('./src/assets/circuit.png')",
+      },
     },
   },
   plugins: [],
