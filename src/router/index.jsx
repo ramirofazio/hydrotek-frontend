@@ -3,16 +3,30 @@ import Root from "../pages/Root.jsx";
 import DefaultError from "../pages/error/default.jsx";
 import Landing from "../pages/landing/Landing.jsx";
 import Products from "../pages/products/Products.jsx";
+import ProductDetail from "../pages/productDetail/ProductDetail.jsx";
+import { APIHydro } from "../api/index.js";
+import { actionsApp } from "../redux/reducers";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <DefaultError />,
-    laoder: "",
+    laoder: () => {
+      APIHydro.getProducts().then((res) => actionsApp.loadProducts(res.data));
+      // El elemento root carga data necesaria para la app
+      //Se guarda esa data para consumirla desde redux
+    },
     children: [
       { path: "/", element: <Landing />, index: true },
       { path: "/products", element: <Products /> },
+      {
+        path: "/productDetail/:id",
+        element: <ProductDetail />,
+        loader: ({ params }) => {
+          return APIHydro.getProductDetail(params.id);
+        },
+      },
     ],
   },
 ]);
