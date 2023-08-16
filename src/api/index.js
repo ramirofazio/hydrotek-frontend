@@ -10,4 +10,7 @@ export const APIHydro = {
   getProducts: () => {
     return apiHydro.get(`/${route.PRODUCTS}/all`); //ejemplo para traer todos los productos
   },
+  getProductDetail: (id) => {
+    return apiHydro.get(`${route.PRODUCTS}/${id}`);
+  },
 };
