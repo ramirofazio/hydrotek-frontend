@@ -8,7 +8,7 @@ import mail from "../assets/mail.png";
 
 export default function Footer() {
   return (
-    <footer className="flex w-full flex-col border-t-2 border-gold ">
+    <footer className="flex w-full flex-col border-t-8  border-gold">
       <section className="flex h-52 justify-between px-20">
         <section className="footerSections">
           <>
