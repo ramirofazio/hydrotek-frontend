@@ -74,4 +74,13 @@
     border-image-slice: 25;
     background-color: transparent;
   }
+
+  .borderProductXl {
+    width: 350px;
+    height: 260px;
+    border: 25px solid;
+    border-image-source: url("assets/productBorderXl.png");
+    border-image-slice: 57;
+    background-color: transparent;
+  }
 }
