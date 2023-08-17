@@ -6,9 +6,7 @@ import instagram from "../assets/instagram.png";
 import whatsapp from "../assets/whatsapp.png";
 import mail from "../assets/mail.png";
 
-// !Usar Map para refactorizar el componente
-
-export default function Footer() {
+export const Footer = () => {
   return (
     <footer className="h-full w-full border-t-8 border-gold">
       <section className="grid grid-cols-1 place-items-center gap-10 p-8 lg:grid-cols-3 lg:grid-rows-1 lg:gap-12">
@@ -69,4 +67,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};

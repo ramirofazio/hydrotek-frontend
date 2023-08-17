@@ -14,7 +14,7 @@ export const links = [
   { name: "SOBRE NOSOTROS", path: "/aboutUs" },
 ];
 
-export default function Navbar() {
+export const Navbar = () => {
   return (
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
       <NavLink to="/">
@@ -50,4 +50,4 @@ export default function Navbar() {
       </section>
     </nav>
   );
-}
+};

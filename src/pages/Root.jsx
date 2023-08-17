@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar.jsx";
-import Footer from "../components/Footer.jsx";
-import Aurora from "../components/Aurora.jsx";
+import { Footer, Aurora, Navbar } from "../components";
+
 
 export default function Root() {
   return (
