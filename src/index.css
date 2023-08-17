@@ -39,7 +39,7 @@
 @layer components {
   /*ACA VAN LOS ESTILOS GLOBALES DE TAILWIND CON @APPLY*/
   .outletPrimaryContainer {
-    @apply grid h-full w-full place-items-center;
+    @apply flex h-full w-full items-center justify-center;
   }
 
   .goldGradient {
@@ -83,4 +83,16 @@
     border-image-slice: 57;
     background-color: transparent;
   }
+
+  .swiperSlide {
+    @apply flex h-full w-full items-center justify-center  hover:cursor-grab active:cursor-grabbing;
+  }
+}
+
+.swiper-pagination-bullet {
+  @apply h-4 w-4 bg-gold/50;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-gold;
 }

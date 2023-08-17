@@ -1,10 +1,10 @@
-
+import Carrousel from "../../components/Carrousel";
 
 export default function Landing() {
   return (
     <div className="outletPrimaryContainer">
-      <section className="flex h-[400vh] w-full items-center justify-center">
-        <h1>CONTENT</h1>
+      <section className="flex h-screen w-full flex-col items-center justify-center">
+        <Carrousel />
       </section>
     </div>
   );
