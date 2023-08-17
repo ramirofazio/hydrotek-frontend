@@ -1,12 +1,12 @@
 import Button from "./Button.jsx";
-//import Product from "../assets/product.png";
-import ProductBorder from "../assets/productCardBorder.png";
+//import product from "../assets/product.png";
+import productBorder from "../assets/productBorder.png";
 import { Link } from "react-router-dom";
 
 export default function ProductCard({ imgUrl, name, price, id, showBtn = false }) {
   return (
     <div className={`grid gap-2 border-2 p-2 ${showBtn && "place-items-center gap-3 p-3"}`}>
-      <img src={ProductBorder || imgUrl} alt="borde del producto" className="block" />
+      <img src={productBorder || imgUrl} alt="borde del producto" className="block" />
       {  // a definir depende de como usemos las img de los productos
         //<img src={imgUrl || Product} alt="foto del producto" className="absolute"/>
       }
