@@ -4,7 +4,7 @@ import userProfile from "../assets/userProfile.png";
 import shoppingCart from "../assets/shoppingCart.png";
 import arrowDown from "../assets/arrowDown.png";
 
-const links = [
+export const links = [
   { name: "PRODUCTOS", path: "/products" },
   { name: "CATEGORIAS", path: "/products/category" },
   { name: "BLOG", path: "/blog" },
