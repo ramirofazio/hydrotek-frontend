@@ -20,6 +20,16 @@ export default {
         circuit: "url('./src/assets/circuit.png')",
         productBorder: "url('./src/assets/productBorder.png')",
       },
+      screens: {
+        xs: "200px", //Celular
+        sm: "350px", // Celular M/L
+        md: "640px", // Tablet
+        xl: "1024px", // Laptop
+        "2xl": "2000px", // Desktop
+      },
+      transitionDuration: {
+        DEFAULT: "200ms",
+      },
     },
   },
   plugins: [],
