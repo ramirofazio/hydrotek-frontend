@@ -85,7 +85,7 @@
   }
 
   .swiperSlide {
-    @apply flex h-full w-full items-center justify-center  hover:cursor-grab active:cursor-grabbing;
+    @apply flex h-full w-full items-center justify-center pb-14  hover:cursor-grab active:cursor-grabbing;
   }
 }
 

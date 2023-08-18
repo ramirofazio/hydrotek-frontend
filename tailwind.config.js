@@ -18,6 +18,7 @@ export default {
       },
       backgroundImage: {
         circuit: "url('./src/assets/circuit.png')",
+        productBorder: "url('./src/assets/productBorder.png')",
       },
     },
   },
