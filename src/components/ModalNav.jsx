@@ -5,6 +5,7 @@ import shoppingCart from "../assets/shoppingCart.png";
 import { links } from "./Navbar.jsx";
 import { NavLink, Link } from "react-router-dom";
 import { Bars3BottomRightIcon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { Categories } from "./Categories.jsx";
 
 export function ModalNav() {
 
@@ -31,13 +32,14 @@ export function ModalNav() {
               {links.map((l, i) =>
                 l.name === "CATEGORIAS" ? (
                   <li key={i}>
-                    <NavLink
+                    {/* <NavLink
                       to={l.path}
                       className={({ isActive, isPending }) => (isActive ? "border-b-[1px] " : isPending ? "" : "")}
                     >
                       <h2 className="inline">{l.name}</h2>
                       <ChevronDownIcon className="ml-1 inline h-4 w-4 text-gold" />
-                    </NavLink>
+                    </NavLink> */}
+                    <Categories/>
                   </li>
                 ) : (
                   <li key={i}>
