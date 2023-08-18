@@ -7,7 +7,7 @@ import "atropos/css";
 export default function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
   return (
     <div className={`grid h-full w-[80%]`}>
-      <Atropos highlight={false} shadow={false} className="h-full w-full">
+      <Atropos highlight={false} shadow={false} className="h-full w-full cursor-none">
         <div className="flex h-full w-full items-center justify-center bg-productBorder bg-contain  bg-clip-content bg-center bg-no-repeat">
           <img src={imgUrl || product} alt="foto del producto" className="w-[40%]" data-atropos-offset="15" />
         </div>
