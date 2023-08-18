@@ -20,30 +20,24 @@ export default function SwiperComponent() {
         slidesPerView={3}
         spaceBetween={70}
         modules={[Pagination]}
-        className="h-[70%] w-full px-28 "
+        className="h-full w-full px-28"
       >
         <SwiperSlide className="swiperSlide">
-          {/* <img src={img} className="aspect-square w-48" /> */}
           <ProductCard imgUrl={img} />
         </SwiperSlide>
         <SwiperSlide className="swiperSlide">
-          {/* <img src={img} className="aspect-square w-48" /> */}
           <ProductCard />
         </SwiperSlide>
         <SwiperSlide className="swiperSlide">
-          {/* <img src={img} className="aspect-square w-48" /> */}
           <ProductCard />
         </SwiperSlide>
         <SwiperSlide className="swiperSlide">
-          {/* <img src={img} className="aspect-square w-48" /> */}
           <ProductCard />
         </SwiperSlide>
         <SwiperSlide className="swiperSlide">
-          {/* <img src={img} className="aspect-square w-48" /> */}
           <ProductCard />
         </SwiperSlide>
         <SwiperSlide className="swiperSlide">
-          {/* <img src={img} className="aspect-square w-48" /> */}
           <ProductCard />
         </SwiperSlide>
       </Swiper>
