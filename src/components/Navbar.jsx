@@ -18,7 +18,7 @@ export default function Navbar() {
       <NavLink to="/">
         <img src={logo} className="w-16 hover:animate-pulse" />
       </NavLink>
-      <img src={drawer} id="drawer" className="w-8" />
+      <img src={drawer} id="drawer" className="w-8 xl:hidden" />
       <ul className="hidden h-full xl:flex">
         {links.map((l, index) => (
           <li key={index} className="mr-8 flex items-center justify-center">
