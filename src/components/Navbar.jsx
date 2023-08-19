@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/blackLogo.png";
 import userProfile from "../assets/userProfile.png";
 import shoppingCart from "../assets/shoppingCart.png";
-import arrowDown from "../assets/arrowDown.png";
+import { Categories } from "./Categories";
 
 export const links = [
   { name: "PRODUCTOS", path: "/products" },
@@ -20,19 +20,20 @@ export default function Navbar() {
       <ul className="flex h-full">
         {links.map((l, index) => (
           <li key={index} className="mr-8 flex items-center justify-center">
-            <NavLink
-              to={l.path}
-              className={({ isActive, isPending }) =>
-                isActive
-                  ? "border-b-2 p-2  text-white"
-                  : isPending
-                    ? "pending"
-                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
-              }
-            >
-              {l.name}
-              {l.name === "CATEGORIAS" && <img src={arrowDown} className="ml-2 h-[5px]" />}
-            </NavLink>
+            {l.name === "CATEGORIAS" ? (<Categories />) :
+              (<NavLink
+                to={l.path}
+                className={({ isActive, isPending }) =>
+                  isActive
+                    ? "border-b-2 p-2  text-white"
+                    : isPending
+                      ? "pending"
+                      : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
+                }
+              >
+                {l.name}
+              </NavLink>)
+            }
           </li>
         ))}
       </ul>

@@ -25,7 +25,7 @@ module.exports = {
     "no-console": "off",
     "comma-spacing": "warn",
     curly: "warn",
-    "operator-linebreak": "warn",
+    "operator-linebreak": "off",
     camelcase: "warn",
     "comma-dangle": "off",
     "new-cap": "warn",
