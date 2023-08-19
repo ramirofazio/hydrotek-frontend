@@ -1,22 +1,15 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import productBorderNoGradient from "../assets/productBorderNoGradient.png";
 
 export default function InfoCard({ text }) {
   return (
-    <div className="p-1">
-      <div className="borderProduct lg:borderProductXl">
-        <div className="lg:flex-column flex h-full items-center  text-center lg:flex-col lg:items-start lg:gap-5 lg:px-5 lg:py-2 lg:text-start  ">
-          <h1 className="uppercase lg:text-2xl ">{text || "Cultivo sin tierra, crecimiento sin límites"}</h1>
-          <Link to={`/products`} className="hidden lg:inline">
-            <Button classname="text-xs" text="VER PRODUCTOS" />
-          </Link>
-        </div>
-      </div>
-      <div className="mx-auto w-fit">
-        <Link to={`/products`} className="lg:hidden">
-          <Button classname="mt-9 " text="VER PRODUCTOS" />
-        </Link>
-      </div>
+    <div className="grid h-screen w-full place-content-start place-items-center p-4">
+      <img src={productBorderNoGradient} className="absolute w-[80%] self-start" />
+      <h1 className="mt-20 w-[80%] text-center uppercase">{text || "Cultivo sin tierra, crecimiento sin límites"}</h1>
+      <Link to={`/products`} className="">
+        <Button classname="text-xs" text="VER PRODUCTOS" />
+      </Link>
     </div>
   );
 }

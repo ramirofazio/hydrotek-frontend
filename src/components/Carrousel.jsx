@@ -20,7 +20,7 @@ export default function SwiperComponent() {
         slidesPerView={3}
         spaceBetween={70}
         modules={[Pagination]}
-        className="h-full w-full px-28"
+        className="h-screen w-full px-28"
       >
         <SwiperSlide className="swiperSlide">
           <ProductCard imgUrl={img} />

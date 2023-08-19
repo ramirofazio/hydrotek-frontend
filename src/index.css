@@ -66,24 +66,6 @@
     mix-blend-mode: screen;
   }
 
-  .borderProduct {
-    width: 287px;
-    height: 240px;
-    border: 25px solid;
-    border-image-source: url("assets/productBorder.png");
-    border-image-slice: 25;
-    background-color: transparent;
-  }
-
-  .borderProductXl {
-    width: 350px;
-    height: 260px;
-    border: 25px solid;
-    border-image-source: url("assets/productBorderXl.png");
-    border-image-slice: 57;
-    background-color: transparent;
-  }
-
   .swiperSlide {
     @apply flex h-full w-full items-center justify-center hover:cursor-grab active:cursor-grabbing;
   }

@@ -18,7 +18,8 @@ export default {
       },
       backgroundImage: {
         circuit: "url('./src/assets/circuit.png')",
-        productBorder: "url('./src/assets/productBorder.png')",
+        productBorderGradient: "url('./src/assets/productBorderGradient.png')",
+        productBorderNoGradient: "url('./src/assets/productBorderNoGradient.png')",
       },
       screens: {
         xs: "200px", //Celular
