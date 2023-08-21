@@ -26,7 +26,7 @@ export default {
         sm: "350px", // Celular M/L
         md: "640px", // Tablet
         xl: "1024px", // Laptop
-        "2xl": "2000px", // Desktop
+        "2xl": "1400px", // Desktop
       },
       transitionDuration: {
         DEFAULT: "200ms",
