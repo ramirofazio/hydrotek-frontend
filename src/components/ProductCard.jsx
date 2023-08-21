@@ -2,7 +2,6 @@ import Button from "./Button.jsx";
 import product from "../assets/product.png";
 import { Link } from "react-router-dom";
 import Atropos from "atropos/react";
-import "atropos/css";
 
 export default function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
   return (
