@@ -1,10 +1,16 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import img from "../assets/blackLogo.png";
-import ProductCard from "./ProductCard";
+import { Autoplay, Pagination } from "swiper/modules";
 
-export default function SwiperComponent() {
+export default function SwiperComponent({ content }) {
+  /*
+  ! EXAMPLE CONTENT:
+  const content = [{component: <ProductCard ...props />, qty: 5}] //! Generate 5 slides with ProductCard Component
+  */
+
+  // Crear un array de componentes repetidos basado en qty
+  const repeatedContent = content.flatMap(({ component, qty }) => Array.from({ length: qty }, () => component));
+
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -16,30 +22,41 @@ export default function SwiperComponent() {
     <>
       <Swiper
         loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
         pagination={pagination}
-        slidesPerView={3}
-        spaceBetween={70}
-        modules={[Pagination]}
-        className="h-screen w-full px-28"
+        slidesPerView={1}
+        spaceBetween={20}
+        centeredSlides={true}
+        modules={[Pagination, Autoplay]}
+        className="mt-12 h-full w-full"
+        breakpoints={{
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 40,
+          },
+          1440: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+        }}
       >
-        <SwiperSlide className="swiperSlide">
-          <ProductCard imgUrl={img} />
-        </SwiperSlide>
-        <SwiperSlide className="swiperSlide">
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide className="swiperSlide">
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide className="swiperSlide">
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide className="swiperSlide">
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide className="swiperSlide">
-          <ProductCard />
-        </SwiperSlide>
+        {repeatedContent.map((component, index) => (
+          <SwiperSlide key={index} className="grid h-[60vh] place-items-center">
+            {({ isActive }) => (
+              <div
+                className={`${
+                  isActive ? "opacity-100" : "opacity-30 blur-sm"
+                } grid h-full w-full place-items-center p-2 transition`}
+              >
+                {component}
+              </div>
+            )}
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

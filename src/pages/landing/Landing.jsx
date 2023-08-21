@@ -1,6 +1,7 @@
 import Carrousel from "../../components/Carrousel";
 import InfoCard from "../../components/InfoCard";
 import testFoto from "../../assets/goldCircuit1.png";
+import ProductCard from "../../components/ProductCard";
 
 export default function Landing() {
   return (
@@ -12,7 +13,13 @@ export default function Landing() {
             <img src={testFoto} className="w-full md:w-[70%] xl:w-full" />
           </div>
         </section>
-        <Carrousel />
+        <h1 className="xl:text-4xl">los más vendidos</h1>
+        <Carrousel
+          content={[
+            { component: <ProductCard imgUrl={testFoto} />, qty: 3 },
+            { component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 3 },
+          ]}
+        />
       </section>
     </div>
   );
