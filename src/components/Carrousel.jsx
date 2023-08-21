@@ -49,7 +49,7 @@ export default function SwiperComponent({ content }) {
             {({ isActive }) => (
               <div
                 className={`${
-                  isActive ? "opacity-100" : "opacity-30 blur-sm"
+                  isActive ? "opacity-100" : "pointer-events-none opacity-30 blur-sm"
                 } grid h-full w-full place-items-center p-2 transition`}
               >
                 {component}
