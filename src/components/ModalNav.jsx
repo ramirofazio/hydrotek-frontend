@@ -10,7 +10,7 @@ import { Categories } from "./Categories.jsx";
 export function ModalNav() {
 
   return (
-    <Popover className="border-2">
+    <Popover className="">
       <Popover.Button className="focus:outline-0">
         <Bars3BottomRightIcon className="goldGradient h-6 w-6 " aria-hidden="true" />
       </Popover.Button>
@@ -23,7 +23,7 @@ export function ModalNav() {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <Popover.Panel className="fixed z-50 right-[35%] top-[8.5rem] flex w-fit flex-col gap-6 rounded-sm border-2 border-black/40 bg-black px-3  py-8 text-xl shadow-2xl">
+        <Popover.Panel className="absolute z-50 right-[12%] top-[8.5rem] flex w-fit flex-col gap-6 rounded-sm border-2 border-black/40 bg-black px-4 py-11 text-xl shadow-2xl">
           <Popover.Button className="goldGradient mb-1 w-fit place-self-end justify-self-center rounded-sm px-[1px] hover:bg-opacity-70">
             <XMarkIcon className="goldGradient h-6 w-6 stroke-black stroke-[3.5px] hover:stroke-[3.8px]" />
           </Popover.Button>
@@ -47,7 +47,7 @@ export function ModalNav() {
               )}
             </ul>
 
-            <section className="mt-6 flex justify-around">
+            <section className="mt-10 flex justify-around">
               <Link>
                 <img src={userProfile} className="h-7 w-7" />
               </Link>
