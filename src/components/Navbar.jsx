@@ -3,7 +3,7 @@ import logo from "../assets/blackLogo.png";
 import userProfile from "../assets/userProfile.png";
 import shoppingCart from "../assets/shoppingCart.png";
 import { Categories } from "./Categories";
-import drawer from "../assets/drawer.png";
+//import drawer from "../assets/drawer.png";
 import Atropos from "atropos/react";
 import { ModalNav } from "./ModalNav";
 
