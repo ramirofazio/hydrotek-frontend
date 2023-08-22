@@ -26,3 +26,4 @@ yarn-error.log*
 dist
 
 settings.json
+/package-lock.json

@@ -18,6 +18,18 @@ export default {
       },
       backgroundImage: {
         circuit: "url('./src/assets/circuit.png')",
+        productBorderGradient: "url('./src/assets/productBorderGradient.png')",
+        productBorderNoGradient: "url('./src/assets/productBorderNoGradient.png')",
+      },
+      screens: {
+        xs: "200px", //Celular
+        sm: "350px", // Celular M/L
+        md: "640px", // Tablet
+        xl: "1024px", // Laptop
+        "2xl": "1400px", // Desktop
+      },
+      transitionDuration: {
+        DEFAULT: "200ms",
       },
     },
   },

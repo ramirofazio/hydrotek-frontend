@@ -14,7 +14,7 @@
   }
 
   h1 {
-    @apply text-xl text-white;
+    @apply text-xl uppercase text-white;
   }
 
   p {
@@ -39,7 +39,7 @@
 @layer components {
   /*ACA VAN LOS ESTILOS GLOBALES DE TAILWIND CON @APPLY*/
   .outletPrimaryContainer {
-    @apply grid h-full w-full place-items-center;
+    @apply flex h-full w-full items-center justify-center;
   }
 
   .goldGradient {
@@ -65,22 +65,12 @@
     background-image: radial-gradient(circle, #b8912d0e, #b8912d70);
     mix-blend-mode: screen;
   }
+}
 
-  .borderProduct {
-    width: 287px;
-    height: 240px;
-    border: 25px solid;
-    border-image-source: url("assets/productBorder.png");
-    border-image-slice: 25;
-    background-color: transparent;
-  }
+.swiper-pagination-bullet {
+  @apply h-4 w-4 bg-gold/50;
+}
 
-  .borderProductXl {
-    width: 350px;
-    height: 260px;
-    border: 25px solid;
-    border-image-source: url("assets/productBorderXl.png");
-    border-image-slice: 57;
-    background-color: transparent;
-  }
+.swiper-pagination-bullet-active {
+  @apply bg-gold;
 }
