@@ -1,4 +1,6 @@
 import colors from "tailwindcss/colors";
+import defaultTheme from "tailwindcss/defaultTheme";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -22,11 +24,13 @@ export default {
         productBorderNoGradient: "url('./src/assets/productBorderNoGradient.png')",
       },
       screens: {
-        xs: "200px", //Celular
+        /* xs: "200px", //Celular
         sm: "350px", // Celular M/L
         md: "640px", // Tablet
         xl: "1024px", // Laptop
-        "2xl": "1400px", // Desktop
+        "2xl": "1400px", // Desktop */
+        xs: "450px",
+        ...defaultTheme,
       },
       transitionDuration: {
         DEFAULT: "200ms",
