@@ -2,11 +2,12 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/blackLogo.png";
 import userProfile from "../assets/userProfile.png";
 import shoppingCart from "../assets/shoppingCart.png";
-import arrowDown from "../assets/arrowDown.png";
+import { Categories } from "./Categories";
 import drawer from "../assets/drawer.png";
 import Atropos from "atropos/react";
 
-const links = [
+
+export const links = [
   { name: "PRODUCTOS", path: "/products" },
   { name: "CATEGORIAS", path: "/products/category" },
   { name: "BLOG", path: "/blog" },
@@ -25,19 +26,20 @@ export default function Navbar() {
       <ul className="hidden h-full xl:flex">
         {links.map((l, index) => (
           <li key={index} className="mr-8 flex items-center justify-center">
-            <NavLink
-              to={l.path}
-              className={({ isActive, isPending }) =>
-                isActive
-                  ? "border-b-2 p-2  text-white"
-                  : isPending
-                  ? "pending"
-                  : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
-              }
-            >
-              {l.name}
-              {l.name === "CATEGORIAS" && <img src={arrowDown} className="ml-2 h-[5px]" />}
-            </NavLink>
+            {l.name === "CATEGORIAS" ? (<Categories />) :
+              (<NavLink
+                to={l.path}
+                className={({ isActive, isPending }) =>
+                  isActive
+                    ? "border-b-2 p-2  text-white"
+                    : isPending
+                      ? "pending"
+                      : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
+                }
+              >
+                {l.name}
+              </NavLink>)
+            }
           </li>
         ))}
       </ul>
