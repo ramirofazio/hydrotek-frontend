@@ -6,7 +6,7 @@
   *,
   *::after,
   *::before {
-    @apply z-20 box-border scroll-smooth;
+    @apply box-border scroll-smooth;
   }
 
   body {
