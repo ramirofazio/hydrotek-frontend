@@ -5,7 +5,7 @@ import shoppingCart from "../assets/shoppingCart.png";
 import { Categories } from "./Categories";
 import drawer from "../assets/drawer.png";
 import Atropos from "atropos/react";
-
+import { ModalNav } from "./ModalNav";
 
 export const links = [
   { name: "PRODUCTOS", path: "/products" },
@@ -22,7 +22,8 @@ export default function Navbar() {
           <img src={logo} className="w-20 transition hover:opacity-70" />
         </Atropos>
       </NavLink>
-      <img src={drawer} id="drawer" className="w-8 xl:hidden" />
+      {/* <img src={drawer} id="drawer" className="w-8 xl:hidden" /> */}
+      <ModalNav />
       <ul className="hidden h-full xl:flex">
         {links.map((l, index) => (
           <li key={index} className="mr-8 flex items-center justify-center">

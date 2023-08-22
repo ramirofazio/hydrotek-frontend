@@ -8,7 +8,7 @@ export default function Landing() {
       <section className="flex h-full w-full flex-col items-center justify-center">
         <section className="flex h-screen w-full flex-col xl:flex-row xl:pt-20">
           <InfoCard />
-          <div className="mt-12 flex h-full w-full items-start md:justify-end xl:pt-20">
+          <div className="2xl:bg-red-600 mt-12 flex h-full w-full items-start md:justify-end xl:pt-20">
             <img src={testFoto} className="w-full md:w-[70%] xl:w-full" />
           </div>
         </section>

@@ -10,9 +10,9 @@ import { Categories } from "./Categories.jsx";
 export function ModalNav() {
 
   return (
-    <Popover className="">
+    <Popover className="border-2">
       <Popover.Button className="focus:outline-0">
-        <Bars3BottomRightIcon className=" goldGradient h-6 w-6 " aria-hidden="true" />
+        <Bars3BottomRightIcon className="goldGradient h-6 w-6 " aria-hidden="true" />
       </Popover.Button>
       <Transition
         as={Fragment}
@@ -23,12 +23,12 @@ export function ModalNav() {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <Popover.Panel className="fixed right-4  top-8 z-50 flex w-fit flex-col gap-6 rounded-sm border-2 border-black/40 bg-black px-3  py-5 text-base shadow-2xl">
-          <Popover.Button className="goldGradient mb-3 w-fit place-self-end justify-self-center rounded-sm px-[1px] hover:bg-opacity-70">
-            <XMarkIcon className="goldGradient h-5 w-5 stroke-black stroke-[3.5px] hover:stroke-[3.8px]" />
+        <Popover.Panel className="fixed right-[35%] top-[8.5rem] flex w-fit flex-col gap-6 rounded-sm border-2 border-black/40 bg-black px-3  py-8 text-xl shadow-2xl">
+          <Popover.Button className="goldGradient mb-1 w-fit place-self-end justify-self-center rounded-sm px-[1px] hover:bg-opacity-70">
+            <XMarkIcon className="goldGradient h-6 w-6 stroke-black stroke-[3.5px] hover:stroke-[3.8px]" />
           </Popover.Button>
-          <nav>
-            <ul className="flex w-[95%] flex-col gap-4 pl-1 text-white">
+          <nav className="my-1">
+            <ul className="flex w-[95%] flex-col gap-6 pl-1 text-white">
               {links.map((l, i) =>
                 l.name === "CATEGORIAS" ? (
                   <li key={i}>
@@ -49,10 +49,10 @@ export function ModalNav() {
 
             <section className="mt-6 flex justify-around">
               <Link>
-                <img src={userProfile} className="h-5 w-5" />
+                <img src={userProfile} className="h-7 w-7" />
               </Link>
               <Link>
-                <img src={shoppingCart} className="h-5 w-5" />
+                <img src={shoppingCart} className="h-7 w-7" />
               </Link>
             </section>
           </nav>
