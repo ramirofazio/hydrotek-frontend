@@ -40,10 +40,10 @@ export default function Aurora() {
   return (
     <>
       <div
-        className={`aurora absolute z-10 transition-opacity duration-500 ${isAuroraOn ? "opacity-100" : "opacity-0"}`}
+        className={`aurora absolute -z-20 transition-opacity duration-500 ${isAuroraOn ? "opacity-100" : "opacity-0"}`}
         ref={auroraRef}
       />
-      <div id="circuit" className="absolute z-20 h-full w-full bg-circuit bg-center" />
+      <div id="circuit" className="absolute -z-10 h-full w-full bg-circuit bg-center" />
     </>
   );
 }

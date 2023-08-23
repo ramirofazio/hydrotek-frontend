@@ -6,7 +6,7 @@ export default function DefaultError() {
 
 
   return (
-    <div id="error-page" className="mt-[35vh] flex h-[30vh] flex-col items-center justify-evenly">
+    <div id="error-page" className="mt-[35%] flex h-[30%] flex-col items-center justify-evenly">
       <h1 className="font-bold">Ooops!</h1>
       <p>{error.statusText || error.message}</p>
       <p>

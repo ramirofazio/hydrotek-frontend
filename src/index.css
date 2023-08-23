@@ -6,7 +6,7 @@
   *,
   *::after,
   *::before {
-    @apply z-20 box-border scroll-smooth;
+    @apply box-border scroll-smooth;
   }
 
   body {
@@ -40,6 +40,10 @@
   /*ACA VAN LOS ESTILOS GLOBALES DE TAILWIND CON @APPLY*/
   .outletPrimaryContainer {
     @apply flex h-full w-full items-center justify-center;
+  }
+
+  .content {
+    @apply min-h-[50vh]
   }
 
   .goldGradient {

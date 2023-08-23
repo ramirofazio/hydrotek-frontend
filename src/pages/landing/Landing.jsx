@@ -5,21 +5,22 @@ import ProductCard from "../../components/ProductCard";
 
 export default function Landing() {
   return (
-    <div className="outletPrimaryContainer">
-      <section className="flex h-full w-full flex-col items-center justify-center">
-        <section className="flex h-screen w-full flex-col xl:flex-row xl:pt-20">
+    <div className="content h-full ">
+      <section className=" flex flex-col gap-[5rem]">
+        <section className="flex flex-col  lg:flex-row lg:place-items-center lg:pt-20">
           <InfoCard />
-          <div className="mt-12 flex h-full w-full items-start md:justify-end xl:pt-20">
-            <img src={testFoto} className="w-full md:w-[70%] xl:w-full" />
-          </div>
+          <img src={testFoto} className="place-self-end  md:w-[70%] lg:w-[45%] lg:place-self-center" />
         </section>
-        <h1 className="xl:text-4xl">los más vendidos</h1>
-        <Carrousel
-          content={[
-            { component: <ProductCard imgUrl={testFoto} />, qty: 3 },
-            { component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 3 },
-          ]}
-        />
+        <div className="">
+          <h1 className="mb-10 w-fit mx-auto xl:text-3xl">los más vendidos</h1>
+          <Carrousel
+            content={[
+              { component: <ProductCard imgUrl={testFoto} name={"CIRCUIT"} price={"$5.000"} />, qty: 3 },
+              { component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 3 },
+            ]}
+            quantit
+          />
+        </div>
       </section>
     </div>
   );

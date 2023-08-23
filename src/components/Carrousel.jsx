@@ -19,45 +19,47 @@ export default function SwiperComponent({ content }) {
   };
 
   return (
-    <>
-      <Swiper
-        loop={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
-        pagination={pagination}
-        slidesPerView={1}
-        spaceBetween={20}
-        centeredSlides={true}
-        modules={[Pagination, Autoplay]}
-        className="mt-12 h-full w-full"
-        breakpoints={{
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 40,
-          },
-          1440: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-        }}
-      >
-        {repeatedContent.map((component, index) => (
-          <SwiperSlide key={index} className="grid h-[60vh] place-items-center">
-            {({ isActive }) => (
-              <div
-                className={`${
-                  isActive ? "opacity-100" : "pointer-events-none opacity-30 blur-sm"
-                } grid h-full w-full place-items-center p-2 transition`}
-              >
-                {component}
-              </div>
-            )}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </>
+    <Swiper
+      loop={true}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      }}
+      pagination={pagination}
+      slidesPerView={1}
+      spaceBetween={20}
+      centeredSlides={true}
+      modules={[Pagination, Autoplay]}
+      className="w-full mb-10 "
+      breakpoints={{
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        1280: {
+          slidesPerView: 4,
+          spaceBetween: 70,
+        },
+      }}
+    >
+      {repeatedContent.map((component, index) => (
+        <SwiperSlide key={index} className="grid place-items-center  py-2">
+          {({ isActive }) => (
+            <div
+              className={`${
+                isActive ? "mt-10 opacity-100" : "pointer-events-none opacity-30 blur-sm"
+              } grid h-full w-full place-items-center p-2 transition`}
+            >
+              {component}
+            </div>
+          )}
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }
