@@ -16,7 +16,7 @@ export default function ProductCard({ imgUrl, name, price, id, showBtn = true })
           />
         </div>
       </Atropos>
-      <div className="outline grid place-items-center pb-12 gap-1">
+      <div className=" grid place-items-center pb-12 gap-1">
         <h1 className="text-center">{name || "NOMBRE DEL PRODUCTO"}</h1>
         <h2 className="textGoldGradient">{price || "$99.99"}</h2>
         {showBtn && (

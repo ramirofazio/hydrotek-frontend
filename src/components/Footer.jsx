@@ -6,15 +6,15 @@ import instagram from "../assets/instagram.png";
 import whatsapp from "../assets/whatsapp.png";
 import mail from "../assets/mail.png";
 
-//Usar Map para refactorizar el componente
+// !Usar Map para refactorizar el componente
 
 export default function Footer() {
   return (
     <footer className="h-full w-full border-t-8 border-gold">
       <section className="grid grid-cols-1 place-items-center gap-10 p-8 lg:grid-cols-3 lg:grid-rows-1 lg:gap-12">
-        <div className="grid h-32 place-items-center sm:h-44 lg:pl-2 border-2 border-red-500 ">
-          <img src={textLogo} className="col-span-1 w-full max-w-[800px] s:w-[80%] md:w-[70%]  border-2 " />
-          <div className="flex w-full justify-around md:w-[50%] border-2 lg:w-[70%] lg:px-5 lg:gap-5">
+        <div className="grid h-32 place-items-center sm:h-44 lg:pl-2 ">
+          <img src={textLogo} className="col-span-1 w-full max-w-[800px] s:w-[80%] md:w-[70%]   " />
+          <div className="flex w-full justify-around md:w-[50%]  lg:w-[70%] lg:px-5 lg:gap-5">
             <div className="goldGradient flex h-12 w-12 lg:w-20  items-center justify-center rounded-full">
               <img src={facebook} className="w-4" />
             </div>

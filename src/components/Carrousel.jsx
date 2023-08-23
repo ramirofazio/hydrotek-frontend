@@ -31,7 +31,7 @@ export default function SwiperComponent({ content }) {
       spaceBetween={20}
       centeredSlides={true}
       modules={[Pagination, Autoplay]}
-      className="w-full mb-10 border-4 border-yellow-600"
+      className="w-full mb-10 "
       breakpoints={{
         768: {
           slidesPerView: 2,
@@ -48,7 +48,7 @@ export default function SwiperComponent({ content }) {
       }}
     >
       {repeatedContent.map((component, index) => (
-        <SwiperSlide key={index} className="grid place-items-center border-2 border-red-500 py-2">
+        <SwiperSlide key={index} className="grid place-items-center  py-2">
           {({ isActive }) => (
             <div
               className={`${
