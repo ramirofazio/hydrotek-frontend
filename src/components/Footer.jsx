@@ -5,8 +5,9 @@ import facebook from "../assets/facebook.png";
 import instagram from "../assets/instagram.png";
 import whatsapp from "../assets/whatsapp.png";
 import mail from "../assets/mail.png";
-
+import { useTranslation } from 'react-i18next';
 export const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="h-full w-full border-t-8 border-gold">
       <section className="grid grid-cols-1 place-items-center gap-10 p-8 lg:grid-cols-3 lg:grid-rows-1 lg:gap-12">
@@ -28,32 +29,30 @@ export const Footer = () => {
           </div>
         </div>
         <div className="col-span-1 row-span-2 my-6  lg:row-span-1 lg:h-full">
-          <h1 className="textGoldGradient text-sm md:text-xl">¿QUIÉNES SOMOS?</h1>
+          <h1 className="textGoldGradient text-sm md:text-xl">{t('footer.who-we-are')}</h1>
           <p className="py-4 text-xs font-[200]  leading-5 tracking-widest md:w-[50%]  md:text-sm lg:w-full">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales ex mattis tellus mollis, eu vehicula
-            tortor sollicitudin. consectetur adipiscing elit. Nunc sodales ex mattis tellus mollis, eu vehicula tortor
-            sollicitudin.
+            {t('footer.who-we-are-body')}
           </p>
           <h1 className="textGoldGradient text-sm underline decoration-gold transition hover:cursor-pointer hover:opacity-[0.5]  md:text-xl">
-            LEER MÁS
+            {t('footer.see-more')}
           </h1>
         </div>
         <div className="col-span-1 row-span-2 my-8 flex h-full w-full flex-col justify-around  lg:row-span-1 lg:justify-start">
-          <h1 className="textGoldGradient mb-4 text-sm md:text-xl">ENLACES</h1>
+          <h1 className="textGoldGradient mb-4 text-sm md:text-xl">{t('footer.links')}</h1>
           <p className="flex items-center pb-2 decoration-gold transition hover:cursor-pointer hover:underline">
-            Mi cuenta / Registrarme
+            {t('footer.links-list.my-account')}
           </p>
           <p className="flex items-center pb-2 decoration-gold transition hover:cursor-pointer hover:underline">
-            Editar info de mi cuent
+            {t('footer.links-list.edit')}
           </p>
           <p className="flex items-center pb-2 decoration-gold transition hover:cursor-pointer hover:underline">
-            Cambiar mi contraseña
+            {t('footer.links-list.change-password')}
           </p>
           <p className="flex items-center pb-2 decoration-gold transition hover:cursor-pointer hover:underline">
-            Historial de pedidos
+            {t('footer.links-list.order-history')}
           </p>
           <p className="flex items-center pb-2 decoration-gold transition hover:cursor-pointer hover:underline">
-            Seguimiento de envios
+            {t('footer.links-list.order-track')}
           </p>
         </div>
         <img
@@ -63,7 +62,7 @@ export const Footer = () => {
       </section>
 
       <div className="w-full bg-gold py-2 text-center font-secondary text-xs text-white ">
-        © Copyright 2023 HydroTek - <br className="md:hidden" /> Todos los Derechos Reservados
+        {t('footer.legal')}
       </div>
     </footer>
   );

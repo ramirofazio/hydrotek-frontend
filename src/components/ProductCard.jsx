@@ -1,4 +1,4 @@
-import Button from "./Button.jsx";
+import { Button } from "./Button.jsx";
 import product from "../assets/product.png";
 import { Link } from "react-router-dom";
 import Atropos from "atropos/react";
