@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export default function Aurora() {
+export const Aurora = () => {
   const auroraRef = useRef(null);
   const [isAuroraOn, setIsAuroraOn] = useState(false);
 
@@ -46,4 +46,4 @@ export default function Aurora() {
       <div id="circuit" className="absolute -z-10 h-full w-full bg-circuit bg-center" />
     </>
   );
-}
+};

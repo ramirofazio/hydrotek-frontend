@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import Button from "./Button";
+import { Button } from "./Button";
 import infoCardBorder from "../assets/productBorderNoGradient.png";
-
+import { useTranslation } from 'react-i18next';
 export default function InfoCard({ text }) {
+  const { t } = useTranslation();
   return (
     <div className="mx-auto mb-3 md:mb-10">
       <div className="relative mx-auto w-[70%] sm:w-[60%]">
@@ -12,13 +13,13 @@ export default function InfoCard({ text }) {
             {text || "Cultivo sin tierra, crecimiento sin límites"}
           </h1>
           <Link to={`/products`} className="hidden md:inline">
-            <Button classname="text-xs s:text-lg" text="VER PRODUCTOS" />
+            <Button classname="text-xs s:text-lg" text={t('common.see-products')} />
           </Link>
         </div>
       </div>
       <div className="mt-3 xs:mt-5 sm:mt-10 w-fit mx-auto md:hidden">
         <Link to={`/products`}>
-          <Button classname="text-xs s:text-lg" text="VER PRODUCTOS" />
+          <Button classname="text-xs s:text-lg" text={t('common.see-products')} />
         </Link>
       </div>
     </div>
