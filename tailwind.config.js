@@ -24,12 +24,8 @@ export default {
         productBorderNoGradient: "url('./src/assets/productBorderNoGradient.png')",
       },
       screens: {
-        /* xs: "200px", //Celular
-        sm: "350px", // Celular M/L
-        md: "640px", // Tablet
-        xl: "1024px", // Laptop
-        "2xl": "1400px", // Desktop */
-        xs: "450px",
+        xs: "375px",
+        s: "450px",
         ...defaultTheme,
       },
       transitionDuration: {

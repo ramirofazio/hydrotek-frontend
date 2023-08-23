@@ -42,6 +42,10 @@
     @apply flex h-full w-full items-center justify-center;
   }
 
+  .content {
+    @apply min-h-[50vh]
+  }
+
   .goldGradient {
     background: linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%);
   }

@@ -1,25 +1,45 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import infoCardBorder from "../assets/productBorderNoGradient.png";
 
 export default function InfoCard({ text }) {
   return (
-    <div className="mx-auto w-[20rem] h-[23rem]">
-      <div className="bg-productBorderNoGradient bg-cover bg-no-repeat min-h-[100%] ">
+    <div className="mx-auto border-blue mb-3">
+      <div className="relative mx-auto w-[70%] sm:w-[60%]">
+        <img src={infoCardBorder} className="" />
+        <div className="absolute inset-1 top-3 border-2 p-3 text-center xs:top-8 xs:text-xl s:top-10 md:flex md:flex-col md:gap-4">
+          <h1 className="h-fit text-lg uppercase lg:text-2xl xs:text-2xl s:p-2 s:text-3xl sm:text-4xl">
+            {text || "Cultivo sin tierra, crecimiento sin límites"}
+          </h1>
+          <Link to={`/products`} className="hidden md:inline">
+            <Button classname="text-xs s:text-lg" text="VER PRODUCTOS" />
+          </Link>
+        </div>
+      </div>
+      <div className="mt-3 xs:mt-5 sm:mt-10 w-fit mx-auto md:hidden">
+        <Link to={`/products`}>
+          <Button classname="text-xs s:text-lg" text="VER PRODUCTOS" />
+        </Link>
+      </div>
+    </div>
+  );
+}
+{
+  /* <div className="bg-productBorderNoGradient bg-auto bg-no-repeat ">
         <div className="lg:flex-column flex h-full items-center  border-red-400  bg-no-repeat  text-center lg:flex-col lg:items-start lg:gap-5 lg:px-5 lg:py-2 lg:text-start">
           <h1 className="uppercase lg:text-2xl ">{text || "Cultivo sin tierra, crecimiento sin límites"}</h1>
           <Link to={`/products`} className="hidden lg:inline">
             <Button classname="text-xs" text="VER PRODUCTOS" />
           </Link>
-        </div>
-      </div>
+        </div> */
+}
 
-      {/* <div className=" mx-auto w-fit">
+{
+  /* <div className=" mx-auto w-fit">
         <Link to={`/products`} className="lg:hidden">
           <Button classname="mt-9 " text="VER PRODUCTOS" />
         </Link>
-      </div> */}
-    </div>
-  );
+      </div> */
 }
 /* export default function InfoCard({ text, showBtn = true }) {
   return (
