@@ -5,8 +5,8 @@ import Atropos from "atropos/react";
 
 export default function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
   return (
-    <div className={`grid h-full w-[80%]`}>
-      <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer xl:h-[30vh]">
+    <div className={`grid h-full w-fit md:w-[100%]`}>
+      <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer ">
         <div className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain  bg-clip-content bg-center bg-no-repeat">
           <img
             src={imgUrl || product}
@@ -16,7 +16,7 @@ export default function ProductCard({ imgUrl, name, price, id, showBtn = true })
           />
         </div>
       </Atropos>
-      <div className="grid place-items-center pb-12">
+      <div className=" grid place-items-center pb-12 gap-1">
         <h1 className="text-center">{name || "NOMBRE DEL PRODUCTO"}</h1>
         <h2 className="textGoldGradient">{price || "$99.99"}</h2>
         {showBtn && (

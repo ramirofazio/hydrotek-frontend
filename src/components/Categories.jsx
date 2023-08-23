@@ -27,7 +27,7 @@ export function Categories() {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <Listbox.Options className="relative inset-0 top-1 flex flex-col place-items-center gap-2 rounded-sm bg-black/60 py-2 text-sm text-white/80  md:absolute md:inset-auto md:mt-0.5">
+          <Listbox.Options className="absolute z-50 inset-0 top-1 flex flex-col place-items-center gap-2 rounded-sm bg-black/60 py-2 text-sm text-white/80  md:absolute md:inset-auto md:mt-0.5">
             {categories.map((c, i) => (
               <NavLink
                 to="/products"

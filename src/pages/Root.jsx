@@ -5,11 +5,13 @@ import Aurora from "../components/Aurora.jsx";
 
 export default function Root() {
   return (
-    <div className="relative h-full w-full">
-      <Aurora />
-      <Navbar />
-      <Outlet />
-      <Footer />
+    <div className="relative ">
+      <div className="">
+        <Aurora/>
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </div>
     </div>
   );
 }
