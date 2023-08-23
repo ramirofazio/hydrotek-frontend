@@ -12,13 +12,13 @@ export default function Landing() {
           <img src={testFoto} className="md:w-[70%] lg:w-[40%] place-self-end" />
         </section>
         {/* <h1 className="xl:text-4xl">los más vendidos</h1> */}
-        {/* <Carrousel
+        <Carrousel
           content={[
             { component: <ProductCard imgUrl={testFoto} />, qty: 3 },
             { component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 3 },
           ]}
           quantit
-        /> */}
+        />
       </section>
     </div>
   );

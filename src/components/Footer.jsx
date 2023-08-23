@@ -6,24 +6,26 @@ import instagram from "../assets/instagram.png";
 import whatsapp from "../assets/whatsapp.png";
 import mail from "../assets/mail.png";
 
+//Usar Map para refactorizar el componente
+
 export default function Footer() {
   return (
     <footer className="h-full w-full border-t-8 border-gold">
       <section className="grid grid-cols-1 place-items-center gap-10 p-8 xl:grid-cols-3 xl:grid-rows-1 xl:gap-12">
         <div className="grid h-32 place-items-center sm:h-44 xl:place-items-start xl:pl-12">
-          <img src={textLogo} className="col-span-1 w-full md:w-[70%] " />
+          <img src={textLogo} className="col-span-1 w-full max-w-[800px] s:w-[80%] md:w-[70%] xl:w-10 border-2 " />
           <div className="flex w-full justify-around md:w-[50%]">
             <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full">
-              <img src={facebook} className="h-4 w-auto" />
+              <img src={facebook} className="w-4" />
             </div>
             <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full">
-              <img src={instagram} className="h-4 w-auto" />
+              <img src={instagram} className=" w-6" />
             </div>
             <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full">
-              <img src={whatsapp} className="h-4 w-auto" />
+              <img src={whatsapp} className="w-6 h-6" />
             </div>
             <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full">
-              <img src={mail} className="h-4 w-auto" />
+              <img src={mail} className="w-7" />
             </div>
           </div>
         </div>
@@ -62,7 +64,6 @@ export default function Footer() {
         />
       </section>
 
-      {/* //!No se que pasa aca con el fondo que queda por arriba */}
       <div className="w-full bg-gold py-2 text-center font-secondary text-xs text-white ">
         © Copyright 2023 HydroTek - <br className="md:hidden" /> Todos los Derechos Reservados
       </div>

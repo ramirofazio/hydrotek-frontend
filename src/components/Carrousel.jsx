@@ -31,7 +31,7 @@ export default function SwiperComponent({ content }) {
       spaceBetween={20}
       centeredSlides={true}
       modules={[Pagination, Autoplay]}
-      className="mt-12 w-full h-[60%]"
+      className="mt-12 w-full h-[60%] mb-10"
       breakpoints={{
         768: {
           slidesPerView: 2,
@@ -44,11 +44,11 @@ export default function SwiperComponent({ content }) {
       }}
     >
       {repeatedContent.map((component, index) => (
-        <SwiperSlide key={index} className="grid place-items-center border-2 py">
+        <SwiperSlide key={index} className="grid place-items-center border-2 py-2">
           {({ isActive }) => (
             <div
               className={`${
-                isActive ? "opacity-100" : "pointer-events-none opacity-30 blur-sm"
+                isActive ? "mt-10 opacity-100" : "pointer-events-none opacity-30 blur-sm"
               } grid h-full w-full place-items-center p-2 transition`}
             >
               {component}

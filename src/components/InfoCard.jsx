@@ -4,7 +4,7 @@ import infoCardBorder from "../assets/productBorderNoGradient.png";
 
 export default function InfoCard({ text }) {
   return (
-    <div className="mx-auto border-blue mb-3">
+    <div className="mx-auto border-blue mb-3 md:mb-10">
       <div className="relative mx-auto w-[70%] sm:w-[60%]">
         <img src={infoCardBorder} className="" />
         <div className="absolute inset-1 top-3 border-2 p-3 text-center xs:top-8 xs:text-xl s:top-10 md:flex md:flex-col md:gap-4">

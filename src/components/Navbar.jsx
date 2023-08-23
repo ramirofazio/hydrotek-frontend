@@ -23,8 +23,8 @@ export default function Navbar() {
         </Atropos>
       </NavLink>
       {/* <img src={drawer} id="drawer" className="w-8 xl:hidden" /> */}
-      <ModalNav />
-      <ul className="hidden h-full xl:flex">
+      <ModalNav/>
+      <ul className="hidden h-full lg:flex">
         {links.map((l, index) => (
           <li key={index} className="mr-8 flex items-center justify-center">
             {l.name === "CATEGORIAS" ? (<Categories />) :
