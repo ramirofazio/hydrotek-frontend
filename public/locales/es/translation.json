@@ -1,8 +1,32 @@
 {
-    "title": "Welcome to react using react-i18nexteeee",
-    "description": {
-      "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-      "part2": "Switch language between english and german using buttons above.",
-      "test" : "aca va el home"
+    "common" : {
+      "brand" : "Hydrotek",
+      "see-products" : "Ver productos",
+      "yes" : "Si",
+      "no" : "No",
+      "accept" : "Aceptar",
+      "cancel" : "Cancelar",
+      "confirm" : "Confirmar",
+      "buy" : "Comprar"
+    },
+    "navbar" : {
+      "products" : "Productos",
+      "categories" : "Categorias",
+      "blog" : "blog",
+      "about-us" : "Sobre nosotros"
+    },
+    "footer" : {
+      "who-we-are" : "¿Quienes somos?",
+      "who-we-are-body" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales ex mattis tellus mollis, eu vehicula tortor sollicitudin. consectetur adipiscing elit. Nunc sodales ex mattis tellus mollis, eu vehicula tortor sollicitudin.",
+      "see-more" : "Leer más",
+      "links" : "Enlaces",
+      "links-list" : {
+        "my-account" : "Mi cuenta/ Registrarme",
+        "edit" : "Editar info de mi cuenta",
+        "change-password" : "Cambiar mi contraseña",
+        "order-history" : "Historial de pedidos",
+        "order-track" : "Seguimiento de envíos"
+      },
+      "legal" : "© Copyright 2023 HydroTek - Todos los Derechos Reservados"
     }
   }
