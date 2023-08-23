@@ -11,27 +11,27 @@ import mail from "../assets/mail.png";
 export default function Footer() {
   return (
     <footer className="h-full w-full border-t-8 border-gold">
-      <section className="grid grid-cols-1 place-items-center gap-10 p-8 xl:grid-cols-3 xl:grid-rows-1 xl:gap-12">
-        <div className="grid h-32 place-items-center sm:h-44 xl:place-items-start xl:pl-12">
-          <img src={textLogo} className="col-span-1 w-full max-w-[800px] s:w-[80%] md:w-[70%] xl:w-10 border-2 " />
-          <div className="flex w-full justify-around md:w-[50%]">
-            <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full">
+      <section className="grid grid-cols-1 place-items-center gap-10 p-8 lg:grid-cols-3 lg:grid-rows-1 lg:gap-12">
+        <div className="grid h-32 place-items-center sm:h-44 lg:pl-2 border-2 border-red-500 ">
+          <img src={textLogo} className="col-span-1 w-full max-w-[800px] s:w-[80%] md:w-[70%]  border-2 " />
+          <div className="flex w-full justify-around md:w-[50%] border-2 lg:w-[70%] lg:px-5 lg:gap-5">
+            <div className="goldGradient flex h-12 w-12 lg:w-20  items-center justify-center rounded-full">
               <img src={facebook} className="w-4" />
             </div>
-            <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full">
+            <div className="goldGradient flex h-12 w-12 lg:w-20 items-center justify-center rounded-full">
               <img src={instagram} className=" w-6" />
             </div>
-            <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full">
+            <div className="goldGradient flex h-12 w-12 lg:w-20 items-center justify-center rounded-full">
               <img src={whatsapp} className="w-6 h-6" />
             </div>
-            <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full">
+            <div className="goldGradient flex h-12 w-12 lg:w-20 items-center justify-center rounded-full">
               <img src={mail} className="w-7" />
             </div>
           </div>
         </div>
-        <div className="col-span-1 row-span-2 my-6  xl:row-span-1 xl:h-full">
+        <div className="col-span-1 row-span-2 my-6  lg:row-span-1 lg:h-full">
           <h1 className="textGoldGradient text-sm md:text-xl">¿QUIÉNES SOMOS?</h1>
-          <p className="py-4 text-xs font-[200]  leading-5 tracking-widest md:w-[50%]  md:text-sm xl:w-full">
+          <p className="py-4 text-xs font-[200]  leading-5 tracking-widest md:w-[50%]  md:text-sm lg:w-full">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales ex mattis tellus mollis, eu vehicula
             tortor sollicitudin. consectetur adipiscing elit. Nunc sodales ex mattis tellus mollis, eu vehicula tortor
             sollicitudin.
@@ -40,7 +40,7 @@ export default function Footer() {
             LEER MÁS
           </h1>
         </div>
-        <div className="col-span-1 row-span-2 my-8 flex h-full w-full flex-col justify-around  xl:row-span-1 xl:justify-start">
+        <div className="col-span-1 row-span-2 my-8 flex h-full w-full flex-col justify-around  lg:row-span-1 lg:justify-start">
           <h1 className="textGoldGradient mb-4 text-sm md:text-xl">ENLACES</h1>
           <p className="flex items-center pb-2 decoration-gold transition hover:cursor-pointer hover:underline">
             Mi cuenta / Registrarme
@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
         <img
           src={arrowUp}
-          className="goldGradient row-start-1  h-12 rounded-full p-3 xl:absolute xl:right-20 xl:row-start-auto "
+          className="goldGradient row-start-1  h-12 rounded-full p-3 lg:absolute lg:right-20 lg:row-start-auto "
         />
       </section>
 

@@ -23,7 +23,7 @@ export function ModalNav() {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <Popover.Panel className="absolute z-50 top-0 right-0 flex w-[60%]  flex-col gap-6 rounded-sm border-2 border-black/40 bg-black px-4 py-11 text-xl shadow-2xl">
+        <Popover.Panel className="absolute z-50 top-0 right-0  flex min-w-fit max-w-[60%]  flex-col gap-6 rounded-sm border-2 border-black/40 bg-black px-4 py-11 text-xl shadow-2xl">
           <Popover.Button className="goldGradient mb-1 w-fit place-self-end justify-self-center rounded-sm px-[1px] hover:bg-opacity-70">
             <XMarkIcon className="goldGradient h-6 w-6 stroke-black stroke-[3.5px] hover:stroke-[3.8px]" />
           </Popover.Button>

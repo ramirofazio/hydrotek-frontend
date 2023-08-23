@@ -5,7 +5,7 @@ import Atropos from "atropos/react";
 
 export default function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
   return (
-    <div className={`grid h-full w-[80%]`}>
+    <div className={`grid h-full w-fit md:w-[100%]`}>
       <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer ">
         <div className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain  bg-clip-content bg-center bg-no-repeat">
           <img
