@@ -1,5 +1,5 @@
 import testFoto from "../../assets/goldCircuit1.png";
-import { InfoCard, ProductCard } from "../../components/cards";
+import { InfoCard, ProductCard, CategoryCard } from "../../components/cards";
 import { Carrousel } from "../../components";
 import { useTranslation } from "react-i18next";
 
@@ -18,6 +18,16 @@ export default function Landing() {
             content={[
               { component: <ProductCard imgUrl={testFoto} name={"CIRCUIT"} price={"$5.000"} />, qty: 3 },
               { component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 3 },
+            ]}
+            quantit
+          />
+        </div>
+        <div className="">
+          <h1 className="mx-auto w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
+          <Carrousel
+            content={[
+              { component: <CategoryCard name={"SAFE ROOTS"} />, qty: 3 },
+              { component: <CategoryCard name={"SAFE ROOTS"} />, qty: 3 },
             ]}
             quantit
           />

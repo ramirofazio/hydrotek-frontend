@@ -1,32 +1,13 @@
-import { Button } from "../buttons/Button.jsx";
 import product from "../../assets/product.png";
 import { Link } from "react-router-dom";
-import Atropos from "atropos/react";
-import { useTranslation } from "react-i18next";
 
-export function CategoryCard({ imgUrl, name, price, id, showBtn = true }) {
-  const { t } = useTranslation();
+export function CategoryCard({ imgUrl = product, name = 'safe roots', id = 'au23d21we' }) {
   return (
-    <div className={`grid h-full w-fit md:w-[100%]`}>
-      <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer ">
-        <div className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain  bg-clip-content bg-center bg-no-repeat">
-          <img
-            src={imgUrl || product}
-            alt="foto del producto"
-            className="w-[40%] xl:w-[30%]"
-            data-atropos-offset="15"
-          />
-        </div>
-      </Atropos>
-      <div className=" grid place-items-center gap-1 pb-12">
-        <h1 className="text-center">{name || "NOMBRE DEL PRODUCTO"}</h1>
-        <h2 className="textGoldGradient">{price || "$99.99"}</h2>
-        {showBtn && (
-          <Link to={`/productDetail/${id}`}>
-            <Button text={t("common.buy-now")} />
-          </Link>
-        )}
+    <Link to={`/products/${id}`} className="flex flex-col w-fit place-items-center p-2">
+      <div className="p-4 rounded-full overflow-hidden  bg-blueGradient bg-cover bg-no-repeat border-4 border-gold aspect-square flex justify-center">
+        <img src={imgUrl} alt="Imagen" className="w-[75%] object-contain" />
       </div>
-    </div>
+      <h1 className="mt-2 border-2">{name}</h1>
+    </Link>
   );
 }

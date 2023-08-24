@@ -20,6 +20,7 @@ export default {
       },
       backgroundImage: {
         circuit: "url('./src/assets/circuit.png')",
+        blueGradient: "url('./src/assets/blueGradient.png')",
         productBorderGradient: "url('./src/assets/productBorderGradient.png')",
         productBorderNoGradient: "url('./src/assets/productBorderNoGradient.png')",
       },
