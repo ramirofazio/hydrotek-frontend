@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
-export default function SwiperComponent({ content }) {
+export function Carrousel({ content }) {
   /*
   ! EXAMPLE CONTENT:
   const content = [{component: <ProductCard ...props />, qty: 5}] //! Generate 5 slides with ProductCard Component

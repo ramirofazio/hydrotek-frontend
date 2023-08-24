@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
-import logo from "../assets/blackLogo.png";
-import userProfile from "../assets/userProfile.png";
-import shoppingCart from "../assets/shoppingCart.png";
+import logo from "../../assets/blackLogo.png";
+import userProfile from "../../assets/userProfile.png";
+import shoppingCart from "../../assets/shoppingCart.png";
 import { Categories } from "./Categories";
 import Atropos from "atropos/react";
 import { ModalNav } from "./ModalNav";
-import { links } from "../utils";
+import { links } from "../../utils";
 
 
 export const Navbar = () => {

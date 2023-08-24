@@ -1,14 +1,13 @@
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import userProfile from "../assets/userProfile.png";
-import shoppingCart from "../assets/shoppingCart.png";
-import { links } from "../utils";
+import userProfile from "../../assets/userProfile.png";
+import shoppingCart from "../../assets/shoppingCart.png";
+import { links } from "../../utils";
 import { NavLink, Link } from "react-router-dom";
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Categories } from "./Categories.jsx";
 
 export function ModalNav() {
-
   return (
     <Popover className="lg:hidden">
       <Popover.Button className="focus:outline-0">

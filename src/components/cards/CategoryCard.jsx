@@ -1,10 +1,10 @@
-import { Button } from "./Button.jsx";
-import product from "../assets/product.png";
+import { Button } from "../buttons/Button.jsx";
+import product from "../../assets/product.png";
 import { Link } from "react-router-dom";
 import Atropos from "atropos/react";
 import { useTranslation } from "react-i18next";
 
-export default function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
+export function CategoryCard({ imgUrl, name, price, id, showBtn = true }) {
   const { t } = useTranslation();
   return (
     <div className={`grid h-full w-fit md:w-[100%]`}>
