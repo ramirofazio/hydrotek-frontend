@@ -3,16 +3,10 @@ import logo from "../assets/blackLogo.png";
 import userProfile from "../assets/userProfile.png";
 import shoppingCart from "../assets/shoppingCart.png";
 import { Categories } from "./Categories";
-//import drawer from "../assets/drawer.png";
 import Atropos from "atropos/react";
 import { ModalNav } from "./ModalNav";
+import { links } from "../utils";
 
-export const links = [
-  { name: "PRODUCTOS", path: "/products" },
-  { name: "CATEGORIAS", path: "/products/category" },
-  { name: "BLOG", path: "/blog" },
-  { name: "SOBRE NOSOTROS", path: "/aboutUs" },
-];
 
 export const Navbar = () => {
   return (
@@ -22,7 +16,6 @@ export const Navbar = () => {
           <img src={logo} className="w-20 transition hover:opacity-70" />
         </Atropos>
       </NavLink>
-      {/* <img src={drawer} id="drawer" className="w-8 xl:hidden" /> */}
       <ModalNav/>
       <ul className="hidden h-full lg:flex">
         {links.map((l, index) => (
