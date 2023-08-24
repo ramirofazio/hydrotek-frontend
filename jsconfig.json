@@ -3,7 +3,9 @@
     "baseUrl": ".",
     "paths": {
       "src/*": ["./src/*"],
-      "assets/*": ["./src/assets/*"]
+      "assets/*": ["./src/assets/*"],
+      "pages/*": ["./src/pages/*"]
+      //? Agregar aca los paths para tener intelisense y que no use el path relativo sino el absoluto
     }
   }
 }

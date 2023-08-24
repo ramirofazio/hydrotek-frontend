@@ -8,6 +8,8 @@ export default defineConfig({
     alias: {
       src: "/src",
       assets: "/src/assets",
+      pages: "/src/pages",
+      //? Agregar alias y ruta aca. Tambien agregar en jsconfig.json para intelisense!!
     },
   },
 });

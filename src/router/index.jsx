@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import Root from "../pages/Root.jsx";
-import DefaultError from "../pages/error/Default.jsx";
-import Landing from "../pages/landing/Landing.jsx";
-import Products from "../pages/products/Products.jsx";
-import ProductDetail from "../pages/productDetail/ProductDetail.jsx";
-import { APIHydro } from "../api/index.js";
-import { actionsApp } from "../redux/reducers";
+import Root from "pages/Root.jsx";
+import DefaultError from "pages/error/Default.jsx";
+import Landing from "pages/landing/Landing.jsx";
+import Products from "pages/products/Products.jsx";
+import ProductDetail from "pages/productDetail/ProductDetail.jsx";
+import { APIHydro } from "src/api/index.js";
+import { actionsApp } from "src/redux/reducers";
 
 export const router = createBrowserRouter([
   {

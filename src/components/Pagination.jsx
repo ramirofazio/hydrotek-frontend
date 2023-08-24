@@ -8,7 +8,7 @@ export const Pagination = ({ nButtons, currentPage = 0, setPage }) => {
     <div className="flex items-center gap-4">
       <button
         onClick={() => setPage(currentPage - 1)}
-        className="hidden lg:inline rounded-xl p-2 text-white hover:bg-white hover:text-base disabled:text-opacity-30 disabled:hover:bg-opacity-5"
+        className="hidden rounded-xl p-2 text-white hover:bg-white hover:text-base disabled:text-opacity-30 disabled:hover:bg-opacity-5 lg:inline"
         disabled={currentPage === 0}
       >
         <ArrowLeftIcon className="h-5 w-5" />
@@ -18,9 +18,9 @@ export const Pagination = ({ nButtons, currentPage = 0, setPage }) => {
           <button
             onClick={() => setPage(index)}
             key={index}
-            className={`grid  h-10 w-10 place-content-center rounded-full p-2.5 goldGradient text-white text-lg transition-all ${
+            className={`goldGradient  grid h-10 w-10 place-content-center rounded-full p-2.5 text-lg text-white transition-all ${
               currentPage === index
-                ? "font-medium  shadow shadow-primary/80 ease-in"
+                ? "shadow-primary/80  font-medium shadow ease-in"
                 : " opacity-40 ease-out hover:opacity-60"
             }`}
           >
@@ -30,7 +30,7 @@ export const Pagination = ({ nButtons, currentPage = 0, setPage }) => {
       </div>
       <button
         onClick={() => setPage(currentPage + 1)}
-        className="hidden lg:inline rounded-xl p-2 text-white hover:bg-white hover:text-base disabled:text-opacity-30 disabled:hover:bg-opacity-5"
+        className="hidden rounded-xl p-2 text-white hover:bg-white hover:text-base disabled:text-opacity-30 disabled:hover:bg-opacity-5 lg:inline"
         disabled={currentPage === nButtons - 1}
       >
         <ArrowRightIcon className="h-5 w-5" />

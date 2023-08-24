@@ -1,12 +1,11 @@
 import { NavLink } from "react-router-dom";
-import logo from "../../assets/blackLogo.png";
-import userProfile from "../../assets/userProfile.png";
-import shoppingCart from "../../assets/shoppingCart.png";
+import logo from "assets/blackLogo.png";
+import userProfile from "assets/userProfile.png";
+import shoppingCart from "assets/shoppingCart.png";
 import { Categories } from "./Categories";
 import Atropos from "atropos/react";
 import { ModalNav } from "./ModalNav";
-import { links } from "../../utils";
-
+import { links } from "src/utils";
 
 export const Navbar = () => {
   return (
@@ -16,24 +15,26 @@ export const Navbar = () => {
           <img src={logo} className="w-20 transition hover:opacity-70" />
         </Atropos>
       </NavLink>
-      <ModalNav/>
+      <ModalNav />
       <ul className="hidden h-full lg:flex">
         {links.map((l, index) => (
           <li key={index} className="mr-8 flex items-center justify-center">
-            {l.name === "CATEGORIAS" ? (<Categories />) :
-              (<NavLink
+            {l.name === "CATEGORIAS" ? (
+              <Categories />
+            ) : (
+              <NavLink
                 to={l.path}
                 className={({ isActive, isPending }) =>
                   isActive
                     ? "border-b-2 p-2  text-white"
                     : isPending
-                      ? "pending"
-                      : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
+                    ? "pending"
+                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
                 }
               >
                 {l.name}
-              </NavLink>)
-            }
+              </NavLink>
+            )}
           </li>
         ))}
       </ul>
