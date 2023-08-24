@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
-export default function SwiperComponent({ content }) {
+export function Carrousel({ content }) {
   /*
   ! EXAMPLE CONTENT:
   const content = [{component: <ProductCard ...props />, qty: 5}] //! Generate 5 slides with ProductCard Component
@@ -31,7 +31,7 @@ export default function SwiperComponent({ content }) {
       spaceBetween={20}
       centeredSlides={true}
       modules={[Pagination, Autoplay]}
-      className="w-full mb-10 "
+      className="w-full mb-10"
       breakpoints={{
         768: {
           slidesPerView: 2,
@@ -48,11 +48,11 @@ export default function SwiperComponent({ content }) {
       }}
     >
       {repeatedContent.map((component, index) => (
-        <SwiperSlide key={index} className="grid place-items-center  py-2">
+        <SwiperSlide key={index} className="grid place-items-center py-2">
           {({ isActive }) => (
             <div
               className={`${
-                isActive ? "mt-10 opacity-100" : "pointer-events-none opacity-30 blur-sm"
+                isActive ? "mt-5 opacity-100" : "pointer-events-none opacity-30 blur-sm"
               } grid h-full w-full place-items-center p-2 transition`}
             >
               {component}

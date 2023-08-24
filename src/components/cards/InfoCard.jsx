@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { Button } from "./Button";
-import infoCardBorder from "../assets/productBorderNoGradient.png";
+import { Button } from "../buttons/Button";
+import infoCardBorder from "../../assets/productBorderNoGradient.png";
 import { useTranslation } from 'react-i18next';
-export default function InfoCard({ text }) {
+
+export function InfoCard({ text }) {
   const { t } = useTranslation();
   return (
     <div className="mx-auto mb-3 md:mb-10">

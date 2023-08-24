@@ -1,5 +1,6 @@
-export { Aurora } from './Aurora';
-export {  Button } from './Button';
-export { Footer } from './Footer';
-export { Navbar } from './Navbar';
-export { Pagination } from './Pagination';
+export { Aurora } from "./Aurora";
+export { Footer } from "./Footer";
+export { Navbar } from "./navs/Navbar";
+export { Pagination } from "./Pagination";
+export { Carrousel } from "./Carrousel";
+

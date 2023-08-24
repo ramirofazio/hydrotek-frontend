@@ -1,9 +1,11 @@
-import { Button } from "./Button.jsx";
-import product from "../assets/product.png";
-import { Link } from "react-router-dom";
 import Atropos from "atropos/react";
+import product from "../../assets/product.png";
+import { Button } from "../buttons";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-export default function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
+export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
+  const { t } = useTranslation();
   return (
     <div className={`grid h-full w-fit md:w-[100%]`}>
       <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer ">
@@ -16,12 +18,12 @@ export default function ProductCard({ imgUrl, name, price, id, showBtn = true })
           />
         </div>
       </Atropos>
-      <div className=" grid place-items-center pb-12 gap-1">
+      <div className=" grid place-items-center gap-1 pb-12">
         <h1 className="text-center">{name || "NOMBRE DEL PRODUCTO"}</h1>
         <h2 className="textGoldGradient">{price || "$99.99"}</h2>
         {showBtn && (
           <Link to={`/productDetail/${id}`}>
-            <Button text="COMPRAR AHORA" />
+            <Button text={t("common.buy-now")} />
           </Link>
         )}
       </div>

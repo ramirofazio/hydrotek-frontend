@@ -2,20 +2,16 @@ import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
+import { categories } from "../../utils";
 
 export function Categories() {
-  const categories = [
-    { name: "SISTEMAS", value: 1 },
-    { name: "PLUGS", value: 2 },
-    { name: "SAFE ROOTS", value: 3 },
-    { name: "CANASTAS", value: 4 },
-  ];
-
+  const { t } = useTranslation();
   return (
     <Listbox>
       <div className="relative md:static">
         <Listbox.Button className="flex place-items-center">
-          <h2 className="text-white ">CATEGORÍAS</h2>
+          <h2 className="uppercase text-white">{t("navbar.categories")}</h2>
           <ChevronDownIcon className="ml-1 h-4 w-4 text-gold" />
         </Listbox.Button>
         <Transition
@@ -27,14 +23,14 @@ export function Categories() {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <Listbox.Options className="absolute z-50 inset-0 top-1 flex flex-col place-items-center gap-2 rounded-sm bg-black/60 py-2 text-sm text-white/80  md:absolute md:inset-auto md:mt-0.5">
+          <Listbox.Options className="absolute inset-0 top-1 z-50 flex flex-col place-items-center gap-2 rounded-sm bg-black/60 py-2 text-sm text-white/80  md:absolute md:inset-auto md:mt-0.5">
             {categories.map((c, i) => (
               <NavLink
                 to="/products"
                 key={i}
                 //Eg de filtrado onClick={dispatch(setCategory(c.value))*/}
               >
-                <Listbox.Option value={c.value} className="hover:text-white p-2 px-3">
+                <Listbox.Option value={c.value} className="p-2 px-3 hover:text-white">
                   {c.name}
                 </Listbox.Option>
               </NavLink>

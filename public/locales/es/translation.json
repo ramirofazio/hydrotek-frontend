@@ -7,11 +7,13 @@
       "accept" : "Aceptar",
       "cancel" : "Cancelar",
       "confirm" : "Confirmar",
-      "buy" : "Comprar"
+      "buy" : "Comprar",
+      "buy-now": "comprar ahora",
+      "top-sellers": "Los mas vendidos"
     },
     "navbar" : {
       "products" : "Productos",
-      "categories" : "Categorias",
+      "categories" : "Categorías",
       "blog" : "blog",
       "about-us" : "Sobre nosotros"
     },
