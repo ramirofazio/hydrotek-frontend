@@ -31,7 +31,7 @@ export function Carrousel({ content }) {
       spaceBetween={20}
       centeredSlides={true}
       modules={[Pagination, Autoplay]}
-      className="w-full mb-10 border-2 border-black"
+      className="w-full mb-10"
       breakpoints={{
         768: {
           slidesPerView: 2,
@@ -48,7 +48,7 @@ export function Carrousel({ content }) {
       }}
     >
       {repeatedContent.map((component, index) => (
-        <SwiperSlide key={index} className="grid place-items-center py-2 border-2 border-red-500">
+        <SwiperSlide key={index} className="grid place-items-center py-2">
           {({ isActive }) => (
             <div
               className={`${
