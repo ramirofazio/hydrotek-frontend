@@ -12,7 +12,7 @@ export const Navbar = () => {
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
       <NavLink to="/">
         <Atropos innerClassName="rounded-full" shadow={false}>
-          <img src={logo} className="w-20 transition hover:opacity-70" />
+          <img src={logo} className="w-14 transition hover:opacity-70 xl:w-20" />
         </Atropos>
       </NavLink>
       <ModalNav />
