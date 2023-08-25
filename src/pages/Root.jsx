@@ -4,12 +4,10 @@ import { Footer, Aurora, Navbar } from "src/components";
 export default function Root() {
   return (
     <div className="relative overflow-hidden">
-      <div className="">
-        <Aurora />
-        <Navbar />
-        <Outlet />
-        <Footer />
-      </div>
+      <Aurora />
+      <Navbar />
+      <Outlet />
+      <Footer />
     </div>
   );
 }

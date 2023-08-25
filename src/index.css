@@ -43,14 +43,14 @@
   }
 
   .content {
-    @apply min-h-[50vh]
+    @apply min-h-[65vh];
   }
 
   .goldGradient {
     background: linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%);
   }
   .blueGradient {
-    background: linear-gradient(150deg, rgba(45,75,129,1) 18%, rgba(29,61,93,1) 91%);
+    background: linear-gradient(150deg, rgba(45, 75, 129, 1) 18%, rgba(29, 61, 93, 1) 91%);
   }
   .textGoldGradient {
     @apply goldGradient bg-clip-text text-transparent;
@@ -74,7 +74,7 @@
 }
 
 .swiper-pagination-bullet {
-  @apply h-4 w-4 bg-gold/50;
+  @apply !mr-3 h-3 w-3 bg-gold/50;
 }
 
 .swiper-pagination-bullet-active {
