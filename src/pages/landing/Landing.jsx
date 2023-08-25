@@ -14,7 +14,7 @@ export default function Landing() {
         </section>
         <div className="py-10">
           <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
-          <Carrousel content={[{ component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 3 }]} quantit />
+          <Carrousel content={[{ component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 6 }]} quantit />
         </div>
         <div className="">
           <h1 className="mx-auto w-fit text-center xl:text-3xl">{t("common.find-what-you-are-looking")}</h1>
