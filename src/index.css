@@ -74,7 +74,7 @@
 }
 
 .swiper-pagination-bullet {
-  @apply h-4 w-4 bg-gold/50;
+  @apply !mr-3 h-3 w-3 bg-gold/50;
 }
 
 .swiper-pagination-bullet-active {
