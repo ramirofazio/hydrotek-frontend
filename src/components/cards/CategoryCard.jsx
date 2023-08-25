@@ -1,10 +1,10 @@
-import product from "../../assets/product.png";
+import product from "assets/product.png";
 import { Link } from "react-router-dom";
 
-export function CategoryCard({ imgUrl = product, name = 'safe roots', id = 'au23d21we' }) {
+export function CategoryCard({ imgUrl = product, name = "safe roots", id = "au23d21we" }) {
   return (
-    <Link to={`/products/${id}`} className="flex flex-col w-fit place-items-center p-2 mb-10">
-      <div className="p-4 rounded-full overflow-hidden  bg-blueGradient bg-cover bg-no-repeat border-4 border-gold aspect-square flex justify-center">
+    <Link to={`/products/${id}`} className="mb-10 flex w-fit flex-col place-items-center p-2">
+      <div className="flex aspect-square justify-center  overflow-hidden rounded-full border-4 border-gold bg-blueGradient bg-cover bg-no-repeat p-4">
         <img src={imgUrl} alt="Imagen" className="w-[75%] object-contain" />
       </div>
       <h1 className="mt-2">{name}</h1>

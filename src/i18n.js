@@ -1,6 +1,5 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
 import Backend from "i18next-http-backend";
 
 //Descomentar esta linea en caso de querer utilizar el detector automatico de lenguaje

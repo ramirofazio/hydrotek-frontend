@@ -1,6 +1,6 @@
-import testFoto from "../../assets/goldCircuit1.png";
-import { InfoCard, ProductCard, CategoryCard } from "../../components/cards";
-import { Carrousel } from "../../components";
+import testFoto from "assets/goldCircuit1.png";
+import { InfoCard, ProductCard, CategoryCard } from "src/components/cards";
+import { Carrousel } from "src/components";
 import { useTranslation } from "react-i18next";
 
 export default function Landing() {
