@@ -1,4 +1,5 @@
 import { ProductCard } from "src/components/cards";
+import { Pagination } from "../../components";
 
 export default function Products() {
   const mockProducts = [
@@ -9,10 +10,15 @@ export default function Products() {
   ];
 
   return (
-    <div className="content mx-auto w-[90%] grid place-items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {mockProducts.map((p, i) => (
-        <ProductCard key={i} name={p.name} price={p.price} />
-      ))}
+    <div className="border-2 w-[90%] mx-auto border-red-500">
+      <div className="content mx-auto grid  place-items-center gap-4 border-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {mockProducts.map((p, i) => (
+          <ProductCard key={i} name={p.name} price={p.price} />
+        ))}
+      </div>
+      <div className="w-fit mx-auto my-5">
+        <Pagination />
+      </div>
     </div>
   );
 }
