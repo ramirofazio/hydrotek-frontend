@@ -13,7 +13,7 @@ export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
           <img
             src={imgUrl || product}
             alt="foto del producto"
-            className="w-[45%] md:w-[40%] lg:w-[45%] xl:w-[60%] object-contain"
+            className="w-[45%] md:w-[40%] lg:w-[45%] xl:w-[60%] 2xl:w-[40%] object-contain"
             data-atropos-offset="15"
           />
         </div>
