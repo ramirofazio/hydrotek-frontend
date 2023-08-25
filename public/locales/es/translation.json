@@ -9,7 +9,8 @@
       "confirm" : "Confirmar",
       "buy" : "Comprar",
       "buy-now": "comprar ahora",
-      "top-sellers": "Los mas vendidos"
+      "top-sellers": "Los mas vendidos",
+      "search": "Buscar"
     },
     "navbar" : {
       "products" : "Productos",
