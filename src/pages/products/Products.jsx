@@ -10,8 +10,8 @@ export default function Products() {
   ];
 
   return (
-    <div className="border-2 w-[90%] mx-auto border-red-500">
-      <div className="content mx-auto grid  place-items-center gap-4 border-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="w-[90%] mx-auto ">
+      <div className="content mx-auto grid  place-items-center gap-4  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {mockProducts.map((p, i) => (
           <ProductCard key={i} name={p.name} price={p.price} />
         ))}
