@@ -20,7 +20,7 @@ export function SearchBar() {
       });
 
   return (
-    <div className="w-fit border-[1px] border-gold">
+    <div className="w-fit border-[1px] border-gold mx-auto">
       <Combobox>
         <div className="relative flex w-fit place-items-center ">
           <Combobox.Input
