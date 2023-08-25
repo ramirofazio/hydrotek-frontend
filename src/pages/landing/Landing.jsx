@@ -8,7 +8,7 @@ export default function Landing() {
   return (
     <div className="content h-full ">
       <section className=" flex flex-col gap-[5rem]">
-        <section className="flex flex-col  lg:flex-row lg:place-items-center lg:pt-20">
+        <section className="flex flex-col pt-5 lg:flex-row lg:place-items-center lg:pt-20">
           <InfoCard />
           <img src={testFoto} className="place-self-end  md:w-[70%] lg:w-[45%] lg:place-self-center" />
         </section>

@@ -38,7 +38,7 @@ export const Navbar = () => {
           </li>
         ))}
       </ul>
-      <section className="hidden w-24 justify-evenly xl:flex">
+      <section className="hidden w-24 justify-evenly lg:flex">
         <img src={userProfile} className="h-5" />
         <img src={shoppingCart} className="h-5" />
       </section>
