@@ -7,13 +7,13 @@ import { useTranslation } from "react-i18next";
 export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
   const { t } = useTranslation();
   return (
-    <div className={`grid h-full w-fit md:w-[100%]`}>
-      <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer ">
-        <div className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain  bg-clip-content bg-center bg-no-repeat">
+    <div className={`grid h-full place-items-center  w-[80%]`}>
+      <Atropos highlight={false} shadow={false} className="cursor-pointer  w-full">
+        <div className="flex h-full min-h-[150px]  min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain  bg-clip-content bg-center bg-no-repeat">
           <img
             src={imgUrl || product}
             alt="foto del producto"
-            className="w-[40%] xl:w-[30%]"
+            className="w-[45%] md:w-[40%] lg:w-[45%] xl:w-[60%] object-contain"
             data-atropos-offset="15"
           />
         </div>

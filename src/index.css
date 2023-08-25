@@ -43,7 +43,7 @@
   }
 
   .content {
-    @apply min-h-[50vh]
+    @apply min-h-[65vh]
   }
 
   .goldGradient {
