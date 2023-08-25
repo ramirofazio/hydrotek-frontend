@@ -17,7 +17,7 @@ export default function Products() {
         ))}
       </div>
       <div className="w-fit mx-auto my-5">
-        <Pagination />
+        <Pagination nButtons={5}/>
       </div>
     </div>
   );
