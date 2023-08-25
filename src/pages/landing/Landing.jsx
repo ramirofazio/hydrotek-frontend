@@ -23,7 +23,7 @@ export default function Landing() {
           />
         </div>
         <div className="">
-          <h1 className="mx-auto w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
+          <h1 className="mx-auto w-fit text-center xl:text-3xl">{t("common.find-what-you-are-looking")}</h1>
           <Carrousel
             content={[
               { component: <CategoryCard name={"SAFE ROOTS"} />, qty: 3 },
