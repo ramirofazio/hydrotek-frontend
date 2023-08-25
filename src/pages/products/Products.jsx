@@ -1,5 +1,5 @@
-import { ProductCard } from "src/components/cards";
-import { Pagination } from "../../components";
+import { ProductCard } from "components/cards";
+import { Pagination } from "components";
 
 export default function Products() {
   const mockProducts = [
