@@ -13,7 +13,7 @@ export const Footer = () => {
     <footer className="h-full w-full border-t-8 border-gold">
       <section className="grid grid-cols-1 place-items-center gap-10 p-8 lg:grid-cols-3 lg:grid-rows-1 lg:gap-12">
         <div className="grid h-32 place-items-center sm:h-44 lg:pl-2 ">
-          <img src={textLogo} className="col-span-1 w-full max-w-[800px] md:w-[70%] s:w-[80%]   " />
+          <img src={textLogo} className="col-span-1 w-full max-w-[800px] md:w-[70%] s:w-[80%]" />
           <div className="flex w-full justify-around md:w-[50%]  lg:w-[70%] lg:gap-5 lg:px-5">
             <div className="goldGradient flex h-12 w-12 items-center  justify-center rounded-full lg:w-20">
               <img src={facebook} className="w-4" />

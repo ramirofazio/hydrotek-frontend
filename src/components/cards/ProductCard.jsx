@@ -7,22 +7,22 @@ import { useTranslation } from "react-i18next";
 export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
   const { t } = useTranslation();
   return (
-    <div className={`grid h-full place-items-center  w-[80%]`}>
-      <Atropos highlight={false} shadow={false} className="cursor-pointer  w-full">
-        <div className="flex h-full min-h-[150px]  min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain  bg-clip-content bg-center bg-no-repeat">
+    <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>
+      <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer">
+        <div className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain bg-clip-content bg-center bg-no-repeat">
           <img
             src={imgUrl || product}
             alt="foto del producto"
-            className="w-[45%] md:w-[40%] lg:w-[45%] xl:w-[60%] 2xl:w-[40%] object-contain"
+            className="m-10 w-[40%] md:m-20"
             data-atropos-offset="15"
           />
         </div>
       </Atropos>
-      <div className=" grid place-items-center gap-1 pb-12">
-        <h1 className="text-center">{name || "NOMBRE DEL PRODUCTO"}</h1>
-        <h2 className="textGoldGradient">{price || "$99.99"}</h2>
+      <div className="grid place-items-center gap-2 pb-12">
+        <h1 className="text-center md:place-self-start">{name || "NOMBRE DEL PRODUCTO"}</h1>
+        <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">{price || "$99.99"}</h2>
         {showBtn && (
-          <Link to={`/productDetail/${id}`}>
+          <Link to={`/productDetail/${id}`} className="md:place-self-start">
             <Button text={t("common.buy-now")} />
           </Link>
         )}

@@ -23,7 +23,7 @@ export function Carrousel({ content }) {
       loop={true}
       autoplay={{
         delay: 2500,
-        disableOnInteraction: false,
+        disableOnInteraction: true,
         pauseOnMouseEnter: true,
       }}
       pagination={pagination}
@@ -31,29 +31,25 @@ export function Carrousel({ content }) {
       spaceBetween={20}
       centeredSlides={true}
       modules={[Pagination, Autoplay]}
-      className="w-full mb-10"
+      className="mb-10 w-full"
       breakpoints={{
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 40,
-        },
         1024: {
-          slidesPerView: 3,
-          spaceBetween: 20,
+          slidesPerView: 2,
+          spaceBetween: 100,
         },
         1280: {
-          slidesPerView: 4,
-          spaceBetween: 70,
+          slidesPerView: 3,
+          spaceBetween: 250,
         },
       }}
     >
       {repeatedContent.map((component, index) => (
-        <SwiperSlide key={index} className="grid place-items-center py-2">
+        <SwiperSlide key={index} className="grid place-items-center">
           {({ isActive }) => (
             <div
               className={`${
-                isActive ? "mt-5 opacity-100" : "pointer-events-none opacity-30 blur-sm"
-              } grid h-full w-full place-items-center p-2 transition`}
+                isActive ? "mt-5 opacity-100" : "pointer-events-none opacity-30 blur-md"
+              } grid h-full w-full place-items-center p-2 transition md:w-[50%] lg:w-[80%] xl:w-full`}
             >
               {component}
             </div>
