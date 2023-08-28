@@ -13,6 +13,7 @@ export default {
         white: colors.white,
         black: colors.black,
         gray: colors.gray,
+        'yellow-gradient': 'linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%)',
       },
       fontFamily: {
         primary: ["Orbitron", "sans-serif"],
@@ -23,6 +24,7 @@ export default {
         blueGradient: "url('./src/assets/blueGradient.png')",
         productBorderGradient: "url('./src/assets/productBorderGradient.png')",
         productBorderNoGradient: "url('./src/assets/productBorderNoGradient.png')",
+        'gold-gradient': 'linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%)'
       },
       screens: {
         xs: "375px",

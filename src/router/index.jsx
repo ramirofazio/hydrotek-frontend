@@ -21,11 +21,12 @@ export const router = createBrowserRouter([
       { path: "/", element: <Landing />, index: true },
       { path: "/products", element: <Products /> },
       {
-        path: "/productDetail/:id",
+        path: "/productDetail",
+        // path: "/productDetail/:id",
         element: <ProductDetail />,
-        loader: ({ params }) => {
-          return APIHydro.getProductDetail(params.id);
-        },
+        // loader: ({ params }) => {
+        //   return APIHydro.getProductDetail(params.id);
+        // },
       },
     ],
   },

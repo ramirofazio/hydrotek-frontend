@@ -4,7 +4,7 @@ import { Button } from "../buttons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
+export function ProductCard({ imgUrl, name, price, id = 1, showBtn = true }) {
   const { t } = useTranslation();
   return (
     <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>
