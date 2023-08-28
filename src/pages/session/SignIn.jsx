@@ -35,30 +35,30 @@ export function SignIn({ isOpen, alternModal }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="relative grid w-[30%] place-items-center">
+              <Dialog.Panel className="relative grid w-full place-items-center xl:w-[30%]">
                 <img src={loginBorder} className="w-full" />
-                <div className="absolute inset-1 grid place-items-center gap-4 p-10">
-                  <img src={blackLogo} className="w-20" />
+                <div className="absolute inset-1 grid place-items-center p-6">
+                  <img src={blackLogo} className="w-14" />
                   <form>
                     <input type="text" onChange={"#"} placeholder="EMAIL/NOMBRE DE USUARIO" />
                     <input type="password" onChange={"#"} placeholder="CONTRASEÑA" />
                     <Button text={"INGRESAR"} />
                   </form>
-                  <div className="w-full rounded-full  border-[1px] border-dashed border-white/60" />
+                  <div className="w-full rounded-full border-[1px] border-dashed border-white/60" />
                   <Button
-                    img={[google, "icons mr-6"]}
+                    img={[google, "icons mr-6 "]}
                     text={`INICIA SESIÓN CON GOOGLE`}
-                    classname={"w-[80%] flex items-center text-sm"}
+                    classname={"w-[90%] flex items-center text-[10px]"}
                   />
                   <Button
-                    img={[apple, "icons mr-6"]}
+                    img={[apple, "icons mr-6 "]}
                     text={`INICIA SESIÓN CON APPLE`}
-                    classname={"w-[80%] flex items-center text-sm"}
+                    classname={"w-[90%] flex items-center text-[10px]"}
                   />
                   <Button
-                    img={[facebook, "icons mr-6"]}
+                    img={[facebook, "icons mr-6 "]}
                     text={`INICIA SESIÓN CON FACEBOOK`}
-                    classname={"w-[80%] flex items-center text-sm"}
+                    classname={"w-[90%] flex items-center text-[10px]"}
                   />
                   <p>
                     ¿NO TIENES UNA CUENTA? <strong>REGISTRATE AHORA</strong>

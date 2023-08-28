@@ -18,7 +18,7 @@
   }
 
   p {
-    @apply font-secondary text-xs text-white;
+    @apply font-secondary text-[10px] text-white;
   }
 
   strong {
