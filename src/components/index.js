@@ -5,3 +5,4 @@ export { Pagination } from "./Pagination";
 export { Carrousel } from "./Carrousel";
 export { SearchBar } from "./SearchBar";
 export { Rating } from "./Rating";
+export { ProductDescription } from "./ProductDescription";
