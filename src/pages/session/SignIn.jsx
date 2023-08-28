@@ -1,4 +1,5 @@
 import loginBorder from "assets/loginBorder.png";
+import blackLogo from "assets/blackLogo.png";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
@@ -29,9 +30,10 @@ export function SignIn({ isOpen, alternModal }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="grid h-full w-full place-items-center p-2">
-                <div className="relative h-full max-w-fit  bg-base">
-                  <img src={loginBorder} className="" />
+              <Dialog.Panel className="relative grid w-[30%] place-items-center">
+                <img src={loginBorder} className="w-full" />
+                <div className="absolute inset-1 -z-20 flex items-start justify-center p-10">
+                  <img src={blackLogo} className="w-20" />
                 </div>
               </Dialog.Panel>
             </Transition.Child>
