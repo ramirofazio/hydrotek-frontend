@@ -3,6 +3,7 @@ import Root from "pages/Root.jsx";
 import DefaultError from "pages/error/Default.jsx";
 import Landing from "pages/landing/Landing.jsx";
 import Products from "pages/products/Products.jsx";
+import SignIn from "pages/session/SignIn";
 import ProductDetail from "pages/productDetail/ProductDetail.jsx";
 import { APIHydro } from "src/api/index.js";
 import { actionsApp } from "src/redux/reducers";
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
         loader: ({ params }) => {
           return APIHydro.getProductDetail(params.id);
         },
+      },
+      {
+        path: "/SignIn",
+        element: <SignIn />,
       },
     ],
   },

@@ -1,9 +1,9 @@
+import loginBorder from "assets/loginBorder.png";
 
 export default function SignIn() {
-
   return (
-    <>
-      <div></div>
-    </>
+    <div className="content grid place-items-center p-8">
+      <img src={loginBorder} className="" />
+    </div>
   );
 }
