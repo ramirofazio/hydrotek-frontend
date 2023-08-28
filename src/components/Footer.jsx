@@ -15,16 +15,16 @@ export const Footer = () => {
         <div className="grid h-32 place-items-center sm:h-44 lg:pl-2 ">
           <img src={textLogo} className="col-span-1 w-full max-w-[800px] md:w-[70%] s:w-[80%]" />
           <div className="flex w-full justify-around md:w-[50%]  lg:w-[70%] lg:gap-5 lg:px-5">
-            <div className="goldGradient flex h-12 w-12 items-center  justify-center rounded-full lg:w-20">
+            <div className="goldGradient icons flex h-12 w-12 items-center  justify-center rounded-full lg:w-20">
               <img src={facebook} className="w-4" />
             </div>
-            <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full lg:w-20">
-              <img src={instagram} className=" w-6" />
+            <div className="goldGradient icons flex h-12 w-12 items-center justify-center rounded-full lg:w-20">
+              <img src={instagram} className="w-6" />
             </div>
-            <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full lg:w-20">
+            <div className="goldGradient icons flex h-12 w-12 items-center justify-center rounded-full lg:w-20">
               <img src={whatsapp} className="h-6 w-6" />
             </div>
-            <div className="goldGradient flex h-12 w-12 items-center justify-center rounded-full lg:w-20">
+            <div className="goldGradient icons flex h-12 w-12 items-center justify-center rounded-full lg:w-20">
               <img src={mail} className="w-7" />
             </div>
           </div>
@@ -58,7 +58,7 @@ export const Footer = () => {
         </div>
         <img
           src={arrowUp}
-          className="goldGradient row-start-1  h-12 rounded-full p-3 lg:absolute lg:right-20 lg:row-start-auto "
+          className="goldGradient icons  row-start-1 h-12 rounded-full p-3 lg:absolute lg:right-20 lg:row-start-auto"
         />
       </section>
 

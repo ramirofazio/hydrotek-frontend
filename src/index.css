@@ -71,6 +71,10 @@
     background-image: radial-gradient(circle, #b8912d0e, #b8912d70);
     mix-blend-mode: screen;
   }
+
+  .icons {
+    @apply h-5 transition hover:cursor-pointer hover:opacity-50;
+  }
 }
 
 .swiper-pagination-bullet {

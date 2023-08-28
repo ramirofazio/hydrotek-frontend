@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "assets/blackLogo.png";
 import userProfile from "assets/userProfile.png";
 import shoppingCart from "assets/shoppingCart.png";
@@ -8,6 +8,8 @@ import { ModalNav } from "./ModalNav";
 import { links } from "src/utils";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
       <NavLink to="/">
@@ -28,8 +30,8 @@ export const Navbar = () => {
                   isActive
                     ? "border-b-2 p-2  text-white"
                     : isPending
-                      ? "pending"
-                      : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
+                    ? "pending"
+                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
                 }
               >
                 {l.name}
@@ -39,8 +41,8 @@ export const Navbar = () => {
         ))}
       </ul>
       <section className="hidden w-24 justify-evenly lg:flex">
-        <img src={userProfile} className="h-5" />
-        <img src={shoppingCart} className="h-5" />
+        <img src={userProfile} className="icons" onClick={() => navigate("/signIn")} />
+        <img src={shoppingCart} className="icons" />
       </section>
     </nav>
   );
