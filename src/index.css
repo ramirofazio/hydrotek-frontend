@@ -21,6 +21,14 @@
     @apply font-secondary text-xs text-white;
   }
 
+  strong {
+    @apply textGoldGradient border-b-[0.1px] border-gold font-extrabold transition hover:cursor-pointer hover:opacity-50;
+  }
+
+  input {
+    @apply my-2 w-full rounded-full border-2 border-gold bg-base p-3 pl-6 text-xs transition focus:border-gold/50 focus:outline-none;
+  }
+
   ::-webkit-scrollbar {
     @apply w-2;
   }
