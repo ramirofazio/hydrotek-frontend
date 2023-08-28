@@ -9,7 +9,7 @@ export function Carrousel({ content }) {
   */
 
   // Crear un array de componentes repetidos basado en qty
-  const repeatedContent = content.flatMap(({ component, qty }) => Array.from({ length: qty }, () => component));
+  const repeatedContent = content?.flatMap(({ component, qty }) => Array.from({ length: qty }, () => component));
 
   const pagination = {
     clickable: true,
@@ -43,7 +43,7 @@ export function Carrousel({ content }) {
         },
       }}
     >
-      {repeatedContent.map((component, index) => (
+      {repeatedContent?.map((component, index) => (
         <SwiperSlide key={index} className="grid place-items-center">
           {({ isActive }) => (
             <div

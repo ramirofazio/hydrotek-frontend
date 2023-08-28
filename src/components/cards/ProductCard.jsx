@@ -18,7 +18,7 @@ export function ProductCard({ imgUrl, name, price, id = 1, showBtn = true }) {
           />
         </div>
       </Atropos>
-      <div className="grid place-items-center gap-2 pb-12">
+      <div className={`${!showBtn && 'hidden'} grid place-items-center gap-2 pb-12`}>
         <h1 className="text-center md:place-self-start">{name || "NOMBRE DEL PRODUCTO"}</h1>
         <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">{price || "$99.99"}</h2>
         {showBtn && (

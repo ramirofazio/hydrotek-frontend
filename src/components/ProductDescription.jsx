@@ -9,9 +9,9 @@ export function ProductDescription({ name, price, rating, stock }) {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="grid place-items-center gap-4">
+    <div className="grid place-items-center gap-4 md:items-center md:justify-items-start md:gap-1">
       <div className="flex w-full items-center justify-between">
-        <Rating value={rating}/>
+        <Rating value={rating} />
         <p className="text-sm">{stock || "(25)"}</p>
       </div>
       <div>
@@ -30,17 +30,17 @@ export function ProductDescription({ name, price, rating, stock }) {
         <button
           onClick={() => setQuantity(quantity + 1)}
           disabled={quantity === stock && true}
-          className="goldGradient flex h-8  w-8 items-center justify-center rounded-full"
+          className="goldGradient flex h-8  w-8 items-center justify-center rounded-full text-3xl text-white"
         >
-          <p className="text-3xl">+</p>
+          +
         </button>
       </div>
 
       <Button text={t("common.buy-now")} className="mt-2" />
 
-      <p className="p-1 text-sm">
+      {/* <p className="p-1 text-sm">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti corporis dolorem vero accusamus dicta, repellat adipisci maiores animi facilis harum asperiores optio nesciunt rerum deserunt aliquam necessitatibus odit labore quia!
-      </p>
+      </p> */}
     </div>
   );
 }
