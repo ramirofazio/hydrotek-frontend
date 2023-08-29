@@ -4,7 +4,7 @@ import { Button } from "../buttons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
+export function ProductCard({ imgUrl, name, price, id = 1, showBtn = true }) {
   const { t } = useTranslation();
   return (
     <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>
@@ -18,7 +18,7 @@ export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
           />
         </div>
       </Atropos>
-      <div className="grid place-items-center gap-2 pb-12">
+      <div className={`${!showBtn && 'hidden'} grid place-items-center gap-2 pb-12`}>
         <h1 className="text-center md:place-self-start">{name || "NOMBRE DEL PRODUCTO"}</h1>
         <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">{price || "$99.99"}</h2>
         {showBtn && (
