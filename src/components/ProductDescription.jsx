@@ -9,7 +9,7 @@ export function ProductDescription({ name, price, rating, stock = 10 }) {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="grid place-items-center gap-4 md:items-center md:justify-items-start md:gap-1">
+    <article className="grid place-items-center gap-4 md:items-center md:justify-items-start md:gap-1">
       <div className="flex w-full items-center justify-between">
         <Rating value={rating} />
         <p className="text-sm">{stock || "(25)"}</p>
@@ -38,11 +38,11 @@ export function ProductDescription({ name, price, rating, stock = 10 }) {
 
       <Button text={t("common.buy-now")} classname="mt-2" />
 
-      <p className="p-1 text-xs">
+      <h1 className="p-1 text-xs">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti corporis dolorem vero accusamus dicta,
         repellat adipisci maiores animi facilis harum asperiores optio nesciunt rerum deserunt aliquam necessitatibus
         odit labore quia!
-      </p>
-    </div>
+      </h1>
+    </article>
   );
 }
