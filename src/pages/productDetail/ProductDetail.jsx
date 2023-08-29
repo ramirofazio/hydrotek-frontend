@@ -1,6 +1,6 @@
 import { ProductDescription, Review } from "components";
 import { useTranslation } from "react-i18next";
-import product from "assets/product.png";
+import { defaultProduct } from "assets";
 
 export default function ProductDetail() {
   const { t } = useTranslation();
@@ -19,7 +19,7 @@ export default function ProductDetail() {
         ]}
       /> */}
       <picture className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center  bg-productBorderGradient bg-contain bg-clip-content bg-center bg-no-repeat">
-        <img src={product} alt="foto del producto" className="m-10 w-[40%] md:w-[60%] lg:w-[50%]" />
+        <img src={defaultProduct} alt="foto del producto" className="m-10 w-[40%] md:w-[60%] lg:w-[50%]" />
       </picture>
       <ProductDescription />
       <section className="border-t-[1px] border-gold py-5  md:col-span-2">
