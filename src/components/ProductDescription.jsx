@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "./buttons";
 import { useTranslation } from "react-i18next";
 
-export function ProductDescription({ name, price, rating, stock }) {
+export function ProductDescription({ name, price, rating, stock = 10 }) {
   const { t } = useTranslation();
 
   const [quantity, setQuantity] = useState(1);
