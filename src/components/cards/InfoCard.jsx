@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button } from "../buttons/Button";
+import { Button } from "components/buttons";
 import { useTranslation } from "react-i18next";
 import { backgrounds } from "src/assets";
 

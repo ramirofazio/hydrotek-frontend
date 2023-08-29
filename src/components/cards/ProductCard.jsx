@@ -1,6 +1,6 @@
 import Atropos from "atropos/react";
 import { defaultProduct } from "assets";
-import { Button } from "../buttons";
+import { Button } from "components/buttons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
