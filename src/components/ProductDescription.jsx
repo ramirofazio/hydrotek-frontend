@@ -36,7 +36,7 @@ export function ProductDescription({ name, price, rating, stock = 10 }) {
         </button>
       </div>
 
-      <Button text={t("common.buy-now")} className="mt-2" />
+      <Button text={t("common.buy-now")} classname="mt-2" />
 
       <p className="p-1 text-xs">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti corporis dolorem vero accusamus dicta,
