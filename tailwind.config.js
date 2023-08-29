@@ -13,7 +13,6 @@ export default {
         white: colors.white,
         black: colors.black,
         gray: colors.gray,
-        'yellow-gradient': 'linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%)',
       },
       fontFamily: {
         primary: ["Orbitron", "sans-serif"],
