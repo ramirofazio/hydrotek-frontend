@@ -32,7 +32,7 @@ export function SearchBar() {
             <MagnifyingGlassIcon className="m-1 h-6 w-6 text-white" />
           </Combobox.Button>
         </div>
-        <Combobox.Options className="border-2 border-black/40 bg-black/80 absolute shadow-2xl mt-2">
+        <Combobox.Options className="border-2 border-black/40 bg-black/80 absolute z-50 shadow-2xl mt-2">
           {filteredProducts.map((product, i) => (
             <Combobox.Option key={i} value={product} className="my-4 mx-3">
               <h1 className="text-sm">{product}</h1>

@@ -17,14 +17,9 @@ export default function ProductDetail() {
         ]}
       /> */}
       <div className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center border-2 border-red-500 bg-productBorderGradient bg-contain bg-clip-content bg-center bg-no-repeat">
-        <img src={product} alt="foto del producto" className="m-10 w-[40%] md:w-[60%]" />
+        <img src={product} alt="foto del producto" className="m-10 w-[40%] md:w-[60%] lg:w-[50%]" />
       </div>
       <ProductDescription />
-      <p className="p-1 text-sm">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti corporis dolorem vero accusamus dicta,
-        repellat adipisci maiores animi facilis harum asperiores optio nesciunt rerum deserunt aliquam necessitatibus
-        odit labore quia!
-      </p>
     </div>
   );
 }
