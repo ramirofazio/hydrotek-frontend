@@ -22,8 +22,8 @@ export const router = createBrowserRouter([
       { path: "/products", element: <Products /> },
       {
         path: "/productDetail",
-        // path: "/productDetail/:id",
-        element: <ProductDetail />,
+        // path: "/productDetail/:id", // TODO: Cuando tengamos data real utilizar el loader con el param de :id
+        element: <ProductDetail />, // * Por el momento se rompe
         // loader: ({ params }) => {
         //   return APIHydro.getProductDetail(params.id);
         // },
