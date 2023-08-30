@@ -1,7 +1,7 @@
-import testFoto from "assets/goldCircuit1.png";
 import { InfoCard, ProductCard, CategoryCard } from "src/components/cards";
 import { Carrousel } from "src/components";
 import { useTranslation } from "react-i18next";
+import { backgrounds } from "assets";
 
 export default function Landing() {
   const { t } = useTranslation();
@@ -10,7 +10,7 @@ export default function Landing() {
       <section className=" flex flex-col gap-[5rem]">
         <section className="flex flex-col pt-5 lg:flex-row lg:place-items-center lg:pt-10">
           <InfoCard />
-          <img src={testFoto} className="place-self-end  md:w-[70%] lg:w-[45%] lg:place-self-center" />
+          <img src={backgrounds.goldCircuit} className="place-self-end  md:w-[70%] lg:w-[45%] lg:place-self-center" />
         </section>
         <div className="py-10">
           <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
