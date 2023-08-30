@@ -4,6 +4,7 @@ import { backgrounds, icons } from "src/assets";
 export function SignIn() {
   return (
     <div className="grid h-screen w-full place-items-center gap-4 p-4  xl:w-[30%]">
+      <img src={backgrounds.borderTop} />
       <form>
         <input type="text" onChange={"#"} placeholder="EMAIL/NOMBRE DE USUARIO" />
         <input type="password" onChange={"#"} placeholder="CONTRASEÑA" />
@@ -33,6 +34,7 @@ export function SignIn() {
       <p>
         ¿OLVIDASTE TU CONTRASEÑA? <strong>RECUPERA TU CONTRASEÑA</strong>
       </p>
+      <img src={backgrounds.borderBottom} />
     </div>
   );
 }
