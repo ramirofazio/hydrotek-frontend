@@ -1,19 +1,14 @@
 import { Popover, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import userProfile from "assets/userProfile.png";
 import shoppingCart from "assets/shoppingCart.png";
 import { links } from "src/utils";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Categories } from "./Categories.jsx";
-import { SignIn } from "src/pages/session/index.js";
 
 export function ModalNav() {
-  const [loginShow, setLoginShow] = useState(true);
-
-  const alternModal = () => {
-    setLoginShow(!loginShow);
-  };
+  const navigate = useNavigate();
 
   return (
     <Popover className="lg:hidden">
@@ -55,7 +50,7 @@ export function ModalNav() {
 
             <section className="mt-10 flex justify-around">
               <Link>
-                <img src={userProfile} className="h-7 w-7" onClick={alternModal} />
+                <img src={userProfile} className="h-7 w-7" onClick={() => navigate("/signIn")} />
               </Link>
               <Link>
                 <img src={shoppingCart} className="h-7 w-7" />
@@ -64,7 +59,6 @@ export function ModalNav() {
           </nav>
         </Popover.Panel>
       </Transition>
-      <SignIn isOpen={loginShow} alternModal={alternModal} />
     </Popover>
   );
 }

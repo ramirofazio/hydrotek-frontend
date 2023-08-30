@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "assets/blackLogo.png";
 import userProfile from "assets/userProfile.png";
 import shoppingCart from "assets/shoppingCart.png";
@@ -7,14 +6,9 @@ import { Categories } from "./Categories";
 import Atropos from "atropos/react";
 import { ModalNav } from "./ModalNav";
 import { links } from "src/utils";
-import { SignIn } from "pages/session/index";
 
 export const Navbar = () => {
-  const [loginShow, setLoginShow] = useState(false);
-
-  const alternModal = () => {
-    setLoginShow(!loginShow);
-  };
+  const navigate = useNavigate();
 
   return (
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
@@ -47,10 +41,9 @@ export const Navbar = () => {
         ))}
       </ul>
       <section className="hidden w-24 justify-evenly lg:flex">
-        <img src={userProfile} className="icons" onClick={alternModal} />
+        <img src={userProfile} className="icons" onClick={() => navigate("/signIn")} />
         <img src={shoppingCart} className="icons" />
       </section>
-      <SignIn isOpen={loginShow} alternModal={alternModal} />
     </nav>
   );
 };

@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 export default function Landing() {
   const { t } = useTranslation();
   return (
-    <div className="content h-full ">
+    <div className="content h-full">
       <section className=" flex flex-col gap-[5rem]">
         <section className="flex flex-col pt-5 lg:flex-row lg:place-items-center lg:pt-10">
           <InfoCard />
