@@ -6,6 +6,7 @@ import Products from "pages/products/Products.jsx";
 import ProductDetail from "pages/productDetail/ProductDetail.jsx";
 import { APIHydro } from "src/api/index.js";
 import { actionsApp } from "src/redux/reducers";
+import { SignIn, SignUp } from "src/pages/session";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,14 @@ export const router = createBrowserRouter([
         loader: ({ params }) => {
           return APIHydro.getProductDetail(params.id);
         },
+      },
+      {
+        path: "/signIn",
+        element: <SignIn />,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp />,
       },
     ],
   },
