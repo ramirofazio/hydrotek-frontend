@@ -1,5 +1,6 @@
 import colors from "tailwindcss/colors";
 import defaultTheme from "tailwindcss/defaultTheme";
+import { backgrounds } from "./src/assets/index";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -19,11 +20,11 @@ export default {
         secondary: ["Quicksand", "sans-serif"],
       },
       backgroundImage: {
-        circuit: "url('./src/assets/circuit.png')",
-        blueGradient: "url('./src/assets/blueGradient.png')",
-        productBorderGradient: "url('./src/assets/productBorderGradient.png')",
-        productBorderNoGradient: "url('./src/assets/productBorderNoGradient.png')",
-        'gold-gradient': 'linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%)'
+        circuit: `url(${backgrounds.circuit})`,
+        blueGradient: `url(${backgrounds.blueGradient})`,
+        productBorderGradient: `url(${backgrounds.productBorderGradient})`,
+        productBorderNoGradient: `url(${backgrounds.productBorder})`,
+        "gold-gradient": "linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%)",
       },
       screens: {
         xs: "375px",
