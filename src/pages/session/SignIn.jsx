@@ -49,8 +49,20 @@ export function SignIn() {
           className="grid place-items-center gap-4 px-6 lg:mx-auto lg:w-[80%] xl:w-full xl:gap-6"
           onSubmit={handleSubmit}
         >
-          <input type="text" onChange={handleOnChange} placeholder="EMAIL/NOMBRE DE USUARIO" value={user.username} />
-          <input type="password" onChange={handleOnChange} placeholder="CONTRASEÑA" value={user.password} />
+          <input
+            type="text"
+            name="username"
+            onChange={handleOnChange}
+            placeholder="EMAIL/NOMBRE DE USUARIO"
+            value={user.username}
+          />
+          <input
+            type="password"
+            name="password"
+            onChange={handleOnChange}
+            placeholder="CONTRASEÑA"
+            value={user.password}
+          />
           <Button
             text={"INGRESAR"}
             classname={"!bg-gold lg:w-[60%] hover:!bg-base"}
