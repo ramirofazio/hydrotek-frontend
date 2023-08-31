@@ -18,7 +18,7 @@
   }
 
   p {
-    @apply font-secondary text-sm text-white;
+    @apply font-secondary text-xs text-white;
   }
 
   strong {
@@ -26,7 +26,7 @@
   }
 
   input {
-    @apply my-2 w-full rounded-full border-2 border-gold bg-base p-3 pl-6 text-xs transition focus:border-gold/50 focus:outline-none;
+    @apply my-2 w-full rounded-full border-2 border-gold bg-base p-3 text-center text-xs transition focus:border-gold/50 focus:outline-none lg:pl-6 lg:text-left;
   }
 
   ::-webkit-scrollbar {
