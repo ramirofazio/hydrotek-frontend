@@ -17,6 +17,7 @@ export const backgrounds = {
   productBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/productBorder.png",
   borderTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/borderTop.png",
   borderBottom: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/borderBottom.png",
+  borderBgFlip: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/borderBgFlip.png",
   productBorderGradient:
     "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/productBorderGradient.png",
   blueGradient: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/blueGradient.png",
