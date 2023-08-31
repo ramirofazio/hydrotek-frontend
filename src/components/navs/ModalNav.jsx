@@ -48,12 +48,8 @@ export function ModalNav() {
             </ul>
 
             <section className="mt-10 flex justify-around">
-              <Link>
-                <UserIcon className="h-10 w-10  text-gold" onClick={() => navigate("/signIn")} />
-              </Link>
-              <Link>
-                <ShoppingCartIcon className="h-10 w-10  text-gold" />
-              </Link>
+              <UserIcon className="h-10 w-10 text-gold" onClick={() => navigate("/signIn")} />
+              <ShoppingCartIcon className="h-10 w-10  text-gold" />
             </section>
           </nav>
         </Popover.Panel>
