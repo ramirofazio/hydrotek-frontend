@@ -1,7 +1,7 @@
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { links } from "src/utils";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Categories } from "./Categories.jsx";
 import { UserIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
