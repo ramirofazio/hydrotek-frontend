@@ -16,7 +16,8 @@
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
     "registerNow": "REGISTRATE AHORA",
     "forgotPass": "¿OLVIDASTE TU CONTRASEÑA?",
-    "recoverPassNow": "RECUPERA TU CONTRASEÑA"
+    "recoverPassNow": "RECUPERA TU CONTRASEÑA",
+    "logIn": "INICAR SESIÓN"
   },
   "navbar": {
     "products": "Productos",

@@ -35,7 +35,8 @@ export function SignIn() {
   return (
     <main className="relative mx-4 mb-10 grid place-items-center gap-6 py-10">
       <section>
-        <img src={backgrounds.borderTop} className="" />
+        <img src={backgrounds.borderTop} />
+        <h1 className="-mt-20 mb-14 text-center">{t("common.logIn")}</h1>
         <form className="grid place-items-center gap-4 px-6">
           <input type="text" onChange={handleOnChange} placeholder="EMAIL/NOMBRE DE USUARIO" value={user.username} />
           <input type="password" onChange={handleOnChange} placeholder="CONTRASEÑA" value={user.password} />
