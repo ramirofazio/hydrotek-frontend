@@ -12,7 +12,11 @@
     "top-sellers": "Los mas vendidos",
     "search": "Buscar",
     "find-what-you-are-looking": "Encuentra lo que buscas",
-    "reviews": "reseñas"
+    "reviews": "reseñas",
+    "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
+    "registerNow": "REGISTRATE AHORA",
+    "forgotPass": "¿OLVIDASTE TU CONTRASEÑA?",
+    "recoverPassNow": "RECUPERA TU CONTRASEÑA"
   },
   "navbar": {
     "products": "Productos",
