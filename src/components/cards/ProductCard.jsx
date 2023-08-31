@@ -8,7 +8,7 @@ export function ProductCard({ imgUrl, name, price, id = 1, showBtn = true }) {
   const { t } = useTranslation();
   return (
     <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>
-      <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer">
+      <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer xl:pb-4">
         <div className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain bg-clip-content bg-center bg-no-repeat">
           <img
             src={imgUrl || defaultProduct}
@@ -23,7 +23,7 @@ export function ProductCard({ imgUrl, name, price, id = 1, showBtn = true }) {
         <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">{price || "$99.99"}</h2>
         {showBtn && (
           <Link to={`/productDetail/${id}`} className="md:place-self-start">
-            <Button text={t("common.buy-now")} />
+            <Button text={t("common.buy-now")} pClassname={"font-primary"} />
           </Link>
         )}
       </div>

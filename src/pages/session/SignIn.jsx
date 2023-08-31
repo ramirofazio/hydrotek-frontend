@@ -66,7 +66,7 @@ export function SignIn() {
           <Button
             text={"INGRESAR"}
             classname={"!bg-gold lg:w-[60%] hover:!bg-base"}
-            pClassname={"xl:text-xl"}
+            pClassname={"xl:text-xl font-primary"}
             onClick={handleSubmit}
           />
         </form>
@@ -78,8 +78,8 @@ export function SignIn() {
             key={index}
             img={[icon, "icons lg:mr-10"]}
             text={`INICIAR SESIÓN CON ${socialNetwork}`}
-            classname={"!bg-gold lg:flex lg:items-center lg:pl-16 lg:!bg-base lg:py-3 group"}
-            pClassname={"hidden lg:inline group-hover:text-gold transition"}
+            classname={"!bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
+            pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
             onClick={() => handleSocialClick(socialNetwork)}
           />
         ))}
