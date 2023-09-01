@@ -1,11 +1,13 @@
 import Atropos from "atropos/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ModalNav, Categories } from "./";
 import { links } from "src/utils";
 import { UserIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { logos } from "assets";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
       <NavLink to="/">
@@ -37,7 +39,7 @@ export const Navbar = () => {
         ))}
       </ul>
       <section className="hidden  justify-evenly gap-9 lg:flex">
-        <UserIcon className="h-10 w-10  text-gold" />
+        <UserIcon className="h-10 w-10  text-gold" onClick={() => navigate("/signIn")} />
         <ShoppingCartIcon className="h-10 w-10  text-gold" />
       </section>
     </nav>

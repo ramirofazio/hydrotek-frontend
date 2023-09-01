@@ -1,8 +1,6 @@
 import { ProductCard } from "components/cards";
 import { Pagination, SearchBar } from "components";
 
-
-
 export default function Products() {
   const mockProducts = [
     { name: "SAFE ROOTS", price: "$20.000" },
@@ -12,17 +10,17 @@ export default function Products() {
   ];
 
   return (
-    <div className="w-[90%] mx-auto">
+    <div className="mx-auto w-[90%]">
       <div>
-        <SearchBar/>
+        <SearchBar />
       </div>
       <div className="content mx-auto grid  place-items-center gap-4  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {mockProducts.map((p, i) => (
           <ProductCard key={i} name={p.name} price={p.price} />
         ))}
       </div>
-      <div className="w-fit mx-auto my-5">
-        <Pagination nButtons={5}/>
+      <div className="mx-auto my-5 w-fit">
+        <Pagination nButtons={5} />
       </div>
     </div>
   );

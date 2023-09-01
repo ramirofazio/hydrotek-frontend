@@ -1,12 +1,14 @@
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { links } from "src/utils";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Categories } from "./Categories.jsx";
 import { UserIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 
 export function ModalNav() {
+  const navigate = useNavigate();
+
   return (
     <Popover className="lg:hidden">
       <Popover.Button className="focus:outline-0">
@@ -46,12 +48,8 @@ export function ModalNav() {
             </ul>
 
             <section className="mt-10 flex justify-around">
-              <Link>
-                <UserIcon className="h-10 w-10  text-gold" />
-              </Link>
-              <Link>
-                <ShoppingCartIcon className="h-10 w-10  text-gold" />
-              </Link>
+              <UserIcon className="h-10 w-10 text-gold" onClick={() => navigate("/signIn")} />
+              <ShoppingCartIcon className="h-10 w-10  text-gold" />
             </section>
           </nav>
         </Popover.Panel>
