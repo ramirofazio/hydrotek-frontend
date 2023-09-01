@@ -67,43 +67,42 @@ export const Footer = () => {
           <h1 className="textGoldGradient mb-4 text-sm md:text-xl">{t("footer.links")}</h1>
           <Link
             to="/edit_user"
-            className="flex items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
+            className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
           >
             {t("footer.links-list.my-account")}
           </Link>
           <Link
             to="/edit_user"
-            className="flex items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
+            className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
           >
             {t("footer.links-list.edit")}
           </Link>
           <Link
             to="/edit_user"
-            className="flex items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
+            className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
           >
             {t("footer.links-list.change-password")}
           </Link>
           <Link
             to="/edit_user"
-            className="flex items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
+            className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
           >
             {t("footer.links-list.order-history")}
           </Link>
           <Link
             to="/edit_user"
-            className="flex items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
+            className=" flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
           >
             {t("footer.links-list.order-track")}
           </Link>
         </div>
-        <ChevronUpIcon onClick={scrollUp} className="transition ease-in-out hover:-translate-y-2 hover:cursor-pointer goldGradient row-start-1  h-14 rounded-full stroke-white p-3 text-white lg:absolute lg:right-20 lg:row-start-auto " />
+        <ChevronUpIcon
+          onClick={scrollUp}
+          className="goldGradient row-start-1 h-14 rounded-full stroke-white p-3 text-white  transition ease-in-out hover:-translate-y-2 hover:cursor-pointer lg:absolute lg:right-20 lg:row-start-auto "
+        />
       </section>
 
-      <div
-        className="w-full bg-gold py-2 text-center font-secondary text-xs text-white "
-      >
-        {t("footer.legal")}
-      </div>
+      <div className="w-full bg-gold py-2 text-center font-secondary text-xs text-white ">{t("footer.legal")}</div>
     </footer>
   );
 };

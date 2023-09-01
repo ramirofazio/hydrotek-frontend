@@ -5,7 +5,7 @@ export const Button = ({ text, img, classname, pClassname, ...props }) => {
       {...props}
     >
       {img && <img src={img[0]} className={img[1]} />}
-      <p className={`${pClassname}`}>{text}</p>
+      <p className={`font-primary ${pClassname}`}>{text}</p>
     </button>
   );
 };
