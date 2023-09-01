@@ -96,7 +96,7 @@ export const Footer = () => {
             {t("footer.links-list.order-track")}
           </Link>
         </div>
-        <ChevronUpIcon onClick={scrollUp} className="goldGradient row-start-1  h-14 rounded-full stroke-white p-3 text-white lg:absolute lg:right-20 lg:row-start-auto " />
+        <ChevronUpIcon onClick={scrollUp} className="transition ease-in-out hover:-translate-y-2 hover:cursor-pointer goldGradient row-start-1  h-14 rounded-full stroke-white p-3 text-white lg:absolute lg:right-20 lg:row-start-auto " />
       </section>
 
       <div
