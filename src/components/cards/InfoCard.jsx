@@ -14,13 +14,13 @@ export function InfoCard({ text }) {
             {text || "Cultivo sin tierra, crecimiento sin límites"}
           </h1>
           <Link to={`/products`} className="hidden md:inline md:self-start">
-            <Button classname="xl:text-xl" text={t("common.see-products")} />
+            <Button className="xl:text-xl" text={t("common.see-products")} />
           </Link>
         </div>
       </div>
       <div className="mx-auto mt-3 w-fit p-4 sm:mt-10 md:hidden xs:mt-5 font-primary">
         <Link to={`/products`}>
-          <Button classname="text-sm s:text-lg" text={t("common.see-products")} />
+          <Button className="text-sm s:text-lg" text={t("common.see-products")} />
         </Link>
       </div>
     </div>

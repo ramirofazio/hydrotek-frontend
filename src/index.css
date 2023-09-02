@@ -25,9 +25,6 @@
     @apply textGoldGradient border-b-[0.1px] border-gold font-extrabold transition hover:cursor-pointer hover:opacity-50;
   }
 
-  input {
-    @apply w-full rounded-full border-2 border-gold bg-base p-3 text-center text-xs text-white transition focus:border-gold/50 focus:outline-none lg:pl-6 lg:text-left xl:py-4 xl:pl-10 xl:text-sm;
-  }
 
   ::-webkit-scrollbar {
     @apply w-2;
