@@ -1,10 +1,13 @@
-import { InfoCard, ProductCard, CategoryCard } from "src/components/cards";
+import { InfoCard, ProductCard, CategoryCard, BlogPostCard } from "src/components/cards";
+import { Button } from "components/buttons";
 import { Carrousel } from "src/components";
 import { useTranslation } from "react-i18next";
 import { backgrounds } from "assets";
+import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <div className="content h-full">
       <section className=" flex flex-col gap-[5rem]">
@@ -26,6 +29,16 @@ export default function Landing() {
             quantit
           />
         </div>
+        <div className="grid place-items-center gap-10 lg:grid-cols-3">
+          <BlogPostCard title="COMO SETEAR EL SISTEMA EN" />
+          <BlogPostCard title="COMO SETEAR EL SISTEMA EN" />
+          <BlogPostCard title="COMO SETEAR EL SISTEMA EN" />
+        </div>
+        <Button
+          onClick={() => navigate("/blog")}
+          className="-mt-[3rem] mb-[3rem] mx-auto w-fit"
+          text={t("blog.visit-blog")}
+        />
       </section>
     </div>
   );

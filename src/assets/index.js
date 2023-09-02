@@ -28,3 +28,5 @@ export const backgrounds = {
 
 export const defaultProduct =
   "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325911/HYD/others/defaultProduct.png";
+
+export const defaultPost = "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png";

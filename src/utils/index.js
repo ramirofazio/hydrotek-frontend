@@ -11,3 +11,10 @@ export const categories = [
   { name: "SAFE ROOTS", value: 3 },
   { name: "CANASTAS", value: 4 },
 ];
+
+export const socialLinks = {
+  facebook: "https://www.facebook.com/hydrotek.store",
+  instagram: "https://www.instagram.com/hydrotek.store/",
+  wpp: "https://api.whatsapp.com/send?phone=5491170823697",
+  mail: "mailto:hydrotek@gmail.com",
+};
