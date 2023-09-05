@@ -1,5 +1,5 @@
 import Atropos from "atropos/react";
-import { defaultProduct } from "assets";
+import { products } from "assets";
 import { Button } from "components/buttons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -11,7 +11,7 @@ export function ProductCard({ imgUrl, name, price, id = 1, showBtn = true }) {
       <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer xl:pb-4">
         <div className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain bg-clip-content bg-center bg-no-repeat">
           <img
-            src={imgUrl || defaultProduct}
+            src={imgUrl || products.defaultOne}
             alt="foto del producto"
             className="m-10 w-[40%] md:m-20"
             data-atropos-offset="15"
