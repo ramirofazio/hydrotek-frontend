@@ -1,5 +1,4 @@
 import { Combobox } from "@headlessui/react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -20,7 +19,7 @@ export function SearchBar() {
       });
 
   return (
-    <div className="w-fit border-[1px] border-gold mx-auto">
+    <div className="mx-auto w-fit rounded-md border-[2px] border-gold">
       <Combobox>
         <div className="relative flex w-fit place-items-center ">
           <Combobox.Input
@@ -28,13 +27,13 @@ export function SearchBar() {
             onChange={(event) => setQuery(event.target.value)}
             placeholder={t("common.search")}
           />
-          <Combobox.Button className="goldGradient rounded-sm">
-            <MagnifyingGlassIcon className="m-1 h-6 w-6 text-white" />
+          <Combobox.Button className="bg-gold">
+            <i className="ri-search-line text-2xl text-base" />
           </Combobox.Button>
         </div>
-        <Combobox.Options className="border-2 border-black/40 bg-black/80 absolute z-50 shadow-2xl mt-2">
+        <Combobox.Options className="absolute z-50 mt-2 border-2 border-black/40 bg-black/80 shadow-2xl">
           {filteredProducts.map((product, i) => (
-            <Combobox.Option key={i} value={product} className="my-4 mx-3">
+            <Combobox.Option key={i} value={product} className="mx-3 my-4">
               <h1 className="text-sm">{product}</h1>
             </Combobox.Option>
           ))}
