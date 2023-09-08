@@ -37,6 +37,7 @@ export const Footer = () => {
           <div className="flex w-full justify-around md:w-[50%]  lg:w-[70%] lg:gap-5 lg:px-5">
             {socialLinksIcons.map(({ href, icon }) => (
               <a
+                key={href}
                 href={href}
                 target="_blank"
                 className="goldGradient rounded-full p-3 px-4 transition ease-in-out hover:-translate-y-1  hover:scale-110 hover:opacity-60"
@@ -62,6 +63,7 @@ export const Footer = () => {
           <h1 className="textGoldGradient mb-4 text-sm md:text-xl">{t("footer.links")}</h1>
           {userLinks.map(({ href, text }) => (
             <Link
+              key={href}
               to={href}
               className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
             >
