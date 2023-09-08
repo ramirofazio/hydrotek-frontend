@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from "react-i18next";
 import { categories } from "src/utils";
 
@@ -12,7 +11,7 @@ export function Categories() {
       <div className="relative lg:static">
         <Listbox.Button className="flex place-items-center">
           <h2 className="uppercase text-white">{t("navbar.categories")}</h2>
-          <ChevronDownIcon className="ml-1 h-4 w-4 text-gold" />
+          <i className="ri-arrow-down-s-line ml-1 text-3xl text-gold lg:text-2xl" />
         </Listbox.Button>
         <Transition
           as={Fragment}
