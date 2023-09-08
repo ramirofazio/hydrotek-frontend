@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useTranslation } from "react-i18next";
-import { icons, logos } from "assets";
-import { ChevronUpIcon } from "@heroicons/react/24/solid";
+import { logos } from "assets";
 import { socialLinks } from "src/utils";
 import { Link } from "react-router-dom";
 
@@ -26,28 +25,28 @@ export const Footer = () => {
               target="_blank"
               className="goldGradient flex h-12 w-12 items-center   justify-center rounded-full transition ease-in-out hover:-translate-y-1  hover:scale-110 hover:opacity-60 lg:w-20"
             >
-              <img src={icons.facebook} className="w-4" />
+              <i className="ri-facebook-fill text-2xl text-base"></i>
             </a>
             <a
               href={socialLinks.instagram}
               target="_blank"
               className="goldGradient flex h-12 w-12 items-center justify-center rounded-full transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-60 lg:w-20"
             >
-              <img src={icons.instagram} className=" w-6" />
+              <i className="ri-instagram-fill text-2xl text-base"></i>
             </a>
             <a
               href={socialLinks.wpp}
               target="_blank"
               className="goldGradient flex h-12 w-12 items-center justify-center rounded-full transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-60 lg:w-20"
             >
-              <img src={icons.wpp} className="h-6 w-6" />
+              <i className="ri-whatsapp-fill text-2xl text-base"></i>
             </a>
             <a
               href={socialLinks.mail}
               target="_blank"
               className="goldGradient flex h-12 w-12 items-center justify-center rounded-full transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-60 lg:w-20"
             >
-              <img src={icons.mail} className="w-7" />
+              <i className="ri-mail-fill text-2xl text-base"></i>{" "}
             </a>
           </div>
         </div>
@@ -96,12 +95,12 @@ export const Footer = () => {
             {t("footer.links-list.order-track")}
           </Link>
         </div>
-        <ChevronUpIcon
+        <i
+          className="ri-arrow-up-s-line goldGradient row-start-1 rounded-full p-3 !text-4xl text-base transition ease-in-out
+        hover:-translate-y-2 hover:cursor-pointer lg:absolute lg:right-20 lg:row-start-auto"
           onClick={scrollUp}
-          className="goldGradient row-start-1 h-14 rounded-full stroke-white p-3 text-white  transition ease-in-out hover:-translate-y-2 hover:cursor-pointer lg:absolute lg:right-20 lg:row-start-auto "
-        />
+        ></i>
       </section>
-
       <div className="w-full bg-gold py-2 text-center font-secondary text-xs text-white ">{t("footer.legal")}</div>
     </footer>
   );

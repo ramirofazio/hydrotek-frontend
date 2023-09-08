@@ -1,12 +1,3 @@
-export const icons = {
-  facebook: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325742/HYD/icons/facebook.png",
-  mail: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325742/HYD/icons/mail.png",
-  instagram: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325742/HYD/icons/instagram.png",
-  wpp: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325743/HYD/icons/whatsapp.png",
-  apple: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325743/HYD/icons/apple.png",
-  google: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325743/HYD/icons/google.png",
-};
-
 export const logos = {
   hydPurple: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325846/HYD/logos/purpleLogo.png",
   hydBlack: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325847/HYD/logos/blackLogo.png",

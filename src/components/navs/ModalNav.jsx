@@ -2,7 +2,6 @@ import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { links } from "src/utils";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Categories } from "./Categories.jsx";
 import { UserIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 
@@ -12,7 +11,7 @@ export function ModalNav() {
   return (
     <Popover className="lg:hidden">
       <Popover.Button className="focus:outline-0">
-        <Bars3BottomRightIcon className="h-10 w-10 text-gold " aria-hidden="true" />
+        <i class="ri-menu-4-fill icons text-4xl text-gold"></i>
       </Popover.Button>
       <Transition
         as={Fragment}
@@ -24,8 +23,8 @@ export function ModalNav() {
         leaveTo="opacity-0 scale-95"
       >
         <Popover.Panel className="absolute right-0 top-0 z-50  flex min-w-fit max-w-[60%]  flex-col gap-6 rounded-sm border-2 border-black/40 bg-black px-4 py-11 text-xl shadow-2xl">
-          <Popover.Button className="goldGradient mb-1 w-fit place-self-end justify-self-center rounded-sm px-[1px] hover:bg-opacity-70">
-            <XMarkIcon className="goldGradient h-6 w-6 stroke-black stroke-[3.5px] hover:stroke-[3.8px]" />
+          <Popover.Button className="goldGradient mb-1 w-fit place-self-end justify-self-center rounded-sm px-2 hover:bg-opacity-70">
+            <i class="ri-close-fill icons text-base text-xl"></i>
           </Popover.Button>
           <nav className="my-1">
             <ul className="flex w-[95%] flex-col gap-6 pl-1 text-white">
@@ -48,8 +47,8 @@ export function ModalNav() {
             </ul>
 
             <section className="mt-10 flex justify-around">
-              <UserIcon className="h-10 w-10 text-gold" onClick={() => navigate("/signIn")} />
-              <ShoppingCartIcon className="h-10 w-10  text-gold" />
+              <i className="icons ri-user-3-fill text-3xl  text-gold" onClick={() => navigate("/signIn")} />
+              <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
             </section>
           </nav>
         </Popover.Panel>
