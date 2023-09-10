@@ -41,10 +41,6 @@ export function Carrousel({ content }) {
           slidesPerView: 4,
           spaceBetween: 100,
         },
-        1440: {
-          slidesPerView: 5,
-          spaceBetween: 110,
-        },
       }}
     >
       {repeatedContent?.map((component, index) => (
@@ -52,7 +48,7 @@ export function Carrousel({ content }) {
           {({ isActive }) => (
             <div
               className={`${
-                isActive ? "mt-5 opacity-100" : "pointer-events-none opacity-30 "
+                isActive ? "mt-5 opacity-100" : "pointer-events-none opacity-80 "
               } grid h-full w-full place-items-center p-2 transition md:w-[50%] lg:w-[80%] xl:w-full`}
             >
               {component}
