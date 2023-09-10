@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { shoppingCartRdr } from './reducers';
+import { shoppingCartRdr, appRdr } from './reducers';
 
 const store = configureStore({
   reducer: {
+    app: appRdr,
     shoppingCart: shoppingCartRdr,
   },
 });

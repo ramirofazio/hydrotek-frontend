@@ -15,7 +15,7 @@ export function SignIn() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -36,6 +36,7 @@ export function SignIn() {
   const handleSubmit = (e) => {
     //? SUBMIT
     e.preventDefault();
+    console.log(user);
   };
 
   return (
@@ -49,10 +50,10 @@ export function SignIn() {
         >
           <Input
             type="text"
-            name="username"
+            name="email"
             onChange={handleOnChange}
             placeholder="EMAIL/NOMBRE DE USUARIO"
-            value={user.username}
+            value={user.email}
           />
           <Input
             type="password"
@@ -63,7 +64,7 @@ export function SignIn() {
           />
           <Button
             text={"INGRESAR"}
-            className={"!bg-gold lg:w-[60%] hover:!bg-base"}
+            className={"!bg-gold hover:!bg-base lg:w-[60%]"}
             pClassname={"xl:text-xl font-primary"}
             onClick={handleSubmit}
           />
