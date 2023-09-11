@@ -3,14 +3,22 @@ import { createSlice } from "@reduxjs/toolkit";
 const user = createSlice({
   name: "user",
   initialState: {
-    sessionData: {},
+    session: {
+      email: ""
+    },
+    userProfile: {
+      name: "",
+      userName: "",
+      adress: "",
+      cellPhone: 0,
+    }
   },
   reducers: {
-    saveSessionData: (state, action) => {
-      state.sessionData = action.payload;
+    saveSignInData: (state, action) => {
+      state.session = action.payload;
     },
   },
 });
 
 export const userRdr = user.reducer;
-export const { saveSessionData } = user.actions;
+export const { saveSignInData } = user.actions;
