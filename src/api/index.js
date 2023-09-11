@@ -23,3 +23,15 @@ export const APIHydro = {
     return apiHydro.post(`/${route.AUTH}/signIn`, { email: user.email, pass: user.password });
   },
 };
+
+export function addAuthWithToken(token) {
+  apiHydro.interceptors.request.use(
+    (config) => {
+      config.headers.Authorization = `Bearer ${token}`;
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+}

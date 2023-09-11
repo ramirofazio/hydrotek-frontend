@@ -4,9 +4,10 @@ import { backgrounds, icons } from "src/assets";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { APIHydro } from "src/api";
+import { APIHydro, addAuthWithToken } from "src/api";
 import { actionsUser } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
+import { saveInStorage } from "src/utils/localStorage";
 
 const authBtns = [
   { socialNetwork: "GOOGLE", icon: icons.google },
@@ -42,11 +43,14 @@ export function SignIn() {
     e.preventDefault();
     console.log(user);
     try {
-      APIHydro.signIn(user).then((res) => {
-        console.log(res.data);
-        const { accessToken } = res.data;
-        dispatch(actionsUser.saveSignInData(res.data));
-      });
+      APIHydro.signIn(user)
+        .then((res) => {
+          const { accessToken } = res.data;
+          saveInStorage("accessToken", accessToken);
+          addAuthWithToken(accessToken);
+          dispatch(actionsUser.saveSignInData(res.data));
+        })
+        .finally(() => navigate("/products"));
     } catch (e) {
       console.log(e); // * Manejar el error al no tener una respuesta exitosa
     }
