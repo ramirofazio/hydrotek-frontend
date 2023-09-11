@@ -4,6 +4,9 @@ import { backgrounds, icons } from "src/assets";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { APIHydro } from "src/api";
+import { actionsUser } from "src/redux/reducers";
+import { useDispatch } from "react-redux";
 
 const authBtns = [
   { socialNetwork: "GOOGLE", icon: icons.google },
@@ -14,6 +17,7 @@ const authBtns = [
 export function SignIn() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -37,6 +41,15 @@ export function SignIn() {
     //? SUBMIT
     e.preventDefault();
     console.log(user);
+    try {
+      APIHydro.signIn(user).then((res) => {
+        console.log(res.data);
+        const { accessToken } = res.data;
+        dispatch(actionsUser.saveSignInData(res.data));
+      });
+    } catch (e) {
+      console.log(e); // * Manejar el error al no tener una respuesta exitosa
+    }
   };
 
   return (

@@ -4,18 +4,21 @@ const user = createSlice({
   name: "user",
   initialState: {
     session: {
-      email: ""
+      id: "",
+      email: "",
     },
     userProfile: {
-      name: "",
       userName: "",
-      adress: "",
       cellPhone: 0,
-    }
+      adress: "",
+      avatar: "",
+    },
   },
   reducers: {
     saveSignInData: (state, action) => {
-      state.session = action.payload;
+      const { session, profile } = action.payload;
+      state.session = session;
+      state.userProfile = profile;
     },
   },
 });

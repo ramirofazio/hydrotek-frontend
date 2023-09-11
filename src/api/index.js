@@ -16,7 +16,10 @@ export const APIHydro = {
   getProductDetail: (id) => {
     return apiHydro.get(`${route.PRODUCT}/${id}`);
   },
-  signIn: (email, pass) => {
-    return apiHydro.post(`/${route.AUTH}/signIn`, { email, pass });
+  getUsers: () => {
+    return apiHydro.get(`/${route.USER}`);
+  },
+  signIn: (user) => {
+    return apiHydro.post(`/${route.AUTH}/signIn`, { email: user.email, pass: user.password });
   },
 };
