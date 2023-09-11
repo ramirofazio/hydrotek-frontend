@@ -5,7 +5,8 @@
       "src/*": ["./src/*"],
       "assets/*": ["./src/assets/*"],
       "pages/*": ["./src/pages/*"],
-      "components/*": ["./src/components/*"]
+      "components/*": ["./src/components/*"],
+      "utils/*": ["./src/utils/*"],
       //? Agregar aca los paths para tener intelisense y que no use el path relativo sino el absoluto
     }
   }
