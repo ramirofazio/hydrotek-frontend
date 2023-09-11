@@ -36,7 +36,7 @@ export default function Landing() {
         </div>
         <Button
           onClick={() => navigate("/blog")}
-          className="-mt-[3rem] mb-[3rem] mx-auto w-fit"
+          className="mx-auto -mt-[3rem] mb-[3rem] w-fit"
           text={t("blog.visit-blog")}
         />
       </section>

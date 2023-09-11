@@ -1,9 +1,23 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useTranslation } from "react-i18next";
-import { icons, logos } from "assets";
-import { ChevronUpIcon } from "@heroicons/react/24/solid";
+import { logos } from "assets";
 import { socialLinks } from "src/utils";
 import { Link } from "react-router-dom";
+
+const socialLinksIcons = [
+  { href: socialLinks.facebook, icon: "facebook" },
+  { href: socialLinks.whatsapp, icon: "whatsapp" },
+  { href: socialLinks.instagram, icon: "instagram" },
+  { href: socialLinks.mail, icon: "mail" },
+];
+
+const userLinks = [
+  { href: "/edit-user", text: "footer.links-list.my-account" },
+  { href: "/edit-user", text: "footer.links-list.edit" },
+  { href: "/edit-user", text: "footer.links-list.change-password" },
+  { href: "/edit-user", text: "footer.links-list.order-history" },
+  { href: "/edit-user", text: "footer.links-list.order-track" },
+];
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -21,34 +35,16 @@ export const Footer = () => {
         <div className="grid h-32 place-items-center sm:h-44 lg:pl-2 ">
           <img src={logos.hydText} className="col-span-1 w-full max-w-[800px] md:w-[70%] s:w-[80%]" />
           <div className="flex w-full justify-around md:w-[50%]  lg:w-[70%] lg:gap-5 lg:px-5">
-            <a
-              href={socialLinks.facebook}
-              target="_blank"
-              className="goldGradient flex h-12 w-12 items-center   justify-center rounded-full transition ease-in-out hover:-translate-y-1  hover:scale-110 hover:opacity-60 lg:w-20"
-            >
-              <img src={icons.facebook} className="w-4" />
-            </a>
-            <a
-              href={socialLinks.instagram}
-              target="_blank"
-              className="goldGradient flex h-12 w-12 items-center justify-center rounded-full transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-60 lg:w-20"
-            >
-              <img src={icons.instagram} className=" w-6" />
-            </a>
-            <a
-              href={socialLinks.wpp}
-              target="_blank"
-              className="goldGradient flex h-12 w-12 items-center justify-center rounded-full transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-60 lg:w-20"
-            >
-              <img src={icons.wpp} className="h-6 w-6" />
-            </a>
-            <a
-              href={socialLinks.mail}
-              target="_blank"
-              className="goldGradient flex h-12 w-12 items-center justify-center rounded-full transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:opacity-60 lg:w-20"
-            >
-              <img src={icons.mail} className="w-7" />
-            </a>
+            {socialLinksIcons.map(({ href, icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                className="goldGradient rounded-full p-3 px-4 transition ease-in-out hover:-translate-y-1  hover:scale-110 hover:opacity-60"
+              >
+                <i className={`ri-${icon}-fill text-2xl text-base`}></i>
+              </a>
+            ))}
           </div>
         </div>
         <div className="col-span-1 row-span-2 my-6  lg:row-span-1 lg:h-full">
@@ -65,43 +61,22 @@ export const Footer = () => {
         </div>
         <div className="col-span-1 row-span-2 my-8 flex h-full w-full flex-col justify-around  lg:row-span-1 lg:justify-start">
           <h1 className="textGoldGradient mb-4 text-sm md:text-xl">{t("footer.links")}</h1>
-          <Link
-            to="/edit_user"
-            className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
-          >
-            {t("footer.links-list.my-account")}
-          </Link>
-          <Link
-            to="/edit_user"
-            className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
-          >
-            {t("footer.links-list.edit")}
-          </Link>
-          <Link
-            to="/edit_user"
-            className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
-          >
-            {t("footer.links-list.change-password")}
-          </Link>
-          <Link
-            to="/edit_user"
-            className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
-          >
-            {t("footer.links-list.order-history")}
-          </Link>
-          <Link
-            to="/edit_user"
-            className=" flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
-          >
-            {t("footer.links-list.order-track")}
-          </Link>
+          {userLinks.map(({ href, text }) => (
+            <Link
+              key={href}
+              to={href}
+              className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
+            >
+              {t(text)}
+            </Link>
+          ))}
         </div>
-        <ChevronUpIcon
+        <i
+          className="ri-arrow-up-s-line goldGradient row-start-1 rounded-full p-3 !text-4xl text-base transition ease-in-out
+        hover:-translate-y-2 hover:cursor-pointer lg:absolute lg:right-20 lg:row-start-auto"
           onClick={scrollUp}
-          className="goldGradient row-start-1 h-14 rounded-full stroke-white p-3 text-white  transition ease-in-out hover:-translate-y-2 hover:cursor-pointer lg:absolute lg:right-20 lg:row-start-auto "
-        />
+        ></i>
       </section>
-
       <div className="w-full bg-gold py-2 text-center font-secondary text-xs text-white ">{t("footer.legal")}</div>
     </footer>
   );
