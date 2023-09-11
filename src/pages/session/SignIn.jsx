@@ -1,5 +1,6 @@
 import { Button, Auth3Button } from "components/buttons";
 import { Input } from "components/inputs";
+import { Loader } from "components/Loader";
 import { backgrounds, icons } from "src/assets";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +20,7 @@ export function SignIn() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -43,6 +45,7 @@ export function SignIn() {
     e.preventDefault();
     console.log(user);
     try {
+      setLoading(true);
       APIHydro.signIn(user)
         .then((res) => {
           const { accessToken } = res.data;
@@ -50,14 +53,19 @@ export function SignIn() {
           addAuthWithToken(accessToken);
           dispatch(actionsUser.saveSignInData(res.data));
         })
-        .finally(() => navigate("/products"));
+        .finally(() => {
+          setLoading(false);
+          navigate("/products");
+        });
     } catch (e) {
+      setLoading(false);
       console.log(e); // * Manejar el error al no tener una respuesta exitosa
     }
   };
 
   return (
     <main className="relative mx-4  mb-14 grid place-items-center gap-6 py-10 sm:mx-auto sm:w-[60%] md:my-[7rem] xl:w-[40%] xl:py-20 ">
+      {loading && <Loader className="fixed bottom-4 left-4 w-[2.5rem] md:w-[3rem]" />}
       <section className="xl:w-[90%] ">
         <img src={backgrounds.borderTop} className="xl:absolute xl:inset-x-0 xl:top-0 xl:-z-10" />
         <h1 className=" -mt-20 mb-14 text-center lg:-mt-32 lg:text-3xl xl:mt-14 xl:text-4xl">{t("common.logIn")}</h1>
