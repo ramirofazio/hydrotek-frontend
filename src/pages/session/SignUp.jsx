@@ -1,6 +1,5 @@
 import { Button, Auth3Button } from "components/buttons";
 import { Input } from "components/inputs";
-import { backgrounds } from "src/assets";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
