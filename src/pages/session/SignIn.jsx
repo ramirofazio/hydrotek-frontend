@@ -36,10 +36,6 @@ export function SignIn() {
     });
   };
 
-  const handleSocialClick = (socialNetwork) => {
-    //? HANDLER DE AUTH 3
-    console.log(socialNetwork);
-  };
 
   const handleSubmit = (e) => {
     //? SUBMIT
