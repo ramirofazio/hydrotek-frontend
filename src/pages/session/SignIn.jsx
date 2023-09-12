@@ -90,7 +90,7 @@ export function SignIn() {
           />
           <Button
             text={"INGRESAR"}
-            className={"!bg-gold lg:w-[60%] hover:!bg-base"}
+            className={"!bg-gold hover:!bg-base lg:w-[60%]"}
             pClassname={"xl:text-xl font-primary"}
             onClick={handleSubmit}
           />
@@ -102,10 +102,10 @@ export function SignIn() {
           <Auth3Button
             key={index}
             icon={icon}
+            socialNetwork={socialNetwork}
             text={`INICIAR SESIÓN CON ${socialNetwork}`}
             classname={"!bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
             pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
-            onClick={() => handleSocialClick(socialNetwork)}
           />
         ))}
       </section>
