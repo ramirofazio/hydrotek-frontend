@@ -1,6 +1,6 @@
+import { useState, useEffect } from "react";
 import { Button, Auth3Button } from "components/buttons";
 import { Input } from "components/inputs";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -12,10 +12,22 @@ const authBtns = [
 export function SignUp() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [passwordError, setPasswordError] = useState(false);
   const [user, setUser] = useState({
-    username: "",
+    email: "",
+    dni: "",
+    name: "",
     password: "",
+    confirmPassword: "",
   });
+
+  useEffect(() => {
+    if (user.password !== user.confirmPassword) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+  }, [user.confirmPassword]);
 
   const handleOnChange = (e) => {
     //? HANDLER ONCHANGE
@@ -44,28 +56,30 @@ export function SignUp() {
           className="grid place-items-center gap-4 md:grid-cols-2 lg:mx-auto lg:w-[80%] xl:w-full xl:gap-6"
           onSubmit={handleSubmit}
         >
-          <Input type="text" name="email" onChange={handleOnChange} placeholder="*EMAIL" value={user.email} />
+          <Input type="email" name="email" onChange={handleOnChange} placeholder="*EMAIL" value={user.email} />
           <Input type="number" name="dni" onChange={handleOnChange} placeholder="DNI" value={user.dni} />
-          <Input
-            type="password"
-            name="contraseña"
-            onChange={handleOnChange}
-            placeholder="*CONTRASEÑA"
-            value={user.contraseña}
-          />
           <Input
             type="password"
             name="password"
             onChange={handleOnChange}
-            placeholder="*CONFIRMA TU CONTRASEÑA"
+            placeholder="*CONTRASEÑA"
             value={user.password}
           />
           <Input
+            type="password"
+            name="confirmPassword"
+            onChange={handleOnChange}
+            placeholder="*CONFIRMA TU CONTRASEÑA"
+            value={user.confirmPassword}
+            className={`${passwordError && "border-red-500 focus:border-red-500/50"}`}
+          />
+          {passwordError && <p className="col-span-2 text-sm text-red-500">¡Las contraseñas no coinciden!</p>}
+          <Input
             type="text"
-            name="nombreCompleto"
+            name="name"
             onChange={handleOnChange}
             placeholder="*NOMBRE COMPLETO"
-            value={user.nombreCompleto}
+            value={user.name}
             className={"md:col-span-2"}
           />
           <Button
@@ -77,7 +91,7 @@ export function SignUp() {
         </form>
       </section>
       <section className="flex w-full justify-around lg:w-[90%]">
-        {authBtns.map(({ socialNetwork, icon }, index) => (
+        {/* {authBtns.map(({ socialNetwork, icon }, index) => (
           <Auth3Button
             key={index}
             icon={icon}
@@ -86,7 +100,7 @@ export function SignUp() {
             pClassname={"hidden xl:inline group-hover:text-gold transition font-primary"}
             onClick={() => handleSocialClick(socialNetwork)}
           />
-        ))}
+        ))} */}
       </section>
       <section className="my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:w-[80%] lg:gap-2 ">
         <p>
