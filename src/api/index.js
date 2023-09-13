@@ -22,6 +22,9 @@ export const APIHydro = {
   signIn: (user) => {
     return apiHydro.post(`/${route.AUTH}/signIn`, { email: user.email, pass: user.password });
   },
+  googleSignIn: (user) => {
+    return apiHydro.post(`/${route.AUTH}/googleSignIn`, user);
+  },
 };
 
 export function addAuthWithToken(token) {

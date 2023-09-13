@@ -1,8 +1,13 @@
 import { useGoogleLogin } from "@react-oauth/google";
-//import { APIHydro } from "src/api";
+import { APIHydro } from "src/api";
+import { actionsUser } from "src/redux/reducers";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, ...props }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const googleLogin = useGoogleLogin({
     // flow: "auth-code",
     // ux_mode: "redirect",
@@ -13,10 +18,20 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
       // * Nos dan un token que nos da permiso a la info del usuario mediante la gapi
       const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
         headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-      }).then(res => res.data);
+      });
+
+      const { email, name, picture } = userInfo.data;
       console.log(userInfo);
+
+      APIHydro.googleSignIn({
+        email,
+        name,
+        picture,
+      })
+        .then((res) => dispatch(actionsUser.saveSignInData(res.data)))
+        .finally(() => navigate("/products"));
     },
-    onError: (errorResponse) => console.log(errorResponse),
+    onError: (errorResponse) => console.log(errorResponse), // ? Aca se puede manejar el err mediante alerta o setear un estado
   });
 
   const appleLogin = () => alert("soy aple");
