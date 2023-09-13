@@ -1,9 +1,15 @@
 import { Button, Auth3Button } from "components/buttons";
 import { Input } from "components/inputs";
 import { backgrounds } from "src/assets";
+import { Loader } from "src/components/Loader";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { APIHydro, addAuthWithToken } from "src/api";
+import { actionsUser } from "src/redux/reducers";
+import { useDispatch } from "react-redux";
+import { saveInStorage } from "src/utils/localStorage";
+
 
 const authBtns = [
   { socialNetwork: "GOOGLE", icon: "ri-google-fill ri-md lg:mr-10" },
@@ -14,8 +20,10 @@ const authBtns = [
 export function SignIn() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -28,18 +36,33 @@ export function SignIn() {
     });
   };
 
-  const handleSocialClick = (socialNetwork) => {
-    //? HANDLER DE AUTH 3
-    console.log(socialNetwork);
-  };
 
   const handleSubmit = (e) => {
     //? SUBMIT
     e.preventDefault();
+    console.log(user);
+    try {
+      setLoading(true);
+      APIHydro.signIn(user)
+        .then((res) => {
+          const { accessToken } = res.data;
+          saveInStorage("accessToken", accessToken);
+          addAuthWithToken(accessToken);
+          dispatch(actionsUser.saveSignInData(res.data));
+        })
+        .finally(() => {
+          setLoading(false);
+          navigate("/products");
+        });
+    } catch (e) {
+      setLoading(false);
+      console.log(e); // * Manejar el error al no tener una respuesta exitosa
+    }
   };
 
   return (
     <main className="relative mx-4  mb-14 grid place-items-center gap-6 py-10 sm:mx-auto sm:w-[60%] md:my-[7rem] xl:w-[40%] xl:py-20 ">
+      {loading && <Loader className="fixed bottom-4 left-4 w-[2.5rem] md:w-[3rem]" />}
       <section className="xl:w-[90%] ">
         <img src={backgrounds.borderTop} className="xl:absolute xl:inset-x-0 xl:top-0 xl:-z-10" />
         <h1 className=" -mt-20 mb-14 text-center lg:-mt-32 lg:text-3xl xl:mt-14 xl:text-4xl">{t("session.logIn")}</h1>
@@ -49,10 +72,10 @@ export function SignIn() {
         >
           <Input
             type="text"
-            name="username"
+            name="email"
             onChange={handleOnChange}
             placeholder="EMAIL/NOMBRE DE USUARIO"
-            value={user.username}
+            value={user.email}
           />
           <Input
             type="password"
@@ -75,10 +98,10 @@ export function SignIn() {
           <Auth3Button
             key={index}
             icon={icon}
+            socialNetwork={socialNetwork}
             text={`INICIAR SESIÓN CON ${socialNetwork}`}
             classname={"!bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
             pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
-            onClick={() => handleSocialClick(socialNetwork)}
           />
         ))}
       </section>
