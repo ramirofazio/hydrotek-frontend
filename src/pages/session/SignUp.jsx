@@ -21,6 +21,7 @@ export function SignUp() {
 
   const [loading, setLoading] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [canRegister, setCanRegister] = useState(false);
   const [user, setUser] = useState({
     email: "",
     dni: "",
@@ -37,6 +38,14 @@ export function SignUp() {
     }
   }, [user.confirmPassword]);
 
+  useEffect(() => {
+    if (user.email && user.name && user.password && user.confirmPassword) {
+      setCanRegister(true);
+    } else {
+      setCanRegister(false);
+    }
+  }, [user]);
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -51,14 +60,16 @@ export function SignUp() {
       setLoading(true);
       APIHydro.signUp(user)
         .then((res) => {
-          const { accessToken } = res.data;
-          saveInStorage("accessToken", accessToken);
-          addAuthWithToken(accessToken);
-          dispatch(actionsUser.saveSignData(res.data));
+          if (res.data) {
+            const { accessToken } = res.data;
+            saveInStorage("accessToken", accessToken);
+            addAuthWithToken(accessToken);
+            dispatch(actionsUser.saveSignData(res.data));
+            navigate("/products");
+          }
         })
         .finally(() => {
           setLoading(false);
-          navigate("/products");
         });
     } catch (e) {
       setLoading(false);
@@ -91,14 +102,16 @@ export function SignUp() {
             onChange={handleOnChange}
             placeholder="*NOMBRE COMPLETO"
             value={user.name}
-            className={"md:col-span-2"}
+            className={"capitalize md:col-span-2"}
           />
           {passwordError && (
             <p className="text-xs text-red-500 md:col-span-2 md:text-sm">{t("session.passwordDontMatch")}</p>
           )}
           <Button
             text={t("session.signUpSubmitBtn")}
-            className={"!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%]"}
+            className={`!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%] ${
+              !canRegister && "pointer-events-none opacity-30"
+            }`}
             pClassname={"xl:text-lg font-primary"}
             onClick={handleSubmit}
           />
@@ -113,6 +126,7 @@ export function SignUp() {
             text={`INICIAR SESIÓN CON ${socialNetwork}`}
             classname={"!bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
             pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
+            setLoading={setLoading}
           />
         ))}
       </section>

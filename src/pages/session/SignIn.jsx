@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { Button, Auth3Button } from "components/buttons";
-import { Input } from "components/inputs";
+import { Input, PasswordInput } from "components/inputs";
 import { backgrounds } from "src/assets";
 import { Loader } from "src/components/Loader";
 import { useState } from "react";
@@ -20,11 +21,21 @@ export function SignIn() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
+  const [canRegister, setCanRegister] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (user.email && user.password) {
+      setCanRegister(true);
+    } else {
+      setCanRegister(false);
+    }
+  }, [user]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -41,14 +52,16 @@ export function SignIn() {
       setLoading(true);
       APIHydro.signIn(user)
         .then((res) => {
-          const { accessToken } = res.data;
-          saveInStorage("accessToken", accessToken);
-          addAuthWithToken(accessToken);
-          dispatch(actionsUser.saveSignData(res.data));
+          if (res.data) {
+            const { accessToken } = res.data;
+            saveInStorage("accessToken", accessToken);
+            addAuthWithToken(accessToken);
+            dispatch(actionsUser.saveSignData(res.data));
+            navigate("/products");
+          }
         })
         .finally(() => {
           setLoading(false);
-          navigate("/products");
         });
     } catch (e) {
       setLoading(false);
@@ -67,22 +80,16 @@ export function SignIn() {
           onSubmit={handleSubmit}
         >
           <Input
-            type="text"
+            type="email"
             name="email"
             onChange={handleOnChange}
-            placeholder="EMAIL/NOMBRE DE USUARIO"
+            placeholder="*EMAIL/NOMBRE DE USUARIO"
             value={user.email}
           />
-          <Input
-            type="password"
-            name="password"
-            onChange={handleOnChange}
-            placeholder="CONTRASEÑA"
-            value={user.password}
-          />
+          <PasswordInput name="password" onChange={handleOnChange} placeholder="CONTRASEÑA" value={user.password} />
           <Button
             text={"INGRESAR"}
-            className={"!bg-gold hover:!bg-base lg:w-[60%]"}
+            className={`!bg-gold hover:!bg-base lg:w-[60%] ${!canRegister && "pointer-events-none opacity-30"}`}
             pClassname={"xl:text-xl font-primary"}
             onClick={handleSubmit}
           />
@@ -98,6 +105,7 @@ export function SignIn() {
             text={`INICIAR SESIÓN CON ${socialNetwork}`}
             classname={"!bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
             pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
+            setLoading={setLoading}
           />
         ))}
       </section>
