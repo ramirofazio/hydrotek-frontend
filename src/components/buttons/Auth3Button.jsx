@@ -17,13 +17,13 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
       console.log(tokenResponse);
       // * Nos dan un token que nos da permiso a la info del usuario mediante la gapi
       try {
+        setLoading(true);
         const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         });
 
         const { email, name, picture } = userInfo.data;
         console.log(userInfo);
-
         APIHydro.googleSignIn({
           email,
           name,
@@ -31,8 +31,8 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
         })
           .then((res) => dispatch(actionsUser.saveSignData(res.data)))
           .finally(() => {
-            navigate("/products");
             setLoading(false);
+            navigate("/products");
           });
       } catch (err) {
         console.log(err);
@@ -54,14 +54,10 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
     provider = appleLogin;
   }
 
-  const handleClick = () => {
-    setLoading(true);
-    provider();
-  };
 
   return (
     <button
-      onClick={() => handleClick()}
+      onClick={() => provider()}
       className={`rounded-full border-2 border-gold bg-transparent px-6 py-2 uppercase tracking-widest text-white transition hover:bg-gold hover:text-[#1B142C] ${classname}`}
       {...props}
     >
