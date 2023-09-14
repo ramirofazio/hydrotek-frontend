@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, Auth3Button } from "components/buttons";
-import { Input } from "components/inputs";
+import { Input, PasswordInput } from "components/inputs";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -58,22 +58,14 @@ export function SignUp() {
         >
           <Input type="email" name="email" onChange={handleOnChange} placeholder="*EMAIL" value={user.email} />
           <Input type="number" name="dni" onChange={handleOnChange} placeholder="DNI" value={user.dni} />
-          <Input
-            type="password"
-            name="password"
-            onChange={handleOnChange}
-            placeholder="*CONTRASEÑA"
-            value={user.password}
-          />
-          <Input
-            type="password"
+          <PasswordInput name="password" onChange={handleOnChange} placeholder="*CONTRASEÑA" value={user.password} />
+          <PasswordInput
             name="confirmPassword"
             onChange={handleOnChange}
             placeholder="*CONFIRMA TU CONTRASEÑA"
             value={user.confirmPassword}
             className={`${passwordError && "border-red-500 focus:border-red-500/50"}`}
           />
-          {passwordError && <p className="col-span-2 text-sm text-red-500">¡Las contraseñas no coinciden!</p>}
           <Input
             type="text"
             name="name"
@@ -82,6 +74,9 @@ export function SignUp() {
             value={user.name}
             className={"md:col-span-2"}
           />
+          {passwordError && (
+            <p className="text-xs text-red-500 md:col-span-2 md:text-sm">¡Las contraseñas no coinciden!</p>
+          )}
           <Button
             text={t("session.signUpSubmitBtn")}
             className={"!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%]"}
