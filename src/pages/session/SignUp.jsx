@@ -75,7 +75,7 @@ export function SignUp() {
             className={"md:col-span-2"}
           />
           {passwordError && (
-            <p className="text-xs text-red-500 md:col-span-2 md:text-sm">¡Las contraseñas no coinciden!</p>
+            <p className="text-xs text-red-500 md:col-span-2 md:text-sm">{t("session.passwordDontMatch")}</p>
           )}
           <Button
             text={t("session.signUpSubmitBtn")}

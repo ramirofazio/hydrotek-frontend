@@ -22,7 +22,8 @@
     "recoverPassNow": "RECUPERA TU CONTRASEÑA",
     "logIn": "INICIAR SESIÓN",
     "signUp": "REGISTRATE",
-    "signUpSubmitBtn": "REGISTRARME"
+    "signUpSubmitBtn": "REGISTRARME",
+    "passwordDontMatch": "¡Las contraseñas no coinciden!"
   },
   "navbar": {
     "products": "Productos",
