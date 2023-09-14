@@ -41,5 +41,8 @@
   },
   "blog": {
     "visit-blog": "visitar el blog"
+  },
+  "shopping-cart": {
+    "your-cart": "tu carrito"
   }
 }

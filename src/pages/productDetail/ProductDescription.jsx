@@ -2,6 +2,7 @@ import { Rating } from "./index";
 import { useState } from "react";
 import { Button } from "../../components/buttons";
 import { useTranslation } from "react-i18next";
+import { Quantity } from "src/components";
 
 export function ProductDescription({ name, price, rating, stock = 10 }) {
   const { t } = useTranslation();
@@ -18,7 +19,15 @@ export function ProductDescription({ name, price, rating, stock = 10 }) {
         <h1>{name || "nombre del articul Hydortek"}</h1>
         <h2 className="textGoldGradient ">{price || "$99.99"}</h2>
       </div>
-      <div className="flex gap-6">
+      <div>
+        <Quantity
+          className=""
+          quantity={quantity}
+          setQuantity={setQuantity}
+          stock={stock}
+        />
+      </div>
+      {/* <div className="flex gap-6">
         <button
           onClick={() => setQuantity(quantity - 1)}
           disabled={quantity <= 1 && true}
@@ -34,7 +43,7 @@ export function ProductDescription({ name, price, rating, stock = 10 }) {
         >
           +
         </button>
-      </div>
+      </div> */}
 
       <Button text={t("common.buy-now")} className="mt-2" />
 
