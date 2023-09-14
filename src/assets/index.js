@@ -20,6 +20,7 @@ export const backgrounds = {
 export const products = {
   defaultOne: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693948929/HYD/others/defaultProduct.png",
   defaultTwo: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693949259/HYD/others/defaultProduct2.png",
+  cartProductBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694705397/HYD/others/cartProudctBorder.png"
 };
 
 export const defaultPost = "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png";

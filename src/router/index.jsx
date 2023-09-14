@@ -4,6 +4,7 @@ import DefaultError from "pages/error/Default.jsx";
 import Landing from "pages/landing/Landing.jsx";
 import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
+import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
 import { APIHydro } from "src/api/index.js";
 import { actionsApp } from "src/redux/reducers";
 import { SignIn, SignUp } from "src/pages/session";
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
         path: "/signUp",
         element: <SignUp />,
       },
+      {
+        path: "shoppingCart",
+        element: <ShoppingCart/>
+      }
     ],
   },
 ]);

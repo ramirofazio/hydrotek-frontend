@@ -39,7 +39,7 @@ export const Navbar = () => {
       </ul>
       <section className="hidden  justify-evenly gap-9 lg:flex">
         <i className="icons ri-user-3-fill text-3xl  text-gold" onClick={() => navigate("/signIn")} />
-        <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
+        <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" onClick={() => navigate("/shoppingCart")}  />
       </section>
     </nav>
   );

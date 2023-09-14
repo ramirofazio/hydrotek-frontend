@@ -1,6 +1,6 @@
-import { Rating } from "components";
+import { Rating } from "./index";
 import { useState } from "react";
-import { Button } from "./buttons";
+import { Button } from "../../components/buttons";
 import { useTranslation } from "react-i18next";
 
 export function ProductDescription({ name, price, rating, stock = 10 }) {

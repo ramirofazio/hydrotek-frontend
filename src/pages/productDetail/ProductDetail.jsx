@@ -1,4 +1,4 @@
-import { ProductDescription, Review } from "components";
+import { ProductDescription, Review } from "./index";
 import { useTranslation } from "react-i18next";
 import { products } from "assets";
 
