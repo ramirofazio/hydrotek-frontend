@@ -52,6 +52,7 @@
     "order-data": "datos de la orden",
     "subtotal": "subtotal",
     "delivery": "envío",
-    "total-price": "total a pagar"
+    "total-price": "total a pagar",
+    "pay-order": "pagar compra"
   }
 }

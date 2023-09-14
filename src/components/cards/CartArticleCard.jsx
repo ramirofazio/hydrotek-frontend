@@ -1,7 +1,6 @@
 import { products, backgrounds } from "assets";
 import { Quantity } from "..";
 
-
 export function CartArticleCard({ img, name, price }) {
   console.log(products);
 
@@ -12,9 +11,9 @@ export function CartArticleCard({ img, name, price }) {
         <img className="absolute -z-10 h-[105%] w-[79%]" src={backgrounds.cartProductGradient} alt="" />
         <img className="max-w-[80%]" src={img || products.defaultOne} alt="" />
       </picture>
-      <article className="flex flex-col justify-center  gap-1 border-2">
-        <h1 className="overflow-hidden text-lg">{name || "fertilizante"}</h1> {/* //* resolver overflow */}
-        <h2 className=" textGoldGradient ">{price || "$99.99"}</h2>
+      <article id="problem" className="break-all flex flex-col break-normal justify-center gap-1 border-2">
+        <h1 className="text-lg">{name || "fertilizante"}</h1> {/* //* resolver overflow */}
+        <h2 className="textGoldGradient ">{price || "$99.99"}</h2>
       </article>
       <article className="col-span-2 mt-4 ">
         <Quantity />
