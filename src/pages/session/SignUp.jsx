@@ -3,6 +3,11 @@ import { Button, Auth3Button } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Loader } from "src/components/Loader";
+import { APIHydro, addAuthWithToken } from "src/api";
+import { useDispatch } from "react-redux";
+import { actionsUser } from "src/redux/reducers";
+import { saveInStorage } from "src/utils/localStorage";
 
 const authBtns = [
   { socialNetwork: "GOOGLE", icon: "ri-google-fill ri-md xl:mr-10" },
@@ -12,6 +17,9 @@ const authBtns = [
 export function SignUp() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [user, setUser] = useState({
     email: "",
@@ -46,10 +54,28 @@ export function SignUp() {
   const handleSubmit = (e) => {
     //? SUBMIT
     e.preventDefault();
+    try {
+      setLoading(true);
+      APIHydro.signUp(user)
+        .then((res) => {
+          const { accessToken } = res.data;
+          saveInStorage("accessToken", accessToken);
+          addAuthWithToken(accessToken);
+          dispatch(actionsUser.saveSignUpData(res.data));
+        })
+        .finally(() => {
+          setLoading(false);
+          navigate("/products");
+        });
+    } catch (e) {
+      setLoading(false);
+      console.log(e); // * Manejar el error al no tener una respuesta exitosa
+    }
   };
 
   return (
     <main className="mx-4 mb-14 grid  place-items-center gap-6 py-4 sm:mx-auto sm:w-[70%]">
+      {loading && <Loader />}
       <section className="w-full xl:w-[90%]">
         <h1 className="mb-14 text-center lg:text-3xl xl:mt-14 xl:text-4xl">{t("session.signUp")}</h1>
         <form
