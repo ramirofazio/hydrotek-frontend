@@ -61,7 +61,7 @@ export function SignUp() {
           const { accessToken } = res.data;
           saveInStorage("accessToken", accessToken);
           addAuthWithToken(accessToken);
-          dispatch(actionsUser.saveSignUpData(res.data));
+          dispatch(actionsUser.saveSignData(res.data));
         })
         .finally(() => {
           setLoading(false);
