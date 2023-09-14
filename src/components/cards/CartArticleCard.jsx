@@ -6,7 +6,7 @@ export function CartArticleCard({ img, name, price }) {
   console.log(products);
 
   return (
-    <main className="grid grid-cols-2 gap-2 border-y-[1px] border-gold py-8">
+    <main className="grid grid-cols-2 gap-2 border-b-[1px] border-gold py-8">
       <picture className="relative flex items-center justify-center">
         <img className="absolute h-[110%] w-[80%]" src={backgrounds.cartProductBorder} />
         <img className="absolute -z-10 h-[105%] w-[79%]" src={backgrounds.cartProductGradient} alt="" />
