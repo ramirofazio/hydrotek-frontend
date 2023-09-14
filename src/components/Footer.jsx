@@ -35,9 +35,9 @@ export const Footer = () => {
         <div className="grid h-32 place-items-center sm:h-44 lg:pl-2 ">
           <img src={logos.hydText} className="col-span-1 w-full max-w-[800px] md:w-[70%] s:w-[80%]" />
           <div className="flex w-full justify-around md:w-[50%]  lg:w-[70%] lg:gap-5 lg:px-5">
-            {socialLinksIcons.map(({ href, icon }) => (
+            {socialLinksIcons.map(({ href, icon }, index) => (
               <a
-                key={href}
+                key={index}
                 href={href}
                 target="_blank"
                 className="goldGradient rounded-full p-3 px-4 transition ease-in-out hover:-translate-y-1  hover:scale-110 hover:opacity-60"
@@ -61,9 +61,9 @@ export const Footer = () => {
         </div>
         <div className="col-span-1 row-span-2 my-8 flex h-full w-full flex-col justify-around  lg:row-span-1 lg:justify-start">
           <h1 className="textGoldGradient mb-4 text-sm md:text-xl">{t("footer.links")}</h1>
-          {userLinks.map(({ href, text }) => (
+          {userLinks.map(({ href, text }, index) => (
             <Link
-              key={href}
+              key={index}
               to={href}
               className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
             >

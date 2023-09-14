@@ -7,9 +7,9 @@ export const actionsApp = {
   loadProducts,
 };
 
-import { saveSignInData } from "./user.js";
+import { saveSignData } from "./user.js";
 export const actionsUser = {
-  saveSignInData,
+  saveSignData,
 };
 
 import { setTotalPrice, setProducts } from "./shoppingCart.js";
