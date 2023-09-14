@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { logos } from "assets/index";
+//import { logos } from "assets/index";
+
 export function Loader({ className }) {
   useEffect(() => {
     //? Saca scroll mientras se monta

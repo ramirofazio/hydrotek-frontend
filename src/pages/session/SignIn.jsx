@@ -1,9 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Auth3Button } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
 import { backgrounds } from "src/assets";
 import { Loader } from "src/components/Loader";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { APIHydro, addAuthWithToken } from "src/api";
