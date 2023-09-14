@@ -21,6 +21,10 @@
     @apply font-secondary text-xs text-white;
   }
 
+  strong {
+    @apply textGoldGradient border-b-[0.1px] border-gold font-extrabold transition hover:cursor-pointer hover:opacity-50;
+  }
+
   ::-webkit-scrollbar {
     @apply w-2;
   }
@@ -70,6 +74,10 @@
     height: 300px;
     background-image: radial-gradient(circle, #b8912d0e, #b8912d70);
     mix-blend-mode: screen;
+  }
+
+  .icons {
+    @apply transition hover:cursor-pointer hover:opacity-50;
   }
 }
 
