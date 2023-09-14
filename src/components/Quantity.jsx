@@ -1,6 +1,6 @@
 export function Quantity({ quantity, setQuantity, stock, className }) {
   return (
-    <div className="mx-auto flex w-fit gap-6 border-2">
+    <div className="mx-auto flex w-fit gap-6">
       <button
         onClick={() => setQuantity(quantity - 1)}
         disabled={quantity <= 1 && true}

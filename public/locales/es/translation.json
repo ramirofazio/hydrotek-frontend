@@ -1,5 +1,6 @@
 {
   "common": {
+    "add": "añadir",
     "brand": "Hydrotek",
     "see-products": "Ver productos",
     "yes": "Si",
@@ -43,6 +44,14 @@
     "visit-blog": "visitar el blog"
   },
   "shopping-cart": {
-    "your-cart": "tu carrito"
+    "your-cart": "tu carrito",
+    "promotional-code": "codigo de descuento",
+    "pay-purchase": "pagar compra"
+  },
+  "order": {
+    "order-data": "datos de la orden",
+    "subtotal": "subtotal",
+    "delivery": "envío",
+    "total-price": "total a pagar"
   }
 }
