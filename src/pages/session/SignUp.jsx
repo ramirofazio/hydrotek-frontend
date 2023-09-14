@@ -38,7 +38,6 @@ export function SignUp() {
   }, [user.confirmPassword]);
 
   const handleOnChange = (e) => {
-    //? HANDLER ONCHANGE
     const { name, value } = e.target;
     setUser({
       ...user,
@@ -46,13 +45,7 @@ export function SignUp() {
     });
   };
 
-  const handleSocialClick = (socialNetwork) => {
-    //? HANDLER DE AUTH 3
-    console.log(socialNetwork);
-  };
-
   const handleSubmit = (e) => {
-    //? SUBMIT
     e.preventDefault();
     try {
       setLoading(true);
@@ -69,7 +62,7 @@ export function SignUp() {
         });
     } catch (e) {
       setLoading(false);
-      console.log(e); // * Manejar el error al no tener una respuesta exitosa
+      console.log(e);
     }
   };
 
@@ -112,16 +105,16 @@ export function SignUp() {
         </form>
       </section>
       <section className="flex w-full justify-around lg:w-[90%]">
-        {/* {authBtns.map(({ socialNetwork, icon }, index) => (
+        {authBtns.map(({ socialNetwork, icon }, index) => (
           <Auth3Button
             key={index}
             icon={icon}
+            socialNetwork={socialNetwork}
             text={`INICIAR SESIÓN CON ${socialNetwork}`}
-            classname={"!bg-gold xl:flex xl:items-center xl:pl-10 xl:!bg-base xl:py-3 group"}
-            pClassname={"hidden xl:inline group-hover:text-gold transition font-primary"}
-            onClick={() => handleSocialClick(socialNetwork)}
+            classname={"!bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
+            pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
           />
-        ))} */}
+        ))}
       </section>
       <section className="my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:w-[80%] lg:gap-2 ">
         <p>

@@ -27,7 +27,6 @@ export function SignIn() {
   });
 
   const handleOnChange = (e) => {
-    //? HANDLER ONCHANGE
     const { name, value } = e.target;
     setUser({
       ...user,
@@ -36,7 +35,6 @@ export function SignIn() {
   };
 
   const handleSubmit = (e) => {
-    //? SUBMIT
     e.preventDefault();
     console.log(user);
     try {
@@ -54,7 +52,7 @@ export function SignIn() {
         });
     } catch (e) {
       setLoading(false);
-      console.log(e); // * Manejar el error al no tener una respuesta exitosa
+      console.log(e);
     }
   };
 
