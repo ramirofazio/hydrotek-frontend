@@ -48,18 +48,19 @@ export function Routes() {
 
   const routesForAuthenticatedOnly = [
     {
-      path: "/",
+      path: "/user",
+      errorElement: <DefaultError />,
       element: <ProtectedRoute />,
       children: [
         {
-          path: "/userProfile",
-          element: <div>User profile</div>,
+          path: "/user/profile",
+          element: <h1>User profile</h1>,
         },
       ],
     },
   ];
 
-  const router = createBrowserRouter([...routesForPublic, ...(!token ? routesForAuthenticatedOnly : [])]);
+  const router = createBrowserRouter([...routesForPublic, ...routesForAuthenticatedOnly]);
 
   return <RouterProvider router={router} />;
 }

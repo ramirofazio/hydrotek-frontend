@@ -12,12 +12,12 @@ import "remixicon/fonts/remixicon.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-        <Provider store={store}>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <Provider store={store}>
+        <AuthProvider>
           <Routes />
-        </Provider>
-      </GoogleOAuthProvider>
-    </AuthProvider>
+        </AuthProvider>
+      </Provider>
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );

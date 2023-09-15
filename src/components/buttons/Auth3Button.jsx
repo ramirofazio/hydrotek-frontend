@@ -4,8 +4,10 @@ import { actionsUser } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "src/provider/authProvider";
 
 export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, setLoading, ...props }) => {
+  const { setToken } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const googleLogin = useGoogleLogin({
@@ -14,7 +16,6 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
     // redirect_uri: "http://localhost:5173", // ? redirect version, a definir que nos conviene
 
     onSuccess: async (tokenResponse) => {
-      console.log(tokenResponse);
       // * Nos dan un token que nos da permiso a la info del usuario mediante la gapi
       try {
         setLoading(true);
@@ -23,16 +24,18 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
         });
 
         const { email, name, picture } = userInfo.data;
-        console.log(userInfo);
         APIHydro.googleSignIn({
           email,
           name,
           picture,
         })
-          .then((res) => dispatch(actionsUser.saveSignData(res.data)))
+          .then((res) => {
+            setToken(res.data.accessToken);
+            dispatch(actionsUser.saveSignData(res.data));
+          })
           .finally(() => {
             setLoading(false);
-            navigate("/products");
+            navigate("/", { replace: true });
           });
       } catch (err) {
         console.log(err);
@@ -53,7 +56,6 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
   if (socialNetwork === "APPLE") {
     provider = appleLogin;
   }
-
 
   return (
     <button

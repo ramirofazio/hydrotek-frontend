@@ -12,6 +12,7 @@ export default function AuthProvider({ children }) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
       saveInStorage("accessToken", token);
     } else {
+      console.log("hola");
       delete axios.defaults.headers.common["Authorization"];
       deleteOfStorage("accessToken");
     }
