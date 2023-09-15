@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "pages/Root.jsx";
 import DefaultError from "pages/error/Default.jsx";
 import Landing from "pages/landing/Landing.jsx";
