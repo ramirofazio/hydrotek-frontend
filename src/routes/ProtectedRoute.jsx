@@ -6,7 +6,7 @@ export function ProtectedRoute() {
   const { token } = useAuth();
 
   if (token === "null") {
-    return <DefaultError type={true} />;
+    return <DefaultError />;
   }
 
   return <Outlet />;
