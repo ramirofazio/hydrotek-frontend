@@ -46,7 +46,6 @@ export function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
     try {
       setLoading(true);
       APIHydro.signIn(user)
