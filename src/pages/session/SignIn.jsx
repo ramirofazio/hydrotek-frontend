@@ -112,7 +112,7 @@ export function SignIn() {
         <p>
           {t("session.dontHaveAccount")}
           <br className="lg:hidden" />
-          <strong onClick={() => navigate("/signUp")} className="hover:cursor-pointer hover:opacity-50 lg:ml-2">
+          <strong onClick={() => navigate("/user/signUp")} className="hover:cursor-pointer hover:opacity-50 lg:ml-2">
             {t("session.registerNow")}
           </strong>
         </p>

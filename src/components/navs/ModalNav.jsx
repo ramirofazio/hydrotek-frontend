@@ -46,7 +46,7 @@ export function ModalNav() {
             </ul>
 
             <section className="mt-10 flex justify-around">
-              <i className="icons ri-user-3-fill text-3xl  text-gold" onClick={() => navigate("/signIn")} />
+              <i className="icons ri-user-3-fill text-3xl  text-gold" onClick={() => navigate("/user/signIn")} />
               <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
             </section>
           </nav>

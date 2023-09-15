@@ -1,11 +1,14 @@
 import Atropos from "atropos/react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ModalNav, Categories } from "./";
 import { links } from "src/utils";
 import { logos } from "assets";
+import { useAuth } from "src/provider/authProvider";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const { token } = useAuth();
+  const { pathname } = useLocation();
 
   return (
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
@@ -27,8 +30,8 @@ export const Navbar = () => {
                   isActive
                     ? "border-b-2 p-2  text-white"
                     : isPending
-                      ? "pending"
-                      : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
+                    ? "pending"
+                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
                 }
               >
                 {l.name}
@@ -38,7 +41,10 @@ export const Navbar = () => {
         ))}
       </ul>
       <section className="hidden  justify-evenly gap-9 lg:flex">
-        <i className="icons ri-user-3-fill text-3xl  text-gold" onClick={() => navigate("/signIn")} />
+        <i
+          className={`ri-user-3-fill text-3xl ${pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"} `}
+          onClick={() => navigate(token === "null" ? "/user/signIn" : "/user/profile")}
+        />
         <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
       </section>
     </nav>
