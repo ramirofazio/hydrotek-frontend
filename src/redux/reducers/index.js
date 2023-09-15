@@ -12,8 +12,10 @@ export const actionsUser = {
   saveSignInData,
 };
 
-import { setTotalPrice, setProducts } from "./shoppingCart.js";
+import { setTotalPrice, setProducts, addProudct, removeProduct } from "./shoppingCart.js";
 export const actionsShoppingCart = {
   setTotalPrice,
   setProducts,
+  addProudct,
+  removeProduct,
 };
