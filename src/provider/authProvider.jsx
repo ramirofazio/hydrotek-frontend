@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { getOfStorage, saveInStorage, deleteOfStorage } from "utils/localStorage";
+import { getOfStorage, saveInStorage, deleteOfStorage } from "src/utils/localStorage";
 
 const AuthContext = createContext();
 
@@ -26,6 +26,6 @@ export default function AuthProvider({ children }) {
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = () => {
+export function useAuth() {
   return useContext(AuthContext);
-};
+}
