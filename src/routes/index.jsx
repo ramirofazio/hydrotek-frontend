@@ -1,7 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { APIHydro } from "src/api/index.js";
 import { actionsApp } from "src/redux/reducers";
-import { useAuth } from "src/provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Root from "pages/Root.jsx";
 import DefaultError from "pages/error/Default.jsx";
@@ -9,11 +8,13 @@ import Landing from "pages/landing/Landing.jsx";
 import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
 import { SignIn, SignUp } from "src/pages/session";
+import { Profile } from "src/pages/user";
+import { useAuth } from "src/provider/authProvider";
 
 export function Routes() {
   const { token } = useAuth();
 
-  const routesForPublic = [
+  const publicRoutes = [
     {
       path: "/",
       element: <Root />,
@@ -34,19 +35,29 @@ export function Routes() {
           //   return APIHydro.getProductDetail(params.id);
           // },
         },
+      ],
+    },
+  ];
+
+  const onlyNotAuthRoutes = [
+    {
+      path: "/user",
+      errorElement: <DefaultError />,
+      element: <Root />,
+      children: [
         {
-          path: "/signIn",
+          path: "/user/signIn",
           element: <SignIn />,
         },
         {
-          path: "/signUp",
+          path: "/user/signUp",
           element: <SignUp />,
         },
       ],
     },
   ];
 
-  const routesForAuthenticatedOnly = [
+  const onlyAuthRoutes = [
     {
       path: "/user",
       errorElement: <DefaultError />,
@@ -54,13 +65,17 @@ export function Routes() {
       children: [
         {
           path: "/user/profile",
-          element: <h1>User profile</h1>,
+          element: <Profile />,
         },
       ],
     },
   ];
 
-  const router = createBrowserRouter([...routesForPublic, ...routesForAuthenticatedOnly]);
+  const router = createBrowserRouter([
+    ...publicRoutes,
+    ...onlyAuthRoutes,
+    ...(token === "null" ? onlyNotAuthRoutes : []),
+  ]);
 
   return <RouterProvider router={router} />;
 }
