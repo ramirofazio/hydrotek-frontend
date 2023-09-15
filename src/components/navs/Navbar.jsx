@@ -17,7 +17,7 @@ export const Navbar = () => {
           <img src={logos.hydBlack} className="w-16 transition hover:opacity-70 xl:w-24" />
         </Atropos>
       </NavLink>
-      <ModalNav />
+      <ModalNav token={token} pathname={pathname} />
       <ul className="hidden h-full lg:flex">
         {links.map((l, index) => (
           <li key={index} className="mr-8 flex items-center justify-center">
@@ -42,7 +42,7 @@ export const Navbar = () => {
       </ul>
       <section className="hidden  justify-evenly gap-9 lg:flex">
         <i
-          className={`ri-user-3-fill text-3xl ${pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"} `}
+          className={`ri-user-3-fill text-3xl ${pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"}`}
           onClick={() => navigate(token === "null" ? "/user/signIn" : "/user/profile")}
         />
         <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
