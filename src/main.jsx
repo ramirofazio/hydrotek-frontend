@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { Routes } from "./routes";
 import { Provider } from "react-redux";
-import AuthProvider from "./provider/authProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import store from "./redux";
 import "atropos/css";
@@ -14,9 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <Provider store={store}>
-        <AuthProvider>
-          <Routes />
-        </AuthProvider>
+        <Routes />
       </Provider>
     </GoogleOAuthProvider>
   </React.StrictMode>

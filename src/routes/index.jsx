@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { APIHydro } from "src/api/index.js";
-import { actionsApp } from "src/redux/reducers";
+import { actionsApp, actionsAuth } from "src/redux/reducers";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Root from "pages/Root.jsx";
 import DefaultError from "pages/error/Default.jsx";
@@ -9,10 +9,16 @@ import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
 import { SignIn, SignUp } from "src/pages/session";
 import { Profile } from "src/pages/user";
-import { useAuth } from "src/provider/authProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export function Routes() {
-  const { token } = useAuth();
+  const dispatch = useDispatch();
+  const { token } = useSelector((s) => s.auth);
+
+  useEffect(() => {
+    dispatch(actionsAuth.setToken());
+  }, []);
 
   const publicRoutes = [
     {
@@ -61,7 +67,7 @@ export function Routes() {
     {
       path: "/user",
       errorElement: <DefaultError />,
-      element: <ProtectedRoute />,
+      element: <ProtectedRoute token={token} />,
       children: [
         {
           path: "/user/profile",
@@ -71,11 +77,7 @@ export function Routes() {
     },
   ];
 
-  const router = createBrowserRouter([
-    ...publicRoutes,
-    ...onlyAuthRoutes,
-    ...(token === "null" ? onlyNotAuthRoutes : []),
-  ]);
+  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...(!token ? onlyNotAuthRoutes : [])]);
 
   return <RouterProvider router={router} />;
 }

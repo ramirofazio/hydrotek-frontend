@@ -5,22 +5,22 @@ import { addAuthWithToken } from "src/api";
 const auth = createSlice({
   name: "auth",
   initialState: {
-    token: null,
+    token: "",
   },
   reducers: {
-    useAuth: (state) => {
-      const token = getOfStorage("accessToken");
-      if (token) {
-        state.token = token;
-        addAuthWithToken(token);
-        saveInStorage("accessToken", token);
-      } else {
-        state.token = null;
-        deleteOfStorage("accessToken");
+    setToken: (state, action) => {
+      const localToken = getOfStorage("accessToken");
+
+      if (localToken) state.token = localToken;
+      if (action.payload) state.token = action.payload;
+
+      if (state.token) {
+        addAuthWithToken(state.token);
+        saveInStorage("accessToken", state.token);
       }
     },
   },
 });
 
 export const authRdr = auth.reducer;
-export const { useAuth } = auth.actions;
+export const { setToken } = auth.actions;

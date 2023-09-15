@@ -1,15 +1,14 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { APIHydro } from "src/api";
-import { actionsUser } from "src/redux/reducers";
+import { actionsUser, actionsAuth } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "src/provider/authProvider";
 
 export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, setLoading, ...props }) => {
-  const { setToken } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const googleLogin = useGoogleLogin({
     // flow: "auth-code",
     // ux_mode: "redirect",
@@ -30,12 +29,12 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
           picture,
         })
           .then((res) => {
-            setToken(res.data.accessToken);
+            dispatch(actionsAuth.setToken(res.data.accessToken));
             dispatch(actionsUser.saveSignData(res.data));
           })
           .finally(() => {
             setLoading(false);
-            navigate("/", { replace: true });
+            navigate("/");
           });
       } catch (err) {
         console.log(err);

@@ -19,7 +19,7 @@ export const actionsShoppingCart = {
   setProducts,
 };
 
-import { useAuth } from "./auth.js";
+import { setToken } from "./auth.js";
 export const actionsAuth = {
-  useAuth,
+  setToken,
 };

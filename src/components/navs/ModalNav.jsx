@@ -50,7 +50,7 @@ export function ModalNav({ token, pathname }) {
                 className={`ri-user-3-fill text-3xl ${
                   pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"
                 }`}
-                onClick={() => navigate(token === "null" ? "/user/signIn" : "/user/profile")}
+                onClick={() => navigate(!token ? "/user/signIn" : "/user/profile")}
               />
               <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
             </section>
