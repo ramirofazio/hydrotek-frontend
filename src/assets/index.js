@@ -17,6 +17,10 @@ export const backgrounds = {
   techDots: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325911/HYD/others/techDots.png",
 };
 
+export const borders = {
+  profile: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/profileBorder.png",
+};
+
 export const products = {
   defaultOne: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693948929/HYD/others/defaultProduct.png",
   defaultTwo: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693949259/HYD/others/defaultProduct2.png",
