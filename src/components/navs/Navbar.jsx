@@ -1,11 +1,12 @@
 import Atropos from "atropos/react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { ModalNav, Categories } from "./";
 import { links } from "src/utils";
 import { logos } from "assets";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
@@ -38,8 +39,17 @@ export const Navbar = () => {
         ))}
       </ul>
       <section className="hidden  justify-evenly gap-9 lg:flex">
-        <i className="icons ri-user-3-fill text-3xl  text-gold" onClick={() => navigate("/signIn")} />
-        <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" onClick={() => navigate("/shoppingCart")}  />
+        <i
+          className={`icons ri-user-3-fill text-3xl  text-gold ${location.pathname === "/signIn" && "text-white"}`}
+          onClick={() => navigate("/signIn")}
+        />
+        <i
+          className={`icons ri-shopping-cart-2-fill text-3xl  text-gold ${
+            location.pathname === "/shoppingCart" && "text-white"
+          }`}
+          onClick={() => navigate("/shoppingCart")}
+        />{" "}
+        {/* // * Al iniciar sesion cambiar por el avatar del usuario */}
       </section>
     </nav>
   );

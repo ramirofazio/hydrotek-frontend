@@ -2,8 +2,6 @@ import { products, backgrounds } from "assets";
 import { Quantity } from "..";
 
 export function CartArticleCard({ img, name, price }) {
-  console.log(products);
-
   return (
     <main className="grid grid-cols-2 gap-2 border-b-[1px] border-gold py-8 sm:grid-cols-3  sm:gap-0 lg:max-w-[75%] lg:gap-8">
       <picture className=" relative flex items-center justify-center  sm:max-w-[200px]">

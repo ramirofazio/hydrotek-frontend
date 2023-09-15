@@ -46,8 +46,18 @@ export function ModalNav() {
             </ul>
 
             <section className="mt-10 flex justify-around">
-              <i className="icons ri-user-3-fill text-3xl  text-gold" onClick={() => navigate("/signIn")} />
-              <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
+              <i
+                className={`icons ri-user-3-fill text-3xl  text-gold ${
+                  location.pathname === "/signIn" && "text-white"
+                }`}
+                onClick={() => navigate("/signIn")}
+              />
+              <i
+                className={`icons ri-shopping-cart-2-fill text-3xl  text-gold ${
+                  location.pathname === "/shoppingCart" && "text-white"
+                }`}
+                onClick={() => navigate("/shoppingCart")}
+              />
             </section>
           </nav>
         </Popover.Panel>
