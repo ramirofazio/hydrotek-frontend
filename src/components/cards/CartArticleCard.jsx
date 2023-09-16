@@ -1,7 +1,7 @@
 import { products, backgrounds } from "assets";
 import { Quantity } from "..";
 
-export function CartArticleCard({ img, name, price }) {
+export function CartArticleCard({ img, name, price, productId }) {
   return (
     <main className="grid grid-cols-2 gap-2 border-b-[1px] border-gold py-8 sm:grid-cols-3  sm:gap-0 lg:max-w-[75%] lg:gap-8">
       <picture className=" relative flex items-center justify-center  sm:max-w-[200px]">
@@ -13,7 +13,10 @@ export function CartArticleCard({ img, name, price }) {
         <h1 className="text-lg">{name || "fertilizanteeeeeeee superx"}</h1> {/* //* resolver overflow */}
         <h2 className=" textGoldGradient ">{price || "$99.99"}</h2>
         <article className="col-span-2 mt-4 hidden w-fit sm:inline ">
-          <Quantity />
+          <Quantity
+            price={price}
+            productId={productId}
+          />
         </article>
       </article>
       <article className="col-span-2 mt-8 sm:hidden ">

@@ -21,8 +21,7 @@ const shoppingCart = createSlice({
       if (isAlready) {
         state.products[productId].quantity = isAlready + 1;
       } else {
-        state.products[productId].quantity = 1;
-        state.products[productId].price = price;
+        state.products[productId] = { quantity: 1, price: price };
       }
       state.totalPrice = state.totalPrice + price;
     },

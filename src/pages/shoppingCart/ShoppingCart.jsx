@@ -4,7 +4,7 @@ import { Input } from "src/components/inputs";
 
 export default function ShoppingCart({ subtotal, totalPrice, deliveryPrice }) {
   const { t } = useTranslation();
-  const arr = [1, 2, 3];
+  const arr = [{ name: "vavatua" }, { name: "ravatua" }, { name: "vparaua" }];
   return (
     <main className="content mx-auto mb-[6rem] mt-5  flex w-[92%] flex-col ">
       <header className=" border-b-2 border-gold p-4">
@@ -12,14 +12,14 @@ export default function ShoppingCart({ subtotal, totalPrice, deliveryPrice }) {
       </header>
       <section className="grid place-items-center gap-10 lg:place-items-start ">
         {arr.map((a, i) => (
-          <CartArticleCard key={i} />
+          <CartArticleCard name={a.name} key={i} />
         ))}
       </section>
       <section className=" mt-10 lg:grid lg:grid-cols-5 lg:items-center">
         <article className="flex  flex-col place-items-center gap-4 lg:col-span-2">
           <h1 className="mx-auto w-fit text-lg ">{t("shopping-cart.promotional-code")}</h1>
           <div className="w-[75%] lg:w-full">
-            <Input type="text" placeholder="codigo" className="!p-1 lg:!pl-6 !text-lg uppercase " />
+            <Input type="text" placeholder="codigo" className="!p-1 !text-lg uppercase lg:!pl-6 " />
           </div>
           <button className="rounded-2xl bg-gold-gradient px-8 py-1">
             <h1 className="text-[0.95rem]">{t("common.add")}</h1>
