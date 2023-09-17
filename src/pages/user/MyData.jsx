@@ -11,16 +11,17 @@ const fields = [
 ];
 
 export function MyData() {
-  const dbUser = useSelector((s) => s.user);
+  const { avatar, name, dni, email, pass } = useSelector((s) => s.user.profile);
 
+  const [isUserChanged, setIsUserChanged] = useState(false);
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState("");
   const [user, setUser] = useState({
-    avatar: dbUser.avatar,
-    name: dbUser.name,
-    dni: dbUser.dni,
-    email: dbUser.email,
-    pass: dbUser.pass,
+    avatar: avatar,
+    name: name,
+    dni: dni,
+    email: email,
+    pass: pass,
   });
 
   const handleEdit = (name) => {
@@ -38,6 +39,7 @@ export function MyData() {
       ...user,
       [name]: value,
     });
+    setIsUserChanged(true);
   };
 
   const handleSave = () => {
@@ -90,14 +92,16 @@ export function MyData() {
             </div>
           ))}
 
-          <Button text={"GUARDAR CAMBIOS"} pClassname={"p-3"} onClick={() => handleSave()} />
+          <Button
+            text={"GUARDAR CAMBIOS"}
+            pClassname={"p-3"}
+            onClick={() => handleSave()}
+            className={`${
+              isUserChanged ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-50"
+            } transition`}
+          />
         </div>
       </section>
     </main>
   );
 }
-
-/*
-
-! HAY QUE TEMRINAR EL TEMA DE EDITAR LOS INPUTS, RELEER Y REFACTORAIZAR UN POCO TODO. VER TEMA DE INPUT PASSWORD.
- */

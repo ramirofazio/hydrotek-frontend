@@ -7,18 +7,19 @@ const user = createSlice({
       id: "",
       email: "",
     },
-    userProfile: {
-      userName: "",
-      cellPhone: 0,
-      adress: "",
+    profile: {
       avatar: "",
+      name: "",
+      dni: 0,
+      email: "",
+      pass: "",
     },
   },
   reducers: {
     saveSignData: (state, action) => {
       const { session, profile } = action.payload;
       state.session = session;
-      state.userProfile = profile;
+      state.profile = profile;
     },
   },
 });
