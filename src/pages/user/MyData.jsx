@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button, IconButtonWithBgGold } from "src/components/buttons";
 import { Avatar } from "src/components/user";
+import { useTranslation } from "react-i18next";
 
 const fields = [
   { name: "name", label: "NOMBRE" },
@@ -11,6 +12,7 @@ const fields = [
 ];
 
 export function MyData() {
+  const { t } = useTranslation();
   const { avatar, name, dni, email, pass } = useSelector((s) => s.user.profile);
 
   const [isUserChanged, setIsUserChanged] = useState(false);
@@ -54,17 +56,17 @@ export function MyData() {
   return (
     <main className="mx-4 grid gap-4 text-center">
       <section className="grid place-items-center border-y-2 border-gold py-10">
-        <h1>MI AVATAR</h1>
-        <p>Edita o quita tu foto del perfil.</p>
+        <h1>{t("profile.my-avatar")}</h1>
+        <p>{t("profile.edit-avatar")}</p>
         <div className="my-6 flex w-full items-center justify-evenly">
           <Avatar avatarWidth={"w-24"} avatar={user.avatar} />
           <IconButtonWithBgGold icon={"ri-edit-fill"} onClick={() => handleEdit("avatar")} />
         </div>
-        <p>Resolución recomendada 500x500 px</p>
+        <p>{t("profile.avatar-resolution")}</p>
       </section>
       <section className="grid place-items-center py-6">
-        <h1>FORMULARIOS DE REGISTRO</h1>
-        <p>Edita los datos de tu perfil de usuario.</p>
+        <h1>{t("profile.register-form")}</h1>
+        <p>{t("profile.edit-register-form")}</p>
         <div className="mt-10 grid w-full gap-10">
           {fields.map(({ name, label, type, btn = true }, index) => (
             <div className="flex items-center justify-between" key={index}>
@@ -80,13 +82,13 @@ export function MyData() {
                     edit === name && "pointer-events-auto rounded-md border-2 border-gold pl-2"
                   } pointer-events-none bg-base p-2 pl-0 text-left text-sm tracking-widest text-white`}
                 />
-                {!btn && <p>*Esta informacion no puede editarse*</p>}
+                {!btn && <p>*{t("profile.cannot-edit")}*</p>}
                 {name === "pass" && (
                   <p
                     className="text-white/50 transition hover:cursor-pointer hover:text-gold hover:underline"
                     onClick={() => setShow(!show)}
                   >
-                    Ver Contraseña <i className="ri-eye-fill" />
+                    {t("profile.see-pass")} <i className="ri-eye-fill" />
                   </p>
                 )}
               </div>
@@ -97,7 +99,7 @@ export function MyData() {
           ))}
 
           <Button
-            text={"GUARDAR CAMBIOS"}
+            text={t("common.saveChanges")}
             pClassname={"p-3"}
             onClick={() => handleSave()}
             className={`${

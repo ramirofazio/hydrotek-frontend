@@ -1,10 +1,9 @@
-const buttons = [
-  { icon: "ri-user-3-fill", text: "MIS DATOS", state: "MyData" },
-  { icon: "ri-shopping-cart-2-fill", text: "MIS COMPRAS", state: "MyBuys" },
-  { icon: "ri-bookmark-fill", text: "MIS PUBLICACIONES GUARDADAS", state: "MySavedPosts" },
-];
-
-export function ButtonList({ selectedBtn, setSelectedBtn }) {
+export function ButtonList({ selectedBtn, setSelectedBtn, t }) {
+  const buttons = [
+    { icon: "ri-user-3-fill", text: t("profile.my-data"), state: "MyData" },
+    { icon: "ri-shopping-cart-2-fill", text: t("profile.my-buys"), state: "MyBuys" },
+    { icon: "ri-bookmark-fill", text: t("profile.my-saved-posts"), state: "MySavedPosts" },
+  ];
   return (
     <section className="grid gap-6 p-4">
       {buttons.map(({ icon, text, state }, index) => (
