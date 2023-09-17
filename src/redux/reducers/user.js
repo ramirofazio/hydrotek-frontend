@@ -8,11 +8,11 @@ const user = createSlice({
       email: "",
     },
     profile: {
-      avatar: "",
-      name: "",
-      dni: 0,
-      email: "",
-      pass: "",
+      avatar: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+      name: "Ramiro Fazio Dattoli",
+      dni: 42809069,
+      email: "ramifazio@gmail.com",
+      pass: "123456789",
     },
   },
   reducers: {

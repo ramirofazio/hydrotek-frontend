@@ -30,7 +30,11 @@ export function MyData() {
     } else {
       setEdit(name);
     }
-    console.log(name);
+
+    if (name === "avatar") {
+      //*? Logica para actualizar el Avatar. Cloudinary? A ver!
+      console.log("update Avatar");
+    }
   };
 
   const handleOnChange = (e) => {
@@ -74,7 +78,7 @@ export function MyData() {
                   onChange={handleOnChange}
                   className={`${
                     edit === name && "pointer-events-auto rounded-md border-2 border-gold pl-2"
-                  } pointer-events-none bg-base p-2 pl-0 text-left text-sm text-white`}
+                  } pointer-events-none bg-base p-2 pl-0 text-left text-sm tracking-widest text-white`}
                 />
                 {!btn && <p>*Esta informacion no puede editarse*</p>}
                 {name === "pass" && (
