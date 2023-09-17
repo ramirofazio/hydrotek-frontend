@@ -1,26 +1,34 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Button, IconButtonWithBgGold } from "src/components/buttons";
-import { Input } from "src/components/inputs";
 import { Avatar } from "src/components/user";
 
 const fields = [
   { name: "name", label: "NOMBRE" },
   { name: "dni", label: "DNI", type: "number" },
   { name: "email", label: "CORREO ELECTRÓNICO", btn: false },
-  { name: "pass", label: "CONTRASEÑA" },
+  { name: "pass", label: "CONTRASEÑA", type: "password" },
 ];
 
-export function MyData({ name, dni, email, pass }) {
+export function MyData() {
+  const dbUser = useSelector((s) => s.user);
+
+  const [show, setShow] = useState(false);
   const [edit, setEdit] = useState("");
   const [user, setUser] = useState({
-    name: name,
-    dni: dni,
-    email: email,
-    pass: pass,
+    avatar: dbUser.avatar,
+    name: dbUser.name,
+    dni: dbUser.dni,
+    email: dbUser.email,
+    pass: dbUser.pass,
   });
 
   const handleEdit = (name) => {
-    setEdit(name);
+    if (name === edit) {
+      setEdit("");
+    } else {
+      setEdit(name);
+    }
     console.log(name);
   };
 
@@ -43,32 +51,35 @@ export function MyData({ name, dni, email, pass }) {
         <h1>MI AVATAR</h1>
         <p>Edita o quita tu foto del perfil.</p>
         <div className="my-6 flex w-full items-center justify-evenly">
-          <Avatar avatarWidth={"w-24"} />
+          <Avatar avatarWidth={"w-24"} avatar={user.avatar} />
           <IconButtonWithBgGold icon={"ri-edit-fill"} onClick={() => handleEdit("avatar")} />
         </div>
         <p>Resolución recomendada 500x500 px</p>
       </section>
       <section className="grid place-items-center py-6">
         <h1>FORMULARIOS DE REGISTRO</h1>
-        <p>Edita log datos de tu perfil de usuario.</p>
+        <p>Edita los datos de tu perfil de usuario.</p>
         <div className="mt-10 grid w-full gap-10">
           {fields.map(({ name, label, type, btn = true }, index) => (
             <div className="flex items-center justify-between" key={index}>
               <div className="flex flex-col items-start gap-2">
                 <label className="textGoldGradient">{label}:</label>
-                <Input
+                <input
                   name={name}
-                  type={type || "text"}
+                  type={show ? "text" : type || "text"}
                   value={user[name]}
                   placeholder={label}
                   onChange={handleOnChange}
                   className={`${
-                    edit === name && "pointer-events-auto !rounded-md !border-2 "
-                  } pointer-events-none rounded-none border-none p-0 !text-left`}
+                    edit === name && "pointer-events-auto rounded-md border-2 border-gold pl-2"
+                  } pointer-events-none bg-base p-2 pl-0 text-left text-sm text-white`}
                 />
                 {!btn && <p>*Esta informacion no puede editarse*</p>}
                 {name === "pass" && (
-                  <p className="text-white/50">
+                  <p
+                    className="text-white/50 transition hover:cursor-pointer hover:text-gold hover:underline"
+                    onClick={() => setShow(!show)}
+                  >
                     Ver Contraseña <i className="ri-eye-fill" />
                   </p>
                 )}
@@ -85,7 +96,6 @@ export function MyData({ name, dni, email, pass }) {
     </main>
   );
 }
-
 
 /*
 
