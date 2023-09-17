@@ -12,3 +12,7 @@ export function ProtectedRoute({ token }) {
     </>
   );
 }
+
+/*
+! Hay un error aca, cuando se refresca dentro de una ruta protegica rompe por una cuestion de asincronia con el TOKEN JWT. Ver solucion!
+*/
