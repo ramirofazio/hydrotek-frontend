@@ -4,7 +4,7 @@ const shoppingCart = createSlice({
   name: "shoppingCart",
   initialState: {
     products: {
-      producto1: { quantity: 0, price: 0 },
+      producto1: { quantity: 0, price: 0, productId: "producto1" },
     },
     totalPrice: 0,
   },
@@ -21,7 +21,7 @@ const shoppingCart = createSlice({
       if (isAlready) {
         state.products[productId].quantity = isAlready + 1;
       } else {
-        state.products[productId] = { quantity: 1, price: price };
+        state.products[productId] = { quantity: 1, price: price, productId: productId };
       }
       state.totalPrice = state.totalPrice + price;
     },
