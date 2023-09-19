@@ -46,7 +46,8 @@
   "shopping-cart": {
     "your-cart": "tu carrito",
     "promotional-code": "codigo de descuento",
-    "pay-purchase": "pagar compra"
+    "pay-purchase": "pagar compra",
+    "no-products-on-cart": "no se encontraron productos guardados en tu carrito"
   },
   "order": {
     "order-data": "datos de la orden",

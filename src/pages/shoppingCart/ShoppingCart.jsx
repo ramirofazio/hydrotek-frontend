@@ -1,19 +1,29 @@
 import { CartArticleCard } from "src/components/cards";
 import { useTranslation } from "react-i18next";
 import { Input } from "src/components/inputs";
+import { useSelector } from "react-redux";
+import { Button } from "src/components/buttons";
+import { useNavigate } from "react-router-dom";
 
-export default function ShoppingCart({ subtotal, totalPrice, deliveryPrice }) {
+export default function ShoppingCart({ subtotal, deliveryPrice }) {
+  const navigate = useNavigate();
   const { t } = useTranslation();
-  const arr = [{ name: "vavatua" }, { name: "ravatua" }, { name: "vparaua" }];
+  const { products, totalPrice } = useSelector((state) => state.shoppingCart);
+  const arrProducts = Object.values(products);
   return (
     <main className="content mx-auto mb-[6rem] mt-5  flex w-[92%] flex-col ">
       <header className=" border-b-2 border-gold p-4">
         <h1 className="mx-auto w-fit">{t("shopping-cart.your-cart")}</h1>
       </header>
       <section className="grid place-items-center gap-10 lg:place-items-start ">
-        {arr.map((a, i) => (
-          <CartArticleCard name={a.name} key={i} />
-        ))}
+        {arrProducts.length ? (
+          arrProducts.map((a, i) => <CartArticleCard name={a.productId} price={a.price} quan key={i} />)
+        ) : (
+          <div className="mt-10 flex md:w-[50%] w-[90%] flex-col gap-10 rounded-md  border-2 p-8 text-center s:w-[65%] lg:place-self-center lg:max-w-[45%]">
+            <h1 className="">{t("shopping-cart.no-products-on-cart")}</h1>
+            <Button className="sm:w-[60%] sm:mx-auto" onClick={() => navigate("/products")} text={t("common.see-products")} />
+          </div>
+        )}
       </section>
       <section className=" mt-10 lg:grid lg:grid-cols-5 lg:items-center">
         <article className="flex  flex-col place-items-center gap-4 lg:col-span-2">
@@ -38,7 +48,7 @@ export default function ShoppingCart({ subtotal, totalPrice, deliveryPrice }) {
             </div>
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.total-price")}</h1>
-              <h2 className=" textGoldGradient ">{totalPrice || "$99.99"}</h2>
+              <h2 className=" textGoldGradient ">{"$" + totalPrice || "99.99"}</h2>
             </div>
           </div>
 
