@@ -4,7 +4,7 @@ import { links } from "src/utils";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Categories } from "./Categories.jsx";
 
-export function ModalNav() {
+export function ModalNav({ token, pathname }) {
   const navigate = useNavigate();
 
   return (
@@ -46,7 +46,12 @@ export function ModalNav() {
             </ul>
 
             <section className="mt-10 flex justify-around">
-              <i className="icons ri-user-3-fill text-3xl  text-gold" onClick={() => navigate("/signIn")} />
+              <i
+                className={`ri-user-3-fill text-3xl ${
+                  pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"
+                }`}
+                onClick={() => navigate(!token ? "/user/signIn" : "/user/profile")}
+              />
               <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
             </section>
           </nav>

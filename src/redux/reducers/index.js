@@ -1,6 +1,7 @@
 export { appRdr } from "./app.js";
 export { userRdr } from "./user.js";
 export { shoppingCartRdr } from "./shoppingCart.js";
+export { authRdr } from "./auth.js";
 
 import { loadProducts } from "./app.js";
 export const actionsApp = {
@@ -16,4 +17,9 @@ import { setTotalPrice, setProducts } from "./shoppingCart.js";
 export const actionsShoppingCart = {
   setTotalPrice,
   setProducts,
+};
+
+import { setToken } from "./auth.js";
+export const actionsAuth = {
+  setToken,
 };
