@@ -6,10 +6,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { APIHydro, addAuthWithToken } from "src/api";
-import { actionsUser } from "src/redux/reducers";
+import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { saveInStorage } from "src/utils/localStorage";
-
 
 const authBtns = [
   { socialNetwork: "GOOGLE", icon: "ri-google-fill ri-md lg:mr-10" },
@@ -36,7 +35,6 @@ export function SignIn() {
     });
   };
 
-
   const handleSubmit = (e) => {
     //? SUBMIT
     e.preventDefault();
@@ -45,10 +43,14 @@ export function SignIn() {
       setLoading(true);
       APIHydro.signIn(user)
         .then((res) => {
-          const { accessToken } = res.data;
+          const { data } = res;
+          const { accessToken } = data;
           saveInStorage("accessToken", accessToken);
           addAuthWithToken(accessToken);
-          dispatch(actionsUser.saveSignInData(res.data));
+          dispatch(actionsUser.saveSignInData(data));
+          if (data.shoppingCart.totalPrice > 0) {
+            dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
+          }
         })
         .finally(() => {
           setLoading(false);

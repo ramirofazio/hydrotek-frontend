@@ -1,19 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getOfStorage } from "src/utils/localStorage";
 
 const shoppingCart = createSlice({
   name: "shoppingCart",
   initialState: {
-    products: {
-      peluproduct: { quantity: 0, price: 0, productId: "producto1" },
-    },
+    products: {},
     totalPrice: 0,
   },
   reducers: {
-    setTotalPrice: (state, action) => {
-      state.totalPrice = action.payload;
+    saveSingInShoppingCart: (state, action) => {
+      const { totalPrice, products } = action.payload;
+
+      const productsDictionary = {};
+      products.forEach((p) => {
+        productsDictionary[p.productId] = { quantity: p.quantity, productId: p.productId };
+      });
+
+      state.totalPrice = totalPrice;
+      state.products = productsDictionary;
     },
-    setProducts: (state, action) => {
-      state.products = action.payload;
+    loadStorageShoppingCart: (state, action) => {
+      console.log(action);
+      const shoppingCart = getOfStorage("shoppingCart");
+      if (shoppingCart?.totalPrice > 0) {
+        const { totalPrice, products } = shoppingCart;
+        state.totalPrice = totalPrice;
+        state.products = products;
+      }
     },
     addProudct: (state, action) => {
       const { productId, price } = action.payload;
@@ -40,4 +53,4 @@ const shoppingCart = createSlice({
 });
 
 export const shoppingCartRdr = shoppingCart.reducer;
-export const { setTotalPrice, setProducts, addProudct, removeProduct } = shoppingCart.actions;
+export const { saveSingInShoppingCart, loadStorageShoppingCart, addProudct, removeProduct } = shoppingCart.actions;

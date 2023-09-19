@@ -53,7 +53,6 @@ export default function ShoppingCart({ subtotal, totalPrice, deliveryPrice }) {
           </button>
         </div>
       </section>
-
     </main>
   );
 }

@@ -26,11 +26,11 @@ export const APIHydro = {
   googleSignIn: (user) => {
     return apiHydro.post(`/${route.AUTH}/googleSignIn`, user);
   },
-  updateShoppingCart: (userId, shoppingCart) => {
+  updateShoppingCart: ({ userId, shoppingCart }) => {
     return apiHydro.put(`/${route.CART}`, { userId, shoppingCart });
   },
-  resetShoppingCart: (userId) => {
-    return apiHydro.delete(`/${route.CART}/shoppingCart/${userId}`);
+  resetShoppingCart: ({ userId }) => {
+    return apiHydro.delete(`/${route.CART}/${userId}`);
   },
 };
 
