@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { actionsShoppingCart } from "src/redux/reducers";
 
-export function Quantity({ productId = "peluporudct", price = 420, stock = 25, className }) {
+export function Quantity({ productId = "peluproduct", price = 420, stock = 25, className }) {
   const dispatch = useDispatch();
   const { addProudct, removeProduct } = actionsShoppingCart;
   const quantity = useSelector((state) => state.shoppingCart.products[productId]?.quantity);

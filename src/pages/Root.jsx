@@ -7,21 +7,30 @@ import { APIHydro } from "src/api";
 
 export default function Root() {
   const { shoppingCart, user } = useSelector((state) => state);
-
+  const arr = Object.values(shoppingCart.products);
+  console.log(arr);
   useEffect(() => {
     console.log(shoppingCart);
     console.log(shoppingCart.totalPrice);
-
+    const arr = Object.values(shoppingCart.products);
+    console.log(arr);
     function handleCart(e) {
-      if (shoppingCart.totalPrice) {
-        console.log("presio", shoppingCart.totalPrice);
-        if (user.session.role) {
-          // * si tiene un rol, significa que esta logueado
-          console.log("logueadox");
-          console.log(shoppingCart); // load cart in DB
+      e.preventDefault();
+      console.log("presio", shoppingCart.totalPrice);
+      if (user.session.role) {
+        // * si tiene un rol, significa que esta logueado
+        const arrProducts = Object.values(shoppingCart.products);
+
+        if (arrProducts.length) {
+          return APIHydro.updateShoppingCart({
+            userId: user.id,
+            shoppingCart: { ...shoppingCart, products: arrProducts },
+          });
         } else {
-          saveInStorage("shoppingCart", shoppingCart);
+          return APIHydro.resetShoppingCart({ userId: user.id });
         }
+      } else {
+        saveInStorage("shoppingCart", shoppingCart);
       }
     }
     window.addEventListener("beforeunload", handleCart);
@@ -30,6 +39,14 @@ export default function Root() {
   return (
     <div className="relative overflow-hidden">
       <Aurora />
+      <button
+        className="w-[10rem] bg-red-500"
+        onClick={() =>
+          APIHydro.updateShoppingCart({ userId: user.id, shoppingCart: { ...shoppingCart, products: arr } })
+        }
+      >
+        Cargarrrs
+      </button>
       <Navbar />
       <Outlet />
       <Footer />
