@@ -23,6 +23,7 @@
     "recoverPassNow": "RECUPERA TU CONTRASEÑA",
     "logIn": "INICIAR SESIÓN",
     "signUp": "REGISTRATE",
+    "closeSession": "CERRAR SESIÓN",
     "signUpSubmitBtn": "REGISTRARME",
     "passwordDontMatch": "¡Las contraseñas no coinciden!"
   },

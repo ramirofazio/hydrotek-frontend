@@ -13,9 +13,15 @@ export function Header({ t }) {
   };
 
   return (
-    <section className="my-2 flex items-center justify-between px-6 lg:col-span-2">
-      <h1 className="text-2xl">{t("profile.my-account")}</h1>
-      <IconButtonWithBgGold icon={"ri-logout-box-r-line"} onClick={() => handleLogOut()} />
+    <section className="my-2 flex items-center justify-between px-6 lg:col-span-2 xl:col-span-3">
+      <h1 className="text-2xl xl:text-3xl">{t("profile.my-account")}</h1>
+      <IconButtonWithBgGold
+        icon={"ri-logout-box-r-line"}
+        className={"lg:p-8 xl:w-52 xl:p-5"}
+        text={t("session.closeSession")}
+        textClassName={"hidden xl:inline"}
+        onClick={() => handleLogOut()}
+      />
     </section>
   );
 }
