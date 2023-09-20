@@ -20,8 +20,11 @@ export const APIHydro = {
   getUsers: () => {
     return apiHydro.get(`/${route.USER}`);
   },
-  signIn: (user) => {
-    return apiHydro.post(`/${route.AUTH}/signIn`, { email: user.email, pass: user.password });
+  signIn: ({ email, password }) => {
+    return apiHydro.post(`/${route.AUTH}/signIn`, { email: email, pass: password });
+  },
+  signUp: ({ email, name, password, dni }) => {
+    return apiHydro.post(`/${route.AUTH}/signUp`, { email: email, name: name, dni: dni, password: password });
   },
   googleSignIn: (user) => {
     return apiHydro.post(`/${route.AUTH}/googleSignIn`, user);

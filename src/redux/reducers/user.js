@@ -15,7 +15,7 @@ const user = createSlice({
     },
   },
   reducers: {
-    saveSignInData: (state, action) => {
+    saveSignData: (state, action) => {
       const { session, profile } = action.payload;
       state.session = session;
       state.userProfile = profile;
@@ -24,4 +24,4 @@ const user = createSlice({
 });
 
 export const userRdr = user.reducer;
-export const { saveSignInData } = user.actions;
+export const { saveSignData } = user.actions;

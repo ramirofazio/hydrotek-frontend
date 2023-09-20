@@ -13,12 +13,18 @@
     "top-sellers": "Los mas vendidos",
     "search": "Buscar",
     "find-what-you-are-looking": "Encuentra lo que buscas",
-    "reviews": "reseñas",
+    "reviews": "reseñas"
+  },
+  "session": {
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
+    "haveAccount": "¿YA TIENES UNA CUENTA?",
     "registerNow": "REGISTRATE AHORA",
     "forgotPass": "¿OLVIDASTE TU CONTRASEÑA?",
     "recoverPassNow": "RECUPERA TU CONTRASEÑA",
-    "logIn": "INICIAR SESIÓN"
+    "logIn": "INICIAR SESIÓN",
+    "signUp": "REGISTRATE",
+    "signUpSubmitBtn": "REGISTRARME",
+    "passwordDontMatch": "¡Las contraseñas no coinciden!"
   },
   "navbar": {
     "products": "Productos",
