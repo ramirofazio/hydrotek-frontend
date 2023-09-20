@@ -27,7 +27,7 @@ export function Routes() {
       path: "/",
       element: <Root />,
       errorElement: <DefaultError />,
-      loader: () => {
+      lader: () => {
         APIHydro.getProducts().then((res) => actionsApp.loadProducts(res.data));
         // El elemento root carga data necesaria para la app
         // Se guarda esa data para consumirla desde redux
@@ -79,7 +79,7 @@ export function Routes() {
     },
   ];
 
-  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...(!token ? onlyNotAuthRoutes : [] /* !CAMBIAR POOR ARR VACIO AL TERMINAR */)]);
+  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...(!token ? onlyNotAuthRoutes : onlyNotAuthRoutes /* !CAMBIAR POOR ARR VACIO AL TERMINAR */)]);
 
   return <RouterProvider router={router} />;
 }

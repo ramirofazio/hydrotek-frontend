@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { Loader, Error } from "src/components";
 import { Button, Auth3Button } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
 import { backgrounds } from "src/assets";
-import { Loader } from "src/components/Loader";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { APIHydro, addAuthWithToken } from "src/api";
@@ -23,7 +23,7 @@ export function SignIn() {
 
   const [loading, setLoading] = useState(false);
   const [canRegister, setCanRegister] = useState(false);
-  const [errs, setErrs] = useState({ email: null, password: null });
+  const [err, setErr] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -38,6 +38,7 @@ export function SignIn() {
   }, [user]);
 
   const handleOnChange = (e) => {
+    setErr(false);
     const { name, value } = e.target;
     setUser({
       ...user,
@@ -60,7 +61,8 @@ export function SignIn() {
           }
         })
         .catch((e) => {
-          console.log(e);
+          const res = e.response.data.message;
+          setErr(res);
         })
         .finally(() => {
           setLoading(false);
@@ -78,7 +80,7 @@ export function SignIn() {
         <img src={backgrounds.borderTop} className="xl:absolute xl:inset-x-0 xl:top-0 xl:-z-10" />
         <h1 className=" -mt-20 mb-14 text-center lg:-mt-32 lg:text-3xl xl:mt-14 xl:text-4xl">{t("session.logIn")}</h1>
         <form
-          className="grid place-items-center gap-4 px-6 lg:mx-auto lg:w-[80%] xl:w-full xl:gap-6"
+          className="grid place-items-center  gap-4 px-6 lg:mx-auto lg:w-[80%] xl:w-full xl:gap-6"
           onSubmit={handleSubmit}
         >
           <Input
@@ -89,9 +91,13 @@ export function SignIn() {
             value={user.email}
           />
           <PasswordInput name="password" onChange={handleOnChange} placeholder="CONTRASEÑA" value={user.password} />
+          {err && <Error text={err} className="md:w-[65%]" />}
           <Button
+            disabled={err && true}
             text={"INGRESAR"}
-            className={`!bg-gold hover:!bg-base lg:w-[60%] ${!canRegister && "pointer-events-none opacity-30"}`}
+            className={`!bg-gold hover:!bg-base disabled:pointer-events-none disabled:opacity-30 lg:w-[60%] ${
+              !canRegister && "pointer-events-none opacity-30"
+            }`}
             pClassname={"xl:text-xl font-primary"}
             onClick={handleSubmit}
           />
