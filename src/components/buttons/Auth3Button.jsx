@@ -18,6 +18,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
       // * Nos dan un token que nos da permiso a la info del usuario mediante la gapi
       try {
         setLoading(true);
+        navigate("/", { replace: true });
         const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         });
@@ -34,7 +35,6 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
           })
           .finally(() => {
             setLoading(false);
-            navigate("/");
           });
       } catch (err) {
         console.log(err);
