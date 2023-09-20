@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getOfStorage, saveInStorage } from "src/utils/localStorage";
+import { deleteOfStorage, getOfStorage, saveInStorage } from "src/utils/localStorage";
 import { addAuthWithToken } from "src/api";
 
 const auth = createSlice({
@@ -9,14 +9,23 @@ const auth = createSlice({
   },
   reducers: {
     setToken: (state, action) => {
-      const localToken = getOfStorage("accessToken");
+      if (action.payload === "logOut") {
+        deleteOfStorage("accessToken");
+        state.token = "";
+      } else {
+        const localToken = getOfStorage("accessToken");
 
-      if (localToken) {state.token = localToken;}
-      if (action.payload) {state.token = action.payload;}
+        if (localToken) {
+          state.token = localToken === "null" ? JSON.parse(localToken) : localToken;
+        }
+        if (action.payload) {
+          state.token = action.payload;
+        }
 
-      if (state.token) {
-        addAuthWithToken(state.token);
-        saveInStorage("accessToken", state.token);
+        if (state.token) {
+          addAuthWithToken(state.token);
+          saveInStorage("accessToken", state.token);
+        }
       }
     },
   },
