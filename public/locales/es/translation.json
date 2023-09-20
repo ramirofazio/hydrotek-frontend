@@ -61,6 +61,9 @@
     "my-account": "Mi cuenta",
     "my-data": "MIS DATOS",
     "my-buys": "MIS COMPRAS",
-    "my-saved-posts": "MIS PUBLICACIONES GUARDADAS"
+    "my-saved-posts": "MIS PUBLICACIONES GUARDADAS",
+    "order": "ORDEN",
+    "myBuys": "MIS COMPRAS REALIZADAS",
+    "consultHistory": "Consultá el historial de tus compras."
   }
 }

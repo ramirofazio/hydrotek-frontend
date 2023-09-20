@@ -35,6 +35,7 @@ export function Profile() {
         </div>
         <ButtonList selectedBtn={selectedBtn} setSelectedBtn={setSelectedBtn} t={t} />
       </section>
+      <div className="mx-6 border-b-2 border-gold" />
       <section>{selectedSection}</section>
     </main>
   );

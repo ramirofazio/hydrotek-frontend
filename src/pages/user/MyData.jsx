@@ -54,8 +54,8 @@ export function MyData() {
   };
 
   return (
-    <main className="mx-4 grid gap-4 text-center">
-      <section className="grid place-items-center border-y-2 border-gold py-10 lg:place-items-start lg:border-none lg:p-0">
+    <main className="mx-6 grid text-center">
+      <section className="grid place-items-center border-b-2 border-gold py-10 lg:place-items-start lg:border-none lg:p-0">
         <h1 className="lg:my-2 lg:w-full lg:!border-b-2 lg:border-gold lg:text-start">{t("profile.my-avatar")}</h1>
         <p>{t("profile.edit-avatar")}</p>
         <div className="my-6 flex w-full items-center justify-evenly lg:justify-start lg:gap-6">

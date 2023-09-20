@@ -46,12 +46,14 @@ export function ModalNav({ token, pathname }) {
             </ul>
 
             <section className="mt-10 flex justify-around">
-              <i
-                className={`ri-user-3-fill text-3xl ${
-                  pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"
-                }`}
-                onClick={() => navigate(!token ? "/user/signIn" : "/user/profile")}
-              />
+              <Popover.Button>
+                <i
+                  className={`ri-user-3-fill text-3xl ${
+                    pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"
+                  }`}
+                  onClick={() => navigate(!token ? "/user/signIn" : "/user/profile")}
+                />
+              </Popover.Button>
               <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
             </section>
           </nav>

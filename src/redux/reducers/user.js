@@ -13,6 +13,23 @@ const user = createSlice({
       dni: 42809069,
       email: "ramifazio@gmail.com",
       pass: "123456789",
+      orders: [
+        {
+          id: "821831",
+          date: new Date(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "821831",
+          date: new Date(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "821831",
+          date: new Date(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+      ],
     },
   },
   reducers: {
