@@ -6,7 +6,7 @@ export default function Products() {
     { name: "SAFE ROOTS", price: "$20.000" },
     { name: "PLUG", price: "$5.000" },
     { name: "SISTEMA X", price: "$40.000" },
-    { name: "SAFE ROOTS", price: "$20.000" },
+    { name: "SAFE ROOTS", price: 20.000 },
   ];
 
   return (
