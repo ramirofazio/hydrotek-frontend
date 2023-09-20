@@ -1,13 +1,10 @@
 import { Rating } from "./index";
-import { useState } from "react";
 import { Button } from "../../components/buttons";
 import { useTranslation } from "react-i18next";
 import { Quantity } from "src/components";
 
-export function ProductDescription({ name, price, rating, stock = 10 }) {
+export function ProductDescription({ productId = 1, name, price, rating, stock = 10 }) {
   const { t } = useTranslation();
-
-  const [quantity, setQuantity] = useState(1);
 
   return (
     <article className="grid place-items-center gap-4 md:items-center md:justify-items-start md:gap-1">
@@ -17,33 +14,11 @@ export function ProductDescription({ name, price, rating, stock = 10 }) {
       </div>
       <div>
         <h1>{name || "nombre del articul Hydortek"}</h1>
-        <h2 className="textGoldGradient ">{price || "$99.99"}</h2>
+        <h2 className="textGoldGradient ">{"$" + price || "$99.99"}</h2>
       </div>
       <div>
-        <Quantity
-          className=""
-          quantity={quantity}
-          setQuantity={setQuantity}
-          stock={stock}
-        />
+        <Quantity className="" price={price} stock={stock} productId={productId} />
       </div>
-      {/* <div className="flex gap-6">
-        <button
-          onClick={() => setQuantity(quantity - 1)}
-          disabled={quantity <= 1 && true}
-          className="goldGradient flex h-8  w-8 items-center justify-center rounded-full"
-        >
-          <p className="text-3xl">-</p>
-        </button>
-        <h1>{quantity}</h1>
-        <button
-          onClick={() => setQuantity(quantity + 1)}
-          disabled={quantity === stock && true}
-          className="goldGradient flex h-8  w-8 items-center justify-center rounded-full text-3xl text-white"
-        >
-          +
-        </button>
-      </div> */}
 
       <Button text={t("common.buy-now")} className="mt-2" />
 

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "src/components/buttons";
 import { useNavigate } from "react-router-dom";
 
-export default function ShoppingCart({ subtotal, deliveryPrice }) {
+export default function ShoppingCart({ deliveryPrice = 100 }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { products, totalPrice } = useSelector((state) => state.shoppingCart);
@@ -17,15 +17,19 @@ export default function ShoppingCart({ subtotal, deliveryPrice }) {
       </header>
       <section className="grid place-items-center gap-10 lg:place-items-start ">
         {arrProducts.length ? (
-          arrProducts.map((a, i) => <CartArticleCard name={a.productId} price={a.price} quan key={i} />)
+          arrProducts.map((a, i) => <CartArticleCard productId={a.productId} name={a.productId} price={a.price}  key={i} />)
         ) : (
-          <div className="mt-10 flex md:w-[50%] w-[90%] flex-col gap-10 rounded-md  border-2 p-8 text-center s:w-[65%] lg:place-self-center lg:max-w-[45%]">
+          <div className="mt-10 flex w-[90%] flex-col gap-10 rounded-md border-2  p-8 text-center md:w-[50%] lg:max-w-[45%] lg:place-self-center s:w-[65%]">
             <h1 className="">{t("shopping-cart.no-products-on-cart")}</h1>
-            <Button className="sm:w-[60%] sm:mx-auto" onClick={() => navigate("/products")} text={t("common.see-products")} />
+            <Button
+              className="sm:mx-auto sm:w-[60%]"
+              onClick={() => navigate("/products")}
+              text={t("common.see-products")}
+            />
           </div>
         )}
       </section>
-      <section className=" mt-10 lg:grid lg:grid-cols-5 lg:items-center">
+      <section className={`mt-10 lg:grid lg:grid-cols-5 lg:items-center `}>
         <article className="flex  flex-col place-items-center gap-4 lg:col-span-2">
           <h1 className="mx-auto w-fit text-lg ">{t("shopping-cart.promotional-code")}</h1>
           <div className="w-[75%] lg:w-full">
@@ -40,15 +44,15 @@ export default function ShoppingCart({ subtotal, deliveryPrice }) {
           <div className="flex flex-col gap-5  ">
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.subtotal")}</h1>
-              <h2 className=" textGoldGradient ">{subtotal || "$99.99"}</h2>
+              <h2 className=" textGoldGradient ">{"$" + totalPrice || "--"}</h2>
             </div>
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.delivery")}</h1>
-              <h2 className=" textGoldGradient ">{deliveryPrice || "$99.99"}</h2>
+              <h2 className=" textGoldGradient ">{"$" + deliveryPrice || "--"}</h2>
             </div>
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.total-price")}</h1>
-              <h2 className=" textGoldGradient ">{"$" + totalPrice || "99.99"}</h2>
+              <h2 className=" textGoldGradient ">{`$${totalPrice + deliveryPrice}`}</h2>
             </div>
           </div>
 
