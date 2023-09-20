@@ -2,23 +2,53 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { APIHydro } from "src/api";
 import { actionsUser, actionsAuth } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
 export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, setLoading, ...props }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const googleLogin = useGoogleLogin({
-    // flow: "auth-code",
-    // ux_mode: "redirect",
-    // redirect_uri: "http://localhost:5173", // ? redirect version, a definir que nos conviene
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const code = searchParams.get("code");
+  console.log(code);
 
-    onSuccess: async (tokenResponse) => {
+  useEffect(() => {
+    if (code?.length) {
+      /* console.log("entro");
+      axios
+        .post("http://localhost:3001/auth/google", {
+          code: code,
+        })
+        .then((res) => console.log(res.data)); */
+    }
+
+    /* const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        }); */
+  }, []);
+
+  const googleLogin = useGoogleLogin({
+    flow: "auth-code",
+    ux_mode: "redirect",
+    redirect_uri: "http://localhost:5173/user/signIn", // ? redirect version, a definir que nos conviene
+
+    onSuccess: async ({ code }) => {
+      await axios.post("http://localhost:3000/auth/google2", {
+        // http://localhost:3001/auth/google backend that will exchange the code
+        code,
+      });
+
+      console.log("pediloo");
+    },
+    /* onSuccess: async (tokenResponse) => {
       // * Nos dan un token que nos da permiso a la info del usuario mediante la gapi
       try {
         setLoading(true);
-        navigate("/", { replace: true });
+        //navigate("/", { replace: true });
+        console.log(tokenResponse);
         const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         });
@@ -39,7 +69,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
       } catch (err) {
         console.log(err);
       }
-    },
+    }, */
     onError: (errorResponse) => {
       setLoading(false);
       console.log(errorResponse);
