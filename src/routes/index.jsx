@@ -11,6 +11,7 @@ import { SignIn, SignUp } from "src/pages/session";
 import { Profile } from "src/pages/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
 
 export function Routes() {
   const dispatch = useDispatch();
@@ -41,6 +42,10 @@ export function Routes() {
           //   return APIHydro.getProductDetail(params.id);
           // },
         },
+        {
+          path: "shoppingCart",
+          element: <ShoppingCart/>
+        }
       ],
     },
   ];
