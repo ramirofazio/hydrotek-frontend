@@ -17,6 +17,8 @@ export function Routes() {
   const { token } = useSelector((s) => s.auth);
 
   useEffect(() => {
+    // token --> OK -->
+
     dispatch(actionsAuth.setToken());
   }, []);
 
@@ -25,10 +27,10 @@ export function Routes() {
       path: "/",
       element: <Root />,
       errorElement: <DefaultError />,
-      laoder: () => {
+      loader: () => {
         APIHydro.getProducts().then((res) => actionsApp.loadProducts(res.data));
         // El elemento root carga data necesaria para la app
-        //Se guarda esa data para consumirla desde redux
+        // Se guarda esa data para consumirla desde redux
       },
       children: [
         { path: "/", element: <Landing />, index: true },
@@ -77,7 +79,7 @@ export function Routes() {
     },
   ];
 
-  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...(!token ? onlyNotAuthRoutes : [])]);
+  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...(!token ? onlyNotAuthRoutes : [] /* !CAMBIAR POOR ARR VACIO AL TERMINAR */)]);
 
   return <RouterProvider router={router} />;
 }

@@ -23,6 +23,7 @@ export function SignIn() {
 
   const [loading, setLoading] = useState(false);
   const [canRegister, setCanRegister] = useState(false);
+  const [errs, setErrs] = useState({ email: null, password: null });
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -57,6 +58,9 @@ export function SignIn() {
             dispatch(actionsUser.saveSignData(res.data));
             navigate("/products");
           }
+        })
+        .catch((e) => {
+          console.log(e);
         })
         .finally(() => {
           setLoading(false);
