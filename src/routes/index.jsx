@@ -8,9 +8,11 @@ import Landing from "pages/landing/Landing.jsx";
 import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
 import { SignIn, SignUp } from "src/pages/session";
-import { Profile } from "src/pages/user";
+import { OrderDetail, Profile } from "src/pages/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { Blog } from "src/pages/blog";
+import { AboutUs } from "src/pages/aboutUs";
 
 export function Routes() {
   const dispatch = useDispatch();
@@ -34,13 +36,13 @@ export function Routes() {
         { path: "/", element: <Landing />, index: true },
         { path: "/products", element: <Products /> },
         {
-          path: "/productDetail",
-          // path: "/productDetail/:id", // TODO: Cuando tengamos data real utilizar el loader con el param de :id
+          path: "/productDetail/:id", // TODO: Cuando tengamos data real utilizar el loader con el param de :id
           element: <ProductDetail />, // * Por el momento se rompe
           // loader: ({ params }) => {
           //   return APIHydro.getProductDetail(params.id);
           // },
         },
+        { path: "/AboutUs", element: <AboutUs /> },
       ],
     },
   ];
@@ -49,7 +51,6 @@ export function Routes() {
     {
       path: "/user",
       errorElement: <DefaultError />,
-      element: <Root />,
       children: [
         {
           path: "/user/signIn",
@@ -65,13 +66,21 @@ export function Routes() {
 
   const onlyAuthRoutes = [
     {
-      path: "/user",
+      path: "/",
       errorElement: <DefaultError />,
       element: <ProtectedRoute token={token} />,
       children: [
         {
           path: "/user/profile",
           element: <Profile />,
+        },
+        {
+          path: "/user/profile/order/:orderId",
+          element: <OrderDetail />,
+        },
+        {
+          path: "/blog",
+          element: <Blog />,
         },
       ],
     },
