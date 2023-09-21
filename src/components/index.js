@@ -7,4 +7,4 @@ export { SearchBar } from "./SearchBar";
 export { Rating } from "./Rating";
 export { ProductDescription } from "./ProductDescription";
 export { Review } from "./Review";
-export { RoundedGoldGradientBorder } from "./border/goldGradientBorder";
+export { RoundedGoldGradientBorder } from "./border";
