@@ -54,14 +54,14 @@ export function MyData() {
   };
 
   return (
-    <main className="mx-8 grid text-center">
-      <section className="grid place-items-center border-b-2 border-gold py-10 lg:place-items-start lg:border-none lg:p-0">
-        <h1 className="lg:my-2 lg:w-full lg:!border-b-2 lg:border-gold lg:text-start">{t("profile.my-avatar")}</h1>
+    <main className="mx-8 grid text-center sm:w-full sm:px-6  lg:h-screen xl:w-full xl:pr-6">
+      <section className="grid place-items-center border-b-2 border-gold py-10  lg:place-items-start lg:border-none lg:p-0">
+        <h1 className=" lg:my-2 lg:w-full lg:!border-b-2 lg:border-gold lg:text-start">{t("profile.my-avatar")}</h1>
         <p>{t("profile.edit-avatar")}</p>
-        <div className="my-6 flex w-full items-center justify-evenly lg:justify-start lg:gap-6">
-          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-16 aspect-square"} avatar={user.avatar} />
-          <p className="hidden lg:inline">{t("profile.avatar-resolution")}</p>
-          <IconButtonWithBgGold icon={"ri-edit-fill"} onClick={() => handleEdit("avatar")} />
+        <div className="my-6 flex w-full items-center justify-center gap-3 lg:justify-start lg:gap-6">
+          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={user.avatar} />
+          <p className="hidden tracking-normal lg:inline">{t("profile.avatar-resolution")}</p>
+          <IconButtonWithBgGold icon={"ri-pencil-line"} onClick={() => handleEdit("avatar")} />
         </div>
         <p className="lg:hidden">{t("profile.avatar-resolution")}</p>
       </section>
@@ -94,7 +94,7 @@ export function MyData() {
                 )}
               </div>
               {btn && (
-                <IconButtonWithBgGold icon={"ri-edit-fill"} onClick={() => handleEdit(name)} className={"!p-6"} />
+                <IconButtonWithBgGold icon={"ri-pencil-line"} onClick={() => handleEdit(name)} className={"!p-6"} />
               )}
             </div>
           ))}

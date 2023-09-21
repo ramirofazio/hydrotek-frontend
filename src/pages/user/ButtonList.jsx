@@ -7,7 +7,7 @@ export function ButtonList({ selectedBtn, setSelectedBtn, t }) {
     { icon: "ri-bookmark-fill", text: t("profile.my-saved-posts"), state: "MySavedPosts" },
   ];
   return (
-    <section className="grid gap-6 p-4">
+    <section className="grid gap-6 p-4 px-6">
       {buttons.map(({ icon, text, state }, index) => (
         <div
           key={index}
