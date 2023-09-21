@@ -1,7 +1,7 @@
 export function IconButtonWithBgGold({ icon, onClick, props, text, textClassName, className }) {
   return (
     <div
-      className={`goldGradient group relative flex justify-end rounded-full p-7 transition hover:cursor-pointer hover:opacity-50 lg:p-5 ${className}`}
+      className={`goldGradient group relative flex aspect-square w-12  justify-end rounded-full p-7 transition hover:cursor-pointer hover:opacity-50 lg:p-5 ${className}`}
       onClick={onClick}
       {...props}
     >
