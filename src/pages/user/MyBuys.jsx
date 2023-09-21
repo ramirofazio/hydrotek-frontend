@@ -7,13 +7,13 @@ export function MyBuys() {
   const orders = useSelector((s) => s.user.profile.orders);
 
   return (
-    <main className="mx-6 grid place-items-center gap-2 text-center">
+    <main className="mx-8 grid place-items-center gap-2 text-center">
       <h1 className="leading-5">{t("profile.myBuys")}</h1>
       <p className="mb-6">{t("profile.consultHistory")}</p>
       <section className="grid w-full gap-4 py-4">
         {orders.map(({ id, date, img }, index) => (
           <article key={index} className="grid place-items-center rounded-xl border-4  border-gold p-6">
-            <RoundedGoldGradientBorder width={"w-24"}>
+            <RoundedGoldGradientBorder width={"w-24"} blueGradient={false}>
               <img src={img} className="aspect-square h-full w-full rounded-full object-contain" />
             </RoundedGoldGradientBorder>
             <h2 className="mt-2">13-09-23</h2>

@@ -4,6 +4,7 @@ import { Avatar } from "src/components/user";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { getOfStorage } from "src/utils/localStorage";
 
 const componentMapping = {
   MyData: <MyData />,
@@ -13,10 +14,14 @@ const componentMapping = {
 
 export function Profile() {
   const { t } = useTranslation();
-  const [selectedBtn, setSelectedBtn] = useState("MyData");
   const { name, avatar } = useSelector((s) => s.user.profile);
 
-  const selectedSection = componentMapping[selectedBtn] || <MyData />;
+  const [selectedBtn, setSelectedBtn] = useState(() => {
+    const local = getOfStorage("selectedBtn");
+    if (local) return local;
+    return "MyData";
+  });
+  const selectedSection = componentMapping[selectedBtn];
 
   return (
     <main className="grid gap-10 lg:my-10 lg:grid-cols-2 xl:mx-20">
@@ -35,7 +40,7 @@ export function Profile() {
         </div>
         <ButtonList selectedBtn={selectedBtn} setSelectedBtn={setSelectedBtn} t={t} />
       </section>
-      <div className="mx-6 border-b-2 border-gold" />
+      <div className="mx-8 border-b-2 border-gold" />
       <section>{selectedSection}</section>
     </main>
   );
