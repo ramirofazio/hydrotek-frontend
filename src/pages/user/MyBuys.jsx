@@ -11,7 +11,7 @@ export function MyBuys() {
       <h1 className="leading-5">{t("profile.myBuys")}</h1>
       <p className="mb-6">{t("profile.consultHistory")}</p>
       <section className="grid w-full gap-4 py-4">
-        {orders.map(({ id, date, img }, index) => (
+        {orders.map(({ id, img }, index) => (
           <article key={index} className="grid place-items-center rounded-xl border-4  border-gold p-6">
             <RoundedGoldGradientBorder width={"w-24"} blueGradient={false}>
               <img src={img} className="aspect-square h-full w-full rounded-full object-contain" />

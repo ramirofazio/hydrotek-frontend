@@ -18,7 +18,7 @@ export function Profile() {
 
   const [selectedBtn, setSelectedBtn] = useState(() => {
     const local = getOfStorage("selectedBtn");
-    if (local) return local;
+    if (local) {return local;}
     return "MyData";
   });
   const selectedSection = componentMapping[selectedBtn];
