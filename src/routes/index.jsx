@@ -11,7 +11,7 @@ import { SignIn, SignUp } from "src/pages/session";
 import { OrderDetail, Profile } from "src/pages/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Blog } from "src/pages/blog";
+import { Blog, BlogPost } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
 
 export function Routes() {
@@ -72,15 +72,31 @@ export function Routes() {
       children: [
         {
           path: "/user/profile",
-          element: <Profile />,
-        },
-        {
-          path: "/user/profile/order/:orderId",
-          element: <OrderDetail />,
+          children: [
+            {
+              path: "/user/profile",
+              element: <Profile />,
+              index: true,
+            },
+            {
+              path: "order/:orderId",
+              element: <OrderDetail />,
+            },
+          ],
         },
         {
           path: "/blog",
-          element: <Blog />,
+          children: [
+            {
+              path: "/blog",
+              element: <Blog />,
+              index: true,
+            },
+            {
+              path: "post/:postId",
+              element: <BlogPost />,
+            },
+          ],
         },
       ],
     },

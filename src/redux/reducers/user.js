@@ -15,9 +15,58 @@ const user = createSlice({
       pass: "123456789",
       savedPosts: [
         {
-          date: "",
-          title: "",
-          id: "",
+          id: "5551236121",
+          title: "COMO CULTIVAR",
+          date: new Date().toLocaleDateString(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "5551236121",
+          title: "COMO CULTIVAR",
+          date: new Date().toLocaleDateString(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "5551236121",
+          title: "COMO CULTIVAR CULTIVARCULTIVAR CULTIVARCULTIVAR",
+          date: new Date().toLocaleDateString(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "5551236121",
+          title: "COMO CULTIVAR",
+          date: new Date().toLocaleDateString(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "5551236121",
+          title: "COMO CULTIVAR",
+          date: new Date().toLocaleDateString(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "5551236121",
+          title: "COMO CULTIVAR",
+          date: new Date().toLocaleDateString(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "5551236121",
+          title: "COMO CULTIVAR",
+          date: new Date().toLocaleDateString(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "5551236121",
+          title: "COMO CULTIVAR",
+          date: new Date().toLocaleDateString(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
+        },
+        {
+          id: "5551236121",
+          title: "COMO CULTIVAR",
+          date: new Date().toLocaleDateString(),
+          img: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
         },
       ],
       orders: [

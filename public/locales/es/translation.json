@@ -67,7 +67,9 @@
     "my-saved-posts": "MIS PUBLICACIONES GUARDADAS",
     "order": "ORDEN",
     "myBuys": "MIS COMPRAS REALIZADAS",
-    "consultHistory": "Consultá el historial de tus compras."
+    "consultHistory": "Consultá el historial de tus compras.",
+    "savedPosts": "PUBLICACIONES GUARDADAS",
+    "seeSavedPosts": "Ver las publicaciones que has guardado recientemente."
   },
   "order": {
     "resume": "RESUMEN",
