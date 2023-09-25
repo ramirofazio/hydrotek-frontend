@@ -2,8 +2,8 @@ import { t } from "i18next";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Rating, RoundedGoldGradientBorder } from "src/components";
-import { Button, IconButtonWithBgGold } from "src/components/buttons";
+import { RoundedGoldGradientBorder } from "src/components";
+import { IconButtonWithBgGold } from "src/components/buttons";
 
 export function OrderDetail() {
   const navigate = useNavigate();
