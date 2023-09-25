@@ -5,7 +5,7 @@ import { Avatar } from "src/components/user";
 import { useTranslation } from "react-i18next";
 
 const fields = [
-  { name: "name", label: "NOMBRE" },
+  { name: "name", label: "NOMBRE COMPLETO" },
   { name: "dni", label: "DNI", type: "number" },
   { name: "email", label: "CORREO ELECTRÓNICO", btn: false },
   { name: "pass", label: "CONTRASEÑA", type: "password" },
