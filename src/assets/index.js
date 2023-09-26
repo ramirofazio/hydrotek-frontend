@@ -19,6 +19,10 @@ export const backgrounds = {
   cartProductGradient: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694715142/HYD/others/cartProductGradient.png"
 };
 
+export const borders = {
+  profile: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/profileBorder.png",
+};
+
 export const products = {
   defaultOne: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693948929/HYD/others/defaultProduct.png",
   defaultTwo: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693949259/HYD/others/defaultProduct2.png",

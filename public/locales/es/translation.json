@@ -13,7 +13,8 @@
     "top-sellers": "Los mas vendidos",
     "search": "Buscar",
     "find-what-you-are-looking": "Encuentra lo que buscas",
-    "reviews": "reseñas"
+    "reviews": "reseñas",
+    "saveChanges": "GUARDAR CAMBIOS"
   },
   "session": {
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
@@ -23,6 +24,7 @@
     "recoverPassNow": "RECUPERA TU CONTRASEÑA",
     "logIn": "INICIAR SESIÓN",
     "signUp": "REGISTRATE",
+    "closeSession": "CERRAR SESIÓN",
     "signUpSubmitBtn": "REGISTRARME",
     "passwordDontMatch": "¡Las contraseñas no coinciden!"
   },
@@ -49,6 +51,7 @@
   "blog": {
     "visit-blog": "visitar el blog"
   },
+
   "shopping-cart": {
     "your-cart": "tu carrito",
     "promotional-code": "codigo de descuento",
@@ -61,5 +64,18 @@
     "delivery": "envío",
     "total-price": "total a pagar",
     "pay-order": "pagar compra"
+
+  "profile": {
+    "my-avatar": "Mi avatar",
+    "edit-avatar": "Edita o quita tu foto del perfil.",
+    "avatar-resolution": "Resolución recomendada 500x500 px",
+    "register-form": "Formularios de registro",
+    "edit-register-form": "Edita los datos de tu perfil de usuario.",
+    "cannot-edit": "Esta informacion no puede editarse",
+    "see-pass": "Ver contraseña",
+    "my-account": "Mi cuenta",
+    "my-data": "MIS DATOS",
+    "my-buys": "MIS COMPRAS",
+    "my-saved-posts": "MIS PUBLICACIONES GUARDADAS"
   }
 }
