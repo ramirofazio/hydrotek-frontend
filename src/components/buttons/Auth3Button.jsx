@@ -29,9 +29,11 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
   }, [redirect]);
 
   const googleLogin = useGoogleLogin({
+    /* eslint-disable */ 
     flow: "auth-code",
     ux_mode: "redirect",
     redirect_uri: "http://localhost:5173/user/signIn",
+    /* eslint-enable */
 
     // ? Para autotizacion flow=implicit & ux_mode=popup, usar onSuccess & onError
     /* onSuccess: async (tokenResponse) => {
