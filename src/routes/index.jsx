@@ -18,8 +18,11 @@ export function Routes() {
   const { token } = useSelector((s) => s.auth);
 
   useEffect(() => {
-    dispatch(actionsAuth.setToken());
-  }, []);
+    console.log(token);
+    if(!token) {
+      dispatch(actionsAuth.setToken());
+    }
+  }, [token]);
 
   const publicRoutes = [
     {
@@ -83,6 +86,6 @@ export function Routes() {
   ];
 
   const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...(!token ? onlyNotAuthRoutes : [])]);
-
+  console.log(router)
   return <RouterProvider router={router} />;
 }

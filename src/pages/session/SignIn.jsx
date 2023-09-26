@@ -54,8 +54,8 @@ export function SignIn() {
           const { accessToken } = data;
           saveInStorage("accessToken", accessToken);
           addAuthWithToken(accessToken);
-          dispatch(actionsUser.saveSignInData(data));
-          if (data.shoppingCart.totalPrice > 0) {
+          dispatch(actionsUser.saveSignData(data));
+          if (data.shoppingCart?.totalPrice > 0) {
             dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
           }
         })

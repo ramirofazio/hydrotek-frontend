@@ -1,7 +1,10 @@
 import Root from "src/pages/Root";
 import DefaultError from "src/pages/error/Default";
+import { useEffect } from "react";
 
 export function ProtectedRoute({ token }) {
+  useEffect(() => {}, [token]);
+
   if (!token) {
     return <DefaultError />;
   }
