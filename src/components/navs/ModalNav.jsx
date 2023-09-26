@@ -54,7 +54,9 @@ export function ModalNav({ token, pathname }) {
                   onClick={() => navigate(!token ? "/user/signIn" : "/user/profile")}
                 />
               </Popover.Button>
-              <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
+              <Popover.Button>
+                <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
+              </Popover.Button>
             </section>
           </nav>
         </Popover.Panel>

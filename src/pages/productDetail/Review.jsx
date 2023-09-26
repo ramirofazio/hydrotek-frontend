@@ -1,4 +1,4 @@
-import { Rating } from "components";
+import { Rating } from "./index";
 
 export function Review({ rating, userName }) {
   return (

@@ -3,8 +3,9 @@ import { products } from "assets";
 import { Button } from "components/buttons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { AddToCart } from "src/pages/shoppingCart/AddToCart";
 
-export function ProductCard({ imgUrl, name, price, id = 1, showBtn = true }) {
+export function ProductCard({ imgUrl, name, price = 200, id = 1, showBtn = true }) {
   const { t } = useTranslation();
   return (
     <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>
@@ -22,9 +23,12 @@ export function ProductCard({ imgUrl, name, price, id = 1, showBtn = true }) {
         <h1 className="text-center md:place-self-start">{name || "NOMBRE DEL PRODUCTO"}</h1>
         <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">{price || "$99.99"}</h2>
         {showBtn && (
-          <Link to={`/productDetail/${id}`} className="md:place-self-start">
-            <Button text={t("common.buy-now")} pClassname={"font-primary"} />
-          </Link>
+          <div className="md:place-self-start  flex gap-3 s:gap-5 md:gap-8 items-center">
+            <Link to={`/productDetail/${id}`} className=" md:place-self-start">
+              <Button text={t("common.buy-now")} pClassname={"font-primary"} />
+            </Link>
+            <AddToCart price={price} productId={id}/>
+          </div>
         )}
       </div>
     </div>

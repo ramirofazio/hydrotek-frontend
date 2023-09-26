@@ -13,12 +13,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Blog, BlogPost } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
+import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
 
 export function Routes() {
   const dispatch = useDispatch();
   const { token } = useSelector((s) => s.auth);
 
   useEffect(() => {
+    // token --> OK -->
+
     dispatch(actionsAuth.setToken());
   }, []);
 
@@ -27,10 +30,10 @@ export function Routes() {
       path: "/",
       element: <Root />,
       errorElement: <DefaultError />,
-      laoder: () => {
+      lader: () => {
         APIHydro.getProducts().then((res) => actionsApp.loadProducts(res.data));
         // El elemento root carga data necesaria para la app
-        //Se guarda esa data para consumirla desde redux
+        // Se guarda esa data para consumirla desde redux
       },
       children: [
         { path: "/", element: <Landing />, index: true },
@@ -43,6 +46,10 @@ export function Routes() {
           // },
         },
         { path: "/AboutUs", element: <AboutUs /> },
+        {
+          path: "shoppingCart",
+          element: <ShoppingCart/>
+        }
       ],
     },
   ];
@@ -102,7 +109,7 @@ export function Routes() {
     },
   ];
 
-  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...(!token ? onlyNotAuthRoutes : [])]);
+  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...(!token ? onlyNotAuthRoutes : onlyNotAuthRoutes /* !CAMBIAR POOR ARR VACIO AL TERMINAR */)]);
 
   return <RouterProvider router={router} />;
 }

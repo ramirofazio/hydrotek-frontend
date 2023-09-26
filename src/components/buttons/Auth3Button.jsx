@@ -2,23 +2,46 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { APIHydro } from "src/api";
 import { actionsUser, actionsAuth } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, setLoading, ...props }) => {
+
+export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...props }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const googleLogin = useGoogleLogin({
-    // flow: "auth-code",
-    // ux_mode: "redirect",
-    // redirect_uri: "http://localhost:5173", // ? redirect version, a definir que nos conviene
+  const [redirect, setRedirect] = useState(false);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const code = searchParams.get("code");
 
-    onSuccess: async (tokenResponse) => {
+  useEffect(() => {
+    redirect ? navigate("/products") : null;
+    if (code?.length && !redirect) {
+      setLoading(true);
+      APIHydro.googleAuthCode(code).then((res) => {
+        dispatch(actionsAuth.setToken(res.data.accessToken));
+        dispatch(actionsUser.saveSignData(res.data));
+        setLoading(false);
+        setRedirect(true);
+      });
+    }
+  }, [redirect]);
+
+  const googleLogin = useGoogleLogin({
+    /* eslint-disable */ 
+    flow: "auth-code",
+    ux_mode: "redirect",
+    redirect_uri: "http://localhost:5173/user/signIn",
+    /* eslint-enable */
+
+    // ? Para autotizacion flow=implicit & ux_mode=popup, usar onSuccess & onError
+    /* onSuccess: async (tokenResponse) => {
       // * Nos dan un token que nos da permiso a la info del usuario mediante la gapi
       try {
         setLoading(true);
-        navigate("/", { replace: true });
+        //navigate("/", { replace: true });
+        console.log(tokenResponse);
         const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         });
@@ -39,26 +62,16 @@ export const Auth3Button = ({ text, icon, classname, pClassname, socialNetwork, 
       } catch (err) {
         console.log(err);
       }
-    },
-    onError: (errorResponse) => {
+    }, */
+    /* onError: (errorResponse) => {
       setLoading(false);
       console.log(errorResponse);
-    }, // ? Aca se puede manejar el err mediante alerta o setear un estado
+    }, */
   });
-
-  const appleLogin = () => alert("soy aple");
-
-  let provider = null;
-  if (socialNetwork === "GOOGLE") {
-    provider = googleLogin;
-  }
-  if (socialNetwork === "APPLE") {
-    provider = appleLogin;
-  }
 
   return (
     <button
-      onClick={() => provider()}
+      onClick={() => googleLogin()}
       className={`rounded-full border-2 border-gold bg-transparent px-6 py-2 uppercase tracking-widest text-white transition hover:bg-gold hover:text-[#1B142C] ${classname}`}
       {...props}
     >
