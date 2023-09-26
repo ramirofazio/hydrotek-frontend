@@ -57,15 +57,15 @@ export function Routes() {
 
   const onlyNotAuthRoutes = [
     {
-      path: "/user",
+      path: "/",
       errorElement: <DefaultError />,
       children: [
         {
-          path: "/user/signIn",
+          path: "session/signIn",
           element: <SignIn />,
         },
         {
-          path: "/user/signUp",
+          path: "session/signUp",
           element: <SignUp />,
         },
       ],
@@ -110,7 +110,7 @@ export function Routes() {
     },
   ];
 
-  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...(!token ? onlyNotAuthRoutes : [])]);
+  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...onlyNotAuthRoutes ]);
   console.log(router);
   return <RouterProvider router={router} />;
 }
