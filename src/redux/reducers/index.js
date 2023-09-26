@@ -13,10 +13,12 @@ export const actionsUser = {
   saveSignData,
 };
 
-import { setTotalPrice, setProducts } from "./shoppingCart.js";
+import { saveSingInShoppingCart, loadStorageShoppingCart, addProudct, removeProduct } from "./shoppingCart.js";
 export const actionsShoppingCart = {
-  setTotalPrice,
-  setProducts,
+  saveSingInShoppingCart,
+  loadStorageShoppingCart,
+  addProudct,
+  removeProduct,
 };
 
 import { setToken } from "./auth.js";

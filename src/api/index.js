@@ -4,6 +4,7 @@ const route = {
   PRODUCT: "product",
   AUTH: "auth",
   USER: "user",
+  CART: "shoppingCart",
 };
 
 // * Para una clara visualizacion de las rutas abrir
@@ -27,6 +28,12 @@ export const APIHydro = {
   },
   googleAuthCode: (code) => {
     return apiHydro.post(`/${route.AUTH}/googleAuthCode`, { code });
+  },
+  updateShoppingCart: ({ userId, shoppingCart }) => {
+    return apiHydro.put(`/${route.CART}`, { userId, shoppingCart });
+  },
+  resetShoppingCart: ({ userId }) => {
+    return apiHydro.delete(`/${route.CART}/${userId}`);
   },
 };
 

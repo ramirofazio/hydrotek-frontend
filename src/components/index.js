@@ -9,3 +9,4 @@ export { ProductDescription } from "./ProductDescription";
 export { Review } from "./Review";
 export { Loader } from "./Loader";
 export { Error } from "./Error";
+export { Quantity } from "./Quantity";

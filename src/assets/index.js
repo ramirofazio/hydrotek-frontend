@@ -15,6 +15,8 @@ export const backgrounds = {
   circuit: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/circuit.png",
   goldCircuit: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/goldCircuit.png",
   techDots: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325911/HYD/others/techDots.png",
+  cartProductBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694705397/HYD/others/cartProudctBorder.png",
+  cartProductGradient: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694715142/HYD/others/cartProductGradient.png"
 };
 
 export const borders = {

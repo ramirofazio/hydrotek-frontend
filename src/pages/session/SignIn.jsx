@@ -6,7 +6,7 @@ import { backgrounds } from "src/assets";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { APIHydro, addAuthWithToken } from "src/api";
-import { actionsUser } from "src/redux/reducers";
+import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { saveInStorage } from "src/utils/localStorage";
 
@@ -52,12 +52,13 @@ export function SignIn() {
       setLoading(true);
       APIHydro.signIn(user)
         .then((res) => {
-          if (res.data) {
-            const { accessToken } = res.data;
-            saveInStorage("accessToken", accessToken);
-            addAuthWithToken(accessToken);
-            dispatch(actionsUser.saveSignData(res.data));
-            navigate("/products");
+          const { data } = res;
+          const { accessToken } = data;
+          saveInStorage("accessToken", accessToken);
+          addAuthWithToken(accessToken);
+          dispatch(actionsUser.saveSignInData(data));
+          if (data.shoppingCart.totalPrice > 0) {
+            dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
           }
         })
         .catch((e) => {
