@@ -2,7 +2,7 @@ import { t } from "i18next";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { RoundedGoldGradientBorder } from "src/components";
+import { RoundedGoldGradientBorder } from "src/components/border";
 import { IconButtonWithBgGold } from "src/components/buttons";
 
 export function OrderDetail() {

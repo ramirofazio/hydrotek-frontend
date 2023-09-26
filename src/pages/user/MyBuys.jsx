@@ -1,7 +1,7 @@
 import { t } from "i18next";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { RoundedGoldGradientBorder } from "src/components";
+import { RoundedGoldGradientBorder } from "src/components/border";
 
 export function MyBuys() {
   const orders = useSelector((s) => s.user.profile.orders);
