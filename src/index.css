@@ -17,6 +17,10 @@
     @apply text-xl uppercase text-white;
   }
 
+  h2 {
+    @apply text-sm uppercase text-white;
+  }
+
   p {
     @apply font-secondary text-xs text-white;
   }

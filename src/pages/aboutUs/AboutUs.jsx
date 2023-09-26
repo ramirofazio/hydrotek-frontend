@@ -1,8 +1,7 @@
-
-export default function AboutUs() {
+export function AboutUs() {
   return (
-    <div>
-
-    </div>
+    <main className="h-screen">
+      <h1>ABOUT US</h1>
+    </main>
   );
 }

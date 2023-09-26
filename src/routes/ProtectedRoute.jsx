@@ -1,4 +1,5 @@
-import Root from "src/pages/Root";
+import { Outlet } from "react-router-dom";
+import { Navbar } from "src/components";
 import DefaultError from "src/pages/error/Default";
 import { useEffect } from "react";
 
@@ -11,7 +12,8 @@ export function ProtectedRoute({ token }) {
 
   return (
     <>
-      <Root />
+      <Navbar />
+      <Outlet />
     </>
   );
 }
