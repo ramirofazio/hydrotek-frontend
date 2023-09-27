@@ -63,8 +63,9 @@ export function SignIn() {
         navigate("/products");
       });
     } catch (e) {
+      const res = e.response.data.message;
+      setErr(res);
       setLoading(false);
-      console.log(e);
     }
   };
 

@@ -56,7 +56,6 @@ export function ModalNav({ role, pathname }) {
               </Popover.Button>
               <Popover.Button>
                 <i onClick={() => navigate("/shoppingCart")} className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
-
               </Popover.Button>
             </section>
           </nav>
