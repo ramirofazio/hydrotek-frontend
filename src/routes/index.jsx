@@ -7,14 +7,9 @@ import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
 import { SignIn, SignUp } from "src/pages/session";
 import { OrderDetail, Profile } from "src/pages/user";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { Blog, BlogPost } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
 import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
-import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
-import { Blog, BlogPost } from "src/pages/blog";
-import { AboutUs } from "src/pages/aboutUs";
 import { autoLoginLoader } from "./loaders";
 
 export function Routes() {
