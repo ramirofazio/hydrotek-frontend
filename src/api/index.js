@@ -29,8 +29,8 @@ export const APIHydro = {
   signUp: ({ email, name, password, dni }) => {
     return apiHydro.post(`/${route.AUTH}/signUp`, { email: email, name: name, dni: dni, password: password });
   },
-  googleSignIn: (user) => {
-    return apiHydro.post(`/${route.AUTH}/googleSignIn`, user);
+  googleAuthCode: (code) => {
+    return apiHydro.post(`/${route.AUTH}/googleAuthCode`, { code });
   },
   updateShoppingCart: ({ userId, shoppingCart }) => {
     return apiHydro.put(`/${route.CART}`, { userId, shoppingCart });
