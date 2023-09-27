@@ -4,10 +4,17 @@ import { Carrousel } from "src/components";
 import { useTranslation } from "react-i18next";
 import { backgrounds } from "assets";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { cleanStorage } from "src/utils/localStorage";
 
 export default function Landing() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    cleanStorage();
+  }, []);
+
   return (
     <div className="content h-full">
       <section className=" flex flex-col gap-[5rem]">
