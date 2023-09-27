@@ -4,7 +4,7 @@ import { links } from "src/utils";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Categories } from "./Categories.jsx";
 
-export function ModalNav({ token, pathname }) {
+export function ModalNav({ role, pathname }) {
   const navigate = useNavigate();
 
   return (
@@ -51,7 +51,7 @@ export function ModalNav({ token, pathname }) {
                   className={`ri-user-3-fill text-3xl ${
                     pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"
                   }`}
-                  onClick={() => navigate(!token ? "/user/signIn" : "/user/profile")}
+                  onClick={() => navigate(role ? "/user/profile" : "/session/signIn")}
                 />
               </Popover.Button>
               <i className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />

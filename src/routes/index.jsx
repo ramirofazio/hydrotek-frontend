@@ -1,6 +1,4 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { APIHydro } from "src/api/index.js";
-import { actionsApp, actionsAuth } from "src/redux/reducers";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Root from "pages/Root.jsx";
 import DefaultError from "pages/error/Default.jsx";
@@ -9,33 +7,18 @@ import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
 import { SignIn, SignUp } from "src/pages/session";
 import { OrderDetail, Profile } from "src/pages/user";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
 import { Blog, BlogPost } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
+import { autoLoginLoader } from "./loaders";
 
 export function Routes() {
-  const dispatch = useDispatch();
-  const { token } = useSelector((s) => s.auth);
-
-  useEffect(() => {
-    console.log(token);
-    if(!token) {
-      dispatch(actionsAuth.setToken());
-    }
-  }, [token]);
-
   const publicRoutes = [
     {
       path: "/",
       element: <Root />,
       errorElement: <DefaultError />,
-      laoder: () => {
-        APIHydro.getProducts().then((res) => actionsApp.loadProducts(res.data));
-        // El elemento root carga data necesaria para la app
-        //Se guarda esa data para consumirla desde redux
-      },
+      loader: autoLoginLoader,
       children: [
         { path: "/", element: <Landing />, index: true },
         { path: "/products", element: <Products /> },
@@ -48,7 +31,7 @@ export function Routes() {
         },
         {
           path: "shoppingCart",
-          element: <ShoppingCart/>
+          element: <ShoppingCart />,
         },
         { path: "/AboutUs", element: <AboutUs /> },
       ],
@@ -76,7 +59,8 @@ export function Routes() {
     {
       path: "/",
       errorElement: <DefaultError />,
-      element: <ProtectedRoute token={token} />,
+      element: <ProtectedRoute/>,
+      loader: autoLoginLoader, // * los loaders tienen que devolver una promesa
       children: [
         {
           path: "/user/profile",
@@ -110,7 +94,8 @@ export function Routes() {
     },
   ];
 
-  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...onlyNotAuthRoutes ]);
-  console.log(router);
+
+  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...onlyNotAuthRoutes]);
+
   return <RouterProvider router={router} />;
 }

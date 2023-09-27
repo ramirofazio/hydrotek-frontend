@@ -1,5 +1,6 @@
 import { ProductCard } from "components/cards";
 import { Pagination, SearchBar } from "components";
+import { Link } from "react-router-dom";
 
 export default function Products() {
   const mockProducts = [
@@ -11,6 +12,9 @@ export default function Products() {
 
   return (
     <div className="mx-auto w-[90%]">
+      <Link to="/session/signIn" className="bg-white">
+        <button>LLEVAME AL SESSION</button>
+      </Link>
       <div>
         <SearchBar />
       </div>

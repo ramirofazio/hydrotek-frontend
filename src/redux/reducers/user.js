@@ -9,7 +9,7 @@ const user = createSlice({
     },
     profile: {
       avatar: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png",
-      name: "Ramiro Fazio Dattoli",
+      userName: "Ramiro Fazio Dattoli",
       dni: 42809069,
       email: "ramifazio@gmail.com",
       pass: "123456789",

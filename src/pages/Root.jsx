@@ -1,14 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import { Footer, Aurora, Navbar } from "src/components";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { saveInStorage } from "src/utils/localStorage";
 import { APIHydro } from "src/api";
-import { actionsShoppingCart } from "src/redux/reducers";
+import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 
 export default function Root() {
   const dispatch = useDispatch();
   const { shoppingCart, user } = useSelector((state) => state);
+  const userInfo = useLoaderData();
 
   function handleCart() {
     // * aca se puede utilizarel event
@@ -35,15 +36,18 @@ export default function Root() {
   }, [shoppingCart, user]);
 
   useEffect(() => {
-    if (!user.session.role) {
+    if(userInfo?.userInfo && !user.session.role) {
+      dispatch(actionsUser.saveSignData(userInfo?.userInfo));
+    }
+    else if(!user.session.role) {
       dispatch(actionsShoppingCart.loadStorageShoppingCart()); // * el problema es un loop infinito al estar escuchando al estado de redux shoppingCart y modificarlo
     }
-  }, []);
+  }, [user]);
 
   return (
     <div className="relative overflow-hidden">
       <Aurora />
-      <Navbar />
+      <Navbar role={user.session.role} />
       <Outlet />
       <Footer />
     </div>

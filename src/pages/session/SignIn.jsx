@@ -48,20 +48,18 @@ export function SignIn() {
     e.preventDefault();
     try {
       setLoading(true);
-      APIHydro.signIn(user)
-        .then((res) => {
-          const { data } = res;
-          const { accessToken } = data;
-          saveInStorage("accessToken", accessToken);
-          addAuthWithToken(accessToken);
-          dispatch(actionsUser.saveSignData(data));
-          if (data.shoppingCart?.totalPrice > 0) {
-            dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
-          }
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      APIHydro.signIn(user).then((res) => {
+        const { data } = res;
+        const { accessToken } = data;
+        saveInStorage("accessToken", accessToken);
+        addAuthWithToken(accessToken);
+        dispatch(actionsUser.saveSignData(data));
+        if (data.shoppingCart?.totalPrice > 0) {
+          dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
+        }
+        setLoading(false);
+        navigate("/products");
+      });
     } catch (e) {
       setLoading(false);
       console.log(e);

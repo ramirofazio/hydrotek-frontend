@@ -23,6 +23,9 @@ export const APIHydro = {
   signIn: ({ email, password }) => {
     return apiHydro.post(`/${route.AUTH}/signIn`, { email: email, pass: password });
   },
+  loginByJWT: ({ accessToken }) => {
+    return apiHydro.post(`/${route.AUTH}/jwtAutoLogin`, { accessToken });
+  },
   signUp: ({ email, name, password, dni }) => {
     return apiHydro.post(`/${route.AUTH}/signUp`, { email: email, name: name, dni: dni, password: password });
   },
