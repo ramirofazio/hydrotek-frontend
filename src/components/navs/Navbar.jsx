@@ -3,13 +3,10 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ModalNav, Categories } from "./";
 import { links } from "src/utils";
 import { logos } from "assets";
-import { useSelector } from "react-redux";
 
-export const Navbar = () => {
+export const Navbar = ({ role }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  const { token } = useSelector((s) => s.auth);
 
   return (
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
@@ -18,7 +15,7 @@ export const Navbar = () => {
           <img src={logos.hydBlack} className="w-16 transition hover:opacity-70 xl:w-24" />
         </Atropos>
       </NavLink>
-      <ModalNav token={token} pathname={pathname} />
+      <ModalNav role={role} pathname={pathname} />
       <ul className="hidden h-full lg:flex">
         {links.map((l, index) => (
           <li key={index} className="mr-8 flex items-center justify-center">
@@ -43,8 +40,8 @@ export const Navbar = () => {
       </ul>
       <section className="hidden  justify-evenly gap-9 lg:flex">
         <i
-          className={`ri-user-3-fill text-3xl ${pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"}`}
-          onClick={() => navigate(!token ? "/user/signIn" : "/user/profile")}
+          className={`ri-user-3-fill text-3xl ${pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"}`} // Avatar
+          onClick={() => navigate(role ? "/user/profile" : "/session/signIn")}
         />
         <i onClick={() => navigate("/shoppingCart")} className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
       </section>

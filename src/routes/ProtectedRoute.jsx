@@ -1,12 +1,28 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import { Navbar } from "src/components";
+import { useSelector, useDispatch } from "react-redux";
 import DefaultError from "src/pages/error/Default";
+import { useEffect } from "react";
+import { actionsUser } from "src/redux/reducers";
 
-export function ProtectedRoute({ token }) {
-  if (!token) {
-    return <DefaultError />;
+export function ProtectedRoute() {
+  const dispatch = useDispatch();
+  const userInfo = useLoaderData();
+  const { session } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (userInfo?.userInfo && !session.role) {
+      dispatch(actionsUser.saveSignData(userInfo.userInfo));
+    }
+  }, [session]);
+
+  if (!session.role && userInfo?.userInfo) {
+    return (
+      <>
+        <DefaultError />
+      </>
+    );
   }
-
   return (
     <>
       <Navbar />
@@ -14,7 +30,3 @@ export function ProtectedRoute({ token }) {
     </>
   );
 }
-
-/*
-! Hay un error aca, cuando se refresca dentro de una ruta protegica rompe por una cuestion de asincronia con el TOKEN JWT. Ver solucion!
-*/

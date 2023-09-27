@@ -50,27 +50,22 @@ export function SignIn() {
     e.preventDefault();
     try {
       setLoading(true);
-      APIHydro.signIn(user)
-        .then((res) => {
-          const { data } = res;
-          const { accessToken } = data;
-          saveInStorage("accessToken", accessToken);
-          addAuthWithToken(accessToken);
-          dispatch(actionsUser.saveSignInData(data));
-          if (data.shoppingCart.totalPrice > 0) {
-            dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
-          }
-        })
-        .catch((e) => {
-          const res = e.response.data.message;
-          setErr(res);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      APIHydro.signIn(user).then((res) => {
+        const { data } = res;
+        const { accessToken } = data;
+        saveInStorage("accessToken", accessToken);
+        addAuthWithToken(accessToken);
+        dispatch(actionsUser.saveSignData(data));
+        if (data.shoppingCart?.totalPrice > 0) {
+          dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
+        }
+        setLoading(false);
+        navigate("/products");
+      });
     } catch (e) {
+      const res = e.response.data.message;
+      setErr(res);
       setLoading(false);
-      console.log(e);
     }
   };
 
