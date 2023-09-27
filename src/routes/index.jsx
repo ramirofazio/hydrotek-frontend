@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { NotAuthRoute } from "./NotAuthRoute";
 import Root from "pages/Root.jsx";
 import DefaultError from "pages/error/Default.jsx";
 import Landing from "pages/landing/Landing.jsx";
@@ -11,6 +12,7 @@ import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
 import { Blog, BlogPost } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
 import { autoLoginLoader } from "./loaders";
+
 
 export function Routes() {
   const publicRoutes = [
@@ -42,6 +44,7 @@ export function Routes() {
     {
       path: "/",
       errorElement: <DefaultError />,
+      element: <NotAuthRoute/>,
       children: [
         {
           path: "session/signIn",

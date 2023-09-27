@@ -36,19 +36,18 @@ export default function Root() {
   }, [shoppingCart, user]);
 
   useEffect(() => {
-    if(userInfo?.userInfo && !user.session.role) {
+    if (userInfo?.userInfo && !user.session.role) {
       dispatch(actionsUser.saveSignData(userInfo?.userInfo));
-    }
-    else if(!user.session.role) {
+    } else if (!user.session.role) {
       dispatch(actionsShoppingCart.loadStorageShoppingCart()); // * el problema es un loop infinito al estar escuchando al estado de redux shoppingCart y modificarlo
     }
   }, [user]);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className={`relative overflow-hidden`}>
       <Aurora />
       <Navbar role={user.session.role} />
-      <Outlet />
+      <Outlet/>
       <Footer />
     </div>
   );

@@ -8,6 +8,7 @@ import { APIHydro, addAuthWithToken } from "src/api";
 import { useDispatch } from "react-redux";
 import { actionsUser } from "src/redux/reducers";
 import { saveInStorage } from "src/utils/localStorage";
+import { borders, backgrounds } from "assets";
 
 const authBtns = [
   { socialNetwork: "GOOGLE", icon: "ri-google-fill ri-md xl:mr-10" },
@@ -78,67 +79,81 @@ export function SignUp() {
   };
 
   return (
-    <main className="mx-4 mb-14 grid  place-items-center gap-6 py-4 sm:mx-auto sm:w-[70%]">
+    <main className="">
+      <img className="ml-auto " src={backgrounds.signUpBgTop} alt="" />
       {loading && <Loader />}
-      <section className="w-full xl:w-[90%]">
-        <h1 className="mb-14 text-center lg:text-3xl xl:mt-14 xl:text-4xl">{t("session.signUp")}</h1>
-        <form
-          className="grid place-items-center gap-4 md:grid-cols-2 lg:mx-auto lg:w-[80%] xl:w-full xl:gap-6"
-          onSubmit={handleSubmit}
-        >
-          <Input type="email" name="email" onChange={handleOnChange} placeholder="*EMAIL" value={user.email} />
-          <Input type="number" name="dni" onChange={handleOnChange} placeholder="DNI" value={user.dni} />
-          <PasswordInput name="password" onChange={handleOnChange} placeholder="*CONTRASEÑA" value={user.password} />
-          <PasswordInput
-            name="confirmPassword"
-            onChange={handleOnChange}
-            placeholder="*CONFIRMA TU CONTRASEÑA"
-            value={user.confirmPassword}
-            className={`${passwordError && "border-red-500 focus:border-red-500/50"}`}
-          />
-          <Input
-            type="text"
-            name="name"
-            onChange={handleOnChange}
-            placeholder="*NOMBRE COMPLETO"
-            value={user.name}
-            className={"capitalize md:col-span-2"}
-          />
-          {passwordError && (
-            <p className="text-xs text-red-500 md:col-span-2 md:text-sm">{t("session.passwordDontMatch")}</p>
-          )}
-          <Button
-            text={t("session.signUpSubmitBtn")}
-            className={`!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%] ${
-              !canRegister && "pointer-events-none opacity-30"
-            }`}
-            pClassname={"xl:text-lg font-primary"}
-            onClick={handleSubmit}
-          />
-        </form>
-      </section>
-      <section className="flex w-full justify-around lg:w-[90%]">
-        {authBtns.map(({ socialNetwork, icon }, index) => (
-          <Auth3Button
-            key={index}
-            icon={icon}
-            socialNetwork={socialNetwork}
-            text={`INICIAR SESIÓN CON ${socialNetwork}`}
-            classname={"!bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
-            pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
-            setLoading={setLoading}
-          />
-        ))}
-      </section>
-      <section className="my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:w-[80%] lg:gap-2 ">
-        <p>
-          {t("session.haveAccount")}
-          <br className="lg:hidden" />
-          <strong onClick={() => navigate("/user/signIn")} className="hover:cursor-pointer hover:opacity-50 lg:ml-2">
-            {t("session.logIn")}
-          </strong>
-        </p>
-      </section>
+      <div className=" mx-5 grid place-items-center gap-6  sm:mx-auto sm:w-[70%] md:w-[85%]">
+        <section className="relative w-full  pt-1 xl:w-[90%] lg:w-[90%]">
+          <div className="absolute flex w-full justify-between p-0">
+            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px]" src={borders.profile} />
+            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px]" src={borders.signUpCircuit} />
+          </div>
+          <h1 className="mb-10 mt-10 text-center lg:text-3xl xl:mt-14 xl:text-4xl">
+            {t("session.signUp")} <h1 className="lg:text-3xl textGoldGradient">HYDROTEK</h1>
+          </h1>
+          <form
+            className="grid place-items-center gap-4 px-6 md:grid-cols-2 lg:mx-auto  xl:w-full xl:gap-6 xs:px-10"
+            onSubmit={handleSubmit}
+          >
+            <Input type="email" name="email" onChange={handleOnChange} placeholder="*EMAIL" value={user.email} />
+            <Input type="number" name="dni" onChange={handleOnChange} placeholder="DNI" value={user.dni} />
+            <PasswordInput name="password" onChange={handleOnChange} placeholder="*CONTRASEÑA" value={user.password} />
+            <PasswordInput
+              name="confirmPassword"
+              onChange={handleOnChange}
+              placeholder="*CONFIRMAR CONTRASEÑA"
+              value={user.confirmPassword}
+              className={`${passwordError && "border-red-500 focus:border-red-500/50"}`}
+            />
+            <Input
+              type="text"
+              name="name"
+              onChange={handleOnChange}
+              placeholder="*NOMBRE COMPLETO"
+              value={user.name}
+              className={"capitalize md:col-span-2"}
+            />
+            {passwordError && (
+              <p className="text-xs text-red-500 md:col-span-2 md:text-sm">{t("session.passwordDontMatch")}</p>
+            )}
+            <Button
+              text={t("session.signUpSubmitBtn")}
+              className={`!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%] ${
+                !canRegister && "pointer-events-none opacity-30"
+              }`}
+              pClassname={"xl:text-lg font-primary"}
+              onClick={handleSubmit}
+            />
+          </form>
+        </section>
+        <section className=" flex w-full justify-around  lg:w-[90%]">
+          {authBtns.map(({ socialNetwork, icon }, index) => (
+            <Auth3Button
+              key={index}
+              icon={icon}
+              socialNetwork={socialNetwork}
+              text={`INICIAR SESIÓN CON ${socialNetwork}`}
+              classname={" !bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
+              pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
+              setLoading={setLoading}
+            />
+          ))}
+        </section>
+        <section className="relative mx-4 my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:w-[90%] lg:gap-2">
+          <p className="lg:text-base !text-white">
+            {t("session.haveAccount")}
+            <br className="lg:hidden" />
+            <strong onClick={() => navigate("/user/signIn")} className="hover:cursor-pointer hover:opacity-50 lg:ml-2">
+              {t("session.logIn")}
+            </strong>
+          </p>
+          <div className=" absolute flex  w-full justify-between">
+            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180" src={borders.signUpCircuit} />
+            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180" src={borders.profile} />
+          </div>
+        </section>
+      </div>
+      <img className="mr-auto mt-16  lg:mt-8" src={backgrounds.signUpBgBot} alt="" />
     </main>
   );
 }

@@ -23,6 +23,11 @@ export const backgrounds = {
 
 export const borders = {
   profile: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/profileBorder.png",
+  signUpCircuit: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695829833/HYD/others/signUpCircuit.png",
+  signUpCircuitLeft: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695821435/HYD/others/signUpBorderLeft.png",
+  signUpCircuitRight: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695821741/HYD/others/signUpBorderRight.png",
+  signUpCircuitLeftTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825464/HYD/others/signUpCircuitLeftTop.png",
+  signUpCircuitRightTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825523/HYD/others/signUpCircuitRightTop.png"
 };
 
 export const products = {

@@ -9,11 +9,9 @@ import "atropos/css";
 import "./i18n";
 import "remixicon/fonts/remixicon.css";
 
-// uesSelector(redux)
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-
       <Provider store={store}>
         <Routes/>
       </Provider>
