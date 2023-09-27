@@ -16,7 +16,9 @@ export const backgrounds = {
   goldCircuit: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/goldCircuit.png",
   techDots: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325911/HYD/others/techDots.png",
   cartProductBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694705397/HYD/others/cartProudctBorder.png",
-  cartProductGradient: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694715142/HYD/others/cartProductGradient.png"
+  cartProductGradient: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694715142/HYD/others/cartProductGradient.png",
+  signUpBgBot: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695816960/HYD/others/signUp_bg_bot.png",
+  signUpBgTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695817211/HYD/others/signUpBgTop.png"
 };
 
 export const borders = {
