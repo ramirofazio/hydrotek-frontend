@@ -4,8 +4,7 @@ export const saveInStorage = (key, value) => {
 
 export const getOfStorage = (key) => {
   if (key?.length) {
-    let object = localStorage.getItem(key);
-    return object ? JSON.parse(object) : "null";
+    return JSON.parse(localStorage.getItem(key));
   }
 };
 
@@ -18,4 +17,10 @@ export const deleteOfStorage = (key) => {
     localStorage.removeItem(key);
     return `delete ${key} succesfully`;
   }
+};
+
+export const cleanStorage = () => {
+  const accessToken = getOfStorage("accessToken");
+  localStorage.clear();
+  saveInStorage("accessToken", accessToken);
 };

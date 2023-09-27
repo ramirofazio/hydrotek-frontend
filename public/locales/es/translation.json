@@ -14,7 +14,11 @@
     "search": "Buscar",
     "find-what-you-are-looking": "Encuentra lo que buscas",
     "reviews": "reseñas",
-    "saveChanges": "GUARDAR CAMBIOS"
+    "saveChanges": "GUARDAR CAMBIOS",
+    "qty": "CANTIDAD",
+    "unitPrice": "PRECIO UNITARIO",
+    "total": "TOTAL",
+    "products": "PRODUCTOS"
   },
   "session": {
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
@@ -29,7 +33,6 @@
     "passwordDontMatch": "¡Las contraseñas no coinciden!"
   },
   "navbar": {
-    "products": "Productos",
     "categories": "Categorías",
     "blog": "blog",
     "about-us": "Sobre nosotros"
@@ -76,6 +79,18 @@
     "my-account": "Mi cuenta",
     "my-data": "MIS DATOS",
     "my-buys": "MIS COMPRAS",
-    "my-saved-posts": "MIS PUBLICACIONES GUARDADAS"
+    "my-saved-posts": "MIS PUBLICACIONES GUARDADAS",
+    "order": "ORDEN",
+    "myBuys": "MIS COMPRAS REALIZADAS",
+    "consultHistory": "Consultá el historial de tus compras.",
+    "savedPosts": "PUBLICACIONES GUARDADAS",
+    "seeSavedPosts": "Ver las publicaciones que has guardado recientemente."
+  },
+  "order": {
+    "resume": "RESUMEN",
+    "comment": "Coméntanos sobre tu compra",
+    "review": "Calificación del producto",
+    "writeYourReview": "Escribe tu reseña...",
+    "sendComment": "ENVIAR COMENTARIOS"
   }
 }

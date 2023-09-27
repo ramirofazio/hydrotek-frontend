@@ -1,0 +1,1 @@
+export { RoundedGoldGradientBorder } from "./RoundedGoldGradientBorder";
