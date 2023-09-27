@@ -115,7 +115,8 @@ const user = createSlice({
     saveSignData: (state, action) => {
       const { session, profile } = action.payload;
       state.session = session;
-      state.profile = profile;
+      //tate.profile = profile;
+      //? Hasta que tengamos la data real traida del server, queda el initialState
     },
   },
 });
