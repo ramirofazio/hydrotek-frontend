@@ -11,8 +11,8 @@ import { saveInStorage } from "src/utils/localStorage";
 import { borders, backgrounds } from "assets";
 
 const authBtns = [
-  { socialNetwork: "GOOGLE", icon: "ri-google-fill ri-md xl:mr-10" },
-  { socialNetwork: "APPLE", icon: "ri-apple-fill ri-md xl:mr-10" },
+  { socialNetwork: "GOOGLE", icon: "ri-google-fill ri-lg xl:mr-10" },
+  { socialNetwork: "APPLE", icon: "ri-apple-fill ri-lg xl:mr-10" },
 ];
 
 export function SignUp() {
@@ -79,14 +79,14 @@ export function SignUp() {
   };
 
   return (
-    <main className="">
-      <img className="ml-auto " src={backgrounds.signUpBgTop} alt="" />
+    <main className="lg:bg-signUpXl  lg:bg-contain lg:bg-no-repeat lg:bg-right lg:pb-28 lg:pt-10">
+      <img className="ml-auto lg:hidden" src={backgrounds.signUpBgTop} alt="" />
       {loading && <Loader />}
-      <div className=" mx-5 grid place-items-center gap-6  sm:mx-auto sm:w-[70%] md:w-[85%]">
+      <div className="mx-5 grid place-items-center gap-6  sm:mx-auto sm:w-[70%] md:w-[85%]">
         <section className="relative w-full  pt-1 xl:w-[90%] lg:w-[90%]">
-          <div className="absolute flex w-full justify-between p-0">
-            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px]" src={borders.profile} />
-            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px]" src={borders.signUpCircuit} />
+          <div className="absolute z-0 flex w-full justify-between p-0">
+            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] animate-pulse" src={borders.profile} />
+            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] animate-pulse" src={borders.signUpCircuit} />
           </div>
           <h1 className="mb-10 mt-10 text-center lg:text-3xl xl:mt-14 xl:text-4xl">
             {t("session.signUp")} <h1 className="lg:text-3xl textGoldGradient">HYDROTEK</h1>
@@ -95,8 +95,8 @@ export function SignUp() {
             className="grid place-items-center gap-4 px-6 md:grid-cols-2 lg:mx-auto  xl:w-full xl:gap-6 xs:px-10"
             onSubmit={handleSubmit}
           >
-            <Input type="email" name="email" onChange={handleOnChange} placeholder="*EMAIL" value={user.email} />
-            <Input type="number" name="dni" onChange={handleOnChange} placeholder="DNI" value={user.dni} />
+            <Input type="email" className="!z-10" name="email" onChange={handleOnChange} placeholder="*EMAIL" value={user.email} />
+            <Input type="number" className="!z-10" name="dni" onChange={handleOnChange} placeholder="DNI" value={user.dni} />
             <PasswordInput name="password" onChange={handleOnChange} placeholder="*CONTRASEÑA" value={user.password} />
             <PasswordInput
               name="confirmPassword"
@@ -140,20 +140,20 @@ export function SignUp() {
           ))}
         </section>
         <section className="relative mx-4 my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:w-[90%] lg:gap-2">
-          <p className="lg:text-base !text-white">
+          <p className="z-10 lg:text-base !text-white">
             {t("session.haveAccount")}
             <br className="lg:hidden" />
             <strong onClick={() => navigate("/user/signIn")} className="hover:cursor-pointer hover:opacity-50 lg:ml-2">
               {t("session.logIn")}
             </strong>
           </p>
-          <div className=" absolute flex  w-full justify-between">
-            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180" src={borders.signUpCircuit} />
-            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180" src={borders.profile} />
+          <div className="-top-10 absolute flex  w-full justify-between">
+            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180 animate-pulse" src={borders.signUpCircuit} />
+            <img className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180 animate-pulse" src={borders.profile} />
           </div>
         </section>
       </div>
-      <img className="mr-auto mt-16  lg:mt-8" src={backgrounds.signUpBgBot} alt="" />
+      <img className="mr-auto mt-16  lg:mt-8 lg:invisible" src={backgrounds.signUpBgBot} alt="" />
     </main>
   );
 }

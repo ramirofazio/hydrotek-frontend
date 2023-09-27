@@ -72,7 +72,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
   return (
     <button
       onClick={() => googleLogin()}
-      className={`rounded-full border-2 border-gold bg-transparent px-6 py-2 uppercase tracking-widest text-white transition hover:bg-gold hover:text-[#1B142C] ${classname}`}
+      className={`rounded-full border-2 border-gold bg-transparent px-6 py-2 uppercase tracking-widest text-white transition hover:bg-gold hover:text-gold  ${classname}`}
       {...props}
     >
       <i className={icon}></i>
