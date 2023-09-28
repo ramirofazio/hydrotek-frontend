@@ -103,14 +103,14 @@ export function SignUp() {
             {t("session.signUp")} <h1 className="textGoldGradient lg:text-3xl">HYDROTEK</h1>
           </h1>
           <form
-            className="grid place-items-center gap-4 px-6 md:grid-cols-2 lg:mx-auto  xl:w-full xl:gap-6 xs:px-10"
+            className=" grid place-items-center gap-6 px-6 md:grid-cols-2 lg:mx-auto  lg:gap-8 xl:w-full xs:px-10"
             onSubmit={handleSubmit}
           >
             <div className="w-full">
               <Input
                 id="email"
                 type="email"
-                className={`!z-10  ${errs.email && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !z-10  ${errs.email && "border-red-500 focus:border-red-500/50"}`}
                 name="email"
                 onChange={handleOnChange}
                 placeholder="*EMAIL"
@@ -121,7 +121,7 @@ export function SignUp() {
             <div className=" w-full">
               <Input
                 type="number"
-                className={`!z-10 ${errs.dni && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !z-10 ${errs.dni && "border-red-500 focus:border-red-500/50"}`}
                 name="dni"
                 onChange={handleOnChange}
                 placeholder="DNI"
@@ -135,7 +135,7 @@ export function SignUp() {
                 onChange={handleOnChange}
                 placeholder="*CONTRASEÑA"
                 value={user.password}
-                className={`${errs.password && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative ${errs.password && "border-red-500 focus:border-red-500/50"}`}
               />
               {errs.password && <Error text={errs.password} />}
             </div>
@@ -145,29 +145,34 @@ export function SignUp() {
                 onChange={handleOnChange}
                 placeholder="*CONFIRMAR CONTRASEÑA"
                 value={user.confirmPassword}
-                className={`${errs.confirmPassword && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative ${errs.confirmPassword && "border-red-500 focus:border-red-500/50"}`}
               />
               {errs.confirmPassword && <Error text={errs.confirmPassword} />}
             </div>
-            <div className="w-full">
+            <div className="w-full md:col-span-2">
               <Input
                 type="text"
                 name="name"
                 onChange={handleOnChange}
                 placeholder="*NOMBRE COMPLETO"
                 value={user.name}
-                className={`capitalize md:col-span-2 ${errs.name && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative capitalize  ${errs.name && "border-red-500 focus:border-red-500/50"}`}
               />
               {errs.name && <Error text={errs.name} />}
             </div>
-            {apiErr && <Error text={apiErr.message} />}
+            {apiErr && <Error className="!static !pl-0 col-span-2 !text-lg"  text={apiErr.message} />}
             <Button
               text={t("session.signUpSubmitBtn")}
               className={`!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%]  `}
               pClassname={"xl:text-lg font-primary"}
               onClick={handleSubmit}
               disabled={
-                Object.values(errs).length || apiErr || !user.email || !user.password || !user.confirmPassword || !user.name
+                Object.values(errs).length ||
+                apiErr ||
+                !user.email ||
+                !user.password ||
+                !user.confirmPassword ||
+                !user.name
                   ? true
                   : false
               }
