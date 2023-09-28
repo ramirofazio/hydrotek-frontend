@@ -1,10 +1,10 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { APIHydro } from "src/api";
-import { actionsUser, actionsAuth } from "src/redux/reducers";
+import { actionsUser } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { saveInStorage } from "src/utils/localStorage";
 
 export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...props }) => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
     if (code?.length && !redirect) {
       setLoading(true);
       APIHydro.googleAuthCode(code).then((res) => {
-        dispatch(actionsAuth.setToken(res.data.accessToken));
+        saveInStorage("accessToken", res.data.accessToken);
         dispatch(actionsUser.saveSignData(res.data));
         setLoading(false);
         setRedirect(true);
@@ -32,7 +32,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
     /* eslint-disable */ 
     flow: "auth-code",
     ux_mode: "redirect",
-    redirect_uri: "http://localhost:5173/user/signIn",
+    redirect_uri: "http://localhost:5173/session/signIn",
     /* eslint-enable */
 
     // ? Para autotizacion flow=implicit & ux_mode=popup, usar onSuccess & onError

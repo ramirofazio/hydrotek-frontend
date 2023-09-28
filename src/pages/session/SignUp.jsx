@@ -56,7 +56,9 @@ export function SignUp() {
     e.preventDefault();
     try {
       setLoading(true);
-      APIHydro.signUp(user)
+      const cleanUser = { ...user };
+      if (!cleanUser.dni) delete cleanUser.dni;
+      APIHydro.signUp(cleanUser)
         .then((res) => {
           if (res.data) {
             const { accessToken } = res.data;
@@ -160,7 +162,7 @@ export function SignUp() {
               />
               {errs.name && <Error text={errs.name} />}
             </div>
-            {apiErr && <Error className="!static !pl-0 col-span-2 !text-lg"  text={apiErr.message} />}
+            {apiErr && <Error className="!static col-span-2 !pl-0 !text-lg" text={apiErr.message} />}
             <Button
               text={t("session.signUpSubmitBtn")}
               className={`!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%]  `}

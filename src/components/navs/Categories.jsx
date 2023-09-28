@@ -14,7 +14,7 @@ export function Categories() {
           <i className="ri-arrow-down-s-line ml-1 text-3xl text-gold lg:text-2xl" />
         </Listbox.Button>
         <Transition
-          as={Fragment}
+          as={Fragment ? Fragment : null}
           enter="duration-200 ease-out"
           enterFrom="opacity-0 scale-95"
           enterTo="opacity-100 scale-100"
