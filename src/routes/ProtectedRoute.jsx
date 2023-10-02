@@ -11,7 +11,7 @@ export function ProtectedRoute() {
   const { user } = useSelector((state) => state);
 
   useEffect(() => {
-    if (!userInfo.userInfo.accessToken) navigate("/session/signIn");
+    if (!userInfo.userInfo?.accessToken) navigate("/session/signIn");
   }, []);
 
   /* useEffect(() => {
