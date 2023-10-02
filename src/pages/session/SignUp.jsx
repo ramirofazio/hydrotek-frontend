@@ -34,7 +34,8 @@ export function SignUp() {
   });
 
   useEffect(() => {
-    console.log(apiErr);
+    console.log(import.meta.env.VITE_USER_ROLE);
+    console.log(typeof import.meta.env.VITE_USER_ROLE);
   }, [apiErr]);
 
   const handleOnChange = (e) => {
@@ -56,7 +57,7 @@ export function SignUp() {
     e.preventDefault();
     try {
       setLoading(true);
-      const cleanUser = { ...user };
+      const cleanUser = { ...user, roleId: parseInt(import.meta.env.VITE_USER_ROLE) };
       if (!cleanUser.dni) delete cleanUser.dni;
       APIHydro.signUp(cleanUser)
         .then((res) => {
@@ -69,7 +70,6 @@ export function SignUp() {
           }
         })
         .catch((e) => {
-          console.log(e);
           const error = e.response.data;
           setApiErr(error);
           setLoading(false);
