@@ -44,7 +44,6 @@ export function Routes() {
     {
       path: "/",
       errorElement: <DefaultError />,
-
       loader: notAuthLoader,
       element: <NotAuthRoute />,
       children: [

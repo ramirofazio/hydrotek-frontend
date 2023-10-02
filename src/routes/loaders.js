@@ -6,14 +6,13 @@ export async function autoLoginLoader() {
   if (token) {
     try {
       const userInfo = await APIHydro.loginByJWT({ accessToken: token });
-      //saveInStorage("accessToken", userInfo.data.accessToken);
+      saveInStorage("accessToken", userInfo.data.accessToken);
       return { userInfo: userInfo.data };
     } catch (e) {
       deleteOfStorage("accessToken");
       return { error: e, message: e.message };
     }
   }
-  console.log(token)
   return false;
 }
 

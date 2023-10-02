@@ -2,7 +2,7 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import { Footer, Aurora, Navbar } from "src/components";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getOfStorage, saveInStorage } from "src/utils/localStorage";
+import { saveInStorage } from "src/utils/localStorage";
 import { APIHydro } from "src/api";
 import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 
@@ -36,12 +36,7 @@ export default function Root() {
 
   useEffect(() => {
     if (userInfo?.userInfo && !user.session.role) {
-      const oldToken = getOfStorage("accessToken");
-      console.log(userInfo);
-      if(oldToken !== userInfo?.accessToken) {
-        saveInStorage(userInfo.accessToken);
-        dispatch(actionsUser.saveSignData(userInfo?.userInfo));
-      }
+      dispatch(actionsUser.saveSignData(userInfo?.userInfo));
       if (userInfo?.userInfo.shoppingCart && userInfo?.userInfo.shoppingCart.totalPrice) {
         console.log("entro: ", userInfo.shoppingCart);
         dispatch(actionsShoppingCart.saveSingInShoppingCart(userInfo.userInfo.shoppingCart));
@@ -49,7 +44,7 @@ export default function Root() {
     } else if (!user.session.role) {
       dispatch(actionsShoppingCart.loadStorageShoppingCart()); // * el problema es un loop infinito al estar escuchando al estado de redux shoppingCart y modificarlo
     }
-  }, []);
+  }, [user]);
 
   return (
     <div className={`relative overflow-hidden`}>
