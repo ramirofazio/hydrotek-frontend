@@ -24,10 +24,11 @@ export function SignUp() {
   const [canRegister, setCanRegister] = useState(false);
   const [user, setUser] = useState({
     email: "",
-    dni: "",
+    dni: null,
     name: "",
     password: "",
     confirmPassword: "",
+    roleId: "1",
   });
 
   useEffect(() => {
@@ -53,6 +54,8 @@ export function SignUp() {
       [name]: value,
     });
   };
+
+  console.log(user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
