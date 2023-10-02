@@ -3,7 +3,7 @@ import { Loader, Error } from "src/components";
 import { Button, Auth3Button } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
 import { backgrounds } from "src/assets";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { APIHydro, addAuthWithToken } from "src/api";
 import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
@@ -73,9 +73,6 @@ export function SignIn() {
   return (
     <main className="relative mx-4  mb-14 grid place-items-center gap-6 py-10 sm:mx-auto sm:w-[60%] md:my-[7rem] xl:w-[40%] xl:py-20 ">
       {loading && <Loader />}
-      <Link className="bg-white" to="/products">
-        volvee
-      </Link>
       <section className="xl:w-[90%]">
         <img src={backgrounds.borderTop} className="xl:absolute xl:inset-x-0 xl:top-0 xl:-z-10" />
         <h1 className=" -mt-20 mb-14 text-center lg:-mt-32 lg:text-3xl xl:mt-14 xl:text-4xl">{t("session.logIn")}</h1>
