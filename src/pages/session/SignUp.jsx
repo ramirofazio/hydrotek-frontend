@@ -27,7 +27,7 @@ export function SignUp() {
   const [apiErr, setApiErr] = useState(null);
   const [user, setUser] = useState({
     email: "",
-    dni: "",
+    dni: null,
     name: "",
     password: "",
     confirmPassword: "",
@@ -53,7 +53,7 @@ export function SignUp() {
     try {
       setLoading(true);
       const cleanUser = { ...user, roleId: parseInt(import.meta.env.VITE_USER_ROLE) };
-      if (!cleanUser.dni) delete cleanUser.dni;
+      if (!cleanUser.dni || cleanUser.dni.length < 7) delete cleanUser.dni;
       APIHydro.signUp(cleanUser)
         .then((res) => {
           if (res.data) {
