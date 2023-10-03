@@ -38,6 +38,9 @@ export const APIHydro = {
   resetShoppingCart: ({ userId }) => {
     return apiHydro.delete(`/${route.CART}/${userId}`);
   },
+  updateUser: ({ profile, session }) => {
+    return apiHydro.put(`/${route.USER}`, { profile, session });
+  },
 };
 
 export function addAuthWithToken(token) {

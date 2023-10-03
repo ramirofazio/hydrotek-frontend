@@ -11,6 +11,7 @@ const user = createSlice({
   },
   reducers: {
     saveSignData: (state, action) => {
+      console.log(action.payload);
       const { session, profile } = action.payload;
       state.session = session;
       state.profile = profile;
