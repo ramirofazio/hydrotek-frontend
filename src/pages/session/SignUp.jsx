@@ -84,15 +84,15 @@ export function SignUp() {
     <main className="lg:bg-signUpXl lg:bg-contain lg:bg-clip-content lg:bg-right lg:bg-no-repeat lg:pb-28 lg:pt-10">
       <img className="ml-auto lg:hidden" src={backgrounds.signUpBgTop} alt="" />
       {loading && <Loader />}
-      <div className="mx-5 grid place-items-center gap-6  sm:mx-auto sm:w-[70%] md:w-[85%]">
-        <section className="relative w-full  pt-1 lg:w-[90%] xl:w-[90%]">
+      <div className="sm:w-[70%] md:w-[85%] mx-5 grid  place-items-center gap-6 sm:mx-auto">
+        <section className="lg:w-[90%] xl:w-[90%]  relative w-full pt-1">
           <div className="absolute z-0 flex w-full justify-between p-0">
             <img
-              className="w-[50%] max-w-[150px] animate-pulse md:max-w-[200px] xl:max-w-[300px]"
+              className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] animate-pulse"
               src={borders.profile}
             />
             <img
-              className="w-[50%] max-w-[150px] animate-pulse md:max-w-[200px] xl:max-w-[300px]"
+              className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] animate-pulse"
               src={borders.signUpCircuit}
             />
           </div>
@@ -160,7 +160,7 @@ export function SignUp() {
             {apiErr && <Error className="!static col-span-2 !pl-0 !text-lg" text={apiErr.message} />}
             <Button
               text={t("session.signUpSubmitBtn")}
-              className={`!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%]  `}
+              className={`lg:w-[40%] !bg-gold hover:!bg-base md:col-span-2  `}
               pClassname={"xl:text-lg font-primary"}
               onClick={handleSubmit}
               disabled={
@@ -176,7 +176,7 @@ export function SignUp() {
             />
           </form>
         </section>
-        <section className=" flex w-full justify-around  lg:w-[90%]">
+        <section className=" lg:w-[90%] flex w-full  justify-around">
           {authBtns.map(({ socialNetwork, icon }, index) => (
             <Auth3Button
               key={index}
@@ -189,21 +189,24 @@ export function SignUp() {
             />
           ))}
         </section>
-        <section className="relative mx-4 my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:w-[90%] lg:gap-2">
+        <section className="lg:w-[90%] relative mx-4 my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:gap-2">
           <p className="z-10 !text-white lg:text-base">
             {t("session.haveAccount")}
             <br className="lg:hidden" />
-            <strong onClick={() => navigate("/user/signIn")} className="hover:cursor-pointer hover:opacity-50 lg:ml-2">
+            <strong
+              onClick={() => navigate("/session/signIn")}
+              className="hover:cursor-pointer hover:opacity-50 lg:ml-2"
+            >
               {t("session.logIn")}
             </strong>
           </p>
           <div className="absolute -top-10 flex  w-full justify-between">
             <img
-              className="w-[50%] max-w-[150px] rotate-180 animate-pulse md:max-w-[200px] xl:max-w-[300px]"
+              className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180 animate-pulse"
               src={borders.signUpCircuit}
             />
             <img
-              className="w-[50%] max-w-[150px] rotate-180 animate-pulse md:max-w-[200px] xl:max-w-[300px]"
+              className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180 animate-pulse"
               src={borders.profile}
             />
           </div>
