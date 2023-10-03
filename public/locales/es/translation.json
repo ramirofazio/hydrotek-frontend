@@ -22,12 +22,12 @@
   },
   "session": {
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
-    "haveAccount": "¿YA TIENES UNA CUENTA?",
+    "haveAccount": "¿YA TENES UNA CUENTA?",
     "registerNow": "REGISTRATE AHORA",
     "forgotPass": "¿OLVIDASTE TU CONTRASEÑA?",
     "recoverPassNow": "RECUPERA TU CONTRASEÑA",
     "logIn": "INICIAR SESIÓN",
-    "signUp": "REGISTRATE",
+    "signUp": "forma parte de",
     "closeSession": "CERRAR SESIÓN",
     "signUpSubmitBtn": "REGISTRARME",
     "passwordDontMatch": "¡Las contraseñas no coinciden!"
@@ -66,7 +66,12 @@
     "subtotal": "subtotal",
     "delivery": "envío",
     "total-price": "total a pagar",
-    "pay-order": "pagar compra"
+    "pay-order": "pagar compra",
+    "resume": "RESUMEN",
+    "comment": "Coméntanos sobre tu compra",
+    "review": "Calificación del producto",
+    "writeYourReview": "Escribe tu reseña...",
+    "sendComment": "ENVIAR COMENTARIOS"
   },
   "profile": {
     "my-avatar": "Mi avatar",
@@ -85,12 +90,5 @@
     "consultHistory": "Consultá el historial de tus compras.",
     "savedPosts": "PUBLICACIONES GUARDADAS",
     "seeSavedPosts": "Ver las publicaciones que has guardado recientemente."
-  },
-  "order": {
-    "resume": "RESUMEN",
-    "comment": "Coméntanos sobre tu compra",
-    "review": "Calificación del producto",
-    "writeYourReview": "Escribe tu reseña...",
-    "sendComment": "ENVIAR COMENTARIOS"
   }
 }

@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { NotAuthRoute } from "./NotAuthRoute";
 import Root from "pages/Root.jsx";
 import DefaultError from "pages/error/Default.jsx";
 import Landing from "pages/landing/Landing.jsx";
@@ -10,7 +11,7 @@ import { OrderDetail, Profile } from "src/pages/user";
 import { Blog, BlogPost } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
 import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
-import { autoLoginLoader } from "./loaders";
+import { autoLoginLoader, notAuthLoader } from "./loaders";
 
 export function Routes() {
   const publicRoutes = [
@@ -39,9 +40,12 @@ export function Routes() {
   ];
 
   const onlyNotAuthRoutes = [
+    // * Tener en cuenta que al cambiar cualquiera de estos paths tambien hay que cambiarlos en la google_console y en el backend
     {
       path: "/",
       errorElement: <DefaultError />,
+      loader: notAuthLoader,
+      element: <NotAuthRoute />,
       children: [
         {
           path: "session/signIn",

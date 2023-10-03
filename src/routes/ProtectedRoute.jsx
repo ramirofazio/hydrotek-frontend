@@ -1,25 +1,25 @@
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import { Navbar } from "src/components";
 import { useSelector, useDispatch } from "react-redux";
-import DefaultError from "src/pages/error/Default";
-import { useEffect } from "react";
 import { actionsUser } from "src/redux/reducers";
+import { useEffect } from "react";
 
 export function ProtectedRoute() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userInfo = useLoaderData();
-  const { session } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state);
 
   useEffect(() => {
-    if (userInfo?.userInfo && !session.role) {
-      dispatch(actionsUser.saveSignData(userInfo.userInfo));
-    }
-  }, [session]);
+    if (!userInfo.userInfo?.accessToken) navigate("/session/signIn");
+  }, []);
 
-  if (!session.role && userInfo?.userInfo) {
+  if (!user.session.role && userInfo?.userInfo) {
+    dispatch(actionsUser.saveSignData(userInfo.userInfo));
     return (
       <>
-        <DefaultError />
+        <Navbar />
+        <Outlet />
       </>
     );
   }
