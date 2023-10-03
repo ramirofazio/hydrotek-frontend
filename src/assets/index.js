@@ -16,11 +16,20 @@ export const backgrounds = {
   goldCircuit: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/goldCircuit.png",
   techDots: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325911/HYD/others/techDots.png",
   cartProductBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694705397/HYD/others/cartProudctBorder.png",
-  cartProductGradient: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694715142/HYD/others/cartProductGradient.png"
+  cartProductGradient: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1694715142/HYD/others/cartProductGradient.png",
+  signUpBgBot: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695816960/HYD/others/signUp_bg_bot.png",
+  signUpBgTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695817211/HYD/others/signUpBgTop.png",
+  signUpBgXl: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695836138/HYD/others/signUpBgXl.png",
+  signUpBgXl2: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695836269/HYD/others/signUpBgXl2.png"
 };
 
 export const borders = {
   profile: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/profileBorder.png",
+  signUpCircuit: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695829833/HYD/others/signUpCircuit.png",
+  signUpCircuitLeft: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695821435/HYD/others/signUpBorderLeft.png",
+  signUpCircuitRight: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695821741/HYD/others/signUpBorderRight.png",
+  signUpCircuitLeftTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825464/HYD/others/signUpCircuitLeftTop.png",
+  signUpCircuitRightTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825523/HYD/others/signUpCircuitRightTop.png"
 };
 
 export const products = {

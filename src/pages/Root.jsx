@@ -12,12 +12,11 @@ export default function Root() {
   const userInfo = useLoaderData();
 
   function handleCart() {
-    // * aca se puede utilizarel event
+    // * aca se puede utilizar el event
     if (user.session.role) {
       const arrProducts = Object.values(shoppingCart.products);
-      console.log(arrProducts);
       if (arrProducts.length) {
-        APIHydro.updateShoppingCart({
+        return APIHydro.updateShoppingCart({
           userId: user.session.id,
           shoppingCart: { totalPrice: shoppingCart.totalPrice, products: arrProducts },
         });
@@ -33,19 +32,21 @@ export default function Root() {
     return () => {
       window.removeEventListener("beforeunload", handleCart);
     };
-  }, [shoppingCart, user]);
+  }, [shoppingCart]);
 
   useEffect(() => {
-    if(userInfo?.userInfo && !user.session.role) {
+    if (userInfo?.userInfo && !user.session.role) {
       dispatch(actionsUser.saveSignData(userInfo?.userInfo));
-    }
-    else if(!user.session.role) {
+      if (userInfo?.userInfo.shoppingCart && userInfo?.userInfo.shoppingCart.totalPrice) {
+        dispatch(actionsShoppingCart.saveSingInShoppingCart(userInfo.userInfo.shoppingCart));
+      }
+    } else if (!user.session.role) {
       dispatch(actionsShoppingCart.loadStorageShoppingCart()); // * el problema es un loop infinito al estar escuchando al estado de redux shoppingCart y modificarlo
     }
   }, [user]);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className={`relative overflow-hidden`}>
       <Aurora />
       <Navbar role={user.session.role} />
       <Outlet />

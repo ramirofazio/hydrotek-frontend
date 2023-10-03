@@ -13,5 +13,10 @@ export async function autoLoginLoader() {
       return { error: e, message: e.message };
     }
   }
-  return "no token provide";
+  return false;
+}
+
+export function notAuthLoader() {
+  const token = getOfStorage("accessToken");
+  return { accessToken: token };
 }

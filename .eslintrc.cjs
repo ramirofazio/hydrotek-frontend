@@ -24,7 +24,7 @@ module.exports = {
     "no-unused-vars": "error",
     "no-console": "off",
     "comma-spacing": "warn",
-    curly: "warn",
+    curly: "off",
     "operator-linebreak": "off",
     camelcase: "warn",
     "comma-dangle": "off",

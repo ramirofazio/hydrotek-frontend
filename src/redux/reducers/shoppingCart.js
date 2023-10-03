@@ -36,7 +36,7 @@ const shoppingCart = createSlice({
       } else {
         state.products[productId] = { quantity: 1, price: price, productId: 1 }; //TODO cambiar a id real del producto
       }
-      state.totalPrice = parseInt(state.totalPrice) + price;
+      state.totalPrice = parseInt(state.totalPrice) + parseInt(price);
     },
     removeProduct: (state, action) => {
       const { productId, price } = action.payload;
