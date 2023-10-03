@@ -15,12 +15,7 @@ export function ProtectedRoute() {
   }, []);
 
   if (!user.session.role && userInfo?.userInfo) {
-    console.log("en el if");
-    console.log(userInfo);
     dispatch(actionsUser.saveSignData(userInfo.userInfo));
-    /* if(userInfo.userInfo.shoppingCart?.totalPrice) {
-      dispatch(actionsShoppingCart.saveSingInShoppingCart(userInfo.userInfo.shoppingCart))
-    } */
     return (
       <>
         <Navbar />

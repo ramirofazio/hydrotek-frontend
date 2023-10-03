@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button, Auth3Button } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
 import { useNavigate } from "react-router-dom";
@@ -32,11 +32,6 @@ export function SignUp() {
     password: "",
     confirmPassword: "",
   });
-
-  useEffect(() => {
-    console.log(import.meta.env.VITE_USER_ROLE);
-    console.log(typeof import.meta.env.VITE_USER_ROLE);
-  }, [apiErr]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;

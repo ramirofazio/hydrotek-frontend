@@ -53,7 +53,6 @@ export function SignIn() {
       APIHydro.signIn(user).then((res) => {
         const { data } = res;
         const { accessToken } = data;
-        console.log(accessToken);
         saveInStorage("accessToken", accessToken);
         addAuthWithToken(accessToken);
         dispatch(actionsUser.saveSignData(data));

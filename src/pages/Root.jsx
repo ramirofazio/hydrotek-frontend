@@ -16,7 +16,7 @@ export default function Root() {
     if (user.session.role) {
       const arrProducts = Object.values(shoppingCart.products);
       if (arrProducts.length) {
-        return APIHydro.updateShoppingCart({ // ? multiples pedidos
+        return APIHydro.updateShoppingCart({
           userId: user.session.id,
           shoppingCart: { totalPrice: shoppingCart.totalPrice, products: arrProducts },
         });
@@ -38,7 +38,6 @@ export default function Root() {
     if (userInfo?.userInfo && !user.session.role) {
       dispatch(actionsUser.saveSignData(userInfo?.userInfo));
       if (userInfo?.userInfo.shoppingCart && userInfo?.userInfo.shoppingCart.totalPrice) {
-        console.log("entro: ", userInfo.shoppingCart);
         dispatch(actionsShoppingCart.saveSingInShoppingCart(userInfo.userInfo.shoppingCart));
       }
     } else if (!user.session.role) {
