@@ -3,7 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const user = createSlice({
   name: "user",
   initialState: {
-    session: {},
+    session: {
+      id: "",
+      email: "",
+    },
     profile: {},
   },
   reducers: {
