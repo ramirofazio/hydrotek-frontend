@@ -12,11 +12,11 @@ export default function Root() {
   const userInfo = useLoaderData();
 
   function handleCart() {
-    // * aca se puede utilizarel event
+    // * aca se puede utilizar el event
     if (user.session.role) {
       const arrProducts = Object.values(shoppingCart.products);
       if (arrProducts.length) {
-        APIHydro.updateShoppingCart({
+        return APIHydro.updateShoppingCart({ // ? multiples pedidos
           userId: user.session.id,
           shoppingCart: { totalPrice: shoppingCart.totalPrice, products: arrProducts },
         });
@@ -32,7 +32,7 @@ export default function Root() {
     return () => {
       window.removeEventListener("beforeunload", handleCart);
     };
-  }, [shoppingCart, user]);
+  }, [shoppingCart]);
 
   useEffect(() => {
     if (userInfo?.userInfo && !user.session.role) {

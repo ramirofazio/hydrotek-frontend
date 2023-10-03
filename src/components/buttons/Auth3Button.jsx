@@ -1,6 +1,6 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { APIHydro } from "src/api";
-import { actionsUser } from "src/redux/reducers";
+import { actionsUser, actionsShoppingCart } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
       APIHydro.googleAuthCode(code).then((res) => {
         saveInStorage("accessToken", res.data.accessToken);
         dispatch(actionsUser.saveSignData(res.data));
+        dispatch(actionsShoppingCart.saveSingInShoppingCart(res.data.shoppingCart));
         setLoading(false);
         setRedirect(true);
       });
