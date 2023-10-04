@@ -5,6 +5,7 @@ const route = {
   AUTH: "auth",
   USER: "user",
   CART: "shoppingCart",
+  BLOG: "blog"
 };
 
 // * Para una clara visualizacion de las rutas abrir
@@ -41,6 +42,9 @@ export const APIHydro = {
   updateUser: ({ profile, session }) => {
     return apiHydro.put(`/${route.USER}`, { profile, session });
   },
+  getPostDetail: (id) => {
+    return apiHydro.get(`/${route.BLOG}`, { id });
+  }
 };
 
 export function addAuthWithToken(token) {

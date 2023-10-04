@@ -29,7 +29,8 @@ export const borders = {
   signUpCircuitLeft: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695821435/HYD/others/signUpBorderLeft.png",
   signUpCircuitRight: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695821741/HYD/others/signUpBorderRight.png",
   signUpCircuitLeftTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825464/HYD/others/signUpCircuitLeftTop.png",
-  signUpCircuitRightTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825523/HYD/others/signUpCircuitRightTop.png"
+  signUpCircuitRightTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825523/HYD/others/signUpCircuitRightTop.png",
+  blogPostBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1696370836/HYD/others/blogPostBorder.png"
 };
 
 export const products = {

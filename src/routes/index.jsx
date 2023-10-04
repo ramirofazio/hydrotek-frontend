@@ -8,10 +8,11 @@ import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
 import { SignIn, SignUp } from "src/pages/session";
 import { OrderDetail, Profile } from "src/pages/user";
-import { Blog, BlogPost } from "src/pages/blog";
+import { Blog, BlogPost, PostDetail } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
 import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
 import { autoLoginLoader, notAuthLoader } from "./loaders";
+import { APIHydro } from "src/api";
 
 export function Routes() {
   const publicRoutes = [
@@ -33,6 +34,23 @@ export function Routes() {
         {
           path: "shoppingCart",
           element: <ShoppingCart />,
+        },
+        {
+          path: "/blog",
+          children: [
+            {
+              path: "/blog",
+              element: <Blog />,
+              index: true,
+            },
+            {
+              path: "post/:postId",
+              element: <PostDetail />,
+              loader: async ({ params }) => {
+                return APIHydro.getPostDetail(params.postId);
+              },
+            },
+          ],
         },
         { path: "/AboutUs", element: <AboutUs /> },
       ],
@@ -79,21 +97,7 @@ export function Routes() {
               element: <OrderDetail />,
             },
           ],
-        },
-        {
-          path: "/blog",
-          children: [
-            {
-              path: "/blog",
-              element: <Blog />,
-              index: true,
-            },
-            {
-              path: "post/:postId",
-              element: <BlogPost />,
-            },
-          ],
-        },
+        }
       ],
     },
   ];
