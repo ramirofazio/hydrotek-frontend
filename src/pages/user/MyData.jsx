@@ -13,15 +13,16 @@ const fields = [
 
 export function MyData() {
   const { t } = useTranslation();
-  const { avatar, name, dni, email, pass } = useSelector((s) => s.user.profile);
+  const user = useSelector((s) => s.user);
+  const { name, dni, email, pass } = user.session;
 
   const [isUserChanged, setIsUserChanged] = useState(false);
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState("");
-  const [user, setUser] = useState({
-    avatar: avatar,
+  const [userData, setUserData] = useState({
+    avatar: user.profile.avatar,
     name: name,
-    dni: dni,
+    dni: dni ? dni : "", //? Convierto el null a "" para evitar warn en consola
     email: email,
     pass: pass,
   });
@@ -41,8 +42,8 @@ export function MyData() {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setUser({
-      ...user,
+    setUserData({
+      ...userData,
       [name]: value,
     });
     setIsUserChanged(true);
@@ -50,7 +51,7 @@ export function MyData() {
 
   const handleSave = () => {
     console.log("handleSave");
-    console.log("user ---->", user);
+    console.log("user ---->", userData);
   };
 
   return (
@@ -59,7 +60,7 @@ export function MyData() {
         <h1 className=" lg:my-2 lg:w-full lg:!border-b-2 lg:border-gold lg:text-start">{t("profile.my-avatar")}</h1>
         <p>{t("profile.edit-avatar")}</p>
         <div className="my-6 flex w-full items-center justify-center gap-3 lg:justify-start lg:gap-6">
-          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={user.avatar} />
+          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={userData.avatar} />
           <p className="hidden tracking-normal lg:inline">{t("profile.avatar-resolution")}</p>
           <IconButtonWithBgGold icon={"ri-pencil-line"} onClick={() => handleEdit("avatar")} />
         </div>
@@ -76,7 +77,7 @@ export function MyData() {
                 <input
                   name={name}
                   type={show ? "text" : type || "text"}
-                  value={user[name]}
+                  value={userData[name]}
                   placeholder={label}
                   onChange={handleOnChange}
                   className={`${

@@ -8,13 +8,21 @@ const user = createSlice({
       email: "",
     },
     profile: {},
+    savedPosts: [],
+    orders: [],
   },
   reducers: {
     saveSignData: (state, action) => {
       console.log(action.payload);
-      const { session, profile } = action.payload;
-      state.session = session;
-      state.profile = profile;
+      const { session, profile, savedPosts, orders } = action.payload;
+
+      return {
+        ...state,
+        session: session,
+        profile: profile,
+        savedPosts: savedPosts,
+        //orders: orders,
+      };
     },
   },
 });

@@ -1,9 +1,10 @@
 import { t } from "i18next";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { Button } from "src/components/buttons";
 
 export function MySavedPosts() {
-  const { savedPosts } = useSelector((s) => s.user.profile);
+  const savedPosts = useSelector((s) => s.user.savedPosts);
 
   return (
     <main className="mx-8 grid place-items-center gap-2 overflow-hidden text-center sm:w-full sm:px-6 lg:mb-10  lg:w-full lg:place-items-start lg:pr-6">
@@ -28,6 +29,15 @@ export function MySavedPosts() {
             </NavLink>
           </article>
         ))}
+        {!savedPosts.length && (
+          <div className="col-span-2 flex w-full flex-col gap-4">
+            <i className="ri-shopping-bag-fill icons text-4xl text-white" />
+            <h2>Ninguna publicación guardada</h2>
+            <Link to="/blog">
+              <Button text={"Ver nuestro blog"} />
+            </Link>
+          </div>
+        )}
       </section>
     </main>
   );
