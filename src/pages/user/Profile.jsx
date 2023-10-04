@@ -15,7 +15,7 @@ const componentMapping = {
 
 export function Profile() {
   const { t } = useTranslation();
-  const { userName, avatar } = useSelector((state) => state.user.profile);
+  const profile = useSelector((state) => state.user.profile);
 
   const [selectedBtn, setSelectedBtn] = useState(() => {
     const local = getOfStorage("selectedBtn");
@@ -35,7 +35,7 @@ export function Profile() {
             src={borders.profile}
             className="absolute left-5 top-0  w-48 animate-pulse sm:!left-40  lg:!left-10 xl:!left-20 xs:left-12"
           />
-          <Avatar name={userName} avatarWidth={"w-24 lg:w-40"} className={"my-16 xl:my-20"} avatar={avatar} />
+          <Avatar name={profile?.userName} avatarWidth={"w-24 lg:w-40"} className={"my-16 xl:my-20"} avatar={profile?.avatar} />
           <img
             src={borders.profile}
             className="absolute bottom-0 right-5 w-48 rotate-180 animate-pulse sm:!right-40 lg:!right-10 xl:!right-20 xs:right-12"

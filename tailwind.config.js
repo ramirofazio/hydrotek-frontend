@@ -25,6 +25,7 @@ export default {
         productBorderGradient: `url(${backgrounds.productBorderGradient})`,
         productBorderNoGradient: `url(${backgrounds.productBorder})`,
         cartProductBorder: `url(${backgrounds.cartProductBorder})`,
+        signUpXl:`url(${backgrounds.signUpBgXl})`,
         "gold-gradient": "linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%)",
       },
       screens: {

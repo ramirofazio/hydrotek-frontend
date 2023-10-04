@@ -1,5 +1,5 @@
 {
-  "name": "vite-template",
+  "name": "hydrotek-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -38,6 +38,6 @@
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwindcss": "^3.3.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.9"
   }
 }

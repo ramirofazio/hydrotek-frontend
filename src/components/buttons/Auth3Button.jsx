@@ -1,10 +1,10 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { APIHydro } from "src/api";
-import { actionsUser, actionsAuth } from "src/redux/reducers";
+import { actionsUser, actionsShoppingCart } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { saveInStorage } from "src/utils/localStorage";
 
 export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...props }) => {
   const dispatch = useDispatch();
@@ -20,8 +20,9 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
     if (code?.length && !redirect) {
       setLoading(true);
       APIHydro.googleAuthCode(code).then((res) => {
-        dispatch(actionsAuth.setToken(res.data.accessToken));
+        saveInStorage("accessToken", res.data.accessToken);
         dispatch(actionsUser.saveSignData(res.data));
+        dispatch(actionsShoppingCart.saveSingInShoppingCart(res.data.shoppingCart));
         setLoading(false);
         setRedirect(true);
       });
@@ -32,7 +33,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
     /* eslint-disable */ 
     flow: "auth-code",
     ux_mode: "redirect",
-    redirect_uri: "http://localhost:5173/user/signIn",
+    redirect_uri: "http://localhost:5173/session/signIn",
     /* eslint-enable */
 
     // ? Para autotizacion flow=implicit & ux_mode=popup, usar onSuccess & onError
@@ -72,7 +73,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
   return (
     <button
       onClick={() => googleLogin()}
-      className={`rounded-full border-2 border-gold bg-transparent px-6 py-2 uppercase tracking-widest text-white transition hover:bg-gold hover:text-[#1B142C] ${classname}`}
+      className={`rounded-full border-2 border-gold bg-transparent px-6 py-2 uppercase tracking-widest text-white transition hover:bg-gold hover:text-gold  ${classname}`}
       {...props}
     >
       <i className={icon}></i>

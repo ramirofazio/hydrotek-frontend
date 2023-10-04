@@ -3,9 +3,9 @@ import { Pagination, SearchBar } from "components";
 
 export default function Products() {
   const mockProducts = [
-    { name: "SAFE ROOTS", price: "$20.000" },
-    { name: "PLUG", price: "$5.000" },
-    { name: "SISTEMA X", price: "$40.000" },
+    { name: "SAFE ROOTS", price: 20.000 },
+    { name: "PLUG", price: 5.000 },
+    { name: "SISTEMA X", price: 40.000 },
     { name: "SAFE ROOTS", price: 20.000 },
   ];
 

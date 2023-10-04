@@ -10,11 +10,11 @@ export function Categories() {
     <Listbox>
       <div className="relative lg:static">
         <Listbox.Button className="flex place-items-center">
-          <h2 className="uppercase text-white">{t("navbar.categories")}</h2>
+          <h2 className="uppercase text-lg text-white">{t("navbar.categories")}</h2>
           <i className="ri-arrow-down-s-line ml-1 text-3xl text-gold lg:text-2xl" />
         </Listbox.Button>
         <Transition
-          as={Fragment}
+          as={Fragment ? Fragment : null}
           enter="duration-200 ease-out"
           enterFrom="opacity-0 scale-95"
           enterTo="opacity-100 scale-100"

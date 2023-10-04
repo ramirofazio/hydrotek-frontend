@@ -11,7 +11,7 @@ export const getOfStorage = (key) => {
 export const deleteOfStorage = (key) => {
   if (key?.length) {
     let object = localStorage.getItem(key);
-    if (!object.length) {
+    if (!object?.length) {
       return "no such item in loaclStorage";
     }
     localStorage.removeItem(key);
@@ -21,6 +21,8 @@ export const deleteOfStorage = (key) => {
 
 export const cleanStorage = () => {
   const accessToken = getOfStorage("accessToken");
+  const shoppingCart = getOfStorage("shoppingCart");
   localStorage.clear();
   saveInStorage("accessToken", accessToken);
+  saveInStorage("shoppingCart", shoppingCart);
 };
