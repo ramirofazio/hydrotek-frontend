@@ -44,11 +44,11 @@ export function Routes() {
               index: true,
             },
             {
-              path: "post/:postId",
+              path: "/blog/:postId",
               element: <PostDetail />,
-              loader: async ({ params }) => {
+              /* loader: async ({ params }) => {
                 return APIHydro.getPostDetail(params.postId);
-              },
+              }, */
             },
           ],
         },

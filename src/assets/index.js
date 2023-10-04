@@ -30,7 +30,7 @@ export const borders = {
   signUpCircuitRight: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695821741/HYD/others/signUpBorderRight.png",
   signUpCircuitLeftTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825464/HYD/others/signUpCircuitLeftTop.png",
   signUpCircuitRightTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825523/HYD/others/signUpCircuitRightTop.png",
-  blogPostBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1696370836/HYD/others/blogPostBorder.png"
+  blogPostBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1696451880/HYD/others/blogPostBorder.png"
 };
 
 export const products = {

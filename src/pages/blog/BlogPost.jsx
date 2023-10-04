@@ -1,14 +1,15 @@
-import { BlogPostCard } from "components/cards/";
 import { useTranslation } from "react-i18next";
 import { defaultPost, borders } from "src/assets";
+import { Link } from "react-router-dom";
 
-export function BlogPost({ date, title, text, img = defaultPost }) {
+export function BlogPost({ id = 1, date, title, text, img = defaultPost }) {
   const { t } = useTranslation();
   return (
-    <main className="border-2 border-orange-500 w-[90%]">
-      <div className="">
-        <img className="max-w-[300px]" src={borders.blogPostBorder} alt="" />
-      </div>
+    <main className="">
+      <picture className="relative flex max-w-[300px] items-center justify-center md:max-w-[350px]">
+        <img className="absolute -z-10 max-h-full max-w-full" src={defaultPost} alt="post_image" />
+        <img className="bottom-1 max-w-full" src={borders.blogPostBorder} alt="post_border" />
+      </picture>
       <div>
         <i className="ri-calendar-event-line textGoldGradient text-2xl"></i>
         <time className="textGoldGradient ml-2">{date || "05/04/01"}</time>
@@ -20,9 +21,11 @@ export function BlogPost({ date, title, text, img = defaultPost }) {
           atque autem. Quod assumenda sunt, vel voluptatibus error laudantium reiciendis perferendis mollitia a eum
           consequatur.
         </p>
-        <p className="mt-2 textGoldGradient w-fit font-primary text-sm uppercase underline decoration-gold transition hover:cursor-pointer hover:brightness-125 ">
-          {t("footer.see-more")}
-        </p>
+        <Link to={`/blog/${id}`}>
+          <p className="textGoldGradient mt-2 w-fit font-primary text-sm uppercase underline decoration-gold transition hover:cursor-pointer hover:brightness-125 ">
+            {t("footer.see-more")}
+          </p>
+        </Link>
       </span>
     </main>
   );

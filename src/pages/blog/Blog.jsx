@@ -6,14 +6,14 @@ export function Blog() {
   const { t } = useTranslation();
   const arr = [1, 2, 3, 4];
   return (
-    <main className="mx-auto min-h-screen w-[92%] ">
-      <h1 className="mx-auto mb-8 w-fit">{t("blog.our-blog")}</h1>
-      <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-3">
+    <main className="mx-auto mb-10 flex min-h-screen w-[92%] flex-col items-center justify-center">
+      <h1 className="mb-8">{t("blog.our-blog")}</h1>
+      <div className="grid  gap-12 px-5 md:grid-cols-2 xl:grid-cols-3">
         {arr.map((b, i) => (
           <BlogPost key={i} />
         ))}
       </div>
-      <div className="w-fit my-8 mx-auto">
+      <div className="my-8">
         <Pagination nButtons={arr.length} />
       </div>
     </main>
