@@ -4,8 +4,9 @@ import { Button, IconButtonWithBgGold } from "src/components/buttons";
 import { Avatar } from "src/components/user";
 import { useTranslation } from "react-i18next";
 import { APIHydro } from "src/api";
-import { Loader } from "src/components";
+import { Loader, Modal } from "src/components";
 import { actionsUser } from "src/redux/reducers";
+import { ChangePassword } from "./changePassword";
 
 export function MyData() {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ export function MyData() {
     { name: "pass", label: "CONTRASEÑA" },
   ]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isUserChanged, setIsUserChanged] = useState(false);
   const [edit, setEdit] = useState("");
@@ -50,9 +52,7 @@ export function MyData() {
     if (name === edit) {
       setEdit("");
     } else if (name === "pass") {
-      console.log("pass");
-      //! Aca habria que abrir un modal, preguntar la contraseña y que pongan la contraseña nueva.
-      //! hay que armar la estrucutra en el backend para que compare la actual, y si el match da true, vuelve a generar el hash.
+      setIsModalOpen(true);
     } else {
       setEdit(name);
     }
@@ -101,6 +101,9 @@ export function MyData() {
 
   return (
     <main className="mx-8 grid text-center sm:w-full sm:px-6  lg:h-screen xl:w-full xl:pr-6">
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ChangePassword close={() => setIsModalOpen(!isModalOpen)} />
+      </Modal>
       {loading && <Loader />}
       <section className="grid place-items-center border-b-2 border-gold py-10  lg:place-items-start lg:border-none lg:p-0">
         <h1 className=" lg:my-2 lg:w-full lg:!border-b-2 lg:border-gold lg:text-start">{t("profile.my-avatar")}</h1>
