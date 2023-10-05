@@ -41,6 +41,10 @@ export const APIHydro = {
   updateUser: ({ profile, session }) => {
     return apiHydro.put(`/${route.USER}`, { profile, session });
   },
+  updatePassword: (data) => {
+    console.log(data);
+    return apiHydro.put(`/${route.USER}/updatePassword`, { data });
+  },
 };
 
 export function addAuthWithToken(token) {

@@ -30,3 +30,16 @@ export function isValidSignUp({ email, dni, name, password, confirmPassword }) {
   }
   return errs;
 }
+
+export function isValidChangePassword(newPassword, newConfirmPassword) {
+  const errs = {};
+  if (newPassword.length < 8) errs.newPassword = "debe tener al menos 8 caracteres";
+  if (!regex.containUppercase.test(newPassword)) errs.newPassword = "debe tener al menos una letra en mayuscula";
+  if (!regex.containNumber.test(newPassword)) errs.newPassword = "debe tener al menos un numero";
+  if (regex.containSpace.test(newPassword)) errs.newPassword = "no puede tener espacios";
+
+  if (newPassword && newConfirmPassword) {
+    if (newPassword !== newConfirmPassword) errs.newConfirmPassword = "las contraseñas no coinciden";
+  }
+  return errs;
+}
