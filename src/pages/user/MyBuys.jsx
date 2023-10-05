@@ -7,8 +7,6 @@ import { Button } from "src/components/buttons";
 export function MyBuys() {
   const orders = useSelector((s) => s.user.orders);
 
-  console.log(orders);
-
   return (
     <main className="mx-8 grid place-items-center gap-2 overflow-hidden text-center sm:w-full sm:px-6 lg:mb-10  lg:w-full lg:place-items-start lg:pr-6">
       <h1 className="border-gold leading-5">{t("profile.myBuys")}</h1>
