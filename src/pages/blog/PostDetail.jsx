@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { defaultPost } from "src/assets";
 import { useTranslation } from "react-i18next";
 import { Comment } from "./Comment";
+import { GoBack } from "src/components/buttons";
 
 export function PostDetail() {
   const { t } = useTranslation();
@@ -12,9 +13,13 @@ export function PostDetail() {
 
   return (
     <main className="mx-auto my-4 flex min-h-screen w-[92%] flex-col items-center  gap-7 px-4">
+      <div className="self-end">
+        <GoBack />
+      </div>
       <section className="flex flex-col gap-4">
+        <img className="w-full max-w-[750px]" src={imgs || defaultPost} alt="" />{" "}
+        {/* // * Cambiar por slider/carrucel */}
         <h1 className="lg:text-3xl">{title || "aprende a cultivar hijo de deoss"}</h1>
-        <img className="w-full" src={imgs || defaultPost} alt="" /> {/* // * Cambiar por slider/carrucel */}
         <div className="">
           <i className="ri-calendar-event-line textGoldGradient text-2xl lg:text-3xl"></i>
           <time className="textGoldGradient ml-2 lg:text-2xl">{date || "05/04/01"}</time>
@@ -135,7 +140,7 @@ export function PostDetail() {
         <hr className="h-0.5 border-0 bg-gold" />
       </section>
       <section>
-        <h1 className="mx-auto mb-6 lg:mb-10 w-fit lg:text-2xl">{t("blog.comments")}</h1>
+        <h1 className="mx-auto mb-6 w-fit lg:mb-10 lg:text-2xl">{t("blog.comments")}</h1>
         <div className="mb-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
           {comments.map((c, i) => (
             <Comment key={i} />
@@ -147,11 +152,11 @@ export function PostDetail() {
         <h1 className="text-2xl">{t("blog.leave-your-comment")}</h1>
         <textarea
           name="comment"
-          className="min-h-[10rem] w-full max-w-[600px] rounded-sm  border-2 border-gold bg-black px-2 py-1 text-white focus:outline-none lg:max-w-[750px]"
+          className="resize-none min-h-[10rem] w-full max-w-[600px] rounded-sm  border-2 border-gold bg-black px-2 py-1 text-white focus:outline-none lg:max-w-[750px]"
         />
         <button
           onClick={() => ""}
-          className=" flex items-center gap-2 rounded-full bg-gold-gradient px-5 py-1  uppercase tracking-widest text-white"
+          className="flex items-center gap-2 rounded-full bg-gold px-5 py-1 uppercase tracking-widest  text-white transition hover:bg-opacity-75"
         >
           <i className="ri-chat-2-fill text-xl text-white"></i>
           <h1 className="text-base text-white">{t("blog.comment")}</h1>
