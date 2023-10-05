@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Avatar } from "src/components/user";
-import { defaultPost } from "src/assets";
+
 
 export function Comment({ date, userName, userAvatar, text }) {
   const { t } = useTranslation();
@@ -8,7 +8,7 @@ export function Comment({ date, userName, userAvatar, text }) {
     <article className="">
       <span className="flex flex-row items-center  gap-2">
         <picture className="w-11 lg:w-16">
-          <Avatar />
+          <Avatar userAvatar={userAvatar}/>
         </picture>
         <span className=" flex w-full flex-col sm:flex-row sm:items-center sm:gap-2">
           <h1 className="textGoldGradient w-fit text-sm lg:text-lg">
