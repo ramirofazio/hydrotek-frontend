@@ -13,11 +13,12 @@ const fields = [
   { name: "newConfirmPassword", label: "confirmacion" },
 ];
 
-export function ChangePassword({ close }) {
+export function ChangePassword({ close, userId }) {
   const [loading, setLoading] = useState(false);
   const [errs, setErrs] = useState({});
   const [apiErr, setApiErr] = useState(null);
   const [data, setData] = useState({
+    id: userId,
     actualPassword: "",
     newPassword: "",
     newConfirmPassword: "",

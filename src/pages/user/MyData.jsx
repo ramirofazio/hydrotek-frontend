@@ -102,7 +102,7 @@ export function MyData() {
   return (
     <main className="mx-8 grid text-center sm:w-full sm:px-6  lg:h-screen xl:w-full xl:pr-6">
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ChangePassword close={() => setIsModalOpen(!isModalOpen)} />
+        <ChangePassword close={() => setIsModalOpen(!isModalOpen)} userId={userId} />
       </Modal>
       {loading && <Loader />}
       <section className="grid place-items-center border-b-2 border-gold py-10  lg:place-items-start lg:border-none lg:p-0">
