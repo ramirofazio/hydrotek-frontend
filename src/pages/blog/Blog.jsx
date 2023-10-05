@@ -1,6 +1,6 @@
-import { BlogPost } from "./BlogPost";
-import { useTranslation } from "react-i18next";
+import { BlogPostCard } from "components/cards";
 import { Pagination } from "src/components";
+import { useTranslation } from "react-i18next";
 
 export function Blog() {
   const { t } = useTranslation();
@@ -10,7 +10,7 @@ export function Blog() {
       <h1 className="mb-8">{t("blog.our-blog")}</h1>
       <div className="grid  gap-12 px-5 md:grid-cols-2 xl:grid-cols-3">
         {arr.map((b, i) => (
-          <BlogPost key={i} />
+          <BlogPostCard key={i} />
         ))}
       </div>
       <div className="my-8">

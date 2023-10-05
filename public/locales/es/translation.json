@@ -53,7 +53,11 @@
   },
   "blog": {
     "visit-blog": "visitar el blog",
-    "our-blog": "nuestro blog"
+    "our-blog": "nuestro blog",
+    "comments": "comentarios",
+    "comment": "comentar",
+    "commented": "comentó",
+    "leave-your-comment": "Danos tu opinión"
   },
 
   "shopping-cart": {
