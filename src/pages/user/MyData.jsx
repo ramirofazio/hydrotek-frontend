@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { APIHydro } from "src/api";
 import { Loader, Modal } from "src/components";
 import { actionsUser } from "src/redux/reducers";
-import { ChangePassword } from "./changePassword";
+import { ChangePassword } from "./changePassword.jsx";
 
 export function MyData() {
   const { t } = useTranslation();
