@@ -5,7 +5,7 @@ export function Modal({ isOpen, onClose, children }) {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={onClose}>
+        <Dialog as="div" className="relative z-50" onClose={onClose}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -29,6 +29,11 @@ export function Modal({ isOpen, onClose, children }) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-base/90 p-6 text-left align-middle shadow-xl transition-all">
+                  <i
+                    className="ri-close-fill icons absolute right-2 top-2 w-fit text-3xl text-white"
+                    onClick={onClose}
+                  />
+
                   {children}
                 </Dialog.Panel>
               </Transition.Child>

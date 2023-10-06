@@ -31,7 +31,7 @@ export function isValidSignUp({ email, dni, name, password, confirmPassword }) {
   return errs;
 }
 
-export function isValidChangePassword(newPassword, newConfirmPassword) {
+export function isValidChangePassword(actualPassword, newPassword, newConfirmPassword) {
   const errs = {};
   if (newPassword.length < 8) errs.newPassword = "debe tener al menos 8 caracteres";
   if (!regex.containUppercase.test(newPassword)) errs.newPassword = "debe tener al menos una letra en mayuscula";

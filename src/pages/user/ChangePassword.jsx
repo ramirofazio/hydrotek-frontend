@@ -69,8 +69,6 @@ export function ChangePassword({ close, userId }) {
   return (
     <main className="my-4 grid grid-cols-1 place-content-center gap-6 text-center">
       {loading && <Loader />}
-      <i className="ri-close-fill icons absolute right-2 top-2 w-fit text-3xl text-white" onClick={close} />
-
       <img src={logos.hydBlack} className="mx-auto w-20" />
       <Dialog.Title className="textGoldGradient">Cambiar Contraseña</Dialog.Title>
       <form onSubmit={handleSubmit} className="grid gap-6">

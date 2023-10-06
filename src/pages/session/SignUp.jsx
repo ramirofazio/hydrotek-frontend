@@ -111,7 +111,7 @@ export function SignUp() {
                 placeholder="*EMAIL"
                 value={user.email}
               />
-              {errs.email && <Error text={errs.email} />}
+              {errs.email && <Error text={errs.email} className={"absolute"} />}
             </div>
             <div className=" w-full">
               <Input
@@ -122,7 +122,7 @@ export function SignUp() {
                 placeholder="DNI"
                 value={user.dni}
               />
-              {errs.dni && <Error text={errs.dni} />}
+              {errs.dni && <Error text={errs.dni} className={"absolute"} />}
             </div>
             <div className="w-full">
               <PasswordInput
@@ -132,7 +132,7 @@ export function SignUp() {
                 value={user.password}
                 className={`relative !bg-[#141414] ${errs.password && "border-red-500 focus:border-red-500/50"}`}
               />
-              {errs.password && <Error text={errs.password} />}
+              {errs.password && <Error text={errs.password} className={"absolute"} />}
             </div>
             <div className="w-full">
               <PasswordInput
@@ -142,7 +142,7 @@ export function SignUp() {
                 value={user.confirmPassword}
                 className={`relative !bg-[#141414] ${errs.confirmPassword && "border-red-500 focus:border-red-500/50"}`}
               />
-              {errs.confirmPassword && <Error text={errs.confirmPassword} />}
+              {errs.confirmPassword && <Error text={errs.confirmPassword} className={"absolute"} />}
             </div>
             <div className="w-full md:col-span-2">
               <Input
@@ -155,9 +155,9 @@ export function SignUp() {
                   errs.name && "border-red-500 focus:border-red-500/50"
                 }`}
               />
-              {errs.name && <Error text={errs.name} />}
+              {errs.name && <Error text={errs.name} className={"absolute"} />}
             </div>
-            {apiErr && <Error className="!static col-span-2 !pl-0 !text-lg" text={apiErr.message} />}
+            {apiErr && <Error className="col-span-2" text={apiErr.message} />}
             <Button
               text={t("session.signUpSubmitBtn")}
               className={`!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%]  `}

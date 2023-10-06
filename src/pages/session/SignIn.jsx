@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { Loader, Error } from "src/components";
+import { Loader, Error, Modal } from "src/components";
 import { Button, Auth3Button } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
-import { backgrounds, borders, logos } from "src/assets";
+import { backgrounds, logos } from "src/assets";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { APIHydro, addAuthWithToken } from "src/api";
 import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { saveInStorage } from "src/utils/localStorage";
-
+import { ForgotPassword } from "./ForgotPassword";
 const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-xl lg:mr-10" }];
 
 export function SignIn() {
@@ -18,6 +18,7 @@ export function SignIn() {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [canRegister, setCanRegister] = useState(false);
   const [err, setErr] = useState(false);
   const [user, setUser] = useState({
@@ -46,18 +47,29 @@ export function SignIn() {
     e.preventDefault();
     try {
       setLoading(true);
-      APIHydro.signIn(user).then((res) => {
-        const { data } = res;
-        const { accessToken } = data;
-        saveInStorage("accessToken", accessToken);
-        addAuthWithToken(accessToken);
-        dispatch(actionsUser.saveSignData(data));
-        if (data.shoppingCart?.totalPrice > 0) {
-          dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
-        }
-        setLoading(false);
-        navigate("/products");
-      });
+      APIHydro.signIn(user)
+        .then((res) => {
+          if (res.data) {
+            const { data } = res;
+            const { accessToken } = data;
+            saveInStorage("accessToken", accessToken);
+            addAuthWithToken(accessToken);
+            dispatch(actionsUser.saveSignData(data));
+            if (data.shoppingCart?.totalPrice > 0) {
+              dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
+            }
+            setLoading(false);
+            navigate("/products");
+          }
+        })
+        .catch((e) => {
+          const res = e.response.data.message;
+          setErr(res);
+          setLoading(false);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     } catch (e) {
       const res = e.response.data.message;
       setErr(res);
@@ -66,7 +78,10 @@ export function SignIn() {
   };
 
   return (
-    <main className="relative grid h-full py-10 sm:px-10 md:px-20 lg:h-screen lg:place-content-center">
+    <main className="relative grid h-full py-10 sm:px-10 md:px-20 lg:h-screen lg:place-content-center ">
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ForgotPassword />
+      </Modal>
       <img src={backgrounds.techDots2} className="absolute bottom-0 left-0 hidden w-80 animate-pulse lg:inline" />
       <img
         src={backgrounds.signUpBgXl2}
@@ -90,11 +105,11 @@ export function SignIn() {
             <PasswordInput
               name="password"
               onChange={handleOnChange}
-              placeholder="CONTRASEÑA"
+              placeholder="*CONTRASEÑA"
               value={user.password}
               className={"!bg-[#141414] lg:!bg-base"}
             />
-            {err && <Error text={err} className="md:w-[65%]" />}
+            {err && <Error text={err} />}
             <Button
               disabled={err && true}
               text={"INGRESAR"}
@@ -134,7 +149,7 @@ export function SignIn() {
           <p>
             {t("session.forgotPass")}
             <br className="lg:hidden" />
-            <strong onClick={() => navigate("#")} className="hover:cursor-pointer hover:opacity-50 lg:ml-2">
+            <strong onClick={() => setIsModalOpen(true)} className="hover:cursor-pointer hover:opacity-50 lg:ml-2">
               {t("session.recoverPassNow")}
             </strong>
           </p>
