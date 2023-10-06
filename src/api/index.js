@@ -41,9 +41,8 @@ export const APIHydro = {
   updateUser: ({ profile, session }) => {
     return apiHydro.put(`/${route.USER}`, { profile, session });
   },
-  updatePassword: (data) => {
-    console.log(data);
-    return apiHydro.put(`/${route.USER}/updatePassword`, { data });
+  updatePassword: ({ id, actualPassword, newPassword, newConfirmPassword }) => {
+    return apiHydro.put(`/${route.USER}/updatePassword`, { id, actualPassword, newPassword, newConfirmPassword });
   },
 };
 
