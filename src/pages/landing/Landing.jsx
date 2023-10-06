@@ -34,10 +34,10 @@ export default function Landing() {
             quantit
           />
         </div>
-        <div className="grid place-items-center gap-10 lg:grid-cols-3">
-          <BlogPostCard title="COMO SETEAR EL SISTEMA EN" />
-          <BlogPostCard title="COMO SETEAR EL SISTEMA EN" />
-          <BlogPostCard title="COMO SETEAR EL SISTEMA EN" />
+        <div className="mx-auto grid w-[90%] place-items-center gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <BlogPostCard showPreview={false} title="COMO SETEAR EL SISTEMA EN" />
+          <BlogPostCard showPreview={false} title="COMO SETEAR EL SISTEMA EN" />
+          <BlogPostCard showPreview={false} title="COMO SETEAR EL SISTEMA EN" />
         </div>
         <Button
           onClick={() => navigate("/blog")}

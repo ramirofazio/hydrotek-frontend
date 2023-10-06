@@ -5,6 +5,7 @@ const route = {
   AUTH: "auth",
   USER: "user",
   CART: "shoppingCart",
+  BLOG: "blog",
 };
 
 // * Para una clara visualizacion de las rutas abrir
@@ -40,6 +41,21 @@ export const APIHydro = {
   },
   updateUser: ({ profile, session }) => {
     return apiHydro.put(`/${route.USER}`, { profile, session });
+  },
+  getPosts: () => {
+    return apiHydro.get(`/${route.BLOG}`);
+  },
+  getPostDetail: (id) => {
+    return apiHydro.get(`/${route.BLOG}/${id}`);
+  },
+  createPost: (userId, postData) => {
+    return apiHydro.post(`/${route.BLOG}/`, { userId, postData });
+  },
+  editPost: (userId, postId, newPost) => {
+    return apiHydro.put(`/${route.BLOG}/`, { userId, postId, newPost });
+  },
+  deletePost: (userId, postId) => {
+    return apiHydro.delete(`/${route.BLOG}/`, { userId, postId });
   },
   updatePassword: ({ id, actualPassword, newPassword, newConfirmPassword }) => {
     return apiHydro.put(`/${route.USER}/updatePassword`, { id, actualPassword, newPassword, newConfirmPassword });

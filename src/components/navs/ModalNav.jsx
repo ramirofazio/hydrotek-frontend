@@ -33,12 +33,13 @@ export function ModalNav({ role, pathname }) {
                     <Categories />
                   </li>
                 ) : (
-                  <li key={i}>
+                  <li key={i} className="">
                     <NavLink
                       to={l.path}
                       className={({ isActive, isPending }) => (isActive ? "border-b-[1px] " : isPending ? "" : "")}
                     >
-                      {l.name}
+                      {/* {l.name} // ? porquen no esntra el sobrenosotros */ }
+                      <Popover.Button className="">{l.name}</Popover.Button>
                     </NavLink>
                   </li>
                 )
@@ -55,7 +56,10 @@ export function ModalNav({ role, pathname }) {
                 />
               </Popover.Button>
               <Popover.Button>
-                <i onClick={() => navigate("/shoppingCart")} className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
+                <i
+                  onClick={() => navigate("/shoppingCart")}
+                  className="icons ri-shopping-cart-2-fill text-3xl  text-gold"
+                />
               </Popover.Button>
             </section>
           </nav>
