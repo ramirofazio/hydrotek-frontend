@@ -30,7 +30,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
   }, [redirect]);
 
   const googleLogin = useGoogleLogin({
-    /* eslint-disable */ 
+    /* eslint-disable */
     flow: "auth-code",
     ux_mode: "redirect",
     redirect_uri: "http://localhost:5173/session/signIn",
@@ -73,7 +73,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
   return (
     <button
       onClick={() => googleLogin()}
-      className={`rounded-full border-2 border-gold bg-transparent px-6 py-2 uppercase tracking-widest text-white transition hover:bg-gold hover:text-gold  ${classname}`}
+      className={`aspect-square rounded-full border-2 border-gold bg-transparent p-4 uppercase tracking-widest text-white transition hover:bg-gold hover:text-gold  ${classname}`}
       {...props}
     >
       <i className={icon}></i>

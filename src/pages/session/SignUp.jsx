@@ -12,7 +12,7 @@ import { borders, backgrounds } from "assets";
 import { isValidSignUp } from "src/utils/validation";
 import { Error } from "src/components";
 
-const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-lg xl:mr-10" }];
+const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-xl xl:mr-10" }];
 
 export function SignUp() {
   const { t } = useTranslation();
@@ -79,11 +79,11 @@ export function SignUp() {
   };
 
   return (
-    <main className="lg:bg-signUpXl lg:bg-contain lg:bg-clip-content lg:bg-right lg:bg-no-repeat lg:pb-28 lg:pt-10">
-      <img className="ml-auto lg:hidden" src={backgrounds.signUpBgTop} alt="" />
+    <main className="grid h-full lg:h-screen lg:bg-signUpXl lg:bg-contain lg:bg-clip-content lg:bg-right">
+      <img className="ml-auto  lg:hidden" src={backgrounds.signUpBgTop} alt="" />
       {loading && <Loader />}
-      <div className="mx-5 grid place-items-center gap-6  sm:mx-auto sm:w-[70%] md:w-[85%]">
-        <section className="relative w-full  pt-1 lg:w-[90%] xl:w-[90%]">
+      <div className="mx-5 mt-4 grid place-items-center gap-6  sm:mx-auto sm:w-[70%] md:w-[85%]">
+        <section className="relative w-full pt-1 lg:w-[90%] xl:w-[90%]">
           <div className="absolute z-0 flex w-full justify-between p-0">
             <img
               className="w-[50%] max-w-[150px] animate-pulse md:max-w-[200px] xl:max-w-[300px]"
@@ -105,7 +105,7 @@ export function SignUp() {
               <Input
                 id="email"
                 type="email"
-                className={`relative !z-10  ${errs.email && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !z-10 !bg-[#141414]  ${errs.email && "border-red-500 focus:border-red-500/50"}`}
                 name="email"
                 onChange={handleOnChange}
                 placeholder="*EMAIL"
@@ -116,7 +116,7 @@ export function SignUp() {
             <div className=" w-full">
               <Input
                 type="number"
-                className={`relative !z-10 ${errs.dni && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !z-10 !bg-[#141414] ${errs.dni && "border-red-500 focus:border-red-500/50"}`}
                 name="dni"
                 onChange={handleOnChange}
                 placeholder="DNI"
@@ -130,7 +130,7 @@ export function SignUp() {
                 onChange={handleOnChange}
                 placeholder="*CONTRASEÑA"
                 value={user.password}
-                className={`relative ${errs.password && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !bg-[#141414] ${errs.password && "border-red-500 focus:border-red-500/50"}`}
               />
               {errs.password && <Error text={errs.password} />}
             </div>
@@ -140,7 +140,7 @@ export function SignUp() {
                 onChange={handleOnChange}
                 placeholder="*CONFIRMAR CONTRASEÑA"
                 value={user.confirmPassword}
-                className={`relative ${errs.confirmPassword && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !bg-[#141414] ${errs.confirmPassword && "border-red-500 focus:border-red-500/50"}`}
               />
               {errs.confirmPassword && <Error text={errs.confirmPassword} />}
             </div>
@@ -151,7 +151,9 @@ export function SignUp() {
                 onChange={handleOnChange}
                 placeholder="*NOMBRE COMPLETO"
                 value={user.name}
-                className={`relative capitalize  ${errs.name && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !bg-[#141414] capitalize  ${
+                  errs.name && "border-red-500 focus:border-red-500/50"
+                }`}
               />
               {errs.name && <Error text={errs.name} />}
             </div>
@@ -181,7 +183,7 @@ export function SignUp() {
               icon={icon}
               socialNetwork={socialNetwork}
               text={`INICIAR SESIÓN CON ${socialNetwork}`}
-              classname={" !bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
+              classname={" !bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-[#141414] lg:py-3 group lg:aspect-auto"}
               pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
               setLoading={setLoading}
             />
