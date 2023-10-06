@@ -58,8 +58,7 @@ export function MyData() {
     }
 
     if (name === "avatar") {
-      //*? Logica para actualizar el Avatar. Cloudinary? A ver!
-      console.log("update Avatar");
+      document.getElementById("fileInput").click(); //? Cliquea el input para que se guarde la imagen
     }
   };
 
@@ -99,6 +98,21 @@ export function MyData() {
     }
   };
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+
+    try {
+      const response =
+        /*await cloudinaryUploadImg(file, "avatars");*/
+        //! Aca hay que subir el avatar a cloudinary. la respuesta deberia ser el URl de cloudinary para guardarlo en el avatar
+
+        console.log(file);
+      setUserData({ ...userData, avatar: response });
+    } catch (error) {
+      console.error("Error al subir la imagen:", error);
+    }
+  };
+
   return (
     <main className="mx-8 grid text-center sm:w-full sm:px-6  lg:h-screen xl:w-full xl:pr-6">
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
@@ -112,6 +126,7 @@ export function MyData() {
           <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={userData.avatar} />
           <p className="hidden tracking-normal lg:inline">{t("profile.avatar-resolution")}</p>
           <IconButtonWithBgGold icon={"ri-pencil-line"} onClick={() => handleEdit("avatar")} />
+          <input id="fileInput" type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
         </div>
         <p className="lg:hidden">{t("profile.avatar-resolution")}</p>
       </section>
