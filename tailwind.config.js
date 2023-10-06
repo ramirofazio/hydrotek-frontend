@@ -1,6 +1,6 @@
 import colors from "tailwindcss/colors";
 import defaultTheme from "tailwindcss/defaultTheme";
-import { backgrounds } from "./src/assets/index";
+import { backgrounds, borders } from "./src/assets/index";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -25,7 +25,8 @@ export default {
         productBorderGradient: `url(${backgrounds.productBorderGradient})`,
         productBorderNoGradient: `url(${backgrounds.productBorder})`,
         cartProductBorder: `url(${backgrounds.cartProductBorder})`,
-        signUpXl:`url(${backgrounds.signUpBgXl})`,
+        signUpXl: `url(${backgrounds.signUpBgXl})`,
+        signIn: `url(${borders.signInBorder})`,
         "gold-gradient": "linear-gradient(90deg, #dcc361 -7.41%, #b8912d 113.89%)",
       },
       screens: {

@@ -8,16 +8,34 @@ const user = createSlice({
       email: "",
     },
     profile: {},
+    savedPosts: [],
+    orders: [],
   },
   reducers: {
+    updateDataFromProfile: (state, action) => {
+      const { dni, email, id, name, profile } = action.payload;
+
+      //! Chequear si funciona bien esto, tira error en consola que no peude actualizar el componente bla bla
+
+      return {
+        ...state,
+        profile: profile,
+        session: { dni, email, id, name },
+      };
+    },
     saveSignData: (state, action) => {
-      console.log(action.payload);
-      const { session, profile } = action.payload;
-      state.session = session;
-      state.profile = profile;
+      const { session, profile, savedPosts, orders } = action.payload;
+
+      return {
+        ...state,
+        session: session,
+        profile: profile,
+        savedPosts: savedPosts,
+        //orders: orders,
+      };
     },
   },
 });
 
 export const userRdr = user.reducer;
-export const { saveSignData } = user.actions;
+export const { saveSignData, updateDataFromProfile } = user.actions;

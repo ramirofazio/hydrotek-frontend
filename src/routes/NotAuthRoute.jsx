@@ -1,7 +1,6 @@
 import { Outlet, useLocation, useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-
 export function NotAuthRoute() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ export function NotAuthRoute() {
   }, []);
 
   return (
-    <div className={` ${pathname === "/session/signUp" && "bg-[#141414]"}`}>
+    <div className={"w-full bg-[#141414]"}>
       <Outlet />
     </div>
   );
