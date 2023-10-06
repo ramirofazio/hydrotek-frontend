@@ -12,10 +12,7 @@ import { borders, backgrounds } from "assets";
 import { isValidSignUp } from "src/utils/validation";
 import { Error } from "src/components";
 
-const authBtns = [
-  { socialNetwork: "GOOGLE", icon: "ri-google-fill ri-lg xl:mr-10" },
-  { socialNetwork: "APPLE", icon: "ri-apple-fill ri-lg xl:mr-10" },
-];
+const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-xl xl:mr-10" }];
 
 export function SignUp() {
   const { t } = useTranslation();
@@ -27,10 +24,11 @@ export function SignUp() {
   const [apiErr, setApiErr] = useState(null);
   const [user, setUser] = useState({
     email: "",
-    dni: "",
+    dni: null,
     name: "",
     password: "",
     confirmPassword: "",
+    roleId: "1",
   });
 
   const handleOnChange = (e) => {
@@ -53,7 +51,7 @@ export function SignUp() {
     try {
       setLoading(true);
       const cleanUser = { ...user, roleId: parseInt(import.meta.env.VITE_USER_ROLE) };
-      if (!cleanUser.dni) delete cleanUser.dni;
+      if (!cleanUser.dni || cleanUser.dni.length < 7) delete cleanUser.dni;
       APIHydro.signUp(cleanUser)
         .then((res) => {
           if (res.data) {
@@ -81,18 +79,18 @@ export function SignUp() {
   };
 
   return (
-    <main className="lg:bg-signUpXl lg:bg-contain lg:bg-clip-content lg:bg-right lg:bg-no-repeat lg:pb-28 lg:pt-10">
-      <img className="ml-auto lg:hidden" src={backgrounds.signUpBgTop} alt="" />
+    <main className="grid h-full lg:h-screen lg:bg-signUpXl lg:bg-contain lg:bg-clip-content lg:bg-right">
+      <img className="ml-auto  lg:hidden" src={backgrounds.signUpBgTop} alt="" />
       {loading && <Loader />}
-      <div className="sm:w-[70%] md:w-[85%] mx-5 grid  place-items-center gap-6 sm:mx-auto">
-        <section className="lg:w-[90%] xl:w-[90%]  relative w-full pt-1">
+      <div className="mx-5 mt-4 grid place-items-center gap-6  sm:mx-auto sm:w-[70%] md:w-[85%]">
+        <section className="relative w-full pt-1 lg:w-[90%] xl:w-[90%]">
           <div className="absolute z-0 flex w-full justify-between p-0">
             <img
-              className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] animate-pulse"
+              className="w-[50%] max-w-[150px] animate-pulse md:max-w-[200px] xl:max-w-[300px]"
               src={borders.profile}
             />
             <img
-              className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] animate-pulse"
+              className="w-[50%] max-w-[150px] animate-pulse md:max-w-[200px] xl:max-w-[300px]"
               src={borders.signUpCircuit}
             />
           </div>
@@ -107,24 +105,24 @@ export function SignUp() {
               <Input
                 id="email"
                 type="email"
-                className={`relative !z-10  ${errs.email && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !z-10 !bg-[#141414]  ${errs.email && "border-red-500 focus:border-red-500/50"}`}
                 name="email"
                 onChange={handleOnChange}
                 placeholder="*EMAIL"
                 value={user.email}
               />
-              {errs.email && <Error text={errs.email} />}
+              {errs.email && <Error text={errs.email} className={"absolute"} />}
             </div>
             <div className=" w-full">
               <Input
                 type="number"
-                className={`relative !z-10 ${errs.dni && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !z-10 !bg-[#141414] ${errs.dni && "border-red-500 focus:border-red-500/50"}`}
                 name="dni"
                 onChange={handleOnChange}
                 placeholder="DNI"
                 value={user.dni}
               />
-              {errs.dni && <Error text={errs.dni} />}
+              {errs.dni && <Error text={errs.dni} className={"absolute"} />}
             </div>
             <div className="w-full">
               <PasswordInput
@@ -132,9 +130,9 @@ export function SignUp() {
                 onChange={handleOnChange}
                 placeholder="*CONTRASEÑA"
                 value={user.password}
-                className={`relative ${errs.password && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !bg-[#141414] ${errs.password && "border-red-500 focus:border-red-500/50"}`}
               />
-              {errs.password && <Error text={errs.password} />}
+              {errs.password && <Error text={errs.password} className={"absolute"} />}
             </div>
             <div className="w-full">
               <PasswordInput
@@ -142,9 +140,9 @@ export function SignUp() {
                 onChange={handleOnChange}
                 placeholder="*CONFIRMAR CONTRASEÑA"
                 value={user.confirmPassword}
-                className={`relative ${errs.confirmPassword && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !bg-[#141414] ${errs.confirmPassword && "border-red-500 focus:border-red-500/50"}`}
               />
-              {errs.confirmPassword && <Error text={errs.confirmPassword} />}
+              {errs.confirmPassword && <Error text={errs.confirmPassword} className={"absolute"} />}
             </div>
             <div className="w-full md:col-span-2">
               <Input
@@ -153,14 +151,16 @@ export function SignUp() {
                 onChange={handleOnChange}
                 placeholder="*NOMBRE COMPLETO"
                 value={user.name}
-                className={`relative capitalize  ${errs.name && "border-red-500 focus:border-red-500/50"}`}
+                className={`relative !bg-[#141414] capitalize  ${
+                  errs.name && "border-red-500 focus:border-red-500/50"
+                }`}
               />
-              {errs.name && <Error text={errs.name} />}
+              {errs.name && <Error text={errs.name} className={"absolute"} />}
             </div>
-            {apiErr && <Error className="!static col-span-2 !pl-0 !text-lg" text={apiErr.message} />}
+            {apiErr && <Error className="col-span-2" text={apiErr.message} />}
             <Button
               text={t("session.signUpSubmitBtn")}
-              className={`lg:w-[40%] !bg-gold hover:!bg-base md:col-span-2  `}
+              className={`!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%]  `}
               pClassname={"xl:text-lg font-primary"}
               onClick={handleSubmit}
               disabled={
@@ -176,20 +176,20 @@ export function SignUp() {
             />
           </form>
         </section>
-        <section className=" lg:w-[90%] flex w-full  justify-around">
+        <section className=" flex w-full justify-around  lg:w-[90%]">
           {authBtns.map(({ socialNetwork, icon }, index) => (
             <Auth3Button
               key={index}
               icon={icon}
               socialNetwork={socialNetwork}
               text={`INICIAR SESIÓN CON ${socialNetwork}`}
-              classname={" !bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:py-3 group"}
+              classname={" !bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-[#141414] lg:py-3 group lg:aspect-auto"}
               pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
               setLoading={setLoading}
             />
           ))}
         </section>
-        <section className="lg:w-[90%] relative mx-4 my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:gap-2">
+        <section className="relative mx-4 my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:w-[90%] lg:gap-2">
           <p className="z-10 !text-white lg:text-base">
             {t("session.haveAccount")}
             <br className="lg:hidden" />
@@ -202,11 +202,11 @@ export function SignUp() {
           </p>
           <div className="absolute -top-10 flex  w-full justify-between">
             <img
-              className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180 animate-pulse"
+              className="w-[50%] max-w-[150px] rotate-180 animate-pulse md:max-w-[200px] xl:max-w-[300px]"
               src={borders.signUpCircuit}
             />
             <img
-              className="w-[50%] max-w-[150px] md:max-w-[200px] xl:max-w-[300px] rotate-180 animate-pulse"
+              className="w-[50%] max-w-[150px] rotate-180 animate-pulse md:max-w-[200px] xl:max-w-[300px]"
               src={borders.profile}
             />
           </div>
