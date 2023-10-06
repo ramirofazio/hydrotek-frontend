@@ -12,10 +12,7 @@ import { borders, backgrounds } from "assets";
 import { isValidSignUp } from "src/utils/validation";
 import { Error } from "src/components";
 
-const authBtns = [
-  { socialNetwork: "GOOGLE", icon: "ri-google-fill ri-lg xl:mr-10" },
-  { socialNetwork: "APPLE", icon: "ri-apple-fill ri-lg xl:mr-10" },
-];
+const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-lg xl:mr-10" }];
 
 export function SignUp() {
   const { t } = useTranslation();
@@ -48,8 +45,6 @@ export function SignUp() {
       })
     );
   };
-
-  console.log(user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
