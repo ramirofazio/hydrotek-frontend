@@ -90,7 +90,11 @@ export function SignIn() {
       {loading && <Loader />}
       <div className="relative z-20 m-10 grid place-items-center gap-4 bg-contain bg-center bg-no-repeat py-20 lg:bg-signIn lg:px-40">
         <img src={backgrounds.borderTop} className="absolute top-0 lg:hidden" />
-        <img src={logos.hydText} className="z-20 mx-auto w-28" />
+        <img
+          src={logos.hydText}
+          className="z-20 mx-auto w-28 transition hover:cursor-pointer hover:opacity-50"
+          onClick={() => navigate("/")}
+        />
         <img src={logos.hydBlack} className="z-20 mx-auto w-24" />
         <section className="z-20 w-full sm:px-20 sm:py-4 lg:px-0">
           <form className="grid place-items-center  gap-4  px-6 lg:mx-auto xl:w-full xl:gap-6" onSubmit={handleSubmit}>
