@@ -1,10 +1,12 @@
 import { Dialog } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
 import { APIHydro } from "src/api";
 import { logos } from "src/assets";
 import { Error, Loader } from "src/components";
 import { Button } from "src/components/buttons";
 import { PasswordInput } from "src/components/inputs";
+import { actionsUser } from "src/redux/reducers";
 import { isValidChangePassword } from "src/utils/validation";
 
 const fields = [
@@ -14,6 +16,7 @@ const fields = [
 ];
 
 export function ChangePassword({ close, userId }) {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [errs, setErrs] = useState({ actualPassword: "", newPassword: "", newConfirmPassword: "" });
   const [apiErr, setApiErr] = useState(null);
@@ -47,6 +50,7 @@ export function ChangePassword({ close, userId }) {
         .then((res) => {
           if (res.data) {
             dispatch(actionsUser.updateDataFromProfile(res.data));
+            close();
           }
         })
         .catch((e) => {
