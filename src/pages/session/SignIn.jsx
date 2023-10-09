@@ -78,7 +78,7 @@ export function SignIn() {
   };
 
   return (
-    <main className="relative grid h-full py-10 sm:px-10 md:px-20 lg:h-screen lg:place-content-center ">
+    <main className="relative grid h-full py-10 sm:px-10 md:px-20 lg:place-content-center">
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ForgotPassword />
       </Modal>

@@ -79,7 +79,7 @@ export function SignUp() {
   };
 
   return (
-    <main className="grid h-full lg:h-screen lg:bg-signUpXl lg:bg-contain lg:bg-clip-content lg:bg-right">
+    <main className="grid h-full min-h-screen lg:bg-signUpXl lg:bg-contain lg:bg-clip-content lg:bg-right">
       <img className="ml-auto  lg:hidden" src={backgrounds.signUpBgTop} alt="" />
       {loading && <Loader />}
       <div className="mx-5 mt-4 grid place-items-center gap-6  sm:mx-auto sm:w-[70%] md:w-[85%]">
