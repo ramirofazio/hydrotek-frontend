@@ -10,7 +10,7 @@ import { isValidChangePassword } from "src/utils/validation";
 const fields = [
   { name: "actualPassword", label: "contraseña actual" },
   { name: "newPassword", label: "contraseña nueva" },
-  { name: "newConfirmPassword", label: "confirmacion" },
+  { name: "newConfirmPassword", label: "confirma tu contraseña" },
 ];
 
 export function ChangePassword({ close, userId }) {
@@ -70,7 +70,7 @@ export function ChangePassword({ close, userId }) {
     <main className="my-4 grid grid-cols-1 place-content-center gap-6 text-center">
       {loading && <Loader />}
       <img src={logos.hydBlack} className="mx-auto w-20" />
-      <Dialog.Title className="textGoldGradient">Cambiar Contraseña</Dialog.Title>
+      <Dialog.Title className="textGoldGradient">Cambia tu Contraseña</Dialog.Title>
       <form onSubmit={handleSubmit} className="grid gap-6">
         {fields.map(({ name, label }, index) => (
           <Fragment key={index}>

@@ -28,7 +28,7 @@ export function Modal({ isOpen, onClose, children }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-base/90 p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl border-2 border-gold bg-base/90 p-6 text-left align-middle shadow-xl transition-all">
                   <i
                     className="ri-close-fill icons absolute right-2 top-2 w-fit text-3xl text-white"
                     onClick={onClose}
