@@ -15,7 +15,7 @@ const fields = [
 
 export function ChangePassword({ close, userId }) {
   const [loading, setLoading] = useState(false);
-  const [errs, setErrs] = useState({});
+  const [errs, setErrs] = useState({ actualPassword: "", newPassword: "", newConfirmPassword: "" });
   const [apiErr, setApiErr] = useState(null);
   const [data, setData] = useState({
     id: userId,
@@ -31,12 +31,12 @@ export function ChangePassword({ close, userId }) {
       [name]: value,
     });
 
-    // setErrs(
-    //   isValidChangePassword({
-    //     ...data,
-    //     [name]: value,
-    //   })
-    // );
+    setErrs(
+      isValidChangePassword({
+        ...data,
+        [name]: value,
+      })
+    );
   };
 
   const handleSubmit = (e) => {
@@ -47,22 +47,20 @@ export function ChangePassword({ close, userId }) {
         .then((res) => {
           if (res.data) {
             dispatch(actionsUser.updateDataFromProfile(res.data));
-            console.log(res.data);
           }
         })
         .catch((e) => {
-          console.log(e);
+          const error = e.response.data;
+          setApiErr(error);
           setLoading(false);
-          close();
         })
         .finally(() => {
           setLoading(false);
-          close();
         });
     } catch (e) {
-      console.log(e);
+      const error = e.response.data;
+      setApiErr(error);
       setLoading(false);
-      close();
     }
   };
 
@@ -81,10 +79,17 @@ export function ChangePassword({ close, userId }) {
               placeholder={label}
               className={`relative ${errs[name] && "border-red-500 focus:border-red-500/50"}`}
             />
-            {errs && <Error text={errs[name]} />}
+            {errs[name] && <Error text={errs[name]} />}
           </Fragment>
         ))}
-        <Button text={"Guardar"} onClick={handleSubmit} className={"mx-20"} />
+
+        {apiErr && <Error text={apiErr.message} />}
+        <Button
+          text={"Guardar"}
+          onClick={handleSubmit}
+          className={"mx-20"}
+          disabled={!data.actualPassword || !data.newPassword || !data.newConfirmPassword ? true : false}
+        />
       </form>
     </main>
   );

@@ -6,6 +6,13 @@ export const regex = {
   containLetter: /[a-zA-Z]/,
 };
 
+function validatePassword(password) {
+  if (password.length < 8) return "debe tener al menos 8 caracteres";
+  if (!regex.containUppercase.test(password)) return "debe tener al menos una letra en mayuscula";
+  if (!regex.containNumber.test(password)) return "debe tener al menos un numero";
+  if (regex.containSpace.test(password)) return "no puede tener espacios";
+}
+
 export function isValidSignUp({ email, dni, name, password, confirmPassword }) {
   const errs = {};
   if (email) {
@@ -20,10 +27,7 @@ export function isValidSignUp({ email, dni, name, password, confirmPassword }) {
     if (regex.containNumber.test(name)) errs.name = "no puede tener numeros";
   }
   if (password) {
-    if (password.length < 8) errs.password = "debe tener al menos 8 caracteres";
-    if (!regex.containUppercase.test(password)) errs.password = "debe tener al menos una letra en mayuscula";
-    if (!regex.containNumber.test(password)) errs.password = "debe tener al menos un numero";
-    if (regex.containSpace.test(password)) errs.password = "no puede tener espacios";
+    errs.password = validatePassword(password);
   }
   if (password && confirmPassword) {
     if (password !== confirmPassword) errs.confirmPassword = "las contraseñas no coinciden";
@@ -31,15 +35,21 @@ export function isValidSignUp({ email, dni, name, password, confirmPassword }) {
   return errs;
 }
 
-export function isValidChangePassword(actualPassword, newPassword, newConfirmPassword) {
+export function isValidChangePassword({ actualPassword, newPassword, newConfirmPassword }) {
   const errs = {};
-  if (newPassword.length < 8) errs.newPassword = "debe tener al menos 8 caracteres";
-  if (!regex.containUppercase.test(newPassword)) errs.newPassword = "debe tener al menos una letra en mayuscula";
-  if (!regex.containNumber.test(newPassword)) errs.newPassword = "debe tener al menos un numero";
-  if (regex.containSpace.test(newPassword)) errs.newPassword = "no puede tener espacios";
+  if (actualPassword) {
+    errs.actualPassword = validatePassword(actualPassword);
+  }
+  if (newPassword) {
+    errs.newPassword = validatePassword(newPassword);
+  }
+  if (newConfirmPassword) {
+    errs.newConfirmPassword = validatePassword(newConfirmPassword);
+  }
 
   if (newPassword && newConfirmPassword) {
     if (newPassword !== newConfirmPassword) errs.newConfirmPassword = "las contraseñas no coinciden";
   }
+
   return errs;
 }
