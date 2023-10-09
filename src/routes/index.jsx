@@ -11,7 +11,7 @@ import { OrderDetail, Profile } from "src/pages/user";
 import { Blog, PostDetail } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
 import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
-import { autoLoginLoader, notAuthLoader } from "./loaders";
+import { autoLoginLoader, notAuthLoader, blogLoader } from "./loaders";
 
 
 export function Routes() {
@@ -40,6 +40,7 @@ export function Routes() {
           children: [
             {
               path: "/blog",
+              loader: blogLoader,
               element: <Blog />,
               index: true,
             },

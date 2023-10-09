@@ -20,3 +20,8 @@ export function notAuthLoader() {
   const token = getOfStorage("accessToken");
   return { accessToken: token };
 }
+
+export async function blogLoader() {
+  const posts = await APIHydro.getPosts();
+  return posts.data;
+}

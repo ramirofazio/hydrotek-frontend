@@ -3,13 +3,31 @@ import { defaultPost } from "src/assets";
 import { useTranslation } from "react-i18next";
 import { Comment } from "./Comment";
 import { GoBack } from "src/components/buttons";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { APIHydro } from "src/api";
 
 export function PostDetail() {
   const { t } = useTranslation();
   const post = useLoaderData();
+  const { session } = useSelector((state) => state.user);
 
   const mockPost = { imgs: null, title: null, text: null, date: null, comments: [1, 2, 3, 4, 5] };
   const { imgs, title, text, date, comments } = mockPost;
+
+  const [comment, setComment] = useState("");
+
+  function uploadComment() {
+    if (!session.role) {
+      return "popup";
+    } else {
+      //loader true
+      APIHydro.uploadComment(session.userId, post.postId).then((res) => {
+        return "se cargo su comentario";
+      });
+      //loader false
+    }
+  }
 
   return (
     <main className="mx-auto my-4 flex min-h-screen w-[92%] flex-col items-center  gap-7 px-4">
@@ -151,12 +169,14 @@ export function PostDetail() {
       <span className="flex w-full flex-col items-center justify-center gap-6  lg:items-start lg:pl-8">
         <h1 className="text-2xl">{t("blog.leave-your-comment")}</h1>
         <textarea
+          onChange={(e) => setComment(e.target.value)}
           name="comment"
-          className="resize-none min-h-[10rem] w-full max-w-[600px] rounded-sm  border-2 border-gold bg-black px-2 py-1 text-white focus:outline-none lg:max-w-[750px]"
+          className="min-h-[10rem] w-full max-w-[600px] resize-none rounded-sm  border-2 border-gold bg-black px-2 py-1 text-white focus:outline-none lg:max-w-[750px]"
         />
         <button
-          onClick={() => ""}
-          className="flex items-center gap-2 rounded-full bg-gold px-5 py-1 uppercase tracking-widest  text-white transition hover:bg-opacity-75"
+          onClick={uploadComment}
+          disabled={!comment.length && true}
+          className="flex items-center gap-2 rounded-full bg-gold px-5 py-1 uppercase tracking-widest  text-white transition hover:bg-opacity-75 disabled:bg-opacity-40"
         >
           <i className="ri-chat-2-fill text-xl text-white"></i>
           <h1 className="text-base text-white">{t("blog.comment")}</h1>
