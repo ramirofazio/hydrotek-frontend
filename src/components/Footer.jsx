@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { logos } from "assets";
 import { socialLinks } from "src/utils";
 import { Link } from "react-router-dom";
+import { IconButtonWithBgGold } from "./buttons";
 
 const socialLinksIcons = [
   { href: socialLinks.facebook, icon: "facebook" },
@@ -12,11 +13,11 @@ const socialLinksIcons = [
 ];
 
 const userLinks = [
-  { href: "/edit-user", text: "footer.links-list.my-account" },
-  { href: "/edit-user", text: "footer.links-list.edit" },
-  { href: "/edit-user", text: "footer.links-list.change-password" },
-  { href: "/edit-user", text: "footer.links-list.order-history" },
-  { href: "/edit-user", text: "footer.links-list.order-track" },
+  { href: "/session/signup", text: "footer.links-list.my-account" },
+  { href: "/user/profile", text: "footer.links-list.edit" },
+  { href: "/user/profile", text: "footer.links-list.change-password" },
+  { href: "/user/profile", text: "footer.links-list.order-history" },
+  { href: "/user/profile", text: "footer.links-list.order-track" },
 ];
 
 export const Footer = () => {
@@ -53,8 +54,9 @@ export const Footer = () => {
             {t("footer.who-we-are-body")}
           </p>
           <Link
-            to="/about_us"
+            to="/aboutUs"
             className="textGoldGradient font-primary text-sm uppercase underline decoration-gold transition hover:cursor-pointer hover:brightness-125  md:text-xl"
+            onClick={scrollUp}
           >
             {t("footer.see-more")}
           </Link>
@@ -71,11 +73,11 @@ export const Footer = () => {
             </Link>
           ))}
         </div>
-        <i
-          className="ri-arrow-up-s-line goldGradient row-start-1 rounded-full p-3 !text-4xl text-base transition ease-in-out
-        hover:-translate-y-2 hover:cursor-pointer lg:absolute lg:right-20 lg:row-start-auto"
+        <IconButtonWithBgGold
+          icon={"ri-arrow-up-s-line"}
           onClick={scrollUp}
-        ></i>
+          className={"row-start-1 w-14 lg:absolute lg:right-20 lg:row-start-auto"}
+        />
       </section>
       <div className="w-full bg-gold py-2 text-center font-secondary text-xs text-white ">{t("footer.legal")}</div>
     </footer>
