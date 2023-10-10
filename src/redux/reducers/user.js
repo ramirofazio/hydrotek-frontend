@@ -24,7 +24,7 @@ const user = createSlice({
       };
     },
     saveSignData: (state, action) => {
-      const { session, profile, savedPosts, orders } = action.payload;
+      const { session, profile, savedPosts /*orders*/ } = action.payload;
 
       return {
         ...state,

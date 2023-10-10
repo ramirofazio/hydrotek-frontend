@@ -1,8 +1,7 @@
-import { Outlet, useLocation, useLoaderData, useNavigate } from "react-router-dom";
+import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export function NotAuthRoute() {
-  const { pathname } = useLocation();
   const navigate = useNavigate();
   const token = useLoaderData();
 

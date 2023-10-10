@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+//import { useLoaderData } from "react-router-dom";
 import { defaultPost } from "src/assets";
 import { useTranslation } from "react-i18next";
 import { Comment } from "./Comment";
@@ -6,10 +6,10 @@ import { GoBack } from "src/components/buttons";
 
 export function PostDetail() {
   const { t } = useTranslation();
-  const post = useLoaderData();
+  //const post = useLoaderData();
 
   const mockPost = { imgs: null, title: null, text: null, date: null, comments: [1, 2, 3, 4, 5] };
-  const { imgs, title, text, date, comments } = mockPost;
+  const { imgs, title, /*text,*/ date, comments } = mockPost;
 
   return (
     <main className="mx-auto my-4 flex min-h-screen w-[92%] flex-col items-center  gap-7 px-4">
@@ -152,7 +152,7 @@ export function PostDetail() {
         <h1 className="text-2xl">{t("blog.leave-your-comment")}</h1>
         <textarea
           name="comment"
-          className="resize-none min-h-[10rem] w-full max-w-[600px] rounded-sm  border-2 border-gold bg-black px-2 py-1 text-white focus:outline-none lg:max-w-[750px]"
+          className="min-h-[10rem] w-full max-w-[600px] resize-none rounded-sm  border-2 border-gold bg-black px-2 py-1 text-white focus:outline-none lg:max-w-[750px]"
         />
         <button
           onClick={() => ""}

@@ -103,8 +103,8 @@ export function MyData() {
 
     try {
       const response =
-        /*await cloudinaryUploadImg(file, "avatars");*/
-        //! Aca hay que subir el avatar a cloudinary. la respuesta deberia ser el URl de cloudinary para guardarlo en el avatar
+      /*await cloudinaryUploadImg(file, "avatars");*/
+      //! Aca hay que subir el avatar a cloudinary. la respuesta deberia ser el URl de cloudinary para guardarlo en el avatar
 
         console.log(file);
       setUserData({ ...userData, avatar: response });

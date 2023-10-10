@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { defaultPost, borders } from "src/assets";
 import { Link } from "react-router-dom";
 
-export function BlogPostCard({ id = 1, date, showPreview = true,  title, text, img = defaultPost }) {
+export function BlogPostCard({ id = 1, date, showPreview = true, title /*text, img = defaultPost*/ }) {
   const { t } = useTranslation();
   return (
     <main className="">
@@ -16,11 +16,13 @@ export function BlogPostCard({ id = 1, date, showPreview = true,  title, text, i
       </div>
       <span>
         <h1 className="my-3 text-base text-white">{title || "Como cultivar bien pro"}</h1>
-        {showPreview && <p className="">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias tempore minima ad distinctio ex maiores
-          atque autem. Quod assumenda sunt, vel voluptatibus error laudantium reiciendis perferendis mollitia a eum
-          consequatur.
-        </p>}
+        {showPreview && (
+          <p className="">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias tempore minima ad distinctio ex maiores
+            atque autem. Quod assumenda sunt, vel voluptatibus error laudantium reiciendis perferendis mollitia a eum
+            consequatur.
+          </p>
+        )}
         <Link to={`/blog/${id}`}>
           <p className="textGoldGradient mt-2 w-fit font-primary text-sm uppercase underline decoration-gold transition hover:cursor-pointer hover:brightness-125 ">
             {t("footer.see-more")}
