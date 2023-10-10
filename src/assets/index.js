@@ -30,8 +30,10 @@ export const borders = {
   signUpCircuit: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695829833/HYD/others/signUpCircuit.png",
   signUpCircuitLeft: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695821435/HYD/others/signUpBorderLeft.png",
   signUpCircuitRight: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695821741/HYD/others/signUpBorderRight.png",
-  signUpCircuitLeftTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825464/HYD/others/signUpCircuitLeftTop.png",
-  signUpCircuitRightTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825523/HYD/others/signUpCircuitRightTop.png",
+  signUpCircuitLeftTop:
+    "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825464/HYD/others/signUpCircuitLeftTop.png",
+  signUpCircuitRightTop:
+    "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695825523/HYD/others/signUpCircuitRightTop.png",
   blogPostBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1696451880/HYD/others/blogPostBorder.png",
   signInBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1696560424/HYD/others/signInBorder.png",
 };
@@ -39,6 +41,7 @@ export const borders = {
 export const products = {
   defaultOne: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693948929/HYD/others/defaultProduct.png",
   defaultTwo: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693949259/HYD/others/defaultProduct2.png",
+  aboutUs: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693949259/HYD/aboutUs/img.png",
 };
 
 export const defaultPost = "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png";
