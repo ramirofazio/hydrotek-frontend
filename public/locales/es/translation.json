@@ -18,7 +18,8 @@
     "qty": "CANTIDAD",
     "unitPrice": "PRECIO UNITARIO",
     "total": "TOTAL",
-    "products": "PRODUCTOS"
+    "products": "PRODUCTOS",
+    "know": "CONOCE"
   },
   "session": {
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
@@ -95,5 +96,9 @@
     "consultHistory": "Consultá el historial de tus compras.",
     "savedPosts": "PUBLICACIONES GUARDADAS",
     "seeSavedPosts": "Ver las publicaciones que has guardado recientemente."
+  },
+  "about": {
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac luctus nisi, ac varius nibh. Nam aliquet leo eu tortor fringilla, sed congue lorem ullamcorper. Sed sit amet semper lorem, sed ullamcorper est. Nunc vulputate tellus ut libero sodales facilisis. Ut tortor purus, elementum quis laoreet a, molestie tincidunt arcu. Suspendisse vitae tincidunt felis, vel maximus nisl. Mauris sed ipsum vel justo consectetur imperdiet sed at leo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac luctus nisi, ac varius nibh. Nam aliquet leo eu tortor fringilla, sed congue lorem ullamcorper. Sed sit amet semper lorem, sed ullamcorper est. Nunc vulputate tellus ut libero sodales facilisis. Ut tortor purus, elementum quis laoreet a, molestie tincidunt arcu. ",
+    "content2": "Suspendisse vitae tincidunt felis, vel maximus nisl. Mauris sed ipsum vel justo consectetur imperdiet sed at leo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac luctus nisi, ac varius nibh. Nam aliquet leo eu tortor fringilla, sed congue lorem ullamcorper. Sed sit amet semper lorem, sed ullamcorper est. Nunc vulputate tellus ut libero sodales facilisis. Ut tortor purus, elementum quis laoreet a, molestie tincidunt arcu. Suspendisse vitae tincidunt felis, vel maximus nisl. Mauris sed ipsum vel justo consectetur imperdiet sed at leo."
   }
 }

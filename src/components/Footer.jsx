@@ -42,7 +42,7 @@ export const Footer = () => {
                 target="_blank"
                 className="goldGradient rounded-full p-3 px-4 transition ease-in-out hover:-translate-y-1  hover:scale-110 hover:opacity-60"
               >
-                <i className={`ri-${icon}-fill text-2xl text-base`}></i>
+                <i className={`ri-${icon}-line text-2xl text-white`}></i>
               </a>
             ))}
           </div>
