@@ -3,7 +3,7 @@ import { defaultPost, borders } from "src/assets";
 import { Link } from "react-router-dom";
 
 
-export function BlogPostCard({ id = 1, date = "05/04/01", showPreview = true, title, text, img = defaultPost }) {
+export function BlogPostCard({ id, date, showPreview = true, title, text, img = defaultPost }) {
   const { t } = useTranslation();
   const textPreview = text?.slice(0, 100);
 

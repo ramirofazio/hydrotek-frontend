@@ -1,21 +1,24 @@
 import { Dialog } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
 import { APIHydro } from "src/api";
 import { logos } from "src/assets";
 import { Error, Loader } from "src/components";
 import { Button } from "src/components/buttons";
 import { PasswordInput } from "src/components/inputs";
+import { actionsUser } from "src/redux/reducers";
 import { isValidChangePassword } from "src/utils/validation";
 
 const fields = [
   { name: "actualPassword", label: "contraseña actual" },
   { name: "newPassword", label: "contraseña nueva" },
-  { name: "newConfirmPassword", label: "confirmacion" },
+  { name: "newConfirmPassword", label: "confirma tu contraseña" },
 ];
 
 export function ChangePassword({ close, userId }) {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [errs, setErrs] = useState({});
+  const [errs, setErrs] = useState({ actualPassword: "", newPassword: "", newConfirmPassword: "" });
   const [apiErr, setApiErr] = useState(null);
   const [data, setData] = useState({
     id: userId,
@@ -31,12 +34,12 @@ export function ChangePassword({ close, userId }) {
       [name]: value,
     });
 
-    // setErrs(
-    //   isValidChangePassword({
-    //     ...data,
-    //     [name]: value,
-    //   })
-    // );
+    setErrs(
+      isValidChangePassword({
+        ...data,
+        [name]: value,
+      })
+    );
   };
 
   const handleSubmit = (e) => {
@@ -47,22 +50,21 @@ export function ChangePassword({ close, userId }) {
         .then((res) => {
           if (res.data) {
             dispatch(actionsUser.updateDataFromProfile(res.data));
-            console.log(res.data);
+            close();
           }
         })
         .catch((e) => {
-          console.log(e);
+          const error = e.response.data;
+          setApiErr(error);
           setLoading(false);
-          close();
         })
         .finally(() => {
           setLoading(false);
-          close();
         });
     } catch (e) {
-      console.log(e);
+      const error = e.response.data;
+      setApiErr(error);
       setLoading(false);
-      close();
     }
   };
 
@@ -70,7 +72,7 @@ export function ChangePassword({ close, userId }) {
     <main className="my-4 grid grid-cols-1 place-content-center gap-6 text-center">
       {loading && <Loader />}
       <img src={logos.hydBlack} className="mx-auto w-20" />
-      <Dialog.Title className="textGoldGradient">Cambiar Contraseña</Dialog.Title>
+      <Dialog.Title className="textGoldGradient">Cambia tu Contraseña</Dialog.Title>
       <form onSubmit={handleSubmit} className="grid gap-6">
         {fields.map(({ name, label }, index) => (
           <Fragment key={index}>
@@ -81,10 +83,17 @@ export function ChangePassword({ close, userId }) {
               placeholder={label}
               className={`relative ${errs[name] && "border-red-500 focus:border-red-500/50"}`}
             />
-            {errs && <Error text={errs[name]} />}
+            {errs[name] && <Error text={errs[name]} />}
           </Fragment>
         ))}
-        <Button text={"Guardar"} onClick={handleSubmit} className={"mx-20"} />
+
+        {apiErr && <Error text={apiErr.message} />}
+        <Button
+          text={"Guardar"}
+          onClick={handleSubmit}
+          className={"mx-20"}
+          disabled={!data.actualPassword || !data.newPassword || !data.newConfirmPassword ? true : false}
+        />
       </form>
     </main>
   );
