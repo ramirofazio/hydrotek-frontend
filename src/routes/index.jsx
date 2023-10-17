@@ -12,7 +12,7 @@ import { Blog, PostDetail } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
 import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
 import { autoLoginLoader, notAuthLoader, blogLoader } from "./loaders";
-
+import { APIHydro } from "src/api";
 
 export function Routes() {
   const publicRoutes = [
@@ -47,9 +47,10 @@ export function Routes() {
             {
               path: "/blog/:postId",
               element: <PostDetail />,
-              /* loader: async ({ params }) => {
-                return APIHydro.getPostDetail(params.postId);
-              }, */
+              loader: async ({ params }) => {
+                const { data } = await APIHydro.getPostDetail(params.postId);
+                return data;
+              },
             },
           ],
         },
@@ -98,7 +99,7 @@ export function Routes() {
               element: <OrderDetail />,
             },
           ],
-        }
+        },
       ],
     },
   ];

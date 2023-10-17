@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { defaultPost } from "src/assets";
 import { useTranslation } from "react-i18next";
 import { Comment } from "./Comment";
@@ -6,44 +6,50 @@ import { GoBack } from "src/components/buttons";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { APIHydro } from "src/api";
+import { Loader, Modal } from "src/components";
+import { MustLogin } from "../../pages/session/MustLogin";
 
 export function PostDetail() {
   const { t } = useTranslation();
   const post = useLoaderData();
+  const navigate = useNavigate();
   const { session } = useSelector((state) => state.user);
 
-  const mockPost = { imgs: null, title: null, text: null, date: null, comments: [1, 2, 3, 4, 5] };
-  const { imgs, title, text, date, comments } = mockPost;
-
+  const [modal, setModal] = useState(false);
   const [comment, setComment] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function uploadComment() {
     if (!session.role) {
-      return "popup";
+      setModal(true);
     } else {
-      //loader true
-      APIHydro.uploadComment(session.userId, post.postId).then((res) => {
-        return "se cargo su comentario";
+      setLoading(true);
+      APIHydro.uploadComment({ userId: session.id, postId: post.id, comment }).then((res) => {
+        console.log(res);
+        setLoading(false);
+        navigate(`/blog/${post.id}`); // ? en caso de no haber revisión de comentarios
       });
-      //loader false
     }
   }
 
   return (
     <main className="mx-auto my-4 flex min-h-screen w-[92%] flex-col items-center  gap-7 px-4">
+      <Modal isOpen={modal} onClose={() => setModal(false)}>
+        <MustLogin />
+      </Modal>
       <div className="self-end">
         <GoBack />
       </div>
       <section className="flex flex-col gap-4">
-        <img className="w-full max-w-[750px]" src={imgs || defaultPost} alt="" />{" "}
+        <img className="w-full max-w-[750px]" src={defaultPost} alt="" />
         {/* // * Cambiar por slider/carrucel */}
-        <h1 className="lg:text-3xl">{title || "aprende a cultivar hijo de deoss"}</h1>
+        <h1 className="lg:text-3xl">{post?.title || "aprende a cultivar hijo de deoss"}</h1>
         <div className="">
           <i className="ri-calendar-event-line textGoldGradient text-2xl lg:text-3xl"></i>
-          <time className="textGoldGradient ml-2 lg:text-2xl">{date || "05/04/01"}</time>
+          <time className="textGoldGradient ml-2 lg:text-2xl">{post.publishDate.slice(0, 10) || "05/04/01"}</time>
         </div>
         <span className="lg:my-12">
-          <h1>{title || "aprende a cultivar hijo de deoss"}</h1>
+          <h1>{post.text || "aprende a cultivar hijo de deoss"}</h1>
           <p className="mt-4 sm:text-base sm:text-white">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ut ipsum blanditiis sit veniam quibusdam,
             possimus quaerat est perspiciatis. Enim quos alias labore necessitatibus obcaecati, maxime iusto atque minus
@@ -80,93 +86,32 @@ export function PostDetail() {
             reiciendis mollitia inventore, tempora animi nesciunt deleniti dignissimos omnis nam enim soluta recusandae
             quisquam ipsum debitis commodi, facilis minus sunt beatae corrupti dolore? Commodi explicabo natus
             molestiae. Autem quae asperiores magnam culpa ab quia minus, neque non numquam harum repellat aliquid sit
-            sapiente suscipit, hic aut ullam! Distinctio natus ipsa ipsum provident minima vero ab placeat obcaecati.
-            Repellendus non numquam error qui corrupti vitae earum odio vero nam perspiciatis magni nobis suscipit
-            aspernatur adipisci sed fugiat facilis, architecto voluptatibus repudiandae illo a. Doloribus dignissimos
-            nam ex fugiat. Voluptatum, ex dolor porro consequatur, reiciendis hic provident nobis harum sed laborum
-            sunt! Natus recusandae accusantium reprehenderit at quo, cum iste exercitationem. Sed veritatis eligendi
-            maiores fugiat dignissimos, omnis itaque. Vero pariatur quas culpa! Incidunt voluptatum unde in, dolorem
-            numquam ipsa eveniet quis vitae hic nam perspiciatis veritatis, praesentium libero odio facere similique
-            eligendi ducimus distinctio eum possimus provident consequuntur. Porro debitis quis aliquam natus provident,
-            fugit odio perspiciatis assumenda qui numquam voluptatem, deserunt ducimus minima asperiores beatae nesciunt
-            temporibus hic ex voluptatum at tempora eum quo ea id? Numquam. Consectetur reiciendis, doloremque molestiae
-            possimus quisquam est eius deserunt dolor aliquam veniam soluta asperiores dolore. A animi, ipsa quae
-            tenetur rem distinctio dolorum explicabo aspernatur commodi? Qui asperiores eligendi cumque. Mollitia, sunt
-            officiis veritatis quam atque facere. Magni quo repellendus consequuntur. Vel minus, fugiat nam, labore
-            repudiandae, officiis consectetur voluptatem incidunt quidem dolorum asperiores soluta earum blanditiis
-            ipsam laborum placeat. Nulla at obcaecati in nemo alias? Sapiente quas, vero, esse corporis animi obcaecati
-            cupiditate porro quia quae earum nam assumenda voluptates! Nihil, repellendus sed unde esse non iure
-            reiciendis cum. Excepturi repellat, fuga magni necessitatibus obcaecati corrupti, ea saepe ad labore,
-            sapiente omnis minima nemo rerum non ducimus harum temporibus itaque nisi iste porro error nostrum. Fugit ut
-            veritatis excepturi! Laboriosam distinctio accusantium temporibus explicabo excepturi, in earum? Odit rem
-            fuga eos voluptas odio cum inventore aperiam repellendus! Voluptatem perspiciatis numquam in totam nostrum
-            accusamus voluptatum esse nihil. Neque, saepe? Velit iste officia eum soluta, dignissimos repudiandae vel
-            illum, nesciunt doloremque ab veniam necessitatibus reprehenderit suscipit blanditiis at temporibus quod
-            quasi quos sit? Dolores illo illum maxime modi nam minima. Iste quos excepturi libero ipsa commodi enim est
-            eveniet amet repudiandae eos repellendus earum facilis, deleniti sed fugiat quae, mollitia aliquid similique
-            necessitatibus, quidem labore ipsam? Laborum repellendus atque ducimus. Consectetur sed qui suscipit ipsum
-            mollitia fuga veniam. Deserunt iusto, laboriosam vitae dolores quod saepe eos nesciunt obcaecati voluptate
-            placeat beatae, accusamus architecto quam praesentium enim consequuntur ea! Aperiam, voluptate? Fuga
-            sapiente voluptatem harum commodi magni laborum inventore mollitia cum iure ducimus numquam labore repellat
-            nesciunt dolorem, libero eaque enim exercitationem iste aut odit sunt autem nihil illum rerum? Distinctio.
-            Nihil cumque eum delectus possimus enim culpa rem beatae perferendis unde placeat, alias eaque quas modi
-            consequuntur voluptatem optio ipsa iste illo quod. Veniam sint ut ex, temporibus laborum non? Autem dolor
-            porro similique id ratione culpa odio deserunt voluptates? Provident dolore magnam tenetur, iste culpa ab
-            eum! Molestias deleniti veniam facilis! Repellendus reprehenderit officiis ducimus vitae, itaque nisi
-            repellat. Quaerat obcaecati ea, optio, impedit amet numquam voluptatem harum unde porro tempora neque velit
-            ex cumque aperiam maiores a delectus, adipisci nisi quis. Magnam aut eos natus. Recusandae, earum excepturi.
-            Maiores facilis aliquid suscipit rem, perferendis rerum quam, soluta sit porro voluptatum laborum ad
-            veritatis qui consectetur ipsam, neque quia eaque harum ipsa natus molestias non dolore. Voluptatibus,
-            deserunt alias! Officiis architecto eius iusto cumque ad doloribus, est tempore consectetur esse dolorum
-            doloremque illum in. Nulla expedita nihil consequuntur doloribus ratione harum, neque dignissimos?
-            Praesentium porro nemo iusto facere! Numquam. Magni quo, quibusdam sint eligendi et tempora, excepturi
-            voluptate incidunt amet a dolor veniam voluptatem alias ullam nihil esse fuga? Dolorem odit aliquam
-            consectetur dicta culpa corrupti, voluptatem obcaecati quos? Obcaecati quis corporis dignissimos consequatur
-            atque! Error temporibus, nulla aliquid harum voluptatem exercitationem neque eveniet voluptatibus excepturi
-            possimus nobis quia nihil perspiciatis! Perferendis officia saepe eius repudiandae ratione omnis ipsum. Sunt
-            aut non dolores rerum voluptatibus molestiae omnis optio fugit, quis consequatur obcaecati quas facilis
-            laudantium odit, asperiores autem, iure quae dicta! Laudantium, neque esse accusantium praesentium quas
-            error corrupti? Doloremque cumque magni, quasi aliquid libero sit voluptate pariatur non impedit nulla
-            magnam qui quisquam, quam possimus. Voluptatum provident libero dolore, tenetur ipsum necessitatibus nulla
-            enim, accusantium dolorem blanditiis cupiditate! Quasi facere sequi inventore, sed praesentium hic
-            necessitatibus nam, dolores suscipit aspernatur neque ducimus. Deserunt unde, quos consequatur explicabo
-            expedita harum enim quaerat itaque sit debitis, ut, quas delectus quo! Illo suscipit molestias ratione
-            accusamus officia eum deserunt dolores similique error reprehenderit impedit sit ipsum, voluptas perferendis
-            doloribus eos illum! Ad dolores perferendis adipisci ex nam iusto dicta autem saepe. Vero repudiandae
-            quaerat quod quia, in quas ea dicta, enim praesentium impedit fugiat recusandae rerum sed maxime magnam
-            commodi assumenda similique cumque saepe illum hic exercitationem nam? Error, quaerat nesciunt! Provident
-            eius iure voluptas consequuntur ipsum quasi ullam, repellat nisi veritatis quibusdam fugit aut aliquam
-            incidunt optio facilis perferendis reprehenderit quas perspiciatis distinctio laudantium ut tempora ab
-            temporibus! Fuga, iste? Architecto est recusandae, a earum praesentium veniam neque veritatis accusantium,
-            enim labore iste quae eos debitis delectus optio officiis vel nesciunt sequi similique ullam repudiandae
-            eligendi ipsum accusamus perferendis. Praesentium. Tempore corrupti sit, vero nihil similique perferendis, a
-            ducimus, sequi minus fuga eum vitae nisi repudiandae beatae. Laboriosam, voluptate modi odio aliquam,
-            reprehenderit consectetur recusandae cupiditate rem vero ea veniam. Maxime modi, aut temporibus accusantium
-            quia neque architecto, reprehenderit minima laudantium, exercitationem illum vitae placeat? Corporis fuga
-            cum quo delectus assumenda, architecto ipsa suscipit maiores aspernatur id dolor officia reprehenderit! Eum
-            dolorem est modi ratione eligendi suscipit tempora, reiciendis aperiam! Earum alias libero deserunt magni
-            delectus eveniet, a vero, soluta porro, nihil quis fuga doloribus? Magni dolores cumque error nemo. Officia,
-            est expedita quo sapiente repellendus nihil iusto explicabo obcaecati nesciunt dolore, optio perspiciatis
-            magnam delectus rem accusantium laborum unde ipsum quos sed rerum possimus molestias et ullam? Modi,
-            dignissimos. Officiis iste atque ipsam recusandae eius nisi totam officia, commodi, excepturi cupiditate
-            libero exercitationem laboriosam aspernatur in culpa earum molestiae dicta. Ab obcaecati, a saepe reiciendis
-            accusantium non labore adipisci. Vel autem quasi dolorum corporis praesentium, odit maxime commodi vitae
-            veritatis consequuntur, aperiam qui nesciunt minima exercitationem quas ducimus quibusdam ut accusantium in
-            reprehenderit iste veniam. Cupiditate dolorum officiis dolores!
           </p>
         </span>
         <hr className="h-0.5 border-0 bg-gold" />
       </section>
-      <section>
+      <section className={`${post.postComments ? "inline" : "hidden"}`}>
         <h1 className="mx-auto mb-6 w-fit lg:mb-10 lg:text-2xl">{t("blog.comments")}</h1>
         <div className="mb-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-          {comments.map((c, i) => (
-            <Comment key={i} />
-          ))}
+          {post.postComments?.map((c, i) => {
+            console.log(c);
+            if (c.show) {
+              return (
+                <Comment
+                  userAvatar={c.user.profile.avatar}
+                  userName={c.user.name}
+                  comment={c.comment}
+                  publishDate={c.publishDate}
+                  key={i}
+                />
+              );
+            }
+          })}
         </div>
         <hr className="h-0.5 border-0 bg-gold" />
       </section>
       <span className="flex w-full flex-col items-center justify-center gap-6  lg:items-start lg:pl-8">
+        {loading && <Loader />}
         <h1 className="text-2xl">{t("blog.leave-your-comment")}</h1>
         <textarea
           onChange={(e) => setComment(e.target.value)}

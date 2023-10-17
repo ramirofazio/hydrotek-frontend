@@ -1,20 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { defaultPost, borders } from "src/assets";
 import { Link } from "react-router-dom";
-import { Modal } from "src/components";
-import { useState } from "react";
-import { MustLogin } from "../../pages/session/MustLogin";
+
 
 export function BlogPostCard({ id = 1, date = "05/04/01", showPreview = true, title, text, img = defaultPost }) {
   const { t } = useTranslation();
   const textPreview = text?.slice(0, 100);
 
-  const [modal, setModal] = useState(true);
   return (
     <main className="">
-      <Modal isOpen={modal} onClose={() => setModal(false)}>
-        <MustLogin />
-      </Modal>
       <picture className="relative flex max-w-[300px] items-center justify-center md:max-w-[350px]">
         <img className="absolute -z-10 max-h-full max-w-full" src={img} alt="post_image" />
         <img className="bottom-1 max-w-full" src={borders.blogPostBorder} alt="post_border" />
