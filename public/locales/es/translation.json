@@ -18,7 +18,9 @@
     "qty": "CANTIDAD",
     "unitPrice": "PRECIO UNITARIO",
     "total": "TOTAL",
-    "products": "PRODUCTOS"
+    "products": "PRODUCTOS",
+    "must-login": "debes iniciar sesión",
+    "sorry": "lo sentimos "
   },
   "session": {
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
@@ -27,6 +29,7 @@
     "forgotPass": "¿OLVIDASTE TU CONTRASEÑA?",
     "recoverPassNow": "RECUPERA TU CONTRASEÑA",
     "logIn": "INICIAR SESIÓN",
+    "register": "registrate",
     "signUp": "forma parte de",
     "closeSession": "CERRAR SESIÓN",
     "signUpSubmitBtn": "REGISTRARME",
