@@ -6,6 +6,7 @@ const route = {
   USER: "user",
   CART: "shoppingCart",
   BLOG: "blog",
+  CLOUDINARY: "cloudinary",
 };
 
 // * Para una clara visualizacion de las rutas abrir
@@ -59,6 +60,9 @@ export const APIHydro = {
   },
   updatePassword: ({ id, actualPassword, newPassword, newConfirmPassword }) => {
     return apiHydro.put(`/${route.USER}/updatePassword`, { id, actualPassword, newPassword, newConfirmPassword });
+  },
+  updateAvatar: ({ file, userId }) => {
+    return apiHydro.put(`/${route.CLOUDINARY}/updateAvatar`, { file, userId });
   },
 };
 

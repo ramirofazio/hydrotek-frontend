@@ -7,6 +7,7 @@ import { APIHydro } from "src/api";
 import { Loader, Modal } from "src/components";
 import { actionsUser } from "src/redux/reducers";
 import { ChangePassword } from "./ChangePassword.jsx";
+import { uploadImagesCloudinary } from "src/utils/cloudinary.js";
 
 export function MyData() {
   const { t } = useTranslation();
@@ -32,8 +33,9 @@ export function MyData() {
     email: email,
     pass: "****************",
   });
-
+  const [newImg, setNewImg] = useState("");
   useEffect(() => {
+    console.log(newImg);
     if (userData.dni !== "") {
       // Realiza la modificación en una copia del array 'fields'
       const modifiedFields = [...fields];
@@ -46,7 +48,7 @@ export function MyData() {
       // Actualiza el estado con la nueva copia del array
       setFields(modifiedFields);
     }
-  }, []);
+  }, [newImg]);
 
   const handleEdit = (name) => {
     if (name === edit) {
@@ -74,24 +76,27 @@ export function MyData() {
   const handleSave = () => {
     try {
       setLoading(true);
-      const data = {
-        session: { name: userData.name, email: userData.email, id: userId /*, dni: userData.dni*/ },
-        profile: { avatar: userData.avatar },
-      };
-      APIHydro.updateUser(data)
-        .then((res) => {
-          if (res.data) {
-            dispatch(actionsUser.updateDataFromProfile(res.data));
-            console.log(res.data);
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-          setLoading(false);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+
+      uploadImagesCloudinary([newImg.file], "user_avatar", userId).then((imgUrl) => {
+        const data = {
+          session: { name: userData.name, email: userData.email, id: userId /*, dni: userData.dni*/ },
+          profile: { avatar: imgUrl[0] },
+        };
+        APIHydro.updateUser(data)
+          .then((res) => {
+            if (res.data) {
+              dispatch(actionsUser.updateDataFromProfile(res.data));
+              console.log(res.data);
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+            setLoading(false);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      });
     } catch (e) {
       console.log(e);
       setLoading(false);
@@ -99,18 +104,19 @@ export function MyData() {
   };
 
   const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
+    //console.log(e);
+    const { target } = e;
+    const file = target.files[0];
 
-    try {
-      const response =
-      /*await cloudinaryUploadImg(file, "avatars");*/
-      //! Aca hay que subir el avatar a cloudinary. la respuesta deberia ser el URl de cloudinary para guardarlo en el avatar
-
-        console.log(file);
-      setUserData({ ...userData, avatar: response });
-    } catch (error) {
-      console.error("Error al subir la imagen:", error);
-    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setNewImg({
+        name: file.name,
+        image: typeof reader.result === "string" ? reader.result : "",
+        file: file,
+      });
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -123,7 +129,7 @@ export function MyData() {
         <h1 className=" lg:my-2 lg:w-full lg:!border-b-2 lg:border-gold lg:text-start">{t("profile.my-avatar")}</h1>
         <p>{t("profile.edit-avatar")}</p>
         <div className="my-6 flex w-full items-center justify-center gap-3 lg:justify-start lg:gap-6">
-          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={userData.avatar} />
+          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={newImg ? newImg.image : userData.avatar} />
           <p className="hidden tracking-normal lg:inline">{t("profile.avatar-resolution")}</p>
           <IconButtonWithBgGold icon={"ri-pencil-line"} onClick={() => handleEdit("avatar")} />
           <input id="fileInput" type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
@@ -160,9 +166,9 @@ export function MyData() {
             text={t("common.saveChanges")}
             pClassname={"p-3"}
             onClick={() => handleSave()}
-            className={`${
+            /* className={`${
               isUserChanged ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-50"
-            } transition lg:mx-auto lg:mb-4`}
+            } transition lg:mx-auto lg:mb-4`} */
           />
         </div>
       </section>
