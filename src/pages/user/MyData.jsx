@@ -81,9 +81,11 @@ export function MyData() {
       formdata.append("file", newImg);
       formdata.append("userId", userId);
       console.log(newImg); */
-      const { data } = await APIHydro.updateAvatar("anyyy");
+      const { data } = await APIHydro.updateAvatar(newImg);
       console.log(data)
-      //await uploadImagesCloudinary([newImg], "user_avatar", userId, data);
+      /* console.log(data);
+      const res = await uploadImagesCloudinary([newImg], "user_avatar", userId, data);
+      console.log(res); */
       /* const { data } = await APIHydro.getSignature(); .then((res) => {
         const { signature } = res.data;
       });
@@ -154,7 +156,7 @@ export function MyData() {
         <h1 className=" lg:my-2 lg:w-full lg:!border-b-2 lg:border-gold lg:text-start">{t("profile.my-avatar")}</h1>
         <p>{t("profile.edit-avatar")}</p>
         <div className="my-6 flex w-full items-center justify-center gap-3 lg:justify-start lg:gap-6">
-          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={newImg ? newImg.file : userData.avatar} />
+          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={newImg ? newImg : userData.avatar} />
           <p className="hidden tracking-normal lg:inline">{t("profile.avatar-resolution")}</p>
           <IconButtonWithBgGold icon={"ri-pencil-line"} onClick={() => handleEdit("avatar")} />
           <input id="fileInput" type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />

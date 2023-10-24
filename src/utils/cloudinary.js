@@ -1,7 +1,6 @@
 import axios from "axios";
 
-
-export async function uploadImagesCloudinary(files, upload_preset, public_id, signature) {
+export async function uploadImagesCloudinary(files, upload_preset, public_id, signatures) {
   console.log(files);
   const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "";
   const preset_key = "user_avatar"; //import.meta.env.VITE_CLOUDINARY_API_SECRET || '';
@@ -20,18 +19,24 @@ export async function uploadImagesCloudinary(files, upload_preset, public_id, si
     reader.readAsDataURL(file);
     console.log("leo: ", lector); */
 
-    console.log(`-${signature.timestamp}-`);
+    const { signature, timestamp } = signatures;
     const formdata = new FormData();
     formdata.append("file", file.image);
+    formdata.append("public_id", "cacatua");
     formdata.append("api_key", import.meta.env.VITE_CLOUDINARY_API_KEY);
-    // formdata.append("public_id", "cacatua");
-    // formdata.append("eager", "w_400,h_300,c_pad|w_260,h_200,c_crop");
-    formdata.append("signature", signature.signature);
-    formdata.append("timestamp", `${signature.timestamp}`);
-
-    // formdata.append("upload_preset", "user_avatar");
+    formdata.append("api_secret", import.meta.env.VITE_CLOUDINARY_API_SECRET);
+    formdata.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
+    // formdata.append("signature", signature);
+    // formdata.append("timestamp", `${timestamp}`);
+    //formdata.append("upload_preset", "pelusa");
+    /* upload_preset: "user_avatar",
+    formdata.append("overwrite", true);
+        public_id: "cacatua",
+        api_key: env.CLOUDINARY_API_KEY,
+        api_secret: env.CLOUDINARY_API_SECRET,
+        cloud_name: env.CLOUDINARY_CLOUD_NAME,
+        overwrite: true, */
     // formdata.append("folder", "avatars");
-    //formdata.append("overwrite", true);
     promises.push(axios.post(URL, formdata));
   });
 
