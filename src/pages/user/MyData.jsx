@@ -8,7 +8,7 @@ import { Loader, Modal } from "src/components";
 import { actionsUser } from "src/redux/reducers";
 import { ChangePassword } from "./ChangePassword.jsx";
 import { uploadImagesCloudinary } from "src/utils/cloudinary.js";
-import axios from "axios"
+import axios from "axios";
 
 export function MyData() {
   const { t } = useTranslation();
@@ -36,7 +36,7 @@ export function MyData() {
   });
   const [newImg, setNewImg] = useState(false);
   useEffect(() => {
-    //console.log(newImg);
+    console.log(newImg);
     if (userData.dni !== "") {
       // Realiza la modificación en una copia del array 'fields'
       const modifiedFields = [...fields];
@@ -74,16 +74,36 @@ export function MyData() {
     setIsUserChanged(true);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     try {
       //setLoading(true);
-      const formdata = new FormData();
+      /* const formdata = new FormData();
       formdata.append("file", newImg);
-      console.log(newImg);
-      axios.post("http://localhost:3000/cloudinary/updateAvatar",{ file: formdata, userId }, ).then((res) => console.log(res));
-      // uploadImagesCloudinary([newImg.file], "user_avatar", userId).then((imgUrl) => {
+      formdata.append("userId", userId);
+      console.log(newImg); */
+      const { data } = await APIHydro.updateAvatar("anyyy");
+      console.log(data)
+      //await uploadImagesCloudinary([newImg], "user_avatar", userId, data);
+      /* const { data } = await APIHydro.getSignature(); .then((res) => {
+        const { signature } = res.data;
+      });
+      console.log(data); */
+      /* const res = await uploadImagesCloudinary([newImg], "user_avatar", userId, data)
+      console.log(res.data) */
+      // axios
+      //   .post(
+      //     "http://localhost:3000/cloudinary/updateAvatar",
+      //     formdata,
+      //     {
+      //       headers: { "Content-Type": "multipart/form-data" },
+      //     } /* { file: formdata, userId: "cacatua" } */
+      //   )
+      //   .then((res) => console.log(res));
+      // .then((imgUrl) => {
       //   const data = {
       //     session: { name: userData.name, email: userData.email, id: userId /*, dni: userData.dni*/ },
+      //   };
+      // });
       //     profile: { avatar: imgUrl[0] },
       //   };
       //   APIHydro.updateUser(data)
@@ -112,8 +132,8 @@ export function MyData() {
     const { target } = e;
 
     const file = target.files[0];
-    setNewImg(file)
-    /* const reader = new FileReader();
+    //setNewImg(file);
+    const reader = new FileReader();
     reader.onload = () => {
       setNewImg({
         name: file.name,
@@ -121,7 +141,7 @@ export function MyData() {
         file: file,
       });
     };
-    reader.readAsDataURL(file); */
+    reader.readAsDataURL(file);
   };
 
   return (

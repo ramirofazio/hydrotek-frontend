@@ -61,8 +61,11 @@ export const APIHydro = {
   updatePassword: ({ id, actualPassword, newPassword, newConfirmPassword }) => {
     return apiHydro.put(`/${route.USER}/updatePassword`, { id, actualPassword, newPassword, newConfirmPassword });
   },
-  updateAvatar: ({ file, userId }) => {
-    return apiHydro.put(`/${route.CLOUDINARY}/updateAvatar`, { file, userId });
+  getSignature: () => {
+    return apiHydro.get(`/${route.CLOUDINARY}/signature`);
+  },
+  updateAvatar: (file) => {
+    return apiHydro.post(`/${route.CLOUDINARY}/updateAvatar`, file);
   },
 };
 

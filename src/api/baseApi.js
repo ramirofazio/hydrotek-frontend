@@ -9,7 +9,6 @@ export const apiHydro = axios.create({
     "Access-Control-Allow-Origin": import.meta.env.VITE_ACCESS_URL,
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Origin, Content-Type, Accept, Authorization",
-
   },
 });
 
