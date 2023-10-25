@@ -107,7 +107,7 @@ export function MyData() {
   };
 
   const handleImageUpload = async (e) => {
-    console.log(e);
+
     const { target } = e;
 
     const file = target.files[0];
@@ -119,6 +119,7 @@ export function MyData() {
         image: typeof reader.result === "string" ? reader.result : "",
         file: file,
       });
+      setIsUserChanged(true);
     };
     reader.readAsDataURL(file);
   };
@@ -173,9 +174,9 @@ export function MyData() {
             text={t("common.saveChanges")}
             pClassname={"p-3"}
             onClick={() => handleSave()}
-            /* className={`${
+            className={`${
               isUserChanged ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-50"
-            } transition lg:mx-auto lg:mb-4`} */
+            } transition lg:mx-auto lg:mb-4`}
           />
         </div>
       </section>
