@@ -13,6 +13,7 @@ const user = createSlice({
   },
   reducers: {
     updateDataFromProfile: (state, action) => {
+      console.log(action.payload)
       const { dni, email, id, name, profile } = action.payload;
 
       //! Chequear si funciona bien esto, tira error en consola que no peude actualizar el componente bla bla

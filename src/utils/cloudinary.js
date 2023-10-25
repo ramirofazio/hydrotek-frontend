@@ -1,5 +1,6 @@
 import axios from "axios";
-
+/* eslint-disable */
+// ? En desuso, pero puede ser muy util apra pedidos en el front
 export async function uploadImagesCloudinary(files, upload_preset, public_id, signatures) {
   console.log(files);
   const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "";
@@ -11,14 +12,6 @@ export async function uploadImagesCloudinary(files, upload_preset, public_id, si
   const promises = [];
 
   files.forEach((file) => {
-    /* let lector = "";
-    const reader = new FileReader();
-    reader.onload = () => {
-      lector = typeof reader.result === "string" ? reader.result : "cacatua";
-    };
-    reader.readAsDataURL(file);
-    console.log("leo: ", lector); */
-
     const { signature, timestamp } = signatures;
     const formdata = new FormData();
     formdata.append("file", file.image);
@@ -29,14 +22,7 @@ export async function uploadImagesCloudinary(files, upload_preset, public_id, si
     // formdata.append("signature", signature);
     // formdata.append("timestamp", `${timestamp}`);
     //formdata.append("upload_preset", "pelusa");
-    /* upload_preset: "user_avatar",
-    formdata.append("overwrite", true);
-        public_id: "cacatua",
-        api_key: env.CLOUDINARY_API_KEY,
-        api_secret: env.CLOUDINARY_API_SECRET,
-        cloud_name: env.CLOUDINARY_CLOUD_NAME,
-        overwrite: true, */
-    // formdata.append("folder", "avatars");
+    //formdata.append("overwrite", true);
     promises.push(axios.post(URL, formdata));
   });
 

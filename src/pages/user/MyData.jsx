@@ -7,8 +7,8 @@ import { APIHydro } from "src/api";
 import { Loader, Modal } from "src/components";
 import { actionsUser } from "src/redux/reducers";
 import { ChangePassword } from "./ChangePassword.jsx";
-import { uploadImagesCloudinary } from "src/utils/cloudinary.js";
 import axios from "axios";
+
 
 export function MyData() {
   const { t } = useTranslation();
@@ -36,7 +36,6 @@ export function MyData() {
   });
   const [newImg, setNewImg] = useState(false);
   useEffect(() => {
-    console.log(newImg);
     if (userData.dni !== "") {
       // Realiza la modificación en una copia del array 'fields'
       const modifiedFields = [...fields];
@@ -49,7 +48,7 @@ export function MyData() {
       // Actualiza el estado con la nueva copia del array
       setFields(modifiedFields);
     }
-  }, [newImg]);
+  }, []);
 
   const handleEdit = (name) => {
     if (name === edit) {
@@ -76,53 +75,31 @@ export function MyData() {
 
   const handleSave = async () => {
     try {
-      //setLoading(true);
-      /* const formdata = new FormData();
-      formdata.append("file", newImg);
-      formdata.append("userId", userId);
-      console.log(newImg); */
-      const { data } = await APIHydro.updateAvatar(newImg);
-      console.log(data)
-      /* console.log(data);
-      const res = await uploadImagesCloudinary([newImg], "user_avatar", userId, data);
-      console.log(res); */
-      /* const { data } = await APIHydro.getSignature(); .then((res) => {
-        const { signature } = res.data;
+      setLoading(true);
+      let newAvatar = "";
+      if (newImg) {
+        const formdata = new FormData();
+        formdata.append("file", newImg.image);
+        formdata.append("userId", userId);
+
+        const res = await axios.post(`http://localhost:3000/cloudinary/updateAvatar`, formdata, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        newAvatar = res.data;
+      }
+
+      const data = {
+        session: { name: userData.name, email: userData.email, id: userId /*, dni: userData.dni*/ },
+        profile: { avatar: newAvatar ? newAvatar : userData.avatar },
+      };
+
+      APIHydro.updateUser(data).then((res) => {
+        if (res.data) {
+          dispatch(actionsUser.updateDataFromProfile(res.data));
+          console.log(res.data);
+          setLoading(false);
+        }
       });
-      console.log(data); */
-      /* const res = await uploadImagesCloudinary([newImg], "user_avatar", userId, data)
-      console.log(res.data) */
-      // axios
-      //   .post(
-      //     "http://localhost:3000/cloudinary/updateAvatar",
-      //     formdata,
-      //     {
-      //       headers: { "Content-Type": "multipart/form-data" },
-      //     } /* { file: formdata, userId: "cacatua" } */
-      //   )
-      //   .then((res) => console.log(res));
-      // .then((imgUrl) => {
-      //   const data = {
-      //     session: { name: userData.name, email: userData.email, id: userId /*, dni: userData.dni*/ },
-      //   };
-      // });
-      //     profile: { avatar: imgUrl[0] },
-      //   };
-      //   APIHydro.updateUser(data)
-      //     .then((res) => {
-      //       if (res.data) {
-      //         dispatch(actionsUser.updateDataFromProfile(res.data));
-      //         console.log(res.data);
-      //       }
-      //     })
-      //     .catch((e) => {
-      //       console.log(e);
-      //       setLoading(false);
-      //     })
-      //     .finally(() => {
-      //       setLoading(false);
-      //     });
-      // });
     } catch (e) {
       console.log(e);
       setLoading(false);
@@ -134,7 +111,7 @@ export function MyData() {
     const { target } = e;
 
     const file = target.files[0];
-    //setNewImg(file);
+
     const reader = new FileReader();
     reader.onload = () => {
       setNewImg({
@@ -156,7 +133,10 @@ export function MyData() {
         <h1 className=" lg:my-2 lg:w-full lg:!border-b-2 lg:border-gold lg:text-start">{t("profile.my-avatar")}</h1>
         <p>{t("profile.edit-avatar")}</p>
         <div className="my-6 flex w-full items-center justify-center gap-3 lg:justify-start lg:gap-6">
-          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={newImg ? newImg : userData.avatar} />
+          <Avatar
+            avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"}
+            avatar={newImg ? newImg.image : user.profile.avatar}
+          />
           <p className="hidden tracking-normal lg:inline">{t("profile.avatar-resolution")}</p>
           <IconButtonWithBgGold icon={"ri-pencil-line"} onClick={() => handleEdit("avatar")} />
           <input id="fileInput" type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
