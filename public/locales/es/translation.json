@@ -57,6 +57,7 @@
   },
   "blog": {
     "visit-blog": "visitar el blog",
+    "no-posts": "lo sentimos, por el momento no hay posteos",
     "our-blog": "nuestro blog",
     "comments": "comentarios",
     "comment": "comentar",

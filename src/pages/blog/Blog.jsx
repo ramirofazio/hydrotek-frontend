@@ -24,7 +24,7 @@ export function Blog() {
           </div>
         </>
       ) : (
-        <h2 className="mx-auto w-fit border-2">Lo sentimos, por el momento no hay posteos u.u</h2>
+        <h2 className="mx-auto w-fit border-2">{t("blog.no-posts")}</h2>
       )}
     </main>
   );

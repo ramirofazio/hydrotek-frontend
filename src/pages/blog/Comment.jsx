@@ -19,7 +19,7 @@ export function Comment({ publishDate, userName, userAvatar, comment }) {
       <div className="mt-3 h-fit rounded-lg border-2 border-gold bg-black px-5 py-5">
         <p>{comment} </p>
       </div>
-      <time className="my-1 font-primary text-xs text-white">{publishDate.slice(0, 10) || "05/04/2001"}</time>
+      <time className="my-1 font-primary text-xs text-white">{publishDate.slice(0, 10)}</time>
     </article>
   );
 }
