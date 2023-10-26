@@ -1,12 +1,12 @@
 import axios from "axios";
 /* eslint-disable */
-// ? En desuso, pero puede ser muy util apra pedidos en el front
+// ? En desuso, pero puede ser muy util para pedidos desde el front
 export async function uploadImagesCloudinary(files, upload_preset, public_id, signatures) {
   console.log(files);
   const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "";
   const preset_key = "user_avatar"; //import.meta.env.VITE_CLOUDINARY_API_SECRET || '';
 
-  const URL = "https://api.cloudinary.com/v1_1/djdtbqhxm/image/upload";
+  const URL = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
 
   const images_urls = [];
   const promises = [];
@@ -15,13 +15,13 @@ export async function uploadImagesCloudinary(files, upload_preset, public_id, si
     const { signature, timestamp } = signatures;
     const formdata = new FormData();
     formdata.append("file", file.image);
-    formdata.append("public_id", "cacatua");
+    formdata.append("public_id", "id_de_la_img");
     formdata.append("api_key", import.meta.env.VITE_CLOUDINARY_API_KEY);
     formdata.append("api_secret", import.meta.env.VITE_CLOUDINARY_API_SECRET);
     formdata.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
     // formdata.append("signature", signature);
     // formdata.append("timestamp", `${timestamp}`);
-    //formdata.append("upload_preset", "pelusa");
+    //formdata.append("upload_preset", preset_key);
     //formdata.append("overwrite", true);
     promises.push(axios.post(URL, formdata));
   });
