@@ -1,6 +1,7 @@
 import { getOfStorage, deleteOfStorage, saveInStorage } from "src/utils/localStorage";
 import { APIHydro } from "src/api";
 
+
 export async function autoLoginLoader() {
   const token = getOfStorage("accessToken");
   if (token) {
@@ -19,4 +20,9 @@ export async function autoLoginLoader() {
 export function notAuthLoader() {
   const token = getOfStorage("accessToken");
   return { accessToken: token };
+}
+
+export async function blogLoader() {
+  const posts = await APIHydro.getPosts();
+  return posts.data;
 }
