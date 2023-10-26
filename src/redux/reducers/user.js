@@ -13,7 +13,7 @@ const user = createSlice({
   },
   reducers: {
     updateDataFromProfile: (state, action) => {
-      console.log(action.payload)
+      console.log(action.payload);
       const { dni, email, id, name, profile } = action.payload;
 
       //! Chequear si funciona bien esto, tira error en consola que no peude actualizar el componente bla bla
@@ -26,17 +26,23 @@ const user = createSlice({
     },
     saveSignData: (state, action) => {
       const { session, profile, savedPosts /*orders*/ } = action.payload;
-
+      const rawSavedPosts = savedPosts.map((p) => p.postId);
       return {
         ...state,
         session: session,
         profile: profile,
-        savedPosts: savedPosts,
+        savedPosts: rawSavedPosts,
         //orders: orders,
+      };
+    },
+    updateSavedPosts: (state, action) => {
+      return {
+        ...state,
+        savedPosts: action.payload,
       };
     },
   },
 });
 
 export const userRdr = user.reducer;
-export const { saveSignData, updateDataFromProfile } = user.actions;
+export const { saveSignData, updateDataFromProfile, updateSavedPosts } = user.actions;

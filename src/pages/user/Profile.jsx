@@ -6,15 +6,15 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getOfStorage } from "src/utils/localStorage";
 
-const componentMapping = {
-  MyData: <MyData />,
-  MyBuys: <MyBuys />,
-  MySavedPosts: <MySavedPosts />,
-};
-
 export function Profile() {
   const { t } = useTranslation();
   const user = useSelector((state) => state.user);
+
+  const componentMapping = {
+    MyData: <MyData />,
+    MyBuys: <MyBuys />,
+    MySavedPosts: <MySavedPosts userId={user.session.id} />,
+  };
 
   const [selectedBtn, setSelectedBtn] = useState(() => {
     const local = getOfStorage("selectedBtn");
@@ -28,7 +28,7 @@ export function Profile() {
   return (
     <main className="grid h-screen gap-10 lg:my-4 lg:grid-cols-2 xl:mx-20">
       <Header t={t} />
-      <section className="lg:flex lg:flex-col lg:gap-20 lg:border-r-2 lg:border-gold lg:pr-10">
+      <section className=" lg:flex lg:flex-col lg:gap-20 lg:border-r-2 lg:border-gold lg:pr-10">
         <div className="relative grid place-content-center place-items-center">
           <img
             src={borders.profile}

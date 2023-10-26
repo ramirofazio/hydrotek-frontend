@@ -70,6 +70,12 @@ export const APIHydro = {
   updateAvatar: (file) => {
     return apiHydro.post(`/${route.CLOUDINARY}/updateAvatar`, file);
   },
+  updateSavedPosts: ({ userId, postIds }) => {
+    return apiHydro.post(`/${route.BLOG}/savePost`, { userId, postIds });
+  },
+  getSavedPosts: (userId) => {
+    return apiHydro.get(`/${route.USER}/savedPosts/${userId}`);
+  },
 };
 
 export function addAuthWithToken(token) {
