@@ -57,6 +57,9 @@ export const APIHydro = {
   deletePost: (userId, postId) => {
     return apiHydro.delete(`/${route.BLOG}/`, { userId, postId });
   },
+  uploadComment: ({ userId, postId, comment }) => {
+    return apiHydro.post(`/${route.BLOG}/comment`, { userId, postId, comment });
+  },
   updatePassword: ({ id, actualPassword, newPassword, newConfirmPassword }) => {
     return apiHydro.put(`/${route.USER}/updatePassword`, { id, actualPassword, newPassword, newConfirmPassword });
   },
