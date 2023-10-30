@@ -2,7 +2,7 @@ import { BlogPostCard } from "components/cards";
 import { Pagination } from "src/components";
 import { useTranslation } from "react-i18next";
 import { useLoaderData } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionsUser } from "src/redux/reducers";
 import { APIHydro } from "src/api";
@@ -16,14 +16,19 @@ export function Blog() {
   const dictionary = {};
   user.savedPosts?.forEach((p) => (dictionary[p] = p));
   const [savedPosts, setSavedPosts] = useState(dictionary);
-  useEffect(() => {
+  const savedPostsRef = useRef(0);
 
-    return () => {
-      dispatch(actionsUser.updateSavedPosts(Object.values(savedPosts)));
-      console.log(Object.values(savedPosts))
-      APIHydro.updateSavedPosts({ userId: user.session.id, postIds: Object.values(savedPosts) });
-    };
+  useEffect(() => {
+    savedPostsRef.current = savedPosts;
   }, [savedPosts]);
+
+  useEffect(() => {
+    // ! Para que funcione adecuadamente hay que tener desactivado el React.strictmode en main.jsx
+    return () => {
+      dispatch(actionsUser.updateSavedPosts(Object.values(savedPostsRef.current)));
+      APIHydro.updateSavedPosts({ userId: user.session.id, postIds: Object.values(savedPostsRef.current) });
+    };
+  }, []);
 
   return (
     <main className="mx-auto mb-10 flex min-h-screen w-[92%] flex-col items-center justify-center">

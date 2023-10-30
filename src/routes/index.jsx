@@ -92,9 +92,18 @@ export function Routes() {
             {
               path: "/user/profile/:userId",
               loader: async ({ params }) => {
+                let dictionary = {};
                 const { data } = await APIHydro.getSavedPosts(params.userId);
-                console.log(data)
-                return data;
+                const posts = data?.map((p) => {
+                  dictionary[p.postId] = p.postId;
+                  return p.post;
+                });
+                console.log(data);
+                console.log(dictionary);
+                return {
+                  posts,
+                  dictionary,
+                };
               },
               element: <Profile />,
               index: true,
