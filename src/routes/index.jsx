@@ -98,8 +98,6 @@ export function Routes() {
                   dictionary[p.postId] = p.postId;
                   return p.post;
                 });
-                console.log(data);
-                console.log(dictionary);
                 return {
                   posts,
                   dictionary,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Auth3Button } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
 import { useNavigate } from "react-router-dom";
@@ -45,12 +45,6 @@ export function SignUp() {
       })
     );
   };
-
-  useEffect(() => {
-    console.log(errs);
-    console.log(apiErr);
-    console.log(user);
-  }, [errs, apiErr, user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
