@@ -90,7 +90,12 @@ export function Routes() {
           path: "/user/profile",
           children: [
             {
-              path: "/user/profile",
+              path: "/user/profile/:userId",
+              loader: async ({ params }) => {
+                const { data } = await APIHydro.getSavedPosts(params.userId);
+                console.log(data)
+                return data;
+              },
               element: <Profile />,
               index: true,
             },

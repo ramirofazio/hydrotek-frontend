@@ -3,10 +3,11 @@ import { Fragment } from "react";
 import { links } from "src/utils";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Categories } from "./Categories.jsx";
+import { useSelector } from "react-redux";
 
 export function ModalNav({ role, pathname }) {
   const navigate = useNavigate();
-
+  const { session } = useSelector((state) => state.user);
   return (
     <Popover className="lg:hidden">
       <Popover.Button className="focus:outline-0">
@@ -38,7 +39,7 @@ export function ModalNav({ role, pathname }) {
                       to={l.path}
                       className={({ isActive, isPending }) => (isActive ? "border-b-[1px] " : isPending ? "" : "")}
                     >
-                      {/* {l.name} // ? porquen no esntra el sobrenosotros */ }
+                      {/* {l.name} // ? porquen no esntra el sobrenosotros */}
                       <Popover.Button className="">{l.name}</Popover.Button>
                     </NavLink>
                   </li>
@@ -50,9 +51,9 @@ export function ModalNav({ role, pathname }) {
               <Popover.Button>
                 <i
                   className={`ri-user-3-fill text-3xl ${
-                    pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"
+                    pathname === `/user/profile/${session.id}` ? "text-gold/50" : "icons text-gold"
                   }`}
-                  onClick={() => navigate(role ? "/user/profile" : "/session/signIn")}
+                  onClick={() => navigate(role ? `/user/profile/${session.id}` : "/session/signIn")}
                 />
               </Popover.Button>
               <Popover.Button>

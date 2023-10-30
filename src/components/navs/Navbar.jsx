@@ -3,11 +3,12 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ModalNav, Categories } from "./";
 import { links } from "src/utils";
 import { logos } from "assets";
+import { useSelector } from "react-redux";
 
 export const Navbar = ({ role }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
+  const { session } = useSelector((state) => state.user);
   return (
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
       <NavLink to="/">
@@ -41,7 +42,7 @@ export const Navbar = ({ role }) => {
       <section className="hidden  justify-evenly gap-9 lg:flex">
         <i
           className={`ri-user-3-fill text-3xl ${pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"}`} // Avatar
-          onClick={() => navigate(role ? "/user/profile" : "/session/signIn")}
+          onClick={() => navigate(role ? `/user/profile/${session.id}` : "/session/signIn")}
         />
         <i onClick={() => navigate("/shoppingCart")} className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
       </section>
