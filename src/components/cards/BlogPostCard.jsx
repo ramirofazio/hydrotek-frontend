@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { defaultPost, borders } from "src/assets";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { MustLogin } from "src/pages/session/MustLogin";
+import { Modal } from "..";
 
 export function BlogPostCard({
   id,
@@ -12,26 +15,36 @@ export function BlogPostCard({
   img = defaultPost,
   saved,
   setSavedPosts,
+  logged = false,
 }) {
+
   const { t } = useTranslation();
   const textPreview = text?.slice(0, 100);
+  const [modal, setModal] = useState(false);
 
+  function handleClick() {
+    if (!logged) {
+      setModal(true);
+    } else {
+      setSavedPosts((prev) => {
+        let prevSaves = { ...prev };
+        if (saved) {
+          delete prevSaves[id];
+        } else {
+          prevSaves[id] = id;
+        }
+        return prevSaves;
+      });
+    }
+  }
   return (
     <main className="relative ">
+      <Modal isOpen={modal} onClose={() => setModal(false)}>
+        <MustLogin action="Para guardar posteos" />
+      </Modal>
       {showSave && (
         <button
-          onClick={() =>
-            setSavedPosts((prev) => {
-              let prevSaves = { ...prev };
-              if (saved) {
-                delete prevSaves[id];
-              } else {
-                prevSaves[id] = id;
-              }
-              console.log("SAVES: ", prevSaves);
-              return prevSaves;
-            })
-          }
+          onClick={handleClick}
           className="goldGradient absolute left-[93%]  z-30 rounded-full px-1 py-[0.5px] lg:px-1.5 lg:py-1"
         >
           {saved ? (

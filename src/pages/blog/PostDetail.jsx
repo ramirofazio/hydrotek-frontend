@@ -60,7 +60,7 @@ export function PostDetail() {
         <h1 className="mx-auto mb-6 w-fit lg:mb-10 lg:text-2xl">{t("blog.comments")}</h1>
         <div className="mb-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
           {post.postComments?.map((c, i) => {
-            console.log(c);
+
             if (c.show) {
               return (
                 <Comment

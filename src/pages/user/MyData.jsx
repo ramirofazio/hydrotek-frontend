@@ -96,7 +96,6 @@ export function MyData() {
       APIHydro.updateUser(data).then((res) => {
         if (res.data) {
           dispatch(actionsUser.updateDataFromProfile(res.data));
-          console.log(res.data);
           setLoading(false);
         }
       });

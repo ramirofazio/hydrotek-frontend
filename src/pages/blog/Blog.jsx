@@ -40,6 +40,7 @@ export function Blog() {
               const { title, text, id, publishDate } = p;
               return (
                 <BlogPostCard
+                  logged={user.session.id ? true : false}
                   date={publishDate}
                   saved={savedPosts[id]}
                   setSavedPosts={setSavedPosts}
