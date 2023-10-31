@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 const mockProducts = ["sistema x", "fertilizante a", "plug 0-34", "enraizador3"];
 
-export function SearchBar({ names }) {
+export function SearchBar() {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
