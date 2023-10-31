@@ -11,7 +11,7 @@ import { OrderDetail, Profile } from "src/pages/user";
 import { Blog, PostDetail } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
 import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
-import { autoLoginLoader, notAuthLoader, blogLoader } from "./loaders";
+import { autoLoginLoader, notAuthLoader, blogLoader, productsLoader, productDetailLoader } from "./loaders";
 import { APIHydro } from "src/api";
 
 export function Routes() {
@@ -23,13 +23,17 @@ export function Routes() {
       loader: autoLoginLoader,
       children: [
         { path: "/", element: <Landing />, index: true },
-        { path: "/products", element: <Products /> },
         {
-          path: "/productDetail/:id", // TODO: Cuando tengamos data real utilizar el loader con el param de :id
-          element: <ProductDetail />, // * Por el momento se rompe
-          // loader: ({ params }) => {
-          //   return APIHydro.getProductDetail(params.id);
-          // },
+          path: "/products/:pag",
+          loader: async ({ params }) => {
+            return productsLoader(params.pag);
+          },
+          element: <Products />,
+        },
+        {
+          path: "/productDetail/:id",
+          element: <ProductDetail />,
+          loader: productDetailLoader,
         },
         {
           path: "shoppingCart",

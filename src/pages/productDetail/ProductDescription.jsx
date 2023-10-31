@@ -3,7 +3,7 @@ import { Button } from "../../components/buttons";
 import { useTranslation } from "react-i18next";
 import { Quantity } from "src/components";
 
-export function ProductDescription({ productId = 1, name, price, rating, stock = 10 }) {
+export function ProductDescription({ productId, description, name, price, rating, stock = 10 }) {
   const { t } = useTranslation();
 
   return (
@@ -23,9 +23,7 @@ export function ProductDescription({ productId = 1, name, price, rating, stock =
       <Button text={t("common.buy-now")} className="mt-2" />
 
       <h1 className="p-1 text-xs">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti corporis dolorem vero accusamus dicta,
-        repellat adipisci maiores animi facilis harum asperiores optio nesciunt rerum deserunt aliquam necessitatibus
-        odit labore quia!
+        {description || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti corporis dolorem vero accusamus dicta, repellat adipisci maiores animi facilis harum asperiores optio nesciunt rerum deserunt aliquam necessitatibus odit labore quia!"}
       </h1>
     </article>
   );

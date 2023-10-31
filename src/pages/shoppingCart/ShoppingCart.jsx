@@ -23,7 +23,7 @@ export default function ShoppingCart({ deliveryPrice = 100 }) {
             <h1 className="">{t("shopping-cart.no-products-on-cart")}</h1>
             <Button
               className="sm:mx-auto sm:w-[60%]"
-              onClick={() => navigate("/products")}
+              onClick={() => navigate("/products/0")}
               text={t("common.see-products")}
             />
           </div>

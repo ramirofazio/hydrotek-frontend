@@ -41,7 +41,7 @@ export function MyBuys() {
           <div className="col-span-2 flex w-full flex-col gap-4">
             <i className="ri-shopping-bag-fill icons text-4xl text-white" />
             <h2>Ninguna compra realizada</h2>
-            <Link to="/products">
+            <Link to="/products/0">
               <Button text={"Ver productos"} />
             </Link>
           </div>
