@@ -27,7 +27,7 @@ export async function blogLoader() {
 }
 
 export async function productsLoader(pag) {
-  const products = await APIHydro.getProductsPaginated({ pag: parseInt(pag), productsPerPage: 20 });
+  const products = await APIHydro.getProductsPaginated({ pag: parseInt(pag), productsPerPage: 22 });
   return products.data;
   /* const products = await APIHydro.getProducts();
   return products.data; */

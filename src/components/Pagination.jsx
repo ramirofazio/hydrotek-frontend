@@ -16,12 +16,12 @@ export const Pagination = ({ nButtons, path }) => {
       >
         <i className="ri-arrow-left-fill text-2xl" />
       </button>
-      <div className="flex items-center gap-2 text-sm">
+      <div className="flex items-center gap-1.5 sm:gap-2 text-sm">
         {quantity.map((n, index) => (
           <button
             onClick={() => navigate(`${path}${index}`)}
             key={index}
-            className={`goldGradient  grid h-10 w-10 place-content-center rounded-full p-2.5 text-lg text-white transition-all ${
+            className={`goldGradient  grid h-10 w-10 place-content-center rounded-full p-1 md:p-2.5 text-sm sm:text-lg text-white transition-all ${
               currentPage === index
                 ? "shadow-primary/80  font-medium shadow ease-in"
                 : " opacity-40 ease-out hover:opacity-60"
