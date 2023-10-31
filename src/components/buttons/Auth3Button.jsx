@@ -16,7 +16,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
   const code = searchParams.get("code");
 
   useEffect(() => {
-    redirect ? navigate("/products") : null;
+    redirect ? navigate("/products/0") : null;
     if (code?.length && !redirect) {
       setLoading(true);
       APIHydro.googleAuthCode(code).then((res) => {

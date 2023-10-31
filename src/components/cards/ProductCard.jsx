@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { AddToCart } from "src/pages/shoppingCart/AddToCart";
 
-export function ProductCard({ imgUrl, name, price = 200, id = 1, showBtn = true }) {
+export function ProductCard({ imgUrl, name, price = 200, id, showBtn = true }) {
   const { t } = useTranslation();
   return (
     <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>

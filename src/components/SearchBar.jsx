@@ -27,8 +27,8 @@ export function SearchBar() {
             onChange={(event) => setQuery(event.target.value)}
             placeholder={t("common.search")}
           />
-          <Combobox.Button className="bg-gold">
-            <i className="ri-search-line text-2xl text-base" />
+          <Combobox.Button className="">
+            <i className="ri-search-eye-line text-3xl text-gold" />
           </Combobox.Button>
         </div>
         <Combobox.Options className="absolute z-50 mt-2 border-2 border-black/40 bg-black/80 shadow-2xl">

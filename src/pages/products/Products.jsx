@@ -1,26 +1,28 @@
 import { ProductCard } from "components/cards";
 import { Pagination, SearchBar } from "components";
+import { useLoaderData } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Products() {
-  const mockProducts = [
-    { name: "SAFE ROOTS", price: 20.000 },
-    { name: "PLUG", price: 5.000 },
-    { name: "SISTEMA X", price: 40.000 },
-    { name: "SAFE ROOTS", price: 20.000 },
-  ];
+  const { t } = useTranslation();
+  const data = useLoaderData();
+  const { products, quantity } = data;
 
   return (
     <div className="mx-auto w-[90%]">
       <div>
+        {/* // TODO Pedido a la api con query params => la respuesta setea "data"  */}
         <SearchBar />
       </div>
       <div className="content mx-auto grid  place-items-center gap-4  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {mockProducts.map((p, i) => (
-          <ProductCard key={i} name={p.name} price={p.price} />
-        ))}
+        {products?.length ? (
+          products.map((p, i) => <ProductCard id={p.id} key={i} name={p.name} price={p.price.d[0]} />)
+        ) : (
+          <h1 className="mx-auto w-fit">{t("products.no-products")}</h1>
+        )}
       </div>
       <div className="mx-auto my-5 w-fit">
-        <Pagination nButtons={5} />
+        <Pagination path={"/products/"} nButtons={quantity} />
       </div>
     </div>
   );

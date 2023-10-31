@@ -13,13 +13,13 @@ export function InfoCard({ text }) {
           <h1 className="h-fit text-lg uppercase sm:!text-4xl md:text-left  xl:!text-5xl xs:text-2xl s:text-3xl">
             {text || "Cultivo sin tierra, crecimiento sin límites"}
           </h1>
-          <Link to={`/products`} className="hidden md:inline md:self-start">
+          <Link to={`/products/0`} className="hidden md:inline md:self-start">
             <Button className="xl:text-xl" text={t("common.see-products")} />
           </Link>
         </div>
       </div>
       <div className="mx-auto mt-3 w-fit p-4 sm:mt-10 md:hidden xs:mt-5 font-primary">
-        <Link to={`/products`}>
+        <Link to={`/products/0`}>
           <Button className="text-sm s:text-lg" text={t("common.see-products")} />
         </Link>
       </div>
