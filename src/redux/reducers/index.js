@@ -8,10 +8,11 @@ export const actionsApp = {
   loadProducts,
 };
 
-import { saveSignData, updateDataFromProfile } from "./user.js";
+import { saveSignData, updateDataFromProfile, updateSavedPosts } from "./user.js";
 export const actionsUser = {
   saveSignData,
   updateDataFromProfile,
+  updateSavedPosts,
 };
 
 import { saveSingInShoppingCart, loadStorageShoppingCart, addProudct, removeProduct } from "./shoppingCart.js";

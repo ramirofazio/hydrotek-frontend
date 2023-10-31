@@ -6,6 +6,7 @@ const route = {
   USER: "user",
   CART: "shoppingCart",
   BLOG: "blog",
+  CLOUDINARY: "cloudinary",
 };
 
 // * Para una clara visualizacion de las rutas abrir
@@ -62,6 +63,18 @@ export const APIHydro = {
   },
   updatePassword: ({ id, actualPassword, newPassword, newConfirmPassword }) => {
     return apiHydro.put(`/${route.USER}/updatePassword`, { id, actualPassword, newPassword, newConfirmPassword });
+  },
+  getSignature: () => {
+    return apiHydro.get(`/${route.CLOUDINARY}/signature`);
+  },
+  updateAvatar: (file) => {
+    return apiHydro.post(`/${route.CLOUDINARY}/updateAvatar`, file);
+  },
+  updateSavedPosts: ({ userId, postIds }) => {
+    return apiHydro.post(`/${route.BLOG}/savePost`, { userId, postIds });
+  },
+  getSavedPosts: (userId) => {
+    return apiHydro.get(`/${route.USER}/savedPosts/${userId}`);
   },
 };
 

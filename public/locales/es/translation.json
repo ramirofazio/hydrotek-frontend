@@ -57,6 +57,7 @@
   },
   "blog": {
     "visit-blog": "visitar el blog",
+    "no-saved-posts": "no tenes publicaciones guardadas",
     "no-posts": "lo sentimos, por el momento no hay posteos",
     "our-blog": "nuestro blog",
     "comments": "comentarios",

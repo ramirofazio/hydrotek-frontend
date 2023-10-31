@@ -90,7 +90,19 @@ export function Routes() {
           path: "/user/profile",
           children: [
             {
-              path: "/user/profile",
+              path: "/user/profile/:userId",
+              loader: async ({ params }) => {
+                let dictionary = {};
+                const { data } = await APIHydro.getSavedPosts(params.userId);
+                const posts = data?.map((p) => {
+                  dictionary[p.postId] = p.postId;
+                  return p.post;
+                });
+                return {
+                  posts,
+                  dictionary,
+                };
+              },
               element: <Profile />,
               index: true,
             },

@@ -35,9 +35,9 @@ export default function Landing() {
           />
         </div>
         <div className="mx-auto grid w-[90%] place-items-center gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          <BlogPostCard showPreview={false} title="COMO SETEAR EL SISTEMA EN" />
-          <BlogPostCard showPreview={false} title="COMO SETEAR EL SISTEMA EN" />
-          <BlogPostCard showPreview={false} title="COMO SETEAR EL SISTEMA EN" />
+          <BlogPostCard showSave={false} showPreview={false} title="COMO SETEAR EL SISTEMA EN" />
+          <BlogPostCard showSave={false} showPreview={false} title="COMO SETEAR EL SISTEMA EN" />
+          <BlogPostCard showSave={false} showPreview={false} title="COMO SETEAR EL SISTEMA EN" />
         </div>
         <Button
           onClick={() => navigate("/blog")}

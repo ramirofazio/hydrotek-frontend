@@ -7,6 +7,8 @@ import { APIHydro } from "src/api";
 import { Loader, Modal } from "src/components";
 import { actionsUser } from "src/redux/reducers";
 import { ChangePassword } from "./ChangePassword.jsx";
+import axios from "axios";
+
 
 export function MyData() {
   const { t } = useTranslation();
@@ -32,7 +34,7 @@ export function MyData() {
     email: email,
     pass: "****************",
   });
-
+  const [newImg, setNewImg] = useState(false);
   useEffect(() => {
     if (userData.dni !== "") {
       // Realiza la modificación en una copia del array 'fields'
@@ -71,27 +73,32 @@ export function MyData() {
     setIsUserChanged(true);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     try {
       setLoading(true);
+      let newAvatar = "";
+      if (newImg) {
+        const formdata = new FormData();
+        formdata.append("file", newImg.image);
+        formdata.append("userId", userId);
+
+        const res = await axios.post(`http://localhost:3000/cloudinary/updateAvatar`, formdata, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        newAvatar = res.data;
+      }
+
       const data = {
         session: { name: userData.name, email: userData.email, id: userId /*, dni: userData.dni*/ },
-        profile: { avatar: userData.avatar },
+        profile: { avatar: newAvatar ? newAvatar : userData.avatar },
       };
-      APIHydro.updateUser(data)
-        .then((res) => {
-          if (res.data) {
-            dispatch(actionsUser.updateDataFromProfile(res.data));
-            console.log(res.data);
-          }
-        })
-        .catch((e) => {
-          console.log(e);
+
+      APIHydro.updateUser(data).then((res) => {
+        if (res.data) {
+          dispatch(actionsUser.updateDataFromProfile(res.data));
           setLoading(false);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+        }
+      });
     } catch (e) {
       console.log(e);
       setLoading(false);
@@ -99,18 +106,21 @@ export function MyData() {
   };
 
   const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
 
-    try {
-      const response =
-      /*await cloudinaryUploadImg(file, "avatars");*/
-      //! Aca hay que subir el avatar a cloudinary. la respuesta deberia ser el URl de cloudinary para guardarlo en el avatar
+    const { target } = e;
 
-        console.log(file);
-      setUserData({ ...userData, avatar: response });
-    } catch (error) {
-      console.error("Error al subir la imagen:", error);
-    }
+    const file = target.files[0];
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setNewImg({
+        name: file.name,
+        image: typeof reader.result === "string" ? reader.result : "",
+        file: file,
+      });
+      setIsUserChanged(true);
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -123,7 +133,10 @@ export function MyData() {
         <h1 className=" lg:my-2 lg:w-full lg:!border-b-2 lg:border-gold lg:text-start">{t("profile.my-avatar")}</h1>
         <p>{t("profile.edit-avatar")}</p>
         <div className="my-6 flex w-full items-center justify-center gap-3 lg:justify-start lg:gap-6">
-          <Avatar avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"} avatar={userData.avatar} />
+          <Avatar
+            avatarWidth={"w-24 sm:w-40 lg:w-24 aspect-square"}
+            avatar={newImg ? newImg.image : user.profile.avatar}
+          />
           <p className="hidden tracking-normal lg:inline">{t("profile.avatar-resolution")}</p>
           <IconButtonWithBgGold icon={"ri-pencil-line"} onClick={() => handleEdit("avatar")} />
           <input id="fileInput" type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />

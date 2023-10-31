@@ -5,7 +5,7 @@ export function Quantity({ productId = "peluproduct", price = 420, stock = 25, c
   const dispatch = useDispatch();
   const { addProudct, removeProduct } = actionsShoppingCart;
   const quantity = useSelector((state) => state.shoppingCart.products[productId]?.quantity);
-  console.log(quantity);
+
   return (
     <div className="mx-auto flex w-fit gap-6">
       <button

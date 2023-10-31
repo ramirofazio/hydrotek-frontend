@@ -27,7 +27,8 @@ export function isValidSignUp({ email, dni, name, password, confirmPassword }) {
     if (regex.containNumber.test(name)) errs.name = "no puede tener numeros";
   }
   if (password) {
-    errs.password = validatePassword(password);
+    const getErr = validatePassword(password);
+    getErr ? (errs.password = getErr) : null;
   }
   if (password && confirmPassword) {
     if (password !== confirmPassword) errs.confirmPassword = "las contraseñas no coinciden";
