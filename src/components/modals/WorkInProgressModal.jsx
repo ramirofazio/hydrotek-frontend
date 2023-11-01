@@ -8,7 +8,7 @@ export function WorkInProgressModal({ isOpen, onClose, text }) {
       <section className="grid place-items-center gap-4 p-2">
         <h2 className="textGoldGradient font-bold">¡Hemos lanzado nuestra web!</h2>
         <p className="text-center text-sm">
-          Ciertos módulos aún no están disponibles. Agradecemos tu comprensión mientras trabajamos en mejorar tu
+          Ciertos módulos aún no están disponibles. Agradecemos tu comprensión mientras trabajamos en terminar tu
           experiencia. Permanece atento para futuras actualizaciones.
         </p>
         {text}

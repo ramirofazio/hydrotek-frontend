@@ -5,29 +5,33 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { saveInStorage } from "src/utils/localStorage";
+import { WorkInProgressModal } from "../modals";
 
 export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...props }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const [redirect, setRedirect] = useState(false);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get("code");
 
-  useEffect(() => {
-    redirect ? navigate("/products/0") : null;
-    if (code?.length && !redirect) {
-      setLoading(true);
-      APIHydro.googleAuthCode(code).then((res) => {
-        saveInStorage("accessToken", res.data.accessToken);
-        dispatch(actionsUser.saveSignData(res.data));
-        dispatch(actionsShoppingCart.saveSingInShoppingCart(res.data.shoppingCart));
-        setLoading(false);
-        setRedirect(true);
-      });
-    }
-  }, [redirect]);
+  //! entrega 2 de nov
+  //   useEffect(() => {
+  //     redirect ? navigate("/products/0") : null;
+  //     if (code?.length && !redirect) {
+  //       setLoading(true);
+  //       APIHydro.googleAuthCode(code).then((res) => {
+  //         saveInStorage("accessToken", res.data.accessToken);
+  //         dispatch(actionsUser.saveSignData(res.data));
+  //         dispatch(actionsShoppingCart.saveSingInShoppingCart(res.data.shoppingCart));
+  //         setLoading(false);
+  //         setRedirect(true);
+  //       });
+  //     }
+  //   }, [redirect]);
 
   const googleLogin = useGoogleLogin({
     /* eslint-disable */
@@ -72,12 +76,13 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
 
   return (
     <button
-      onClick={() => googleLogin()}
+      onClick={() => /*googleLogin()*/ setIsOpen(true)}
       className={`aspect-square rounded-full border-2 border-gold bg-transparent p-4 uppercase tracking-widest text-white transition hover:bg-gold hover:text-gold  ${classname}`}
       {...props}
     >
       <i className={icon}></i>
       <p className={`font-primary ${pClassname}`}>{text}</p>
+      <WorkInProgressModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </button>
   );
 };
