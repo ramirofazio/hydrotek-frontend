@@ -3,7 +3,7 @@ import { products } from "assets";
 import { Button } from "components/buttons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { AddToCart } from "src/pages/shoppingCart/AddToCart";
+// import { AddToCart } from "src/pages/shoppingCart/AddToCart";
 
 export function ProductCard({ imgUrl, name, price = 200, id, showBtn = true }) {
   const { t } = useTranslation();
@@ -21,13 +21,13 @@ export function ProductCard({ imgUrl, name, price = 200, id, showBtn = true }) {
       </Atropos>
       <div className={`${!showBtn && "hidden"} grid place-items-center gap-2 pb-12`}>
         <h1 className="text-center md:place-self-start">{name || "NOMBRE DEL PRODUCTO"}</h1>
-        <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">{`$${price}`}</h2>
+        <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">{`${price}`}</h2>
         {showBtn && (
-          <div className="md:place-self-start  flex gap-3 s:gap-5 md:gap-8 items-center">
+          <div className="flex  items-center gap-3 md:gap-8 md:place-self-start s:gap-5">
             <Link to={`/productDetail/${id}`} className=" md:place-self-start">
               <Button text={t("common.buy-now")} pClassname={"font-primary"} />
             </Link>
-            <AddToCart price={price} productId={id}/>
+            {/* <AddToCart price={price} productId={id}/> */}
           </div>
         )}
       </div>

@@ -22,9 +22,9 @@ export default function Landing() {
         </section>
         <div className="py-10">
           <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
-          <Carrousel content={[{ component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 6 }]} quantit />
+          <Carrousel content={[{ component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 6 }]} />
         </div>
-        <div className="">
+        {/* <div className="">
           <h1 className="mx-auto w-fit text-center xl:text-3xl">{t("common.find-what-you-are-looking")}</h1>
           <Carrousel
             content={[
@@ -43,7 +43,7 @@ export default function Landing() {
           onClick={() => navigate("/blog")}
           className="mx-auto -mt-[3rem] mb-[3rem] w-fit"
           text={t("blog.visit-blog")}
-        />
+        /> */}
       </section>
     </div>
   );
