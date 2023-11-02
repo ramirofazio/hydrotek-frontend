@@ -7,4 +7,4 @@ export { SearchBar } from "./SearchBar";
 export { Loader } from "./Loader";
 export { Error } from "./Error";
 export { Quantity } from "./Quantity";
-export { Modal } from "./modals/Modal";
+export { Modal, WorkInProgressModal } from "./modals";

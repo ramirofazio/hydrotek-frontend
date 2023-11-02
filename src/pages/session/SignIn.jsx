@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Loader, Error, Modal } from "src/components";
+import { Loader, Error, Modal, WorkInProgressModal } from "src/components";
 import { Button, Auth3Button } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
 import { backgrounds, logos } from "src/assets";
@@ -79,9 +79,10 @@ export function SignIn() {
 
   return (
     <main className="relative grid h-full py-10 sm:px-10 md:px-20 lg:place-content-center">
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ForgotPassword />
-      </Modal>
+      </Modal> */}
+      <WorkInProgressModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <img src={backgrounds.techDots2} className="absolute bottom-0 left-0 hidden w-80 animate-pulse lg:inline" />
       <img
         src={backgrounds.signUpBgXl2}
