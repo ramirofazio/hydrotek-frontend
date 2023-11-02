@@ -1,6 +1,6 @@
 import Atropos from "atropos/react";
 import { products } from "assets";
-import { Button } from "components/buttons";
+import { Button, IconButtonWithBgGold } from "components/buttons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -48,6 +48,7 @@ export function ProductCard({ imgUrl, name, price = 200, id, showBtn = true }) {
               href={`http://wa.me/5491170823697?text=Hola%21%20Vengo%20de%20la%20web.%20Me%20interes%C3%B3%20el%20producto%20${name}`}
             >
               <strong>comunicate con nosotros</strong>
+              <IconButtonWithBgGold icon={`ri-whatsapp-line`} className={"mx-auto -mb-10 mt-4"} />
             </a>
           </p>
         }
