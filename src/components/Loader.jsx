@@ -11,11 +11,13 @@ export function Loader({ className }) {
   }, []);
 
   return (
-    <main
-      className={`absolute z-50 grid aspect-square  h-20 place-content-center place-items-center rounded-md bg-black/70 lg:h-40 ${className}`}
-    >
-      {/* <img src={logos.hydBlack} className="animate-pulse" />  //?OTRA OPCION */}
-      <i className="ri-loader-2-fill animate-spin text-6xl text-gold" />
+    <main className="flex h-screen w-screen items-center justify-center">
+      <main
+        className={`absolute z-50 grid aspect-square  h-20 place-content-center place-items-center rounded-md bg-black/70 lg:h-40 ${className}`}
+      >
+        {/* <img src={logos.hydBlack} className="animate-pulse" />  //?OTRA OPCION */}
+        <i className="ri-loader-2-fill animate-spin text-6xl text-gold" />
+      </main>
     </main>
   );
 }

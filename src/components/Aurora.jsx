@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 export const Aurora = () => {
   const auroraRef = useRef(null);
-  const [isAuroraOn, setIsAuroraOn] = useState(false);
+  const [isAuroraOn, setIsAuroraOn] = useState(true);
 
   useEffect(() => {
     const aurora = auroraRef.current;

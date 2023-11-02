@@ -1,9 +1,8 @@
+import { lazy, Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { NotAuthRoute } from "./NotAuthRoute";
-import Root from "pages/Root.jsx";
 import DefaultError from "pages/error/Default.jsx";
-import Landing from "pages/landing/Landing.jsx";
 import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
 import { SignIn, SignUp } from "src/pages/session";
@@ -13,12 +12,19 @@ import { AboutUs } from "src/pages/aboutUs";
 import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
 import { autoLoginLoader, notAuthLoader, blogLoader, productsLoader, productDetailLoader } from "./loaders";
 import { APIHydro } from "src/api";
+import { Aurora } from "src/components";
+const Landing = lazy(() => import("pages/landing/Landing.jsx"));
+const Root = lazy(() => import("pages/Root.jsx"));
 
 export function Routes() {
   const publicRoutes = [
     {
       path: "/",
-      element: <Root />,
+      element: (
+        <Suspense fallback={<Aurora />}>
+          <Root />
+        </Suspense>
+      ),
       errorElement: <DefaultError />,
       loader: autoLoginLoader,
       children: [
