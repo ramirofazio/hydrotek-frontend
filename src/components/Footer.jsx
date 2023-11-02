@@ -50,8 +50,8 @@ export const Footer = () => {
         </div>
         <div className="col-span-1 row-span-2 my-6  lg:row-span-1 lg:h-full">
           <h1 className="textGoldGradient text-sm md:text-xl">{t("footer.who-we-are")}</h1>
-          <p className="py-4 text-xs font-[200]  leading-5 tracking-widest md:w-[50%]  md:text-sm lg:w-full">
-            {t("footer.who-we-are-body")}
+          <p className="py-4 text-xs font-[200]  leading-5 tracking-widest md:w-[50%]  md:text-sm lg:w-full text-justify">
+            {t("about.content")}...
           </p>
           <Link
             to="/aboutUs"

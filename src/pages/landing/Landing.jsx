@@ -4,6 +4,7 @@ import { Carrousel } from "src/components";
 import { useTranslation } from "react-i18next";
 import { backgrounds } from "assets";
 import { useNavigate } from "react-router-dom";
+import { products } from "src/assets";
 
 export default function Landing() {
   const { t } = useTranslation();
@@ -16,9 +17,16 @@ export default function Landing() {
   return (
     <div className="content h-full">
       <section className=" flex flex-col gap-[5rem]">
-        <section className="flex flex-col pt-5 lg:flex-row lg:place-items-center lg:pt-10">
+        <section className="relative flex flex-col pt-5  lg:flex-row lg:place-items-center lg:pt-10">
           <InfoCard />
-          <img src={backgrounds.goldCircuit} className="place-self-end  md:w-[70%] lg:w-[45%] lg:place-self-center" />
+          <img
+            src={products.aboutUs}
+            className="absolute inset-x-0 bottom-0 z-20 mx-auto -mb-32 scale-75 lg:inset-x-auto  lg:inset-y-0 lg:bottom-auto lg:right-10 lg:top-20 lg:mb-auto  xl:right-20 xl:scale-100"
+          />
+          <img
+            src={backgrounds.goldCircuit}
+            className="animate-pulse  place-self-end md:w-[70%] lg:w-[45%] lg:place-self-center"
+          />
         </section>
         <div className="py-10">
           <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
