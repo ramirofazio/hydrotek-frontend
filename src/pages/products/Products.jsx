@@ -15,7 +15,7 @@ export default function Products() {
     <div className="mx-auto w-[90%]">
       <div>
         {/* // TODO Pedido a la api con query params => la respuesta setea "data"  */}
-        <SearchBar />
+        {/* <SearchBar /> */}
       </div>
       <div className="content mx-auto mt-10  grid place-items-center gap-4  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products?.length ? (
