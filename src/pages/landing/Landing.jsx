@@ -5,6 +5,9 @@ import { useTranslation } from "react-i18next";
 import { backgrounds } from "assets";
 import { useNavigate } from "react-router-dom";
 import { products } from "src/assets";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import { mostSelled } from "./mostSelled";
 
 export default function Landing() {
   const { t } = useTranslation();
@@ -13,6 +16,15 @@ export default function Landing() {
   /* useEffect(() => {
     cleanStorage(); // ! Borrar cuanod se mergee HYD-113, interrumpe el flujo del token y del shoppingCart sin logueo
   }, []); */
+
+  const products = mostSelled;
+
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<div class="' + className + '">' + "</div>";
+    },
+  };
 
   return (
     <div className="content h-full">
@@ -30,7 +42,37 @@ export default function Landing() {
         </section>
         <div className="py-10">
           <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
-          <Carrousel content={[{ component: <ProductCard name={"SAFE ROOTS"} price={"$20.000"} />, qty: 6 }]} />
+          <Swiper
+            loop={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: true,
+              pauseOnMouseEnter: true,
+            }}
+            pagination={pagination}
+            slidesPerView={1}
+            spaceBetween={20}
+            centeredSlides={true}
+            modules={[Pagination, Autoplay]}
+            className="mb-10 w-full"
+            breakpoints={{
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1280: {
+                slidesPerView: 4,
+                spaceBetween: 100,
+              },
+            }}
+          >
+            {products?.length &&
+              products.map((p, i) => (
+                <SwiperSlide className="grid place-items-center">
+                  <ProductCard id={i} key={i} name={p.name} imgUrl={p.imgUrl} /* price={p.price.d[0]} */ />
+                </SwiperSlide>
+              ))}
+          </Swiper>
         </div>
         {/* <div className="">
           <h1 className="mx-auto w-fit text-center xl:text-3xl">{t("common.find-what-you-are-looking")}</h1>
