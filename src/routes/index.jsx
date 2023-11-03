@@ -26,14 +26,14 @@ export function Routes() {
         </Suspense>
       ),
       errorElement: <DefaultError />,
-      loader: autoLoginLoader,
+      /* loader: autoLoginLoader, */
       children: [
         { path: "/", element: <Landing />, index: true },
         {
           path: "/products/:pag",
-          loader: async ({ params }) => {
+          /* loader: async ({ params }) => {
             return productsLoader(params.pag);
-          },
+          }, */
           element: <Products />,
         },
         {
