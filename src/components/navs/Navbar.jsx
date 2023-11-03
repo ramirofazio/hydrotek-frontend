@@ -4,11 +4,16 @@ import { ModalNav, Categories } from "./";
 import { links } from "src/utils";
 import { logos } from "assets";
 import { useSelector } from "react-redux";
+import { WorkInProgressModal } from "../modals";
+import { IconButtonWithBgGold } from "../buttons";
+import { useState } from "react";
 
 export const Navbar = ({ role }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { session } = useSelector((state) => state.user);
+
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
       <NavLink to="/">
@@ -42,10 +47,27 @@ export const Navbar = ({ role }) => {
       <section className="hidden  justify-evenly gap-9 lg:flex">
         <i
           className={`ri-user-3-fill text-3xl ${pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"}`} // Avatar
-          onClick={() => navigate(role ? `/user/profile/${session.id}` : "/session/signIn")}
+          onClick={() => setIsOpen(true)}
+          /* onClick={() => navigate(role ? `/user/profile/${session.id}` : "/session/signIn")} */
         />
         <i onClick={() => navigate("/shoppingCart")} className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
       </section>
+      <WorkInProgressModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        text={
+          <p className="text-center text-sm">
+            Pronto se habilitara el inicio de sesión
+            <br />
+            <a
+              href={`http://wa.me/5491170823697?text=Hola%21%20Vengo%20de%20la%20web.%20Me%20interes%C3%B3%20el%20producto%20${name}`}
+            >
+              <strong>comunicate con nosotros</strong>
+              <IconButtonWithBgGold icon={`ri-whatsapp-line`} className={"mx-auto -mb-10 mt-4"} />
+            </a>
+          </p>
+        }
+      />
     </nav>
   );
 };

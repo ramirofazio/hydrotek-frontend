@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "src/components/buttons";
 import { useNavigate } from "react-router-dom";
 
-export default function ShoppingCart({ deliveryPrice = 100 }) {
+export default function ShoppingCart({ deliveryPrice = 0 }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { products, totalPrice } = useSelector((state) => state.shoppingCart);
