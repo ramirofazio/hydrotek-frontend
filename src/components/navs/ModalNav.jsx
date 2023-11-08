@@ -53,7 +53,10 @@ export function ModalNav({ role, pathname }) {
             <section className="mt-10 flex justify-around">
               {session.role === "ADMIN" && (
                 <Popover.Button>
-                  <i onClick={() => navigate("/dashboard")} className="icons ri-bar-chart-2-fill text-3xl  text-gold" />
+                  <i
+                    onClick={() => navigate("/admin/dashboard")}
+                    className="icons ri-bar-chart-2-fill text-3xl  text-gold"
+                  />
                 </Popover.Button>
               )}
               <Popover.Button>
