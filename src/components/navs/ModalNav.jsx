@@ -9,6 +9,8 @@ export function ModalNav({ role, pathname }) {
   const navigate = useNavigate();
   const { session } = useSelector((state) => state.user);
 
+  console.log(session);
+
   return (
     <Popover className="lg:hidden">
       <Popover.Button className="focus:outline-0">
@@ -49,6 +51,11 @@ export function ModalNav({ role, pathname }) {
             </ul>
 
             <section className="mt-10 flex justify-around">
+              {session.role === "ADMIN" && (
+                <Popover.Button>
+                  <i onClick={() => navigate("/dashboard")} className="icons ri-bar-chart-2-fill text-3xl  text-gold" />
+                </Popover.Button>
+              )}
               <Popover.Button>
                 <i
                   className={`ri-user-3-fill text-3xl ${
