@@ -19,7 +19,7 @@ export function DashboardHeader() {
         <IconButtonWithBgGold
           icon={"ri-restart-line "}
           onClick={() => handleUpdateTFactura()}
-          text={"Actualizar T Factura"}
+          text={"Actualizar TFactura"}
           className={"aspect-auto w-fit"}
           textClassName={"ml-8"}
         />
