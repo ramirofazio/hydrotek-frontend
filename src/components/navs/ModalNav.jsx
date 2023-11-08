@@ -1,17 +1,14 @@
 import { Popover, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { links } from "src/utils";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Categories } from "./Categories.jsx";
 import { useSelector } from "react-redux";
-import { WorkInProgressModal } from "../modals";
-import { IconButtonWithBgGold } from "../buttons";
-
 
 export function ModalNav({ role, pathname }) {
   const navigate = useNavigate();
   const { session } = useSelector((state) => state.user);
-  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Popover className="lg:hidden">
       <Popover.Button className="focus:outline-0">
@@ -57,8 +54,7 @@ export function ModalNav({ role, pathname }) {
                   className={`ri-user-3-fill text-3xl ${
                     pathname === `/user/profile/${session.id}` ? "text-gold/50" : "icons text-gold"
                   }`}
-                  onClick={() => setIsOpen(true)}
-                  /* onClick={() => navigate(role ? `/user/profile/${session.id}` : "/session/signIn")} */
+                  onClick={() => navigate(role ? `/user/profile/${session.id}` : "/session/signIn")}
                 />
               </Popover.Button>
               <Popover.Button>
@@ -71,22 +67,6 @@ export function ModalNav({ role, pathname }) {
           </nav>
         </Popover.Panel>
       </Transition>
-      <WorkInProgressModal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        text={
-          <p className="text-center text-sm">
-            Pronto se habilitara el inicio de sesión
-            <br />
-            <a
-              href={`http://wa.me/5491170823697?text=Hola%21%20Vengo%20de%20la%20web.%20Me%20interes%C3%B3%20el%20producto%20${name}`}
-            >
-              <strong>comunicate con nosotros</strong>
-              <IconButtonWithBgGold icon={`ri-whatsapp-line`} className={"mx-auto -mb-10 mt-4"} />
-            </a>
-          </p>
-        }
-      />
     </Popover>
   );
 }

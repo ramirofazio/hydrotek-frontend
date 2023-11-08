@@ -4,7 +4,6 @@ import { Carrousel } from "src/components";
 import { useTranslation } from "react-i18next";
 import { backgrounds } from "assets";
 import { useNavigate } from "react-router-dom";
-import { products } from "src/assets";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { mostSelled } from "./mostSelled";
@@ -17,6 +16,7 @@ export default function Landing() {
     cleanStorage(); // ! Borrar cuanod se mergee HYD-113, interrumpe el flujo del token y del shoppingCart sin logueo
   }, []); */
 
+  // TODO consumir los productos mas vendidos del back
   const products = mostSelled;
 
   const pagination = {
@@ -68,14 +68,15 @@ export default function Landing() {
           >
             {products?.length &&
               products.map((p, i) => (
-                <SwiperSlide className="grid place-items-center">
-                  <ProductCard id={i} key={i} name={p.name} imgUrl={p.imgUrl} /* price={p.price.d[0]} */ />
+                <SwiperSlide key={i} className="grid place-items-center">
+                  <ProductCard id={i} key={i} name={p.name} imgUrl={p.imgUrl} /* price={p.price.d[0]}  */ />
                 </SwiperSlide>
               ))}
           </Swiper>
         </div>
-        {/* <div className="">
+        <div className="">
           <h1 className="mx-auto w-fit text-center xl:text-3xl">{t("common.find-what-you-are-looking")}</h1>
+          {/* //TODO usar categorias reales  */}
           <Carrousel
             content={[
               { component: <CategoryCard name={"SAFE ROOTS"} />, qty: 3 },
@@ -93,7 +94,7 @@ export default function Landing() {
           onClick={() => navigate("/blog")}
           className="mx-auto -mt-[3rem] mb-[3rem] w-fit"
           text={t("blog.visit-blog")}
-        /> */}
+        />
       </section>
     </div>
   );
