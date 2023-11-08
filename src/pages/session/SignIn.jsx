@@ -59,7 +59,7 @@ export function SignIn() {
               dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
             }
             setLoading(false);
-            navigate("/products");
+            navigate("/");
           }
         })
         .catch((e) => {
