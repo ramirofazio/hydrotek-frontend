@@ -26,7 +26,7 @@ export function AboutUs() {
         <p className="sm:text-sm xl:text-sm">{t("about.content5")}</p>
         <div className="flex w-full justify-around p-4 sm:py-6 lg:justify-center lg:gap-10 xl:justify-start xl:gap-4">
           {socialLinksIcons.map(({ href, icon }, index) => (
-            <a key={index} href={href} target="_blank">
+            <a key={index} href={href} target="_blank" rel="noreferrer">
               <IconButtonWithBgGold icon={`ri-${icon}-line`} />
             </a>
           ))}

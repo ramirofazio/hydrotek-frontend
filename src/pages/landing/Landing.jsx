@@ -2,7 +2,7 @@ import { InfoCard, ProductCard, CategoryCard, BlogPostCard } from "src/component
 import { Button } from "components/buttons";
 import { Carrousel } from "src/components";
 import { useTranslation } from "react-i18next";
-import { backgrounds } from "assets";
+import { backgrounds, products } from "assets";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -12,12 +12,8 @@ export default function Landing() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  /* useEffect(() => {
-    cleanStorage(); // ! Borrar cuanod se mergee HYD-113, interrumpe el flujo del token y del shoppingCart sin logueo
-  }, []); */
-
   // TODO consumir los productos mas vendidos del back
-  const products = mostSelled;
+  const mostSelledProducts = mostSelled;
 
   const pagination = {
     clickable: true,
@@ -66,8 +62,8 @@ export default function Landing() {
               },
             }}
           >
-            {products?.length &&
-              products.map((p, i) => (
+            {mostSelledProducts?.length &&
+              mostSelledProducts.map((p, i) => (
                 <SwiperSlide key={i} className="grid place-items-center">
                   <ProductCard id={i} key={i} name={p.name} imgUrl={p.imgUrl} /* price={p.price.d[0]}  */ />
                 </SwiperSlide>
