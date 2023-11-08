@@ -1,5 +1,5 @@
 import { BlogPostCard } from "components/cards";
-import { Pagination } from "src/components";
+//import { Pagination } from "src/components";
 import { useTranslation } from "react-i18next";
 import { useLoaderData } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
@@ -52,9 +52,9 @@ export function Blog() {
               );
             })}
           </div>
-          <div className="my-8">
-            <Pagination nButtons={3} />
-          </div>
+          {/* <div className="my-8">
+            <Pagination path={"/blog/"}  nButtons={3} />
+          </div> */}
         </>
       ) : (
         <h2 className="mx-auto w-fit border-2">{t("blog.no-posts")}</h2>

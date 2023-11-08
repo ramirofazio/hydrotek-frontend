@@ -7,8 +7,7 @@ export default function ProductDetail() {
   const { t } = useTranslation();
   const product = useLoaderData();
   const { id, name, price, description } = product;
-  console.log(product)
-  console.log(price)
+
   return (
     <main className="content mx-auto my-5 grid w-[92%] gap-8  md:grid-cols-2">
       {/* <Carrousel //? Resolver incorporación del carrucel
