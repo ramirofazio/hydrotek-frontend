@@ -18,20 +18,19 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get("code");
 
-  //! entrega 2 de nov
-  //   useEffect(() => {
-  //     redirect ? navigate("/products/0") : null;
-  //     if (code?.length && !redirect) {
-  //       setLoading(true);
-  //       APIHydro.googleAuthCode(code).then((res) => {
-  //         saveInStorage("accessToken", res.data.accessToken);
-  //         dispatch(actionsUser.saveSignData(res.data));
-  //         dispatch(actionsShoppingCart.saveSingInShoppingCart(res.data.shoppingCart));
-  //         setLoading(false);
-  //         setRedirect(true);
-  //       });
-  //     }
-  //   }, [redirect]);
+  useEffect(() => {
+    redirect ? navigate("/products/0") : null;
+    if (code?.length && !redirect) {
+      setLoading(true);
+      APIHydro.googleAuthCode(code).then((res) => {
+        saveInStorage("accessToken", res.data.accessToken);
+        dispatch(actionsUser.saveSignData(res.data));
+        dispatch(actionsShoppingCart.saveSingInShoppingCart(res.data.shoppingCart));
+        setLoading(false);
+        setRedirect(true);
+      });
+    }
+  }, [redirect]);
 
   const googleLogin = useGoogleLogin({
     /* eslint-disable */
@@ -76,7 +75,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
 
   return (
     <button
-      onClick={() => /*googleLogin()*/ setIsOpen(true)}
+      onClick={() => googleLogin()}
       className={`aspect-square rounded-full border-2 border-gold bg-transparent p-4 uppercase tracking-widest text-white transition hover:bg-gold hover:text-gold  ${classname}`}
       {...props}
     >

@@ -1,4 +1,4 @@
-export const expo_products = [
+export const expoProducts = [
   {
     name: "RDWC PRO 2.1 CON DESAGOTE INFERIOR",
     imgUrl:
