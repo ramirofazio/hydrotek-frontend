@@ -8,6 +8,7 @@ import {
   productsLoader,
   productDetailLoader,
   allProductsLoader,
+  allUsersLoader,
 } from "./loaders";
 import DefaultError from "pages/error/Default.jsx";
 import Products from "pages/products/Products.jsx";
@@ -147,7 +148,8 @@ export function Routes() {
               path: "/admin/dashboard",
               element: <Dashboard />,
               loader: async () => {
-                return allProductsLoader();
+                const [products, users] = await Promise.all([allProductsLoader(), allUsersLoader()]);
+                return { products, users };
               },
               index: true,
             },

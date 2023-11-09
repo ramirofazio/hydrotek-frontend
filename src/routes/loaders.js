@@ -29,8 +29,6 @@ export async function blogLoader() {
 export async function productsLoader(pag) {
   const products = await APIHydro.getProductsPaginated({ pag: parseInt(pag), productsPerPage: 22 });
   return products.data;
-  /* const products = await APIHydro.getProducts();
-  return products.data; */
 }
 
 export async function productDetailLoader({ params }) {
@@ -41,6 +39,9 @@ export async function productDetailLoader({ params }) {
 export async function allProductsLoader() {
   const products = await APIHydro.getAllProducts();
   return products.data;
-  /* const products = await APIHydro.getProducts();
-  return products.data; */
+}
+
+export async function allUsersLoader() {
+  const users = await APIHydro.getAllUsers();
+  return users.data;
 }
