@@ -37,3 +37,10 @@ export async function productDetailLoader({ params }) {
   const product = await APIHydro.getProductDetail(params.id);
   return product.data;
 }
+
+export async function allProductsLoader() {
+  const products = await APIHydro.getAllProducts();
+  return products.data;
+  /* const products = await APIHydro.getProducts();
+  return products.data; */
+}

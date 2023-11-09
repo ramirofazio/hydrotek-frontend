@@ -1,7 +1,14 @@
 import { lazy, Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute, NotAuthRoute, AdminRoutes } from "./index";
-import { autoLoginLoader, notAuthLoader, blogLoader, productsLoader, productDetailLoader } from "./loaders";
+import {
+  autoLoginLoader,
+  notAuthLoader,
+  blogLoader,
+  productsLoader,
+  productDetailLoader,
+  allProductsLoader,
+} from "./loaders";
 import DefaultError from "pages/error/Default.jsx";
 import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
@@ -139,6 +146,9 @@ export function Routes() {
             {
               path: "/admin/dashboard",
               element: <Dashboard />,
+              loader: async () => {
+                return allProductsLoader();
+              },
               index: true,
             },
           ],

@@ -13,12 +13,14 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  getAllProducts: () => {
+    return apiHydro.get(`/${route.PRODUCT}/all`);
+  },
   getProductsPaginated: ({ pag, productsPerPage }) => {
-    console.log(pag, productsPerPage);
-    return apiHydro.post(`/${route.PRODUCT}/pag`, { pag, productsPerPage }); //ejemplo para traer todos los productos
+    return apiHydro.post(`/${route.PRODUCT}/pag`, { pag, productsPerPage });
   },
   getProducts: () => {
-    return apiHydro.get(`/${route.PRODUCT}`); //ejemplo para traer todos los productos
+    return apiHydro.get(`/${route.PRODUCT}`); //ejemplo para traer todos los productos //! Trae 50 nomas
   },
   getProductDetail: (id) => {
     return apiHydro.get(`${route.PRODUCT}/detail/${id}`);
