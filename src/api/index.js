@@ -7,12 +7,31 @@ const route = {
   CART: "shoppingCart",
   BLOG: "blog",
   CLOUDINARY: "cloudinary",
+  TFACTURA: "tfactura",
 };
 
 // * Para una clara visualizacion de las rutas abrir
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  updateTFacturaProducts: () => {
+    return apiHydro.get(`/${route.TFACTURA}/token`).then((res) => {
+      if (res.status === 200) {
+        return apiHydro.get(`/${route.TFACTURA}/products`).then((res) => {
+          if (res.status === 200) {
+            return apiHydro.get(`${route.PRODUCT}/updateDB`).then((res) => {
+              if (res.status === 200) {
+                return "success";
+              }
+            });
+          }
+        });
+      }
+    });
+  },
+  getAllUsers: () => {
+    return apiHydro.get(`/${route.USER}`);
+  },
   getAllProducts: () => {
     return apiHydro.get(`/${route.PRODUCT}/all`);
   },
