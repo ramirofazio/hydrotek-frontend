@@ -30,8 +30,8 @@ export const Navbar = ({ role }) => {
                   isActive
                     ? "textGoldGradient"
                     : isPending
-                    ? "pending"
-                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
+                      ? "pending"
+                      : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
                 }
               >
                 {l.name}

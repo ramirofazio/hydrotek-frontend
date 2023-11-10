@@ -10,7 +10,7 @@ const buttons = [
   { icon: "ri-pencil-line", text: "blog" },
 ];
 
-const componentMapping = { ordenes: <Orders />, usuarios: <Users />, productos: <Products />, blog: <div /> };
+const componentMapping = { ordenes: <Orders />, usuarios: <Users />, productos: <Products />, blog: <Blog /> };
 
 export function Pages() {
   const [selected, setSelected] = useState(getOfStorage("selected") || "ordenes");
@@ -24,8 +24,9 @@ export function Pages() {
   return (
     <main className="row-span-2 flex flex-col items-center gap-4">
       <section className="flex h-8 w-full justify-around">
-        {buttons.map(({ icon, text }) => (
+        {buttons.map(({ icon, text }, index) => (
           <IconButtonWithBgGold
+            key={index}
             icon={icon}
             text={text}
             className={`!aspect-auto w-52 items-center !justify-start ${

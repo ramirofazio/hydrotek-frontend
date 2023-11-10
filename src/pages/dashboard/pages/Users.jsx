@@ -13,8 +13,10 @@ export function Users() {
       <table className="my-4 w-full text-white">
         <thead className="border border-gold">
           <tr className="goldGradient text-base uppercase">
-            {colsTitles.map((t) => (
-              <th className="px-6 py-2">{t}</th>
+            {colsTitles.map((t, index) => (
+              <th className="px-6 py-2" key={index}>
+                {t}
+              </th>
             ))}
           </tr>
         </thead>
