@@ -1,10 +1,18 @@
 import { useNavigate } from "react-router-dom";
 
-export function GoBack() {
+export function GoBack({ to }) {
   const navigate = useNavigate();
+
+  const handleNav = () => {
+    if (to) {
+      navigate(to);
+    } else {
+      navigate(-1);
+    }
+  };
   return (
-    <button className="border-2 border-gold rounded-full p-2 hover:brightness-125 bg-base" onClick={() => navigate(-1)}>
-      <i className="border-2 border-transparent text-white text-xl md:text-3xl ri-arrow-go-back-fill"></i>
+    <button className="rounded-full border-2 border-gold bg-base p-2 hover:brightness-125" onClick={() => handleNav()}>
+      <i className="ri-arrow-go-back-fill border-2 border-transparent text-xl text-white md:text-3xl"></i>
     </button>
   );
 }

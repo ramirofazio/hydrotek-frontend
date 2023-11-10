@@ -59,7 +59,7 @@ export function SignUp() {
             saveInStorage("accessToken", accessToken);
             addAuthWithToken(accessToken);
             dispatch(actionsUser.saveSignData(res.data));
-            navigate("/products/0");
+            navigate("/");
           }
         })
         .catch((e) => {
