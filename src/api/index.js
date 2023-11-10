@@ -7,6 +7,7 @@ const route = {
   CART: "shoppingCart",
   BLOG: "blog",
   CLOUDINARY: "cloudinary",
+  CHECKOUT: "checkout"
 };
 
 // * Para una clara visualizacion de las rutas abrir
@@ -80,6 +81,9 @@ export const APIHydro = {
   getSavedPosts: (userId) => {
     return apiHydro.get(`/${route.USER}/savedPosts/${userId}`);
   },
+  getCheckout: () => {
+    return apiHydro.get(`/${route.CHECKOUT}`);
+  }
 };
 
 export function addAuthWithToken(token) {

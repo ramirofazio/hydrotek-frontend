@@ -34,12 +34,12 @@ const shoppingCart = createSlice({
       if (isAlready) {
         state.products[productName].quantity = isAlready + 1;
       } else {
-        state.products[productName] = { quantity: 1, price: price, productId }
+        state.products[productName] = { quantity: 1, price: price, productId, name: productName };
       }
       state.totalPrice = parseInt(state.totalPrice) + parseInt(price);
     },
     removeProduct: (state, action) => {
-      const { productId, productName, price } = action.payload;
+      const { productName, price } = action.payload;
       const productQuantity = state.products[productName]?.quantity;
 
       if (productQuantity === 1) {

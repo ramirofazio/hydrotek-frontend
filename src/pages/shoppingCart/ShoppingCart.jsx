@@ -4,20 +4,38 @@ import { Input } from "src/components/inputs";
 import { useSelector } from "react-redux";
 import { Button } from "src/components/buttons";
 import { useNavigate } from "react-router-dom";
+//import { APIHydro } from "src/api";
+import { Modal } from "src/components";
+import { useState } from "react";
+import { PaymentOk } from "./PaymentOk";
+import { PaymentFailed } from "./PaymentFailed";
 
-export default function ShoppingCart({ deliveryPrice = 0 }) {
+export default function ShoppingCart({ deliveryPrice = 50 }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { products, totalPrice } = useSelector((state) => state.shoppingCart);
   const arrProducts = Object.values(products);
+  const [modal, setModal] = useState(true);
+  const paymentState = "ok";
+
+  function payOrder() {
+    //genera el chekout
+    //const checkout = APIHydro.getCheckout()
+    // redirecciona
+  }
+
   return (
     <main className="content mx-auto mb-[6rem] mt-5  flex w-[92%] flex-col ">
+      <Modal isOpen={modal} onClose={() => setModal(false)}>
+        {paymentState === "ok" && <PaymentOk />}
+        {paymentState === "err" && <PaymentFailed />}
+      </Modal>
       <header className=" border-b-2 border-gold p-4">
         <h1 className="mx-auto w-fit">{t("shopping-cart.your-cart")}</h1>
       </header>
       <section className="grid place-items-center gap-10 lg:place-items-start ">
         {arrProducts.length ? (
-          arrProducts.map((a, i) => <CartArticleCard productId={a.productId} name={a.productId} price={a.price}  key={i} />)
+          arrProducts.map((a, i) => <CartArticleCard productId={a.productId} name={a.name} price={a.price} key={i} />)
         ) : (
           <div className="mt-10 flex w-[90%] flex-col gap-10 rounded-md border-2  p-8 text-center md:w-[50%] lg:max-w-[45%] lg:place-self-center s:w-[65%]">
             <h1 className="">{t("shopping-cart.no-products-on-cart")}</h1>
@@ -56,7 +74,7 @@ export default function ShoppingCart({ deliveryPrice = 0 }) {
             </div>
           </div>
 
-          <button className="mt-10 hidden rounded-2xl bg-gold-gradient px-8 py-2 lg:inline">
+          <button onClick={() => payOrder()} className="mt-10 hidden rounded-2xl bg-gold-gradient px-8 py-2 lg:inline">
             <h1 className="text-lg">{t("order.pay-order")}</h1>
           </button>
         </article>

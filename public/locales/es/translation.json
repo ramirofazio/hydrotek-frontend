@@ -73,7 +73,11 @@
     "your-cart": "tu carrito",
     "promotional-code": "codigo de descuento",
     "pay-purchase": "pagar compra",
-    "no-products-on-cart": "no se encontraron productos guardados en tu carrito"
+    "no-products-on-cart": "no se encontraron productos guardados en tu carrito",
+    "payment-ok": "Compra realizada con exito",
+    "payment-failed": "Ocurrio un problema al procesar el pago",
+    "we-contact-you": "te contactaremos por email para despachar el envío"
+
   },
   "order": {
     "order-data": "datos de la orden",
