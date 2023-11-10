@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { actionsShoppingCart } from "src/redux/reducers";
 
@@ -6,10 +6,6 @@ export function Quantity({ productName, price, stock = 25, className }) {
   const dispatch = useDispatch();
   const { addProudct, removeProduct } = actionsShoppingCart;
   const quantity = useSelector((state) => state.shoppingCart.products[productName]?.quantity);
-
-  /* useEffect(() => {
-    console.log(quantity)
-  }, [quantity]) */
 
   return (
     <div className="mx-auto flex w-fit gap-6">
