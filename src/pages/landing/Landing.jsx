@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { mostSelled } from "./mostSelled";
+import { Basic } from "../notifications";
 
 export default function Landing() {
   const { t } = useTranslation();
@@ -24,6 +25,7 @@ export default function Landing() {
 
   return (
     <div className="content h-full">
+      <Basic/>
       <section className=" flex flex-col gap-[5rem]">
         <section className="relative flex flex-col pt-5  lg:flex-row lg:place-items-center lg:pt-10">
           <InfoCard />
