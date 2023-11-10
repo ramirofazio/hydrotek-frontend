@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { APIHydro, addAuthWithToken } from "src/api";
 import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
-import { saveInStorage } from "src/utils/localStorage";
+import { saveInStorage, getOfStorage } from "src/utils/localStorage";
 import { ForgotPassword } from "./ForgotPassword";
 const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-xl lg:mr-10" }];
 
@@ -43,23 +43,52 @@ export function SignIn() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      APIHydro.signIn(user)
-        .then((res) => {
+      const res = await APIHydro.signIn(user);
+      if (res.data) {
+        const { data } = res;
+        console.log(data);
+        const { accessToken } = data;
+        saveInStorage("accessToken", accessToken);
+        addAuthWithToken(accessToken);
+        dispatch(actionsUser.saveSignData(data));
+        if (data.shoppingCart?.totalPrice <= 0) {
+          console.log("no tiene plata");
+          console.log(data.shoppingCart);
+          const storageCart = getOfStorage("shoppingCart");
+          console.log(storageCart);
+          if (storageCart?.totalPrice > 0) {
+            const arr = Object.values(storageCart.products);
+            const s = await APIHydro.updateShoppingCart({
+              userId: data.session.id,
+              shoppingCart: { totalPrice: storageCart.totalPrice, products: arr },
+            });
+            console.log(s);
+          }
+          /* dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
+           */
+        }
+        setLoading(false);
+        navigate("/products/0");
+      }
+      /* APIHydro.signIn(user)
+        .then(async (res) => {
           if (res.data) {
             const { data } = res;
+            console.log(data);
             const { accessToken } = data;
             saveInStorage("accessToken", accessToken);
             addAuthWithToken(accessToken);
             dispatch(actionsUser.saveSignData(data));
             if (data.shoppingCart?.totalPrice > 0) {
               dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
+              return APIHydro.updateShoppingCart({ shoppingCart: data.shoppingCart, userId: data.session.id });
             }
             setLoading(false);
-            navigate("/products");
+            navigate("/products/0");
           }
         })
         .catch((e) => {
@@ -69,7 +98,7 @@ export function SignIn() {
         })
         .finally(() => {
           setLoading(false);
-        });
+        }); */
     } catch (e) {
       const res = e.response.data.message;
       setErr(res);
