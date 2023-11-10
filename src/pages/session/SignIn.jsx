@@ -50,16 +50,12 @@ export function SignIn() {
       const res = await APIHydro.signIn(user);
       if (res.data) {
         const { data } = res;
-        console.log(data);
         const { accessToken } = data;
         saveInStorage("accessToken", accessToken);
         addAuthWithToken(accessToken);
         dispatch(actionsUser.saveSignData(data));
         if (data.shoppingCart?.totalPrice <= 0) {
-          console.log("no tiene plata");
-          console.log(data.shoppingCart);
           const storageCart = getOfStorage("shoppingCart");
-          console.log(storageCart);
           if (storageCart?.totalPrice > 0) {
             const arr = Object.values(storageCart.products);
             const s = await APIHydro.updateShoppingCart({
@@ -67,38 +63,13 @@ export function SignIn() {
               shoppingCart: { totalPrice: storageCart.totalPrice, products: arr },
             });
             console.log(s);
+          } else {
+            dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
           }
-          /* dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
-           */
         }
         setLoading(false);
         navigate("/products/0");
       }
-      /* APIHydro.signIn(user)
-        .then(async (res) => {
-          if (res.data) {
-            const { data } = res;
-            console.log(data);
-            const { accessToken } = data;
-            saveInStorage("accessToken", accessToken);
-            addAuthWithToken(accessToken);
-            dispatch(actionsUser.saveSignData(data));
-            if (data.shoppingCart?.totalPrice > 0) {
-              dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
-              return APIHydro.updateShoppingCart({ shoppingCart: data.shoppingCart, userId: data.session.id });
-            }
-            setLoading(false);
-            navigate("/products/0");
-          }
-        })
-        .catch((e) => {
-          const res = e.response.data.message;
-          setErr(res);
-          setLoading(false);
-        })
-        .finally(() => {
-          setLoading(false);
-        }); */
     } catch (e) {
       const res = e.response.data.message;
       setErr(res);
