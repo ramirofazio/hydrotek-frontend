@@ -14,6 +14,15 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  loadProductImage: (file, id) => {
+    return apiHydro.post(
+      `${route.CLOUDINARY}/loadProductImage`,
+      { file, id },
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
+  },
   updateTFacturaProducts: () => {
     return apiHydro.get(`/${route.TFACTURA}/token`).then((res) => {
       if (res.status === 200) {

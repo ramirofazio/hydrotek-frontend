@@ -1,29 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { IconButtonWithBgGold } from "src/components/buttons";
 import { TableRow } from "./index";
+import { Loader } from "src/components";
+import axios from "axios";
 
 const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicado", "subir imagen"];
 
 export function Products() {
   const { products } = useLoaderData();
 
-  const handleImageUpload = (e) => {
-    const fileInput = e.target;
-    const files = fileInput.files;
+  const [loader, setLoader] = useState(false);
+  const [newImg, setNewImg] = useState(false);
 
-    if (files.length > 0) {
-      const file = files[0];
-      console.log("Nombre del archivo:", file.name);
-      console.log("Tipo de archivo:", file.type);
-      console.log("Tamaño del archivo:", file.size);
+  const handleImageUpload = (e, id) => {
+    setLoader(true);
+    const { target } = e;
+    const file = target.files[0];
+    const reader = new FileReader();
 
-      //! Logica cloudinary. subir y rescatar el nombre o id de la imagen cargada en cloduinary para enlazarla con el producto
-    }
+    reader.onload = async () => {
+      try {
+        const formdata = new FormData();
+        formdata.append("file", reader.result);
+        formdata.append("productId", id);
+
+        axios
+          .post(`http://localhost:3000/cloudinary/loadProductImage`, formdata, {
+            headers: { "Content-Type": "multipart/form-data" },
+          })
+          .then((res) => {
+            if (res.data === "success") {
+              setLoader(false);
+            }
+          });
+      } catch (e) {
+        console.log(e);
+        setLoader(false);
+      }
+    };
+
+    reader.readAsDataURL(file);
   };
 
   return (
     <main className="w-full">
+      {loader && <Loader />}
       <table className="my-4 w-full text-white">
         <thead className="border border-gold">
           <tr className="goldGradient text-base uppercase">
@@ -63,7 +85,7 @@ export function Products() {
                       id="fileInput"
                       accept="image/*"
                       className="hidden"
-                      onChange={handleImageUpload}
+                      onChange={(e) => handleImageUpload(e, id)}
                     />
                   </label>
                 }
