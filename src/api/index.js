@@ -7,7 +7,8 @@ const route = {
   CART: "shoppingCart",
   BLOG: "blog",
   CLOUDINARY: "cloudinary",
-  CHECKOUT: "checkout"
+  CHECKOUT: "checkout",
+  TFACTURA: "tFactura",
 };
 
 // * Para una clara visualizacion de las rutas abrir
