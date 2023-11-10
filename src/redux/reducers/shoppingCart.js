@@ -29,23 +29,23 @@ const shoppingCart = createSlice({
       }
     },
     addProudct: (state, action) => {
-      const { productId, price } = action.payload;
-      const isAlready = state.products[productId]?.quantity;
+      const { productId, productName, price } = action.payload;
+      const isAlready = state.products[productName]?.quantity;
       if (isAlready) {
-        state.products[productId].quantity = isAlready + 1;
+        state.products[productName].quantity = isAlready + 1;
       } else {
-        state.products[productId] = { quantity: 1, price: price, productId: 1 }; //TODO cambiar a id real del producto
+        state.products[productName] = { quantity: 1, price: price, productId, name: productName };
       }
       state.totalPrice = parseInt(state.totalPrice) + parseInt(price);
     },
     removeProduct: (state, action) => {
-      const { productId, price } = action.payload;
-      const productQuantity = state.products[productId]?.quantity;
+      const { productName, price } = action.payload;
+      const productQuantity = state.products[productName]?.quantity;
 
       if (productQuantity === 1) {
-        delete state.products[productId];
+        delete state.products[productName];
       } else {
-        state.products[productId].quantity = productQuantity - 1;
+        state.products[productName].quantity = productQuantity - 1;
       }
       state.totalPrice = state.totalPrice - price;
     },

@@ -7,7 +7,8 @@ const route = {
   CART: "shoppingCart",
   BLOG: "blog",
   CLOUDINARY: "cloudinary",
-  TFACTURA: "tfactura",
+  CHECKOUT: "checkout",
+  TFACTURA: "tFactura",
 };
 
 // * Para una clara visualizacion de las rutas abrir
@@ -29,17 +30,12 @@ export const APIHydro = {
       }
     });
   },
-  getAllUsers: () => {
-    return apiHydro.get(`/${route.USER}`);
-  },
-  getAllProducts: () => {
-    return apiHydro.get(`/${route.PRODUCT}/all`);
-  },
   getProductsPaginated: ({ pag, productsPerPage }) => {
-    return apiHydro.post(`/${route.PRODUCT}/pag`, { pag, productsPerPage });
+    console.log(pag, productsPerPage);
+    return apiHydro.post(`/${route.PRODUCT}/pag`, { pag, productsPerPage }); //ejemplo para traer todos los productos
   },
   getProducts: () => {
-    return apiHydro.get(`/${route.PRODUCT}`); //ejemplo para traer todos los productos //! Trae 50 nomas
+    return apiHydro.get(`/${route.PRODUCT}`); //ejemplo para traer todos los productos
   },
   getProductDetail: (id) => {
     return apiHydro.get(`${route.PRODUCT}/detail/${id}`);
@@ -101,6 +97,9 @@ export const APIHydro = {
   getSavedPosts: (userId) => {
     return apiHydro.get(`/${route.USER}/savedPosts/${userId}`);
   },
+  getCheckout: () => {
+    return apiHydro.get(`/${route.CHECKOUT}`);
+  }
 };
 
 export function addAuthWithToken(token) {
