@@ -41,6 +41,12 @@ export const Navbar = ({ role }) => {
         ))}
       </ul>
       <section className="hidden  justify-evenly gap-9 lg:flex">
+        {session.role === "ADMIN" && (
+          <i
+            onClick={() => window.open("/admin/dashboard", "_blank")}
+            className="icons ri-bar-chart-2-fill text-3xl  text-gold"
+          />
+        )}
         <i
           className={`ri-user-3-fill text-3xl ${pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"}`} // Avatar
           onClick={() => navigate(role ? `/user/profile/${session.id}` : "/session/signIn")}

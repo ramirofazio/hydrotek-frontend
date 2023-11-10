@@ -1,7 +1,15 @@
 import { lazy, Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { NotAuthRoute } from "./NotAuthRoute";
+import { ProtectedRoute, NotAuthRoute, AdminRoutes } from "./index";
+import {
+  autoLoginLoader,
+  notAuthLoader,
+  blogLoader,
+  productsLoader,
+  productDetailLoader,
+  allProductsLoader,
+  allUsersLoader,
+} from "./loaders";
 import DefaultError from "pages/error/Default.jsx";
 import Products from "pages/products/Products.jsx";
 import ProductDetail from "src/pages/productDetail/ProductDetail.jsx";
@@ -10,9 +18,9 @@ import { OrderDetail, Profile } from "src/pages/user";
 import { Blog, PostDetail } from "src/pages/blog";
 import { AboutUs } from "src/pages/aboutUs";
 import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
-import { autoLoginLoader, notAuthLoader, blogLoader, productsLoader, productDetailLoader } from "./loaders";
 import { APIHydro } from "src/api";
 import { Aurora } from "src/components";
+import { Dashboard } from "src/pages/dashboard";
 const Landing = lazy(() => import("pages/landing/Landing.jsx"));
 const Root = lazy(() => import("pages/Root.jsx"));
 
@@ -126,7 +134,32 @@ export function Routes() {
     },
   ];
 
-  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...onlyNotAuthRoutes]);
+  const onlyAdminRoutes = [
+    {
+      path: "/",
+      errorElement: <DefaultError />,
+      element: <AdminRoutes />,
+      loader: autoLoginLoader, // * los loaders tienen que devolver una promesa
+      children: [
+        {
+          path: "/admin",
+          children: [
+            {
+              path: "/admin/dashboard",
+              element: <Dashboard />,
+              loader: async () => {
+                const [products, users] = await Promise.all([allProductsLoader(), allUsersLoader()]);
+                return { products, users };
+              },
+              index: true,
+            },
+          ],
+        },
+      ],
+    },
+  ];
+
+  const router = createBrowserRouter([...publicRoutes, ...onlyAuthRoutes, ...onlyNotAuthRoutes, ...onlyAdminRoutes]);
 
   return <RouterProvider router={router} />;
 }
