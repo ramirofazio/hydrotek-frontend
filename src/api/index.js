@@ -39,6 +39,12 @@ export const APIHydro = {
       }
     });
   },
+  getAllUsers: () => {
+    return apiHydro.get(`/${route.USER}`);
+  },
+  getAllProducts: () => {
+    return apiHydro.get(`/${route.PRODUCT}/all`);
+  },
   getProductsPaginated: ({ pag, productsPerPage }) => {
     console.log(pag, productsPerPage);
     return apiHydro.post(`/${route.PRODUCT}/pag`, { pag, productsPerPage }); //ejemplo para traer todos los productos
@@ -108,7 +114,7 @@ export const APIHydro = {
   },
   getCheckout: () => {
     return apiHydro.get(`/${route.CHECKOUT}`);
-  }
+  },
 };
 
 export function addAuthWithToken(token) {
