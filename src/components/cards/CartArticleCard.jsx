@@ -10,17 +10,22 @@ export function CartArticleCard({ img, name, price, productId }) {
         <img className="max-w-[80%]" src={img || products.defaultOne} alt="" />
       </picture>
       <article className="flex flex-col justify-center gap-1 break-normal break-all  lg:col-span-2">
-        <h1 className="text-lg">{name || "fertilizanteeeeeeee superx"}</h1> {/* //* resolver overflow */}
-        <h2 className=" textGoldGradient ">{price || "$99.99"}</h2>
+        <h1 className="text-lg">{name}</h1>
+        <h2 className=" textGoldGradient ">${price}</h2>
         <article className="col-span-2 mt-4 hidden w-fit sm:inline ">
           <Quantity
+            productName={name}
             price={price}
             productId={productId}
           />
         </article>
       </article>
       <article className="col-span-2 mt-8 sm:hidden ">
-        <Quantity />
+        <Quantity
+          productName={name}
+          price={price}
+          productId={productId}
+        />
       </article>
     </main>
   );

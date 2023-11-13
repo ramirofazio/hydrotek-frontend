@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { backgrounds } from "src/assets";
 import { AddToCart } from "src/pages/shoppingCart/AddToCart";
 
-export function ProductCard({ imgUrl, name, price = 200, id, showBtn = true }) {
+export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
   const { t } = useTranslation();
 
   return (
@@ -19,13 +19,13 @@ export function ProductCard({ imgUrl, name, price = 200, id, showBtn = true }) {
       </Atropos>
       <div className={`${!showBtn && "hidden"} mx-auto grid place-items-center gap-2 pb-12 text-center`}>
         <h1 className="text-center text-sm md:place-self-start">{name || "NOMBRE DEL PRODUCTO"}</h1>
-        <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">{`${price}`}</h2>
+        <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">${price}</h2>
         {showBtn && (
           <div className="flex  items-center gap-3 md:gap-8 md:place-self-center s:gap-5">
             <Link to={`/productDetail/${id}`} className="md:place-self-start">
               <Button text={t("common.buy-now")} pClassname={"font-primary"} />
             </Link>
-            <AddToCart price={price} productId={id} />
+            <AddToCart productName={name} price={price} productId={id} />
           </div>
         )}
       </div>
