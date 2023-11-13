@@ -68,7 +68,7 @@ export function SignIn() {
           }
         }
         setLoading(false);
-        navigate("/products/0");
+        navigate(`/user/profile/${data.session.id}`);
       }
     } catch (e) {
       const res = e.response.data.message;
