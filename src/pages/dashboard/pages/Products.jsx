@@ -11,7 +11,6 @@ export function Products() {
   const { products } = useLoaderData();
 
   const [loader, setLoader] = useState(false);
-s
   const handleImageUpload = (e, id) => {
     setLoader(true);
     const { target } = e;
