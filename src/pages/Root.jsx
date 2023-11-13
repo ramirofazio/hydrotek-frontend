@@ -6,7 +6,6 @@ import { saveInStorage } from "src/utils/localStorage";
 import { APIHydro } from "src/api";
 import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 
-
 export default function Root() {
   const dispatch = useDispatch();
   const { shoppingCart, user } = useSelector((state) => state);
@@ -49,7 +48,7 @@ export default function Root() {
   return (
     <div className={`relative overflow-hidden`}>
       <Aurora />
-      <Navbar role={user.session.role} />
+      <Navbar />
       <Outlet />
       <Footer />
     </div>

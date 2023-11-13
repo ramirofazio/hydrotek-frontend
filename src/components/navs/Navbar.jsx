@@ -5,7 +5,7 @@ import { links } from "src/utils";
 import { logos } from "assets";
 import { useSelector } from "react-redux";
 
-export const Navbar = ({ role }) => {
+export const Navbar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { session } = useSelector((state) => state.user);
@@ -17,7 +17,7 @@ export const Navbar = ({ role }) => {
           <img src={logos.hydBlack} className="w-16 transition hover:opacity-70 xl:w-24" />
         </Atropos>
       </NavLink>
-      <ModalNav role={role} pathname={pathname} />
+      <ModalNav role={session.role} pathname={pathname} />
       <ul className="hidden h-full lg:flex">
         {links.map((l, index) => (
           <li key={index} className="mr-8 flex items-center justify-center">
@@ -30,8 +30,8 @@ export const Navbar = ({ role }) => {
                   isActive
                     ? "textGoldGradient"
                     : isPending
-                      ? "pending"
-                      : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
+                    ? "pending"
+                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
                 }
               >
                 {l.name}
@@ -48,8 +48,10 @@ export const Navbar = ({ role }) => {
           />
         )}
         <i
-          className={`ri-user-3-fill text-3xl ${pathname === "/user/profile" ? "text-gold/50" : "icons text-gold"}`} // Avatar
-          onClick={() => navigate(role ? `/user/profile/${session.id}` : "/session/signIn")}
+          className={`ri-user-3-fill text-3xl ${
+            pathname.match("/user/profile/*") ? "text-gold/50" : "icons text-gold"
+          }`} // Avatar
+          onClick={() => navigate(session.role ? `/user/profile/${session.id}` : "/session/signIn")}
         />
         <i onClick={() => navigate("/shoppingCart")} className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
       </section>

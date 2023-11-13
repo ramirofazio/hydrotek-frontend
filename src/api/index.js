@@ -15,6 +15,13 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  alternAdmin: (id, currentUser) => {
+    return apiHydro.put(`${route.USER}/alternAdmin`, { id: id, currenUser: currentUser }).then((res) => {
+      if (res.status === 200) {
+        return res.data;
+      }
+    });
+  },
   loadProductImage: (file, id) => {
     return apiHydro.post(
       `${route.CLOUDINARY}/loadProductImage`,

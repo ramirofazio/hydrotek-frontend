@@ -10,9 +10,14 @@ export function DashboardHeader() {
 
   const handleUpdateTFactura = async () => {
     setLoader(true);
-    const res = await APIHydro.updateTFacturaProducts();
-    console.log(res);
-    if (res === "success") {
+    try {
+      const res = await APIHydro.updateTFacturaProducts();
+      if (res === "success") {
+        //! TOAST
+        setLoader(false);
+      }
+    } catch (e) {
+      console.log(e);
       setLoader(false);
     }
   };
