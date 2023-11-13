@@ -9,12 +9,23 @@ const route = {
   CLOUDINARY: "cloudinary",
   CHECKOUT: "checkout",
   TFACTURA: "tFactura",
+  APIDOLAR: "apidolar",
 };
 
 // * Para una clara visualizacion de las rutas abrir
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  manualUsdUpdate: () => {
+    return apiHydro.post(`${route.APIDOLAR}/manual`).then((res) => {
+      if (res.status === 201) {
+        return res.data;
+      }
+    });
+  },
+  getLastUsdPrice: () => {
+    return apiHydro.get(`${route.APIDOLAR}/full-last`);
+  },
   alternAdmin: (id, currentUser) => {
     return apiHydro.put(`${route.USER}/alternAdmin`, { id: id, currenUser: currentUser }).then((res) => {
       if (res.status === 200) {
@@ -30,21 +41,6 @@ export const APIHydro = {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
-  },
-  updateTFacturaProducts: () => {
-    return apiHydro.get(`/${route.TFACTURA}/token`).then((res) => {
-      if (res.status === 200) {
-        return apiHydro.get(`/${route.TFACTURA}/products`).then((res) => {
-          if (res.status === 200) {
-            return apiHydro.get(`${route.PRODUCT}/updateDB`).then((res) => {
-              if (res.status === 200) {
-                return "success";
-              }
-            });
-          }
-        });
-      }
-    });
   },
   getAllUsers: () => {
     return apiHydro.get(`/${route.USER}`);

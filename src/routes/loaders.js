@@ -45,3 +45,8 @@ export async function allUsersLoader() {
   const users = await APIHydro.getAllUsers();
   return users.data;
 }
+
+export async function getLastUsdPrice() {
+  const lastUsdprice = await APIHydro.getLastUsdPrice();
+  return lastUsdprice.data;
+}
