@@ -55,15 +55,16 @@ export function Products() {
           </tr>
         </thead>
         <tbody>
-          {products.map(({ id, price: { d }, name, published, updated }) => (
+          {products.map(({ id, arsPrice, name, published, updated }) => (
             <tr key={id} className="even:bg-gold/10">
               <TableRow content={id} />
-              <TableRow content={name} style="text-start" />
+              <TableRow content={name} />
               <TableRow
-                content={d.toLocaleString("es-AR", {
+                content={arsPrice.toLocaleString("es-AR", {
                   style: "currency",
                   currency: "ARS",
                 })}
+                style="text-left"
               />
               <TableRow content={updated} />
               <TableRow
