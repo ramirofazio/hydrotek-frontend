@@ -25,7 +25,7 @@ export function DashboardHeader() {
 
   const handleExit = () => {
     deleteOfStorage("selected");
-    window.close();
+    window.close() || window.location.replace("/");
   };
 
   return (
