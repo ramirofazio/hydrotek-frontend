@@ -8,10 +8,12 @@ import { useState } from "react";
 import { APIHydro } from "src/api";
 import { Loader, Modal } from "src/components";
 import { MustLogin } from "../../pages/session/MustLogin";
+import { success, error } from "src/components/notifications";
 
 export function PostDetail() {
   const { t } = useTranslation();
   const post = useLoaderData();
+  console.log(post);
   const navigate = useNavigate();
   const { session } = useSelector((state) => state.user);
 
@@ -24,11 +26,17 @@ export function PostDetail() {
       setModal(true);
     } else {
       setLoading(true);
-      APIHydro.uploadComment({ userId: session.id, postId: post.id, comment }).then((res) => {
-        console.log(res);
-        setLoading(false);
-        navigate(`/blog/${post.id}`); // ? en caso de no haber revisión de comentarios
-      });
+      APIHydro.uploadComment({ userId: session.id, postId: post.id, comment })
+        .then((res) => {
+          console.log(res);
+          setLoading(false);
+          success("Se cargo el comentario para su revisión");
+          navigate(`/blog/${post.id}`); // ? en caso de no haber revisión de comentarios
+        })
+        .catch((e) => {
+          console.log(e);
+          error("error al cargar comentario");
+        });
     }
   }
 
@@ -50,9 +58,7 @@ export function PostDetail() {
         </div>
         <span className="lg:my-12">
           <h1>{post?.title}</h1>
-          <p className="mt-4 sm:text-base sm:text-white">
-            {post?.text}
-          </p>
+          <p className="mt-4 sm:text-base sm:text-white">{post?.text}</p>
         </span>
         <hr className="h-0.5 border-0 bg-gold" />
       </section>
@@ -60,7 +66,6 @@ export function PostDetail() {
         <h1 className="mx-auto mb-6 w-fit lg:mb-10 lg:text-2xl">{t("blog.comments")}</h1>
         <div className="mb-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
           {post.postComments?.map((c, i) => {
-
             if (c.show) {
               return (
                 <Comment

@@ -7,8 +7,8 @@ import { APIHydro } from "src/api";
 import { Loader, Modal } from "src/components";
 import { actionsUser } from "src/redux/reducers";
 import { ChangePassword } from "./ChangePassword.jsx";
+import { success, error } from "src/components/notifications/index.jsx";
 import axios from "axios";
-
 
 export function MyData() {
   const { t } = useTranslation();
@@ -89,7 +89,7 @@ export function MyData() {
       }
 
       const data = {
-        session: { name: userData.name, email: userData.email, id: userId /*, dni: userData.dni*/ },
+        session: { name: userData.name, email: userData.email, id: userId, dni: userData.dni },
         profile: { avatar: newAvatar ? newAvatar : userData.avatar },
       };
 
@@ -97,16 +97,17 @@ export function MyData() {
         if (res.data) {
           dispatch(actionsUser.updateDataFromProfile(res.data));
           setLoading(false);
+          success("usuario actualizado");
         }
       });
     } catch (e) {
       console.log(e);
+      error("error al actualizar");
       setLoading(false);
     }
   };
 
   const handleImageUpload = async (e) => {
-
     const { target } = e;
 
     const file = target.files[0];
