@@ -1,3 +1,4 @@
+import { getLastUsdPrice } from "src/routes/loaders";
 import { apiHydro } from "./baseApi";
 
 const route = {
@@ -19,7 +20,7 @@ export const APIHydro = {
   manualUsdUpdate: () => {
     return apiHydro.post(`${route.APIDOLAR}/manual`).then((res) => {
       if (res.status === 201) {
-        return res.data;
+        return getLastUsdPrice();
       }
     });
   },

@@ -37,7 +37,7 @@ export function Pages() {
             icon={icon}
             text={text}
             className={`!aspect-auto w-52 items-center !justify-start ${
-              selected === text ? "opacity-100" : "opacity-50"
+              selected === text ? "pointer-events-none opacity-50" : "opacity-100"
             }`}
             textClassName={"ml-10"}
             onClick={() => setSelected(text)}

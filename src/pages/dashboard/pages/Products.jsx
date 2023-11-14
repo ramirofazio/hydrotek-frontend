@@ -48,7 +48,7 @@ export function Products() {
         <thead className="border border-gold">
           <tr className="goldGradient text-base uppercase">
             {colsTitles.map((t, index) => (
-              <th className="px-6 py-2" key={index}>
+              <th className="border-r-blue px-6 py-2 border-r-2 last:border-none" key={index}>
                 {t}
               </th>
             ))}
