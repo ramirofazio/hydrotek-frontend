@@ -25,7 +25,7 @@ export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
             <Link to={`/productDetail/${id}`} className="md:place-self-start">
               <Button text={t("common.buy-now")} pClassname={"font-primary"} />
             </Link>
-            <AddToCart productName={name} price={price} productId={id} />
+            <AddToCart productImg={imgUrl || products.defaultOne} productName={name} price={price} productId={id} />
           </div>
         )}
       </div>
