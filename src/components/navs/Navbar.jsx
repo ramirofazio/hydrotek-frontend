@@ -50,10 +50,15 @@ export const Navbar = () => {
         <i
           className={`ri-user-3-fill text-3xl ${
             pathname.match("/user/profile/*") ? "text-gold/50" : "icons text-gold"
-          }`} // Avatar
+          }`}
           onClick={() => navigate(session.role ? `/user/profile/${session.id}` : "/session/signIn")}
         />
-        <i onClick={() => navigate("/shoppingCart")} className="icons ri-shopping-cart-2-fill text-3xl  text-gold" />
+        <i
+          onClick={() => navigate("/shoppingCart")}
+          className={`ri-shopping-cart-2-fill text-3xl ${
+            pathname.match("/shoppingCart") ? "text-gold/50" : "icons text-gold"
+          }  `}
+        />
       </section>
     </nav>
   );

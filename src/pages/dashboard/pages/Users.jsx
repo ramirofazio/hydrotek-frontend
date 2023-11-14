@@ -18,6 +18,13 @@ export function Users() {
 
   const handleAdmin = async (id, name, type) => {
     const res = confirm(`¿Seguro que quieres ${type === "ADMIN" ? "negar" : "conceder"} permisos de admin a ${name}?`);
+
+    if (user.session.id === id) {
+      alert("¡No puedes modificarte a ti mismo!");
+      //! REMPLAZAR ALERT POR TOAST
+      return;
+    }
+
     if (res) {
       setLoader(true);
       try {
