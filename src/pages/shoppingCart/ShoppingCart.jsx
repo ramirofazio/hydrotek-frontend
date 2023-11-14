@@ -15,8 +15,8 @@ export default function ShoppingCart({ deliveryPrice = 50 }) {
   const { t } = useTranslation();
   const { products, totalPrice } = useSelector((state) => state.shoppingCart);
   const arrProducts = Object.values(products);
-  const [modal, setModal] = useState(true);
-  const paymentState = "ok";
+  const [modal, setModal] = useState(false);
+  const paymentState = "any";
 
   function payOrder() {
     //genera el chekout
