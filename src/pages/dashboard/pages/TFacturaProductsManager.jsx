@@ -3,26 +3,26 @@ import { useLoaderData } from "react-router-dom";
 import { APIHydro } from "src/api";
 import { TableRow } from "./index";
 
-const colsTitles = ["ultima Actualizacion", "precio", "actualizar"];
+const colsTitles = ["ultima Actualizacion", "Cant. Productos", "actualizar"];
 
-export function UsdPriceManager({ setLoader }) {
-  const { lastUsdPrice } = useLoaderData();
+export function TFacturaProductsManager({ setLoader }) {
+  const { products } = useLoaderData();
 
-  const [thisLastUsdPrice, setThisLastUsdPrice] = useState(lastUsdPrice);
+  const [thisProducts, setThisProducts] = useState({ date: products[0].updated, qty: products.length }); //? Agarro la propiedad 'updated' del primer producto
 
-  const handleManualUsdUpdate = async () => {
+  const handleManualProductUpdate = async () => {
     const res = confirm(
-      "¿Seguro que quieres actualizar MANUALMENTE la cotizacion del dolar? ¡Esto afectara los precios de los productos!"
+      "¿Seguro que quieres actualizar los productos de la web? ¡Esto actualizara SOLO los productos, NO los precios!"
     );
 
     if (!res) return;
 
     setLoader(true);
     try {
-      const res = await APIHydro.manualUsdUpdate();
+      const res = await APIHydro.manualTFacturaProductsUpdate();
       if (res) {
         //! TOAST
-        setThisLastUsdPrice(res);
+        setThisProducts({ date: res.data[0].updated, qty: res.data.length });
         setLoader(false);
       }
     } catch (e) {
@@ -34,7 +34,7 @@ export function UsdPriceManager({ setLoader }) {
   return (
     <section className="flex w-full flex-col p-4">
       <h1 className="mt-10 text-xl">
-        Actualizar <strong className="pointer-events-none">solo</strong> cotización
+        Actualizar <strong className="pointer-events-none">solo</strong> productos
       </h1>
       <table className="my-4 w-full text-white">
         <thead className="border border-gold">
@@ -48,10 +48,12 @@ export function UsdPriceManager({ setLoader }) {
         </thead>
         <tbody>
           <tr>
-            <TableRow content={thisLastUsdPrice.date} />
-            <TableRow content={`$ 1 USD -> $ ${thisLastUsdPrice.price} ARS`} />
+            <TableRow content={thisProducts.date} />
+            <TableRow content={`${thisProducts.qty} Productos`} />
             <TableRow
-              content={<i className={"icons ri-refresh-fill text-4xl text-red-500"} onClick={handleManualUsdUpdate} />}
+              content={
+                <i className={"icons ri-refresh-fill text-4xl text-red-500"} onClick={handleManualProductUpdate} />
+              }
             />
           </tr>
         </tbody>

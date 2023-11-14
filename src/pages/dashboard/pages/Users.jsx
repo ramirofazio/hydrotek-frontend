@@ -17,7 +17,9 @@ export function Users() {
   const [loader, setLoader] = useState(false);
 
   const handleAdmin = async (id, name, type) => {
-    const res = confirm(`¿Seguro que quieres ${type === "ADMIN" ? "negar" : "conceder"} permisos de admin a ${name}?`);
+    const res = confirm(
+      `¿Seguro que quieres ${type === "ADMIN" ? "negar" : "conceder"} permisos de admin a ${name.toUpperCase()}?`
+    );
 
     if (user.session.id === id) {
       alert("¡No puedes modificarte a ti mismo!");

@@ -2,6 +2,7 @@ import { IconButtonWithBgGold } from "src/components/buttons";
 import { Products, Blog, Orders, Users, MoreActions } from "./pages/index";
 import { useEffect, useState } from "react";
 import { getOfStorage, saveInStorage } from "src/utils/localStorage";
+import { WorkInProgressModal } from "src/components";
 
 const buttons = [
   { icon: "ri-image-2-fill", text: "productos" },
@@ -21,15 +22,21 @@ const componentMapping = {
 
 export function Pages() {
   const [selected, setSelected] = useState(getOfStorage("selected") || "productos");
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     saveInStorage("selected", selected);
+    if (selected === "blog" || selected === "ordenes") {
+      setSelected("productos");
+      setShow(true);
+    }
   }, [selected]);
 
   const selectedComponent = componentMapping[selected];
 
   return (
     <main className="row-span-2 flex flex-col items-center gap-4">
+      <WorkInProgressModal isOpen={show} onClose={() => setShow(false)} dashboard={true} />
       <section className="flex h-8 w-full justify-around">
         {buttons.map(({ icon, text }, index) => (
           <IconButtonWithBgGold

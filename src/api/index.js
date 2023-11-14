@@ -17,6 +17,13 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  manualTFacturaProductsUpdate: () => {
+    return apiHydro.get(`${route.PRODUCT}/updateDB`).then((res) => {
+      if (res.status === 200) {
+        return APIHydro.getAllProducts();
+      }
+    });
+  },
   manualUsdUpdate: () => {
     return apiHydro.post(`${route.APIDOLAR}/manual`).then((res) => {
       if (res.status === 201) {
@@ -50,7 +57,6 @@ export const APIHydro = {
     return apiHydro.get(`/${route.PRODUCT}/all`);
   },
   getProductsPaginated: ({ pag, productsPerPage }) => {
-    console.log(pag, productsPerPage);
     return apiHydro.post(`/${route.PRODUCT}/pag`, { pag, productsPerPage }); //ejemplo para traer todos los productos
   },
   getProducts: () => {
