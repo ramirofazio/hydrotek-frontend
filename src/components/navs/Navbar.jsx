@@ -59,7 +59,7 @@ export const Navbar = ({ role, userId, shoppingCart }) => {
 
         <div className="relative">
           <i onClick={() => navigate("/shoppingCart")} className=" icons ri-shopping-cart-2-fill text-4xl  text-gold" />
-          {cartQuantity && <p className="rounded-full text-center h-[23px] w-[23px] border-[0.5px] bg-base text-sm text-white absolute -bottom-2  -right-1">{cartQuantity}</p>}
+          {cartQuantity && <p className="rounded-full text-center font-bold h-[23px] w-[23px] border-[0.5px] bg-base text-sm text-white absolute -bottom-2  -right-1">{cartQuantity}</p>}
         </div>
       </section>
     </nav>
