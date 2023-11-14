@@ -33,31 +33,33 @@ export function TFacturaProductsManager({ setLoader }) {
 
   return (
     <section className="flex w-full flex-col p-4">
-      <h1 className="mt-10 text-xl">
+      <h1 className="mt-10 text-xs">
         Actualizar <strong className="pointer-events-none">solo</strong> productos
       </h1>
-      <table className="my-4 w-full text-white">
-        <thead className="border border-gold">
-          <tr className="goldGradient text-base uppercase">
-            {colsTitles.map((t, index) => (
-              <th className="border-r-2 border-r-blue px-6 py-4 last:border-none" key={index}>
-                {t}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <TableRow content={thisProducts.date} />
-            <TableRow content={`${thisProducts.qty} Productos`} />
-            <TableRow
-              content={
-                <i className={"icons ri-refresh-fill text-4xl text-red-500"} onClick={handleManualProductUpdate} />
-              }
-            />
-          </tr>
-        </tbody>
-      </table>
+      <div className="overflow-scroll">
+        <table className="my-4 w-full text-white">
+          <thead className="border border-gold">
+            <tr className="goldGradient text-base uppercase">
+              {colsTitles.map((t, index) => (
+                <th className="border-r-2 border-r-blue px-10 py-4 text-xs last:border-none" key={index}>
+                  {t}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <TableRow content={thisProducts.date} />
+              <TableRow content={`${thisProducts.qty} Productos`} />
+              <TableRow
+                content={
+                  <i className={"icons ri-refresh-fill text-3xl text-red-500"} onClick={handleManualProductUpdate} />
+                }
+              />
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }

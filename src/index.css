@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply  h-full w-full overflow-x-hidden bg-base font-primary tracking-widest;
+    @apply h-full w-full overflow-x-hidden bg-base font-primary tracking-widest;
   }
 
   h1 {
@@ -30,7 +30,11 @@
   }
 
   ::-webkit-scrollbar {
-    @apply w-2;
+    @apply h-1 w-1 xl:w-2;
+  }
+
+  ::-webkit-scrollbar-corner {
+    @apply hidden;
   }
 
   ::-webkit-scrollbar-thumb {
