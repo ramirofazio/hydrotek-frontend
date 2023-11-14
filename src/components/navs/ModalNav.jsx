@@ -3,13 +3,10 @@ import { Fragment } from "react";
 import { links } from "src/utils";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Categories } from "./Categories.jsx";
-import { useSelector } from "react-redux";
 
-export function ModalNav({ role, pathname }) {
+
+export function ModalNav({ role, userId, pathname }) {
   const navigate = useNavigate();
-  const { session } = useSelector((state) => state.user);
-
-  console.log(session);
 
   return (
     <Popover className="lg:hidden">
@@ -51,7 +48,7 @@ export function ModalNav({ role, pathname }) {
             </ul>
 
             <section className="mt-10 flex justify-around">
-              {session.role === "ADMIN" && (
+              {role === "ADMIN" && (
                 <Popover.Button>
                   <i
                     onClick={() => navigate("/admin/dashboard")}
@@ -62,9 +59,9 @@ export function ModalNav({ role, pathname }) {
               <Popover.Button>
                 <i
                   className={`ri-user-3-fill text-3xl ${
-                    pathname === `/user/profile/${session.id}` ? "text-gold/50" : "icons text-gold"
+                    pathname === `/user/profile/${userId}` ? "text-gold/50" : "icons text-gold"
                   }`}
-                  onClick={() => navigate(role ? `/user/profile/${session.id}` : "/session/signIn")}
+                  onClick={() => navigate(role ? `/user/profile/${userId}` : "/session/signIn")}
                 />
               </Popover.Button>
               <Popover.Button>
