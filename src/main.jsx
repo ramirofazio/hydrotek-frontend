@@ -14,12 +14,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
     <Provider store={store}>
       <Routes />
-      <Toaster position="bottom-right" toastOptions={{duration: 3500, style: {
-        backgroundColor: "#031834",
-        borderWidth: "2px",
-        borderColor: "#B8912D",
-        color: "white"
-      }}} />
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          duration: 3800,
+          style: {
+            backgroundColor: "#031834",
+            borderWidth: "2px",
+            borderColor: "#B8912D",
+            color: "white",
+          },
+        }}
+      />
     </Provider>
   </GoogleOAuthProvider>
 );

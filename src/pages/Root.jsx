@@ -49,7 +49,7 @@ export default function Root() {
   return (
     <div className={`relative overflow-hidden`}>
       <Aurora />
-      <Navbar role={user.session.role} />
+      <Navbar role={user.session.role} userId={user.session.id} shoppingCart={shoppingCart} />
       <Outlet />
       <Footer />
     </div>
