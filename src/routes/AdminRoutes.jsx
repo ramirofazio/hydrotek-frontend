@@ -11,7 +11,7 @@ export function AdminRoutes() {
 
   useEffect(() => {
     if (!userInfo.accessToken) navigate("/session/signIn");
-  }, []);
+  }, [userInfo]);
 
   if (!session.role && userInfo) {
     dispatch(actionsUser.saveSignData(userInfo));

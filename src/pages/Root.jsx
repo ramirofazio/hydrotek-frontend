@@ -19,7 +19,7 @@ export default function Root() {
 */
 
   function handleCart() {
-    if (userInfo.accessToken) {
+    if (userInfo && userInfo.accessToken) {
       //? Si esta logueado
       const arrProducts = Object.values(shoppingCart.products);
       if (arrProducts.length) {
@@ -44,17 +44,21 @@ export default function Root() {
   }, [shoppingCart]);
 
   useEffect(() => {
-    if (userInfo.accessToken && userInfo.session) {
+    if (userInfo && userInfo.session) {
       //? Si esta logueado
       dispatch(actionsUser.saveSignData(userInfo));
       if (userInfo.shoppingCart) {
         dispatch(actionsShoppingCart.saveSingInShoppingCart(userInfo.shoppingCart));
       }
-    } else if (!userInfo.accessToken) {
+    }
+  }, [userInfo && userInfo.session]);
+
+  useEffect(() => {
+    if (!userInfo) {
       //? Si no tiene cuenta
       dispatch(actionsShoppingCart.loadStorageShoppingCart());
     }
-  }, [userInfo.accessToken && userInfo.session]);
+  }, [!userInfo]);
 
   return (
     <div className={`relative overflow-hidden`}>
