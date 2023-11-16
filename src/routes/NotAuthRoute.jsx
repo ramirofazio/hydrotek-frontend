@@ -3,10 +3,10 @@ import { useEffect } from "react";
 
 export function NotAuthRoute() {
   const navigate = useNavigate();
-  const token = useLoaderData();
+  const { accessToken } = useLoaderData();
 
   useEffect(() => {
-    if (token.accessToken) navigate(-1);
+    if (accessToken) navigate(-1);
   }, []);
 
   return (

@@ -8,25 +8,34 @@ import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 
 export default function Root() {
   const dispatch = useDispatch();
-  const { shoppingCart, user } = useSelector((state) => state);
-  const userInfo = useLoaderData();
+  const shoppingCart = useSelector((state) => state.shoppingCart);
+  const { userInfo } = useLoaderData();
+
+  /*
+?   Nota para tomi
+    Aca siempre es mejor usar el userInfo que esta actualizado y tiene values en el primer render para evitar re-renders.
+    Usando el user al principio para los `IF` habia 3 o 4 renders con el role en undefinded,
+    hice un refactor haciendo limpieza, y eliminando el user de redux.
+*/
 
   function handleCart() {
-    // * aca se puede utilizar el event
-    if (user.session.role) {
+    if (userInfo.accessToken) {
+      //? Si esta logueado
       const arrProducts = Object.values(shoppingCart.products);
       if (arrProducts.length) {
         return APIHydro.updateShoppingCart({
-          userId: user.session.id,
+          userId: userInfo.session.id,
           shoppingCart: { totalPrice: shoppingCart.totalPrice, products: arrProducts },
         });
       } else {
-        return APIHydro.resetShoppingCart({ userId: user.session.id });
+        return APIHydro.resetShoppingCart({ userId: userInfo.session.id });
       }
     } else {
+      //? Si no esta logueado
       saveInStorage("shoppingCart", shoppingCart);
     }
   }
+
   useEffect(() => {
     window.addEventListener("beforeunload", handleCart);
     return () => {
@@ -35,20 +44,22 @@ export default function Root() {
   }, [shoppingCart]);
 
   useEffect(() => {
-    if (userInfo?.userInfo && !user.session.role) {
-      dispatch(actionsUser.saveSignData(userInfo?.userInfo));
-      if (userInfo?.userInfo.shoppingCart && userInfo?.userInfo.shoppingCart.totalPrice) {
-        dispatch(actionsShoppingCart.saveSingInShoppingCart(userInfo.userInfo.shoppingCart));
+    if (userInfo.accessToken && userInfo.session) {
+      //? Si esta logueado
+      dispatch(actionsUser.saveSignData(userInfo));
+      if (userInfo.shoppingCart) {
+        dispatch(actionsShoppingCart.saveSingInShoppingCart(userInfo.shoppingCart));
       }
-    } else if (!user.session.role) {
-      dispatch(actionsShoppingCart.loadStorageShoppingCart()); // * el problema es un loop infinito al estar escuchando al estado de redux shoppingCart y modificarlo
+    } else if (!userInfo.accessToken) {
+      //? Si no tiene cuenta
+      dispatch(actionsShoppingCart.loadStorageShoppingCart());
     }
-  }, [user]);
+  }, [userInfo.accessToken && userInfo.session]);
 
   return (
     <div className={`relative overflow-hidden`}>
       <Aurora />
-      <Navbar role={user.session.role} userId={user.session.id} shoppingCart={shoppingCart} />
+      <Navbar />
       <Outlet />
       <Footer />
     </div>
