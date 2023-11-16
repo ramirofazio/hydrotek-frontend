@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { APIHydro } from "src/api";
 import { TableRow } from "./index";
+import { dateTransform } from "./Utils";
 
 const colsTitles = ["ultima Actualizacion", "precio", "actualizar"];
 
@@ -22,7 +23,7 @@ export function UsdPriceManager({ setLoader }) {
       const res = await APIHydro.manualUsdUpdate();
       if (res) {
         //! TOAST
-        setThisLastUsdPrice(res);
+        setThisLastUsdPrice(res.data);
         setLoader(false);
       }
     } catch (e) {
@@ -52,7 +53,7 @@ export function UsdPriceManager({ setLoader }) {
           </thead>
           <tbody>
             <tr>
-              <TableRow content={thisLastUsdPrice.date} />
+              <TableRow content={`${dateTransform(thisLastUsdPrice.date)} HS`} />
               <TableRow content={`$1 USD = $${thisLastUsdPrice.price} ARS`} />
               <TableRow
                 content={

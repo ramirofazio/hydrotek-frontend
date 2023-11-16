@@ -52,7 +52,7 @@ export function TFacturaProductsManager({ setLoader }) {
           </thead>
           <tbody>
             <tr>
-              <TableRow content={thisProducts.date} />
+              <TableRow content={`${thisProducts.date} HS`} />
               <TableRow content={`${thisProducts.qty} Productos`} />
               <TableRow
                 content={
