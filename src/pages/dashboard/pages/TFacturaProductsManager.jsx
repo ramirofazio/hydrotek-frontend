@@ -33,7 +33,7 @@ export function TFacturaProductsManager({ setLoader }) {
 
   return (
     <section className="flex w-full flex-col p-4">
-      <h1 className="mt-10 text-xs">
+      <h1 className="mt-10 text-xs lg:text-sm xl:text-lg">
         Actualizar <strong className="pointer-events-none">solo</strong> productos
       </h1>
       <div className="overflow-scroll">
@@ -41,7 +41,10 @@ export function TFacturaProductsManager({ setLoader }) {
           <thead className="border border-gold">
             <tr className="goldGradient text-base uppercase">
               {colsTitles.map((t, index) => (
-                <th className="border-r-2 border-r-blue px-10 py-4 text-xs last:border-none" key={index}>
+                <th
+                  className="border-r-2 border-r-blue px-2  py-2 text-xs last:border-none xl:px-0 xl:text-center xl:text-sm"
+                  key={index}
+                >
                   {t}
                 </th>
               ))}

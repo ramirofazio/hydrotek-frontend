@@ -28,32 +28,38 @@ export function Dashboard() {
 
   useEffect(() => {
     saveInStorage("selected", selected);
-    if (selected === "blog" || selected === "ordenes") {
-      setSelected("productos");
-      setShow(true);
-    }
   }, [selected]);
 
   const selectedComponent = componentMapping[selected];
+
+  const handleChangeSelected = (text) => {
+    if (text === "salir") {
+      window.close() || window.location.replace("/");
+    } else if (text === "blog" || text === "ordenes") {
+      setShow(true);
+    } else {
+      setSelected(text);
+    }
+  };
+
   return (
-    <main className="grid w-full place-content-center gap-4 p-8 text-center">
+    <main className="grid w-full place-content-center gap-4  p-8 text-center lg:place-content-stretch lg:text-left">
       <DashboardHeader />
       <WorkInProgressModal isOpen={show} onClose={() => setShow(false)} dashboard={true} />
-      <section className="flex w-full flex-col items-center gap-4">
+      <section className="flex w-full flex-col items-center gap-4 lg:flex-row">
         {buttons.map(({ icon, text }, index) => (
           <IconButtonWithBgGold
             key={index}
             icon={`${icon} !justify-start`}
             text={text}
-            className={`!aspect-auto h-10 w-full items-center !justify-start ${
+            className={`!aspect-auto h-10 w-full items-center !justify-start ${text === "salir" && "lg:hidden"} ${
               selected === text ? "pointer-events-none opacity-50" : "opacity-100"
             }`}
             textClassName={"ml-10"}
-            onClick={() => (text === "salir" ? window.close() || window.location.replace("/") : setSelected(text))}
+            onClick={() => handleChangeSelected(text)}
           />
         ))}
       </section>
-
       <Pages selectedComponent={selectedComponent} />
       <IconButtonWithBgGold
         className={"absolute bottom-0 mx-auto my-4"}

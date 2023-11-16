@@ -47,7 +47,10 @@ export function Products() {
         <thead className="border border-gold">
           <tr className="goldGradient text-base uppercase">
             {colsTitles.map((t, index) => (
-              <th className="border-r-2 border-r-blue px-2  py-2 text-xs last:border-none" key={index}>
+              <th
+                className="border-r-2 border-r-blue px-2  py-2 text-xs last:border-none xl:px-0 xl:text-center xl:text-sm"
+                key={index}
+              >
                 {t}
               </th>
             ))}
@@ -57,7 +60,7 @@ export function Products() {
           {products.map(({ id, arsPrice, name, published, updated }) => (
             <tr key={id} className="even:bg-gold/10">
               <TableRow content={id} />
-              <TableRow content={name} />
+              <TableRow content={name} style />
               <TableRow
                 content={arsPrice.toLocaleString("es-AR", {
                   style: "currency",
