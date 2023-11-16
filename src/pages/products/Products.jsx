@@ -20,7 +20,18 @@ export default function Products() {
       </div>
       <div className="content mx-auto mt-10  grid place-items-center gap-4  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products?.length ? (
-          products.map((p, i) => <ProductCard id={p.id} key={i} name={p.name} imgUrl={p.imgUrl} price={p.price.d[0]} />)
+          products.map((p, i) => (
+            <ProductCard
+              id={p.id}
+              key={i}
+              name={p.name}
+              imgUrl={p.imgUrl}
+              price={p.arsPrice.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS",
+              })}
+            />
+          ))
         ) : (
           <>
             {error("no hay products")}

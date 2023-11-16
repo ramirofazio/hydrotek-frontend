@@ -6,7 +6,7 @@ export function AddToCart({ productId, productImg, productName, price, className
   const dispatch = useDispatch();
   return (
     <button
-      className={`text-3xl  text-white ${className}`}
+      className={`textGoldGradient flex items-center items-center text-3xl ${className}`}
       onClick={() => {
         dispatch(actionsShoppingCart.addProudct({ productId, productName, price }));
         addProduct({ name: productName, img: productImg });
