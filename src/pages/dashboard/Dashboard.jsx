@@ -2,7 +2,7 @@ import { Pages, DashboardHeader } from ".";
 import { IconButtonWithBgGold } from "src/components/buttons";
 import { Products, Blog, Orders, Users, MoreActions } from "./pages/index";
 import { useEffect, useState } from "react";
-import { getOfStorage, saveInStorage } from "src/utils/localStorage";
+import { deleteOfStorage, getOfStorage, saveInStorage } from "src/utils/localStorage";
 import { WorkInProgressModal } from "src/components";
 
 const buttons = [
@@ -35,6 +35,7 @@ export function Dashboard() {
   const handleChangeSelected = (text) => {
     if (text === "salir") {
       window.close() || window.location.replace("/");
+      deleteOfStorage("selected");
     } else if (text === "blog" || text === "ordenes") {
       setShow(true);
     } else {
