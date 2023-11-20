@@ -6,7 +6,7 @@ import { useLoaderData } from "react-router-dom";
 export default function ProductDetail() {
   const { t } = useTranslation();
   const product = useLoaderData();
-  const { id, name, price, description } = product;
+  const { id, name, arsPrice, description } = product;
 
   return (
     <main className="content mx-auto my-5 grid w-[92%] gap-8  md:grid-cols-2">
@@ -25,14 +25,10 @@ export default function ProductDetail() {
       <picture className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center  bg-productBorderGradient bg-contain bg-clip-content bg-center bg-no-repeat">
         <img src={products.defaultOne} alt="foto del producto" className="m-10 w-[40%]  md:w-[60%] lg:w-[50%]" />
       </picture>
-      <ProductDescription
-        productId={id}
-        price={price.d[0]}
-        name={name}
-        description={description}
-        key={id}
-      />
-      <section className="border-t-[1px] border-gold py-5  md:col-span-2">
+      <ProductDescription productId={id} price={arsPrice} name={name} description={description} key={id} />
+      {/*
+    // ? Comentado hasta saber si van a o no reseñas
+<section className="border-t-[1px] border-gold py-5  md:col-span-2">
         <h1 className="mx-auto mb-4 w-fit">{t("common.reviews")}</h1>
         <div className="grid grid-cols-1 place-items-center gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <Review />
@@ -40,7 +36,7 @@ export default function ProductDetail() {
           <Review />
           <Review />
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

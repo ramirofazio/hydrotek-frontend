@@ -23,7 +23,7 @@ export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
         {showBtn && (
           <div className="flex  items-center gap-3 md:gap-8 md:place-self-center s:gap-5">
             <Link to={`/productDetail/${id}`} className="md:place-self-start">
-              <Button text={t("common.buy-now")} pClassname={"font-primary"} />
+              <Button text={t("common.see")} pClassname={"font-primary"} />
             </Link>
             <AddToCart productImg={imgUrl || products.defaultOne} productName={name} price={price} productId={id} />
           </div>

@@ -14,7 +14,12 @@ export function ProductDescription({ productId, description, name, price, rating
       </div>
       <div>
         <h1>{name || "nombre del articul Hydortek"}</h1>
-        <h2 className="textGoldGradient ">{"$" + price || "$99.99"}</h2>
+        <h2 className="textGoldGradient ">
+          {price.toLocaleString("es-AR", {
+            style: "currency",
+            currency: "ARS",
+          })}
+        </h2>
       </div>
       <div>
         <Quantity className="" price={price} stock={stock} productId={productId} />
@@ -23,7 +28,8 @@ export function ProductDescription({ productId, description, name, price, rating
       <Button text={t("common.buy-now")} className="mt-2" />
 
       <h1 className="p-1 text-xs">
-        {description || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti corporis dolorem vero accusamus dicta, repellat adipisci maiores animi facilis harum asperiores optio nesciunt rerum deserunt aliquam necessitatibus odit labore quia!"}
+        {description ||
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti corporis dolorem vero accusamus dicta, repellat adipisci maiores animi facilis harum asperiores optio nesciunt rerum deserunt aliquam necessitatibus odit labore quia!"}
       </h1>
     </article>
   );

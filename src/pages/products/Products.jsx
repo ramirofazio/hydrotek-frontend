@@ -3,14 +3,11 @@ import { Pagination, SearchBar } from "components";
 import { useLoaderData } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { error, addProduct } from "src/components/notifications";
-import { defaultPost } from "src/assets";
 
 export default function Products() {
   const { t } = useTranslation();
   const data = useLoaderData();
   let { products, quantity } = data;
-
-  addProduct({ img: defaultPost, name: "cacatua" });
 
   return (
     <div className="mx-auto w-[90%]">

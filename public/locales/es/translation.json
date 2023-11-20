@@ -1,5 +1,6 @@
 {
   "common": {
+    "see": "ver producto",
     "dashboard": "panel de administrador",
     "add": "añadir",
     "brand": "Hydrotek",
@@ -78,7 +79,6 @@
     "payment-ok": "Compra realizada con exito",
     "payment-failed": "Ocurrio un problema al procesar el pago",
     "we-contact-you": "te contactaremos por email para despachar el envío"
-
   },
   "order": {
     "order-data": "datos de la orden",

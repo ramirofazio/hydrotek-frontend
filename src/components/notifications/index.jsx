@@ -26,10 +26,10 @@ export function error(message) {
 export function addProduct({ name, img }) {
   const notify = () =>
     toast.custom(() => (
-      <div className="flex min-w-[20%] items-center rounded  justify-center gap-2 border-2 border-gold bg-[#031834] p-1">
+      <div className="flex min-w-[30%] items-center gap-2 rounded border-2 border-gold bg-[#031834] p-4">
         <img className="w-[50px] rounded" src={img} alt="" />
-        <p className="textGoldGradient text-center font-bold">
-          Se agrego {name} al carrito
+        <p className="text-center text-xs font-bold lg:text-sm">
+          SE AGREGO <strong className="pointer-events-none">{name}</strong> AL CARRITO
         </p>
       </div>
     ));

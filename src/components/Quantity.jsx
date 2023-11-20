@@ -1,4 +1,3 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { actionsShoppingCart } from "src/redux/reducers";
 
@@ -16,7 +15,7 @@ export function Quantity({ productName, price, stock = 25, className }) {
       >
         <i className="ri-subtract-line"></i>
       </button>
-      <h1 className="text-2xl text-white">{quantity}</h1>
+      <h1 className="text-2xl text-white">{quantity || 0}</h1>
       <button
         onClick={() => dispatch(addProudct({ productName, price }))}
         disabled={quantity === stock && true}
