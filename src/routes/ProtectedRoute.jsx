@@ -7,15 +7,15 @@ import { useEffect } from "react";
 export function ProtectedRoute() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userInfo = useLoaderData();
-  const { user } = useSelector((state) => state);
+  const { userInfo } = useLoaderData();
+  const { session } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!userInfo.userInfo?.accessToken) navigate("/session/signIn");
+    if (!userInfo.accessToken) navigate("/session/signIn");
   }, []);
 
-  if (!user.session.role && userInfo?.userInfo) {
-    dispatch(actionsUser.saveSignData(userInfo.userInfo));
+  if (!session.role && userInfo) {
+    dispatch(actionsUser.saveSignData(userInfo));
     return (
       <>
         <Navbar />

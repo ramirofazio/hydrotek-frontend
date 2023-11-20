@@ -1,55 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { IconButtonWithBgGold } from "src/components/buttons";
 import { TableRow } from "./index";
+import { Loader } from "src/components";
+import axios from "axios";
 
 const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicado", "subir imagen"];
 
 export function Products() {
   const { products } = useLoaderData();
 
-  const handleImageUpload = (e) => {
-    const fileInput = e.target;
-    const files = fileInput.files;
+  const [loader, setLoader] = useState(false);
+  const handleImageUpload = (e, id) => {
+    setLoader(true);
+    const { target } = e;
+    const file = target.files[0];
+    const reader = new FileReader();
 
-    if (files.length > 0) {
-      const file = files[0];
-      console.log("Nombre del archivo:", file.name);
-      console.log("Tipo de archivo:", file.type);
-      console.log("Tamaño del archivo:", file.size);
+    reader.onload = async () => {
+      try {
+        const formdata = new FormData();
+        formdata.append("file", reader.result);
+        formdata.append("productId", id);
 
-      //! Logica cloudinary. subir y rescatar el nombre o id de la imagen cargada en cloduinary para enlazarla con el producto
-    }
+        axios
+          .post(`http://localhost:3000/cloudinary/loadProductImage`, formdata, {
+            headers: { "Content-Type": "multipart/form-data" },
+          })
+          .then((res) => {
+            if (res.data === "success") {
+              setLoader(false);
+            }
+          });
+      } catch (e) {
+        console.log(e);
+        setLoader(false);
+      }
+    };
+
+    reader.readAsDataURL(file);
   };
 
   return (
     <main className="w-full">
+      {loader && <Loader />}
       <table className="my-4 w-full text-white">
         <thead className="border border-gold">
           <tr className="goldGradient text-base uppercase">
             {colsTitles.map((t, index) => (
-              <th className="px-6 py-2" key={index}>
+              <th
+                className="border-r-2 border-r-blue px-2  py-2 text-xs last:border-none xl:px-0 xl:text-center xl:text-sm"
+                key={index}
+              >
                 {t}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {products.map(({ id, price: { d }, name, published, updated }) => (
+          {products.map(({ id, arsPrice, name, published, updated }) => (
             <tr key={id} className="even:bg-gold/10">
               <TableRow content={id} />
-              <TableRow content={name} style="text-start" />
+              <TableRow content={name} style />
               <TableRow
-                content={d.toLocaleString("es-AR", {
+                content={arsPrice.toLocaleString("es-AR", {
                   style: "currency",
                   currency: "ARS",
                 })}
+                style="text-left"
               />
               <TableRow content={updated} />
               <TableRow
                 content={
                   <i
-                    className={`ri-${published ? "check" : "close"}-fill text-3xl text-${
+                    className={`ri-${published ? "check" : "close"}-fill text-2xl text-${
                       published ? "green" : "red"
                     }-500`}
                   />
@@ -57,13 +80,13 @@ export function Products() {
               />
               <TableRow
                 content={
-                  <label htmlFor="fileInput" className="icons ri-image-2-fill text-3xl">
+                  <label htmlFor="fileInput" className="icons ri-image-2-fill text-2xl">
                     <input
                       type="file"
                       id="fileInput"
                       accept="image/*"
                       className="hidden"
-                      onChange={handleImageUpload}
+                      onChange={(e) => handleImageUpload(e, id)}
                     />
                   </label>
                 }
@@ -72,11 +95,6 @@ export function Products() {
           ))}
         </tbody>
       </table>
-      <IconButtonWithBgGold
-        className={"absolute bottom-0 mx-auto my-4"}
-        icon={"ri-arrow-up-s-line"}
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      />
     </main>
   );
 }

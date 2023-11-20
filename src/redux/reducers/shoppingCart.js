@@ -19,8 +19,7 @@ const shoppingCart = createSlice({
       state.totalPrice = totalPrice;
       state.products = productsDictionary;
     },
-    loadStorageShoppingCart: (state, action) => {
-      console.log(action);
+    loadStorageShoppingCart: (state) => {
       const shoppingCart = getOfStorage("shoppingCart");
       if (shoppingCart?.totalPrice > 0) {
         const { totalPrice, products } = shoppingCart;

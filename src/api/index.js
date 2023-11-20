@@ -9,29 +9,53 @@ const route = {
   CLOUDINARY: "cloudinary",
   CHECKOUT: "checkout",
   TFACTURA: "tFactura",
+  APIDOLAR: "apidolar",
 };
 
 // * Para una clara visualizacion de las rutas abrir
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
-  updateTFacturaProducts: () => {
-    return apiHydro.get(`/${route.TFACTURA}/token`).then((res) => {
+  manualTFacturaProductsUpdate: () => {
+    return apiHydro.get(`${route.PRODUCT}/updateDB`).then((res) => {
       if (res.status === 200) {
-        return apiHydro.get(`/${route.TFACTURA}/products`).then((res) => {
-          if (res.status === 200) {
-            return apiHydro.get(`${route.PRODUCT}/updateDB`).then((res) => {
-              if (res.status === 200) {
-                return "success";
-              }
-            });
-          }
-        });
+        return APIHydro.getAllProducts();
       }
     });
   },
+  manualUsdUpdate: () => {
+    return apiHydro.post(`${route.APIDOLAR}/manual`).then((res) => {
+      if (res.status === 201) {
+        return APIHydro.getLastUsdPrice();
+      }
+    });
+  },
+  getLastUsdPrice: () => {
+    return apiHydro.get(`${route.APIDOLAR}/full-last`);
+  },
+  alternAdmin: (id, currentUser) => {
+    return apiHydro.put(`${route.USER}/alternAdmin`, { id: id, currenUser: currentUser }).then((res) => {
+      if (res.status === 200) {
+        return res.data;
+      }
+    });
+  },
+  loadProductImage: (file, id) => {
+    return apiHydro.post(
+      `${route.CLOUDINARY}/loadProductImage`,
+      { file, id },
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
+  },
+  getAllUsers: () => {
+    return apiHydro.get(`/${route.USER}`);
+  },
+  getAllProducts: () => {
+    return apiHydro.get(`/${route.PRODUCT}/all`);
+  },
   getProductsPaginated: ({ pag, productsPerPage }) => {
-    console.log(pag, productsPerPage);
     return apiHydro.post(`/${route.PRODUCT}/pag`, { pag, productsPerPage }); //ejemplo para traer todos los productos
   },
   getProducts: () => {
@@ -99,7 +123,7 @@ export const APIHydro = {
   },
   getCheckout: () => {
     return apiHydro.get(`/${route.CHECKOUT}`);
-  }
+  },
 };
 
 export function addAuthWithToken(token) {
