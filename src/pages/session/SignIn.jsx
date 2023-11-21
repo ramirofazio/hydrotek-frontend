@@ -80,7 +80,7 @@ export function SignIn() {
   return (
     <main className="relative grid h-full py-10 sm:px-10 md:px-20 lg:place-content-center">
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ForgotPassword />
+        <ForgotPassword modal={true} closeModal={() => setIsModalOpen(false)} />
       </Modal>
       <img src={backgrounds.techDots2} className="absolute bottom-0 left-0 hidden w-80 animate-pulse lg:inline" />
       <img

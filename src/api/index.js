@@ -16,6 +16,13 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  initResetPassword: (email) => {
+    return apiHydro.post(`${route.AUTH}/init-reset`, { email }).then((res) => {
+      if (res.status === 201) {
+        return true;
+      }
+    });
+  },
   manualTFacturaProductsUpdate: () => {
     return apiHydro.get(`${route.PRODUCT}/updateDB`).then((res) => {
       if (res.status === 200) {
