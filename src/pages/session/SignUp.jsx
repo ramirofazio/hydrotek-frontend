@@ -4,22 +4,19 @@ import { Input, PasswordInput } from "components/inputs";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Loader } from "src/components/Loader";
-import { APIHydro, addAuthWithToken } from "src/api";
-import { useDispatch } from "react-redux";
-import { actionsUser } from "src/redux/reducers";
-import { saveInStorage } from "src/utils/localStorage";
+import { APIHydro } from "src/api";
 import { borders, backgrounds, logos } from "assets";
 import { isValidSignUp } from "src/utils/validation";
-import { Error } from "src/components";
+import { Error, Modal } from "src/components";
 
 const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-xl xl:mr-10" }];
 
 export function SignUp() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
+  const [validationModal, setValidationModal] = useState(false);
   const [errs, setErrs] = useState({});
   const [apiErr, setApiErr] = useState(null);
   const [user, setUser] = useState({
@@ -54,12 +51,9 @@ export function SignUp() {
       if (!cleanUser.dni || cleanUser.dni.length < 7) delete cleanUser.dni;
       APIHydro.signUp(cleanUser)
         .then((res) => {
-          if (res.data) {
-            const { accessToken } = res.data;
-            saveInStorage("accessToken", accessToken);
-            addAuthWithToken(accessToken);
-            dispatch(actionsUser.saveSignData(res.data));
-            navigate("/");
+          if (res.status == 201) {
+            //? Usuario creado, espera de confirmacion
+            setValidationModal(true);
           }
         })
         .catch((e) => {
@@ -80,6 +74,10 @@ export function SignUp() {
 
   return (
     <main className="grid h-full min-h-screen lg:bg-signUpXl lg:bg-contain lg:bg-clip-content lg:bg-right">
+      <Modal isOpen={validationModal} onClose={() => setValidationModal(false)}>
+        <h1>Confirmación de email</h1>
+        <p>Hemos mandado un mail para confirmar tu correo electronico</p>
+      </Modal>
       <img className="ml-auto  lg:hidden" src={backgrounds.signUpBgTop} alt="" />
       {loading && <Loader />}
       <div className="mx-5 mt-4 grid place-items-center gap-6  sm:mx-auto sm:w-[70%] md:w-[85%]">

@@ -16,6 +16,9 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  activeUser: (data) => {
+    return apiHydro.put(`${route.AUTH}/active-user`, data);
+  },
   resetPassword: (data) => {
     return apiHydro.post(`${route.AUTH}/reset-password`, data);
   },
