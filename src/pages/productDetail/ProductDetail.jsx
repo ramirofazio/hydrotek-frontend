@@ -1,10 +1,9 @@
-import { ProductDescription, Review } from "./index";
-import { useTranslation } from "react-i18next";
+import { ProductDescription } from "./index";
 import { products } from "assets";
 import { useLoaderData } from "react-router-dom";
 
 export default function ProductDetail() {
-  const { t } = useTranslation();
+  //const { t } = useTranslation();
   const product = useLoaderData();
   const { id, name, arsPrice, description } = product;
 
