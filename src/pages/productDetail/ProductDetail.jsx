@@ -1,10 +1,9 @@
-import { ProductDescription, Review } from "./index";
-import { useTranslation } from "react-i18next";
+import { ProductDescription } from "./index";
 import { products } from "assets";
 import { useLoaderData } from "react-router-dom";
 
 export default function ProductDetail() {
-  const { t } = useTranslation();
+  //const { t } = useTranslation();
   const product = useLoaderData();
   const { id, name, arsPrice, description } = product;
 
@@ -28,7 +27,7 @@ export default function ProductDetail() {
       <ProductDescription productId={id} price={arsPrice} name={name} description={description} key={id} />
       {/*
     // ? Comentado hasta saber si van a o no reseñas
-<section className="border-t-[1px] border-gold py-5  md:col-span-2">
+    <section className="border-t-[1px] border-gold py-5  md:col-span-2">
         <h1 className="mx-auto mb-4 w-fit">{t("common.reviews")}</h1>
         <div className="grid grid-cols-1 place-items-center gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <Review />

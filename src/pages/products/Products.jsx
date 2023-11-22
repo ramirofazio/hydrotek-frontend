@@ -2,7 +2,7 @@ import { ProductCard } from "components/cards";
 import { Pagination, SearchBar } from "components";
 import { useLoaderData } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { error, addProduct } from "src/components/notifications";
+import { error } from "src/components/notifications";
 
 export default function Products() {
   const { t } = useTranslation();
