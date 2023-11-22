@@ -16,6 +16,9 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  resetPassword: (data) => {
+    return apiHydro.post(`${route.AUTH}/reset-password`, data);
+  },
   initResetPassword: (email) => {
     return apiHydro.post(`${route.AUTH}/init-reset`, { email }).then((res) => {
       if (res.status === 201) {

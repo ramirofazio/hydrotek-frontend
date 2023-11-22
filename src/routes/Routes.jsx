@@ -22,7 +22,6 @@ import ShoppingCart from "src/pages/shoppingCart/ShoppingCart";
 import { APIHydro } from "src/api";
 import { Aurora } from "src/components";
 import { Dashboard } from "src/pages/dashboard";
-import { ForgotPassword } from "src/pages/session/ForgotPassword";
 const Landing = lazy(() => import("pages/landing/Landing.jsx"));
 const Root = lazy(() => import("pages/Root.jsx"));
 
@@ -39,7 +38,6 @@ export function Routes() {
       loader: autoLoginLoader,
       children: [
         { path: "/", element: <Landing />, index: true },
-        { path: "/resetPassword", element: <ForgotPassword /> },
         {
           path: "/products/:pag",
           loader: async ({ params }) => {
