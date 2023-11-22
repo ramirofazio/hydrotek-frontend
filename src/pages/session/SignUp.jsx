@@ -51,7 +51,7 @@ export function SignUp() {
       if (!cleanUser.dni || cleanUser.dni.length < 7) delete cleanUser.dni;
       APIHydro.signUp(cleanUser)
         .then((res) => {
-          if (res.status == 201) {
+          if (res.status === 201) {
             //? Usuario creado, espera de confirmacion
             setValidationModal(true);
           }
