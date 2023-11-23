@@ -24,10 +24,11 @@ export function Products() {
       formdata.append("upload_preset", "product_image");
       formdata.append("public_id", productId);
 
+      /* eslint-disable */
       const { secure_url, asset_id, public_id } = (await axios.post(URL, formdata)).data;
-
-      const res = await APIHydro.addProductImg({ path: secure_url, asset_id, public_id, productId });
-      console.log(res.data);
+      await APIHydro.addProductImg({ path: secure_url, asset_id, publicId: public_id, productId });
+      
+      /* eslint-enable */
       setLoader(false);
       navigate("/admin/dashboard");
     } catch (err) {
@@ -38,17 +39,25 @@ export function Products() {
 
   async function deleteProductImg(productId) {
     try {
-      const res = await APIHydro.deleteProductImg(productId)
-      console.log(res.data)
+      const deleted = await APIHydro.deleteProductImg(productId);
+      console.log(deleted);
+      setModal(false);
+      navigate("/admin/dashboard");
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 
   return (
     <main className="w-full">
       <Modal isOpen={Boolean(modal)} onClose={() => setModal(false)}>
-        <i onClick={() => deleteProductImg(modal.productId)} className="ri-delete-bin-2-fill self-center text-4xl capitalize text-red-500">presione para borrar</i>
+        <button
+          onClick={() => deleteProductImg(modal.productId)}
+          className="mx-auto my-2 flex items-center justify-center gap-2 rounded-lg border-2 border-red-500 bg-slate-800 p-1"
+        >
+          <i className="ri-delete-bin-2-fill self-center text-4xl capitalize text-red-500"></i>
+          <h1> Presione para borrar</h1>
+        </button>
         <img src={modal.path} />
       </Modal>
       <table className="my-4 w-full text-white">
@@ -109,12 +118,12 @@ export function Products() {
                   <TableRow
                     content={
                       <label
-                        htmlFor="fileInput"
+                        htmlFor={`fileInput${id}`}
                         className={`${loader ? "icons ri-loader-2-line text-2xl" : "icons ri-image-2-fill text-2xl"}`}
                       >
                         <input
                           type="file"
-                          id="fileInput"
+                          id={`fileInput${id}`}
                           accept="image/*"
                           className="hidden"
                           onChange={(e) => uploadProductImage(e.target.files[0], id, setLoader)}

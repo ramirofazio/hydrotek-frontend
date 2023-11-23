@@ -40,15 +40,6 @@ export const APIHydro = {
       }
     });
   },
-  loadProductImage: (file, id) => {
-    return apiHydro.post(
-      `${route.CLOUDINARY}/loadProductImage`,
-      { file, id },
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
-  },
   getAllUsers: () => {
     return apiHydro.get(`/${route.USER}`);
   },
@@ -124,11 +115,11 @@ export const APIHydro = {
   getCheckout: () => {
     return apiHydro.get(`/${route.CHECKOUT}`);
   },
-  addProductImg: ({ productId, path, asset_id }) => {
-    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, asset_id });
+  addProductImg: ({ productId, path, asset_id, publicId }) => {
+    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, asset_id, publicId });
   },
-  deleteProductImg: ({ productId }) => {
-    return apiHydro.delete(`/${route.PRODUCT}/img/delete/${productId}`);
+  deleteProductImg: ( productId ) => {
+    return apiHydro.delete(`/${route.CLOUDINARY}/img/delete/${productId}`);
   },
 };
 
