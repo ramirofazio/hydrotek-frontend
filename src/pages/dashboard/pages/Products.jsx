@@ -27,8 +27,8 @@ export function Products() {
       /* eslint-disable */
       const { secure_url, asset_id, public_id } = (await axios.post(URL, formdata)).data;
       await APIHydro.addProductImg({ path: secure_url, asset_id, publicId: public_id, productId });
-      
       /* eslint-enable */
+
       setLoader(false);
       navigate("/admin/dashboard");
     } catch (err) {
