@@ -126,7 +126,10 @@ export const APIHydro = {
   },
   addProductImg: ({ productId, path, asset_id }) => {
     return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, asset_id });
-  }
+  },
+  deleteProductImg: ({ productId }) => {
+    return apiHydro.delete(`/${route.PRODUCT}/img/delete/${productId}`);
+  },
 };
 
 export function addAuthWithToken(token) {
