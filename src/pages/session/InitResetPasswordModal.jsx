@@ -4,8 +4,6 @@ import { Button } from "src/components/buttons";
 import { Input } from "src/components/inputs";
 import { error, success } from "src/components/notifications";
 
-
-
 export function InitResetPasswordModal({ close }) {
   const [email, setEmail] = useState(null);
   const [loader, setLoader] = useState(false);
@@ -25,7 +23,7 @@ export function InitResetPasswordModal({ close }) {
         setLoader(false);
         close();
         console.log(e);
-        error("Ocurrio un error. Por favor, intantalo de nuevo");
+        error();
       }
     } else {
       setLoader(false);
