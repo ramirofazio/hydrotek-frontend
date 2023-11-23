@@ -72,9 +72,8 @@ export default function Landing() {
               ))}
           </Swiper>
         </div>
-        <div className="">
+        {/* <div className="">
           <h1 className="mx-auto w-fit text-center xl:text-3xl">{t("common.find-what-you-are-looking")}</h1>
-          {/* //TODO usar categorias reales  */}
           <Carrousel
             content={[
               { component: <CategoryCard name={"SAFE ROOTS"} />, qty: 3 },
@@ -92,7 +91,7 @@ export default function Landing() {
           onClick={() => navigate("/blog")}
           className="mx-auto -mt-[3rem] mb-[3rem] w-fit"
           text={t("blog.visit-blog")}
-        />
+        /> */}
       </section>
     </div>
   );

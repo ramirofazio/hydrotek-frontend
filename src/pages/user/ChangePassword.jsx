@@ -10,7 +10,12 @@ import { error, success } from "src/components/notifications";
 import { actionsUser } from "src/redux/reducers";
 import { isValidChangePassword } from "src/utils/validation";
 
-const fields = [
+const resetFields = [
+  { name: "newPassword", label: "contraseña nueva" },
+  { name: "newConfirmPassword", label: "confirma tu contraseña" },
+];
+
+const updateFields = [
   { name: "actualPassword", label: "contraseña actual" },
   { name: "newPassword", label: "contraseña nueva" },
   { name: "newConfirmPassword", label: "confirma tu contraseña" },
@@ -54,16 +59,16 @@ export function ChangePassword({ close, userId, reset, token, email }) {
           .then((res) => {
             if (res.data) {
               dispatch(actionsUser.updateDataFromProfile(res.data));
+              success("CONTRASEÑA ACTUALIZADA");
+              setLoading(false);
               close();
             }
           })
           .catch((e) => {
-            const error = e.response.data;
-            setApiErr(error);
+            error();
             setLoading(false);
-          })
-          .finally(() => {
-            setLoading(false);
+            close();
+            console.log(e);
           });
       } else {
         APIHydro.resetPassword(data)
@@ -75,7 +80,7 @@ export function ChangePassword({ close, userId, reset, token, email }) {
             }
           })
           .catch((e) => {
-            error("Ups, intentalo de nuevo");
+            error();
             setLoading(false);
             close();
             console.log(e);
@@ -95,17 +100,15 @@ export function ChangePassword({ close, userId, reset, token, email }) {
       <img src={logos.hydBlack} className="mx-auto w-20" />
       <Dialog.Title className="textGoldGradient">{reset ? "Actualiza" : "Cambia"} tu Contraseña</Dialog.Title>
       <form onSubmit={handleSubmit} className="grid gap-6">
-        {fields.map(({ name, label }, index) => (
+        {(reset ? resetFields : updateFields).map(({ name, label }, index) => (
           <Fragment key={index}>
-            {reset && name !== "actualPassword" && (
-              <PasswordInput
-                name={name}
-                onChange={handleOnChange}
-                value={data[name]}
-                placeholder={label}
-                className={`relative ${errs[name] && "border-red-500 focus:border-red-500/50"}`}
-              />
-            )}
+            <PasswordInput
+              name={name}
+              onChange={handleOnChange}
+              value={data[name]}
+              placeholder={label}
+              className={`relative ${errs[name] && "border-red-500 focus:border-red-500/50"}`}
+            />
             {errs[name] && <Error text={errs[name]} />}
           </Fragment>
         ))}

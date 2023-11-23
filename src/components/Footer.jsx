@@ -50,7 +50,7 @@ export const Footer = () => {
         </div>
         <div className="col-span-1 row-span-2 my-6  lg:row-span-1 lg:h-full">
           <h1 className="textGoldGradient text-sm md:text-xl">{t("footer.who-we-are")}</h1>
-          <p className="py-4 text-xs font-[200]  leading-5 tracking-widest md:w-[50%]  md:text-sm lg:w-full text-justify">
+          <p className="py-4 text-justify text-xs  font-[200] leading-5 tracking-widest  md:w-[50%] md:text-sm lg:w-full">
             {t("about.content")}...
           </p>
           <Link
@@ -79,7 +79,9 @@ export const Footer = () => {
           className={"row-start-1 w-14 lg:absolute lg:right-20 lg:row-start-auto"}
         />
       </section>
-      <div className="w-full bg-gold py-2 text-center font-secondary text-xs text-white ">{t("footer.legal")}</div>
+      <div className="w-full bg-gold py-2 text-center font-secondary text-xs text-white ">
+        © Copyright {new Date().getFullYear()} HydroTek - Todos los Derechos Reservados
+      </div>
     </footer>
   );
 };

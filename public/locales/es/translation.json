@@ -54,8 +54,7 @@
       "change-password": "Cambiar mi contraseña",
       "order-history": "Historial de pedidos",
       "order-track": "Seguimiento de envíos"
-    },
-    "legal": "© Copyright 2023 HydroTek - Todos los Derechos Reservados"
+    }
   },
   "products": {
     "no-products": "lo sentimos, no hay productos guardados"
