@@ -1,5 +1,40 @@
 import axios from "axios";
 /* eslint-disable */
+
+
+export async function uploadImagesCloud(files = [], clientId) {
+  const cloud_name = import.meta.env.CLOUDINARY_CLOUD_NAME;
+
+  const URL = 'https://api.cloudinary.com/v1_1/' + cloud_name + '/image/upload';
+
+  const photos = [];
+  const promises = [];
+
+  files.forEach((file) => {
+    const formdata = new FormData();
+    formdata.append('file', file);
+    formdata.append('upload_preset', clientId);
+    promises.push(axios.post(URL, formdata));
+  });
+
+  try {
+    const responses = await Promise.all(promises);
+    responses.forEach((res) => {
+      const url = res?.data?.secure_url;
+      if (url) {
+        photos.push(url);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  return photos;
+}
+
+
+
+
 // ? En desuso, pero puede ser muy util para pedidos desde el front
 export async function uploadImagesCloudinary(files, upload_preset, public_id, signatures) {
   console.log(files);

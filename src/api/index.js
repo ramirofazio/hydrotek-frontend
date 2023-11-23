@@ -124,6 +124,9 @@ export const APIHydro = {
   getCheckout: () => {
     return apiHydro.get(`/${route.CHECKOUT}`);
   },
+  addProductImg: ({ productId, path, asset_id }) => {
+    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, asset_id });
+  }
 };
 
 export function addAuthWithToken(token) {
