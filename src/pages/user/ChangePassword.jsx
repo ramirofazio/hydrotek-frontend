@@ -6,6 +6,7 @@ import { logos } from "src/assets";
 import { Error, Loader } from "src/components";
 import { Button } from "src/components/buttons";
 import { PasswordInput } from "src/components/inputs";
+import { error, success } from "src/components/notifications";
 import { actionsUser } from "src/redux/reducers";
 import { isValidChangePassword } from "src/utils/validation";
 
@@ -15,13 +16,15 @@ const fields = [
   { name: "newConfirmPassword", label: "confirma tu contraseña" },
 ];
 
-export function ChangePassword({ close, userId }) {
+export function ChangePassword({ close, userId, reset, token, email }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [errs, setErrs] = useState({ actualPassword: "", newPassword: "", newConfirmPassword: "" });
   const [apiErr, setApiErr] = useState(null);
   const [data, setData] = useState({
     id: userId,
+    token: token,
+    email: email,
     actualPassword: "",
     newPassword: "",
     newConfirmPassword: "",
@@ -46,23 +49,41 @@ export function ChangePassword({ close, userId }) {
     e.preventDefault();
     try {
       setLoading(true);
-      APIHydro.updatePassword(data)
-        .then((res) => {
-          if (res.data) {
-            dispatch(actionsUser.updateDataFromProfile(res.data));
+      if (!reset) {
+        APIHydro.updatePassword(data)
+          .then((res) => {
+            if (res.data) {
+              dispatch(actionsUser.updateDataFromProfile(res.data));
+              close();
+            }
+          })
+          .catch((e) => {
+            const error = e.response.data;
+            setApiErr(error);
+            setLoading(false);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      } else {
+        APIHydro.resetPassword(data)
+          .then((res) => {
+            if (res.status === 201) {
+              success("CONTRASEÑA ACTUALIZADA");
+              setLoading(false);
+              close();
+            }
+          })
+          .catch((e) => {
+            error("Ups, intentalo de nuevo");
+            setLoading(false);
             close();
-          }
-        })
-        .catch((e) => {
-          const error = e.response.data;
-          setApiErr(error);
-          setLoading(false);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+            console.log(e);
+          });
+      }
     } catch (e) {
       const error = e.response.data;
+      error("Ups, intentalo de nuevo");
       setApiErr(error);
       setLoading(false);
     }
@@ -72,17 +93,19 @@ export function ChangePassword({ close, userId }) {
     <main className="my-4 grid grid-cols-1 place-content-center gap-6 text-center">
       {loading && <Loader />}
       <img src={logos.hydBlack} className="mx-auto w-20" />
-      <Dialog.Title className="textGoldGradient">Cambia tu Contraseña</Dialog.Title>
+      <Dialog.Title className="textGoldGradient">{reset ? "Actualiza" : "Cambia"} tu Contraseña</Dialog.Title>
       <form onSubmit={handleSubmit} className="grid gap-6">
         {fields.map(({ name, label }, index) => (
           <Fragment key={index}>
-            <PasswordInput
-              name={name}
-              onChange={handleOnChange}
-              value={data[name]}
-              placeholder={label}
-              className={`relative ${errs[name] && "border-red-500 focus:border-red-500/50"}`}
-            />
+            {reset && name !== "actualPassword" && (
+              <PasswordInput
+                name={name}
+                onChange={handleOnChange}
+                value={data[name]}
+                placeholder={label}
+                className={`relative ${errs[name] && "border-red-500 focus:border-red-500/50"}`}
+              />
+            )}
             {errs[name] && <Error text={errs[name]} />}
           </Fragment>
         ))}
@@ -92,7 +115,7 @@ export function ChangePassword({ close, userId }) {
           text={"Guardar"}
           onClick={handleSubmit}
           className={"mx-20"}
-          disabled={!data.actualPassword || !data.newPassword || !data.newConfirmPassword ? true : false}
+          disabled={(!data.actualPassword && !reset) || !data.newPassword || !data.newConfirmPassword ? true : false}
         />
       </form>
     </main>

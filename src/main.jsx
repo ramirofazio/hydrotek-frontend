@@ -23,6 +23,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             borderWidth: "2px",
             borderColor: "#B8912D",
             color: "white",
+            textAlign: "center",
+            textTransform: "uppercase",
           },
         }}
       />
