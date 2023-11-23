@@ -9,7 +9,7 @@ import { APIHydro, addAuthWithToken } from "src/api";
 import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { saveInStorage, getOfStorage } from "src/utils/localStorage";
-import { ForgotPassword } from "./ForgotPassword";
+import { InitResetPasswordModal } from "./InitResetPasswordModal";
 const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-xl lg:mr-10" }];
 
 export function SignIn() {
@@ -80,7 +80,7 @@ export function SignIn() {
   return (
     <main className="relative grid h-full py-10 sm:px-10 md:px-20 lg:place-content-center">
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ForgotPassword />
+        <InitResetPasswordModal close={() => setIsModalOpen(false)} />
       </Modal>
       <img src={backgrounds.techDots2} className="absolute bottom-0 left-0 hidden w-80 animate-pulse lg:inline" />
       <img
