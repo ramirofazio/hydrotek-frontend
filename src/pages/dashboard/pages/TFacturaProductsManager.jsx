@@ -8,7 +8,7 @@ const colsTitles = ["ultima Actualizacion", "Cant. Productos", "actualizar"];
 export function TFacturaProductsManager({ setLoader }) {
   const { products } = useLoaderData();
 
-  const [thisProducts, setThisProducts] = useState({ date: products[0].updated, qty: products.length }); //? Agarro la propiedad 'updated' del primer producto
+  const [thisProducts, setThisProducts] = useState({ date: products[0]?.updated, qty: products.length }); //? Agarro la propiedad 'updated' del primer producto
 
   const handleManualProductUpdate = async () => {
     const res = confirm(
