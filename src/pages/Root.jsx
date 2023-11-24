@@ -10,18 +10,14 @@ export default function Root() {
   const dispatch = useDispatch();
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const { userInfo } = useLoaderData();
+  console.log(userInfo);
 
-  /*
-?   Nota para tomi
-    Aca siempre es mejor usar el userInfo que esta actualizado y tiene values en el primer render para evitar re-renders.
-    Usando el user al principio para los `IF` habia 3 o 4 renders con el role en undefinded,
-    hice un refactor haciendo limpieza, y eliminando el user de redux.
-*/
 
   function handleCart() {
     if (userInfo && userInfo.accessToken) {
       //? Si esta logueado
       const arrProducts = Object.values(shoppingCart.products);
+      console.log("redux", shoppingCart.products);
       if (arrProducts.length) {
         return APIHydro.updateShoppingCart({
           userId: userInfo.session.id,

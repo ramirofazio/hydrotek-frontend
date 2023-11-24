@@ -13,7 +13,7 @@ const shoppingCart = createSlice({
 
       const productsDictionary = {};
       products.forEach((p) => {
-        productsDictionary[p.productId] = { quantity: p.quantity, productId: p.productId };
+        productsDictionary[p.productId] = { quantity: p.quantity, productId: p.productId, price: p.price, name:p.name };
       });
 
       state.totalPrice = totalPrice;
@@ -29,22 +29,22 @@ const shoppingCart = createSlice({
     },
     addProudct: (state, action) => {
       const { productId, productName, price } = action.payload;
-      const isAlready = state.products[productName]?.quantity;
+      const isAlready = state.products[productId]?.quantity;
       if (isAlready) {
-        state.products[productName].quantity = isAlready + 1;
+        state.products[productId].quantity = isAlready + 1;
       } else {
-        state.products[productName] = { quantity: 1, price: price, productId, name: productName };
+        state.products[productId] = { quantity: 1, price: price, productId, name: productName };
       }
       state.totalPrice = parseInt(state.totalPrice) + parseInt(price);
     },
     removeProduct: (state, action) => {
-      const { productName, price } = action.payload;
-      const productQuantity = state.products[productName]?.quantity;
+      const { productId, price } = action.payload;
+      const productQuantity = state.products[productId]?.quantity;
 
       if (productQuantity === 1) {
-        delete state.products[productName];
+        delete state.products[productId];
       } else {
-        state.products[productName].quantity = productQuantity - 1;
+        state.products[productId].quantity = productQuantity - 1;
       }
       state.totalPrice = state.totalPrice - price;
     },

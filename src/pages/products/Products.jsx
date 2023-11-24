@@ -8,7 +8,7 @@ export default function Products() {
   const { t } = useTranslation();
   const data = useLoaderData();
   let { products, quantity } = data;
-
+  console.log(products);
   return (
     <div className="mx-auto w-[90%]">
       <div>
@@ -24,11 +24,8 @@ export default function Products() {
               id={p.id}
               key={i}
               name={p.name}
-              imgUrl={p.images[0]?.path || undefined}
-              price={p.arsPrice.toLocaleString("es-AR", {
-                style: "currency",
-                currency: "ARS",
-              })}
+              imgUrl={p.images ? p.images[0]?.path : undefined}
+              price={p.arsPrice}
             />
           ))
         ) : (
