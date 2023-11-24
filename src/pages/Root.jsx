@@ -65,7 +65,7 @@ export default function Root() {
       <Aurora />
       <Navbar />
       <Outlet />
-      <Footer />
+      <Footer userInfo={userInfo} />
     </div>
   );
 }

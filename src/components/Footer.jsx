@@ -12,15 +12,7 @@ const socialLinksIcons = [
   { href: socialLinks.mail, icon: "mail" },
 ];
 
-const userLinks = [
-  { href: "/session/signup", text: "footer.links-list.my-account" },
-  { href: "/user/profile", text: "footer.links-list.edit" },
-  { href: "/user/profile", text: "footer.links-list.change-password" },
-  { href: "/user/profile", text: "footer.links-list.order-history" },
-  { href: "/user/profile", text: "footer.links-list.order-track" },
-];
-
-export const Footer = () => {
+export const Footer = ({ userInfo }) => {
   const { t } = useTranslation();
 
   const scrollUp = () => {
@@ -29,6 +21,14 @@ export const Footer = () => {
       behavior: "smooth",
     });
   };
+
+  const userLinks = [
+    { href: "/session/signup", text: "footer.links-list.my-account" },
+    { href: `/user/profile/${userInfo?.session.id}`, text: "footer.links-list.edit" },
+    { href: `/user/profile/${userInfo?.session.id}`, text: "footer.links-list.change-password" },
+    // { href: "/user/profile", text: "footer.links-list.order-history" },
+    // { href: "/user/profile", text: "footer.links-list.order-track" },
+  ];
 
   return (
     <footer className="h-full w-full border-t-8 border-gold">
@@ -48,31 +48,33 @@ export const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="col-span-1 row-span-2 my-6  lg:row-span-1 lg:h-full">
+        <div className="row-span-2 my-6  lg:row-span-1 lg:h-full">
           <h1 className="textGoldGradient text-sm md:text-xl">{t("footer.who-we-are")}</h1>
           <p className="py-4 text-justify text-xs  font-[200] leading-5 tracking-widest  md:w-[50%] md:text-sm lg:w-full">
             {t("about.content")}...
           </p>
           <Link
             to="/aboutUs"
-            className="textGoldGradient font-primary text-sm uppercase underline decoration-gold transition hover:cursor-pointer hover:brightness-125  md:text-xl"
+            className="textGoldGradient link-animation font-primary text-sm uppercase decoration-gold transition hover:cursor-pointer md:text-xl"
             onClick={scrollUp}
           >
             {t("footer.see-more")}
           </Link>
         </div>
-        <div className="col-span-1 row-span-2 my-8 flex h-full w-full flex-col justify-around  lg:row-span-1 lg:justify-start">
-          <h1 className="textGoldGradient mb-4 text-sm md:text-xl">{t("footer.links")}</h1>
-          {userLinks.map(({ href, text }, index) => (
-            <Link
-              key={index}
-              to={href}
-              className="flex w-fit items-center pb-2 font-secondary text-xs text-white decoration-gold transition hover:cursor-pointer hover:underline"
-            >
-              {t(text)}
-            </Link>
-          ))}
-        </div>
+        {userInfo && (
+          <div className="col-span-1 row-span-2 my-6 flex h-full w-full flex-col justify-around  lg:row-span-1 lg:justify-start">
+            <h1 className="textGoldGradient mb-4 text-sm md:text-xl">{t("footer.links")}</h1>
+            {userLinks.map(({ href, text }, index) => (
+              <Link
+                key={index}
+                to={href}
+                className="link-animation my-2 flex w-fit items-center font-secondary text-xs text-white decoration-gold transition"
+              >
+                {t(text)}
+              </Link>
+            ))}
+          </div>
+        )}
         <IconButtonWithBgGold
           icon={"ri-arrow-up-s-line"}
           onClick={scrollUp}

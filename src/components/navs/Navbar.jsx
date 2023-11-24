@@ -44,13 +44,7 @@ export const Navbar = () => {
             ) : (
               <NavLink
                 to={l.path}
-                className={({ isActive, isPending }) =>
-                  isActive
-                    ? "textGoldGradient"
-                    : isPending
-                    ? "pending"
-                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
-                }
+                className={({ isActive }) => (isActive ? "textGoldGradient" : "link-animation text-white")}
               >
                 {l.name}
               </NavLink>

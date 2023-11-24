@@ -144,17 +144,14 @@ export function SignIn() {
           <p>
             {t("session.dontHaveAccount")}
             <br className="lg:hidden" />
-            <strong
-              onClick={() => navigate("/session/signUp")}
-              className="hover:cursor-pointer hover:opacity-50 lg:ml-2"
-            >
+            <strong onClick={() => navigate("/session/signUp")} className="link-animation !border-none lg:ml-2">
               {t("session.registerNow")}
             </strong>
           </p>
           <p>
             {t("session.forgotPass")}
             <br className="lg:hidden" />
-            <strong onClick={() => setIsModalOpen(true)} className="hover:cursor-pointer hover:opacity-50 lg:ml-2">
+            <strong onClick={() => setIsModalOpen(true)} className="link-animation !border-none lg:ml-2">
               {t("session.recoverPassNow")}
             </strong>
           </p>
