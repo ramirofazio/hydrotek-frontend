@@ -8,7 +8,7 @@ import { Loader, Modal } from "src/components";
 import { actionsUser } from "src/redux/reducers";
 import { ChangePassword } from "./ChangePassword.jsx";
 import { success, error } from "src/components/notifications/index.jsx";
-import axios from "axios";
+import { apiHydro } from "src/api/baseApi.js";
 
 export function MyData() {
   const { t } = useTranslation();
@@ -82,14 +82,14 @@ export function MyData() {
         formdata.append("file", newImg.image);
         formdata.append("userId", userId);
 
-        const res = await axios.post(`http://localhost:3000/cloudinary/updateAvatar`, formdata, {
+        const res = await apiHydro.post(`/cloudinary/updateAvatar`, formdata, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         newAvatar = res.data;
       }
 
       const data = {
-        session: { name: userData.name, email: userData.email, id: userId, dni: userData.dni },
+        session: { name: userData.name, email: userData.email, id: userId, dni: userData.dni ? userData.dni : null },
         profile: { avatar: newAvatar ? newAvatar : userData.avatar },
       };
 

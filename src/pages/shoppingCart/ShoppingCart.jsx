@@ -13,10 +13,12 @@ import { PaymentFailed } from "./PaymentFailed";
 export default function ShoppingCart({ deliveryPrice = 50 }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
   const { products, totalPrice } = useSelector((state) => state.shoppingCart);
-  const arrProducts = Object.values(products);
   const [modal, setModal] = useState(false);
+
   const paymentState = "any";
+  const arrProducts = Object.values(products);
 
   function payOrder() {
     //genera el chekout

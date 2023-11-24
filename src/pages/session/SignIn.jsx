@@ -49,6 +49,7 @@ export function SignIn() {
       setLoading(true);
       const res = await APIHydro.signIn(user);
       if (res.data) {
+        console.log(res.data);
         const { data } = res;
         const { accessToken } = data;
         saveInStorage("accessToken", accessToken);
@@ -74,6 +75,7 @@ export function SignIn() {
       const res = e.response.data.message;
       setErr(res);
       setLoading(false);
+      console.log(e);
     }
   };
 
@@ -131,7 +133,6 @@ export function SignIn() {
             <Auth3Button
               key={index}
               icon={icon}
-              socialNetwork={socialNetwork}
               text={`INICIAR SESIÓN CON ${socialNetwork}`}
               classname={"!bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:aspect-auto lg:py-3 group"}
               pClassname={"hidden lg:inline group-hover:text-gold transition font-primary "}

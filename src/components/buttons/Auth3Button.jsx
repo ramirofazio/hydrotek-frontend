@@ -36,7 +36,12 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
     /* eslint-disable */
     flow: "auth-code",
     ux_mode: "redirect",
-    redirect_uri: "http://localhost:5173/session/signIn",
+    redirect_uri:
+      import.meta.VITE_ENV === "production"
+        ? "https://hydrotek.store/session/signIn"
+        : import.meta.VITE_ENV === "staging"
+        ? "http://85.31.231.196:51732/session/signIn"
+        : "http://localhost:5173/session/signIn",
     /* eslint-enable */
 
     // ? Para autotizacion flow=implicit & ux_mode=popup, usar onSuccess & onError

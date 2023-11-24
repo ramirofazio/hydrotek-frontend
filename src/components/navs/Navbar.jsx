@@ -32,7 +32,7 @@ export const Navbar = () => {
     <nav className="flex w-full items-center justify-between p-8 2xl:px-24">
       <NavLink to="/">
         <Atropos innerClassName="rounded-full" shadow={false}>
-          <img src={logos.hydBlack} className="w-16 transition hover:opacity-70 xl:w-24" />
+          <img src={logos.hydBlack} className="w-20 transition hover:opacity-70 xl:w-24" />
         </Atropos>
       </NavLink>
       <ModalNav userId={id} role={role} pathname={pathname} />
@@ -48,8 +48,8 @@ export const Navbar = () => {
                   isActive
                     ? "textGoldGradient"
                     : isPending
-                      ? "pending"
-                      : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
+                    ? "pending"
+                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
                 }
               >
                 {l.name}

@@ -21,11 +21,10 @@ export function SignUp() {
   const [apiErr, setApiErr] = useState(null);
   const [user, setUser] = useState({
     email: "",
-    dni: null,
+    dni: "",
     name: "",
     password: "",
     confirmPassword: "",
-    roleId: "1",
   });
 
   const handleOnChange = (e) => {
@@ -93,7 +92,8 @@ export function SignUp() {
             />
           </div>
           <h1 className="mb-10 mt-10 text-center lg:text-3xl xl:mt-14 xl:text-4xl">
-            {t("session.signUp")} <h1 className="textGoldGradient group-hover:opacity-50 lg:text-3xl">HYDROTEK</h1>
+            {t("session.signUp")}{" "}
+            <span className="textGoldGradient group-hover:opacity-50 lg:text-3xl xl:text-4xl">HYDROTEK</span>
           </h1>
           <form
             className=" grid place-items-center gap-6 px-6 md:grid-cols-2 lg:mx-auto  lg:gap-8 xl:w-full xs:px-10"
@@ -179,7 +179,6 @@ export function SignUp() {
             <Auth3Button
               key={index}
               icon={icon}
-              socialNetwork={socialNetwork}
               text={`INICIAR SESIÓN CON ${socialNetwork}`}
               classname={" !bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-[#141414] lg:py-3 group lg:aspect-auto"}
               pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}

@@ -16,5 +16,3 @@ export function AddToCart({ productId, productImg, productName, price, className
     </button>
   );
 }
-
-// TODO Quantity & remove product

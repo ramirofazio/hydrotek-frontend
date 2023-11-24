@@ -1,10 +1,10 @@
 import { borders } from "src/assets";
 import { Header, ButtonList, MyBuys, MyData, MySavedPosts } from "./";
 import { Avatar } from "src/components/user";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { getOfStorage } from "src/utils/localStorage";
+import { deleteOfStorage, getOfStorage } from "src/utils/localStorage";
 
 export function Profile() {
   const { t } = useTranslation();
@@ -24,6 +24,12 @@ export function Profile() {
     return "MyData";
   });
   const selectedSection = componentMapping[selectedBtn];
+
+  useEffect(() => {
+    return () => {
+      deleteOfStorage("selectedBtn");
+    };
+  }, []);
 
   return (
     <main className="grid h-screen gap-10 lg:my-4 lg:grid-cols-2 xl:mx-20">

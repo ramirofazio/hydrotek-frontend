@@ -1,5 +1,5 @@
 import Atropos from "atropos/react";
-import { products } from "assets";
+import { logos } from "assets";
 import { Button } from "components/buttons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
       <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer xl:pb-4">
         <div className="relative mx-auto grid aspect-square !h-[250px] place-content-center place-items-center overflow-hidden p-6">
           <img src={backgrounds.productBorderGradient} className="absolute" />
-          <img src={imgUrl || products.defaultOne} alt="foto del producto" className="scale-75" />
+          <img src={imgUrl || logos.hydBlack} alt="foto del producto" className="scale-75" />
         </div>
       </Atropos>
       <div className={`${!showBtn && "hidden"} mx-auto grid place-items-center gap-2 pb-12 text-center`}>
@@ -25,7 +25,7 @@ export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
             <Link to={`/productDetail/${id}`} className="md:place-self-start">
               <Button text={t("common.see")} pClassname={"font-primary"} />
             </Link>
-            <AddToCart productImg={imgUrl || products.defaultOne} productName={name} price={price} productId={id} />
+            <AddToCart productImg={imgUrl || logos.hydBlack} productName={name} price={price} productId={id} />
           </div>
         )}
       </div>
