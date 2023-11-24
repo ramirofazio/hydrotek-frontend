@@ -1,9 +1,6 @@
-import { InfoCard, ProductCard, CategoryCard, BlogPostCard } from "src/components/cards";
-import { Button } from "components/buttons";
-import { Carrousel } from "src/components";
+import { InfoCard, ProductCard } from "src/components/cards";
 import { useTranslation } from "react-i18next";
 import { backgrounds, products } from "assets";
-import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { mostSelled } from "./mostSelled";
@@ -11,7 +8,7 @@ import { ValidateModal } from "./ValidateModal";
 
 export default function Landing() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   // TODO consumir los productos mas vendidos del back
   const mostSelledProducts = mostSelled;

@@ -128,10 +128,12 @@ export const APIHydro = {
   getCheckout: () => {
     return apiHydro.get(`/${route.CHECKOUT}`);
   },
-  addProductImg: ({ productId, path, asset_id, publicId }) => {
-    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, asset_id, publicId });
+  addProductImg: ({ productId, path, assetId, publicId }) => {
+    //eslint-disable
+    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, assetId, publicId });
+    //eslint-enable
   },
-  deleteProductImg: ( productId ) => {
+  deleteProductImg: (productId) => {
     return apiHydro.delete(`/${route.CLOUDINARY}/img/delete/${productId}`);
   },
 };
