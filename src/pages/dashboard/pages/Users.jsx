@@ -4,6 +4,7 @@ import { TableRow } from "./index";
 import { APIHydro } from "src/api";
 import { Loader } from "src/components";
 import { useSelector } from "react-redux";
+import { error, success } from "src/components/notifications";
 
 const colsTitles = ["nombre", "email", "dni", "rol", "ordenes", "estado"];
 
@@ -21,8 +22,7 @@ export function Users() {
     );
 
     if (user.session.id === id) {
-      alert("¡No puedes modificarte a ti mismo!");
-      //! REMPLAZAR ALERT POR TOAST
+      error("¡No puedes modificarte a ti mismo!");
       return;
     }
 
@@ -31,8 +31,7 @@ export function Users() {
       try {
         const res = await APIHydro.alternAdmin(id, user.session);
         if (res) {
-          //! TOAST
-
+          success(`${name} ${type === "ADMIN" ? "dejo de ser" : "ahora es"} administrador`);
           console.log(res);
           setThisUsers(res);
           setLoader(false);
