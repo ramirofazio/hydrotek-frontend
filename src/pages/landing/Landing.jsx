@@ -47,7 +47,7 @@ export default function Landing() {
               spaceBetween={20}
               centeredSlides={true}
               modules={[Pagination, Autoplay]}
-              className="mb-10 w-full"
+              className="mb-10 w-full overflow-visible"
               breakpoints={{
                 1024: {
                   slidesPerView: 3,
@@ -60,7 +60,7 @@ export default function Landing() {
               }}
             >
               {featuredProducts.map((p, i) => (
-                <SwiperSlide key={i} className="grid place-items-center">
+                <SwiperSlide key={i} className="grid place-items-center ">
                   <ProductCard
                     id={i}
                     key={i}
