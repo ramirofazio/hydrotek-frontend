@@ -16,6 +16,12 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  getFeaturedProducts: () => {
+    return apiHydro.get(`${route.PRODUCT}/featured-products`);
+  },
+  addFeaturedProduct: (id) => {
+    return apiHydro.put(`${route.PRODUCT}/toggle-featured-product?id=${id}`);
+  },
   activeUser: (data) => {
     return apiHydro.put(`${route.AUTH}/active-user`, data);
   },

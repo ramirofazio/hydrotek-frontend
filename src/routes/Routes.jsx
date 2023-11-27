@@ -10,6 +10,7 @@ import {
   allProductsLoader,
   allUsersLoader,
   getLastUsdPrice,
+  featuredProductsLoader,
 } from "./loaders";
 import DefaultError from "pages/error/Default.jsx";
 import Products from "pages/products/Products.jsx";
@@ -37,7 +38,14 @@ export function Routes() {
       errorElement: <DefaultError />,
       loader: autoLoginLoader,
       children: [
-        { path: "/", element: <Landing />, index: true },
+        {
+          path: "/",
+          element: <Landing />,
+          loader: async () => {
+            return featuredProductsLoader();
+          },
+          index: true,
+        },
         {
           path: "/products/:pag",
           loader: async ({ params }) => {

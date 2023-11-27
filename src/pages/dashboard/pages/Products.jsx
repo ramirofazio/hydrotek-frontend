@@ -5,7 +5,7 @@ import { Modal } from "src/components";
 import axios from "axios";
 import { APIHydro } from "src/api";
 
-const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicado", "subir imagen"];
+const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicado", "destacado", "subir imagen"];
 
 export function Products() {
   const navigate = useNavigate();
@@ -48,6 +48,15 @@ export function Products() {
     }
   }
 
+  async function handleAddFeaturedProduct(productId) {
+    try {
+      await APIHydro.addFeaturedProduct(productId);
+      navigate("/admin/dashboard");
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <main className="w-full">
       <Modal isOpen={Boolean(modal)} onClose={() => setModal(false)}>
@@ -74,7 +83,7 @@ export function Products() {
           </tr>
         </thead>
         <tbody>
-          {products.map(({ id, arsPrice, name, published, updated, images }) => {
+          {products.map(({ id, arsPrice, name, published, updated, images, featured }) => {
             const path = images[0]?.path;
             const [loader, setLoader] = useState(false);
             return (
@@ -95,6 +104,16 @@ export function Products() {
                       className={`ri-${published ? "check" : "close"}-fill text-2xl text-${
                         published ? "green" : "red"
                       }-500`}
+                    />
+                  }
+                />
+                <TableRow
+                  content={
+                    <i
+                      className={`ri-${featured ? "star-s-fill" : "star-s-line"} icons text-2xl text${
+                        featured ? "GoldGradient" : "-red-500"
+                      }`}
+                      onClick={() => handleAddFeaturedProduct(id)}
                     />
                   }
                 />

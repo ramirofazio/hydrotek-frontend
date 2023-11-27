@@ -50,3 +50,7 @@ export async function getLastUsdPrice() {
   const lastUsdprice = await APIHydro.getLastUsdPrice();
   return lastUsdprice.data;
 }
+
+export async function featuredProductsLoader() {
+  return (await APIHydro.getFeaturedProducts()).data;
+}

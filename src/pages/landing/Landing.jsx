@@ -3,15 +3,12 @@ import { useTranslation } from "react-i18next";
 import { backgrounds, products } from "assets";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import { mostSelled } from "./mostSelled";
 import { ValidateModal } from "./ValidateModal";
+import { useLoaderData } from "react-router-dom";
 
 export default function Landing() {
   const { t } = useTranslation();
-  //const navigate = useNavigate();
-
-  // TODO consumir los productos mas vendidos del back
-  const mostSelledProducts = mostSelled;
+  const featuredProducts = useLoaderData();
 
   const pagination = {
     clickable: true,
@@ -35,40 +32,50 @@ export default function Landing() {
             className="animate-pulse  place-self-end md:w-[70%] lg:w-[45%] lg:place-self-center"
           />
         </section>
-        <div className="py-10">
-          <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
-          <Swiper
-            loop={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: true,
-              pauseOnMouseEnter: true,
-            }}
-            pagination={pagination}
-            slidesPerView={1}
-            spaceBetween={20}
-            centeredSlides={true}
-            modules={[Pagination, Autoplay]}
-            className="mb-10 w-full"
-            breakpoints={{
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-              },
-              1280: {
-                slidesPerView: 4,
-                spaceBetween: 100,
-              },
-            }}
-          >
-            {mostSelledProducts?.length &&
-              mostSelledProducts.map((p, i) => (
+        {featuredProducts.length && (
+          <div className="py-10">
+            <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
+            <Swiper
+              loop={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: true,
+                pauseOnMouseEnter: true,
+              }}
+              pagination={pagination}
+              slidesPerView={1}
+              spaceBetween={20}
+              centeredSlides={true}
+              modules={[Pagination, Autoplay]}
+              className="mb-10 w-full"
+              breakpoints={{
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+                },
+                1280: {
+                  slidesPerView: 4,
+                  spaceBetween: 100,
+                },
+              }}
+            >
+              {featuredProducts.map((p, i) => (
                 <SwiperSlide key={i} className="grid place-items-center">
-                  <ProductCard id={i} key={i} name={p.name} imgUrl={p.imgUrl} /* price={p.price.d[0]}  */ />
+                  <ProductCard
+                    id={i}
+                    key={i}
+                    name={p.name}
+                    imgUrl={p.imgUrl}
+                    price={p.arsPrice.toLocaleString("es-AR", {
+                      style: "currency",
+                      currency: "ARS",
+                    })}
+                  />
                 </SwiperSlide>
               ))}
-          </Swiper>
-        </div>
+            </Swiper>
+          </div>
+        )}
         {/* <div className="">
           <h1 className="mx-auto w-fit text-center xl:text-3xl">{t("common.find-what-you-are-looking")}</h1>
           <Carrousel
