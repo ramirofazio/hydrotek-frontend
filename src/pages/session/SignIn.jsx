@@ -49,7 +49,6 @@ export function SignIn() {
       setLoading(true);
       const res = await APIHydro.signIn(user);
       if (res.data) {
-        console.log(res.data);
         const { data } = res;
         const { accessToken } = data;
         saveInStorage("accessToken", accessToken);
@@ -59,11 +58,10 @@ export function SignIn() {
           const storageCart = getOfStorage("shoppingCart");
           if (storageCart?.totalPrice > 0) {
             const arr = Object.values(storageCart.products);
-            const s = await APIHydro.updateShoppingCart({
+            await APIHydro.updateShoppingCart({
               userId: data.session.id,
               shoppingCart: { totalPrice: storageCart.totalPrice, products: arr },
             });
-            console.log(s);
           } else {
             dispatch(actionsShoppingCart.saveSingInShoppingCart(data.shoppingCart));
           }

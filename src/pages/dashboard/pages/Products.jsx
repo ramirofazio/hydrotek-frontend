@@ -39,8 +39,7 @@ export function Products() {
 
   async function deleteProductImg(productId) {
     try {
-      const deleted = await APIHydro.deleteProductImg(productId);
-      console.log(deleted);
+      await APIHydro.deleteProductImg(productId);
       setModal(false);
       navigate("/admin/dashboard");
     } catch (e) {

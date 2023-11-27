@@ -32,7 +32,6 @@ export function Users() {
         const res = await APIHydro.alternAdmin(id, user.session);
         if (res) {
           success(`${name} ${type === "ADMIN" ? "dejo de ser" : "ahora es"} administrador`);
-          console.log(res);
           setThisUsers(res);
           setLoader(false);
         }
