@@ -22,7 +22,7 @@ export function TFacturaProductsManager({ setLoader }) {
     try {
       const res = await APIHydro.manualTFacturaProductsUpdate();
       if (res) {
-        success("Productos actualizados")
+        success("Productos actualizados");
         setThisProducts({ date: res.data[0].updated, qty: res.data.length });
         setLoader(false);
       }

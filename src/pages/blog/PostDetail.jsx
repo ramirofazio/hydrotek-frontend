@@ -27,9 +27,11 @@ export function PostDetail() {
       setLoading(true);
       APIHydro.uploadComment({ userId: session.id, postId: post.id, comment })
         .then((res) => {
-          setLoading(false);
-          success("Se cargo el comentario para su revisión");
-          navigate(`/blog/${post.id}`); // ? en caso de no haber revisión de comentarios
+          if (res) {
+            setLoading(false);
+            success("Se cargo el comentario para su revisión");
+            navigate(`/blog/${post.id}`); // ? en caso de no haber revisión de comentarios
+          }
         })
         .catch((e) => {
           console.log(e);
