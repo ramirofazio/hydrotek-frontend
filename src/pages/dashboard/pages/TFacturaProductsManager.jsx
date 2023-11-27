@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { APIHydro } from "src/api";
 import { TableRow } from "./index";
+import { success } from "src/components/notifications";
 
 const colsTitles = ["ultima Actualizacion", "Cant. Productos", "actualizar"];
 
@@ -21,7 +22,7 @@ export function TFacturaProductsManager({ setLoader }) {
     try {
       const res = await APIHydro.manualTFacturaProductsUpdate();
       if (res) {
-        //! TOAST
+        success("Productos actualizados")
         setThisProducts({ date: res.data[0].updated, qty: res.data.length });
         setLoader(false);
       }
