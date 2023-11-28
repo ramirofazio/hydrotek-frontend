@@ -11,12 +11,14 @@ export function ProductCard({ imgUrl, name, price, id, showBtn = true }) {
 
   return (
     <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>
-      <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer xl:pb-4">
-        <div className="relative mx-auto grid aspect-square !h-[250px] place-content-center place-items-center overflow-hidden p-6">
-          <img src={backgrounds.productBorderGradient} className="absolute" />
-          <img src={imgUrl || logos.hydBlack} alt="foto del producto" className="scale-75" />
-        </div>
-      </Atropos>
+      <Link to={`/productDetail/${id}`}>
+        <Atropos highlight={false} activeOffset={200} shadow={false} className="h-full w-full cursor-pointer xl:pb-4">
+          <div className="relative mx-auto grid aspect-square !h-[250px] place-content-center place-items-center  p-6">
+            <img src={backgrounds.productBorderGradient} className="absolute" data-atropos-offset={-5} />
+            <img src={imgUrl || logos.hydBlack} className="absolute w-[50%]" data-atropos-offset={10} />
+          </div>
+        </Atropos>
+      </Link>
       <div className={`${!showBtn && "hidden"} mx-auto grid place-items-center gap-2 pb-12 text-center`}>
         <h1 className="text-center text-sm md:place-self-start">{name || "NOMBRE DEL PRODUCTO"}</h1>
         <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">{price}</h2>

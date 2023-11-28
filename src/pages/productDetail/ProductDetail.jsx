@@ -7,7 +7,6 @@ export default function ProductDetail() {
   const product = useLoaderData();
   const { id, name, arsPrice, description, image } = product;
 
-  console.log(product);
 
   return (
     <main className="content mx-auto my-5 grid w-[92%] gap-8  md:grid-cols-2">

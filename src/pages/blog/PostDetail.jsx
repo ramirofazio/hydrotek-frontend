@@ -13,7 +13,6 @@ import { success, error } from "src/components/notifications";
 export function PostDetail() {
   const { t } = useTranslation();
   const post = useLoaderData();
-  console.log(post);
   const navigate = useNavigate();
   const { session } = useSelector((state) => state.user);
 
@@ -28,10 +27,11 @@ export function PostDetail() {
       setLoading(true);
       APIHydro.uploadComment({ userId: session.id, postId: post.id, comment })
         .then((res) => {
-          console.log(res);
-          setLoading(false);
-          success("Se cargo el comentario para su revisión");
-          navigate(`/blog/${post.id}`); // ? en caso de no haber revisión de comentarios
+          if (res) {
+            setLoading(false);
+            success("Se cargo el comentario para su revisión");
+            navigate(`/blog/${post.id}`); // ? en caso de no haber revisión de comentarios
+          }
         })
         .catch((e) => {
           console.log(e);
