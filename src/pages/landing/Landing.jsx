@@ -62,7 +62,7 @@ export default function Landing() {
               {featuredProducts.map((p, i) => (
                 <SwiperSlide key={i} className="grid place-items-center ">
                   <ProductCard
-                    id={i}
+                    id={p.id}
                     key={i}
                     name={p.name}
                     imgUrl={p.imgUrl}
