@@ -23,11 +23,7 @@ export const APIHydro = {
     return apiHydro.post(`${route.AUTH}/reset-password`, data);
   },
   initResetPassword: (email) => {
-    return apiHydro.post(`${route.AUTH}/init-reset`, { email }).then((res) => {
-      if (res.status === 201) {
-        return true;
-      }
-    });
+    return apiHydro.post(`${route.AUTH}/init-reset`, { email });
   },
   manualTFacturaProductsUpdate: () => {
     return apiHydro.get(`${route.PRODUCT}/updateDB`).then((res) => {
