@@ -9,7 +9,7 @@ export const Aurora = () => {
 
     const handleMouseMove = (event) => {
       const { clientX, clientY } = event;
-      const auroraSize = 300;
+      const auroraSize = 150;
       const auroraX = clientX - auroraSize / 2;
       const auroraY = clientY - auroraSize / 2;
 

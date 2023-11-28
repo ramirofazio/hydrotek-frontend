@@ -190,10 +190,7 @@ export function SignUp() {
           <p className="z-10 !text-white lg:text-base">
             {t("session.haveAccount")}
             <br className="lg:hidden" />
-            <strong
-              onClick={() => navigate("/session/signIn")}
-              className="hover:cursor-pointer hover:opacity-50 lg:ml-2"
-            >
+            <strong onClick={() => navigate("/session/signIn")} className="link-animation !border-none lg:ml-2">
               {t("session.logIn")}
             </strong>
           </p>

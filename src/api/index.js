@@ -16,6 +16,12 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  getFeaturedProducts: () => {
+    return apiHydro.get(`${route.PRODUCT}/featured-products`);
+  },
+  addFeaturedProduct: (id) => {
+    return apiHydro.put(`${route.PRODUCT}/toggle-featured-product?id=${id}`);
+  },
   activeUser: (data) => {
     return apiHydro.put(`${route.AUTH}/active-user`, data);
   },
@@ -23,11 +29,7 @@ export const APIHydro = {
     return apiHydro.post(`${route.AUTH}/reset-password`, data);
   },
   initResetPassword: (email) => {
-    return apiHydro.post(`${route.AUTH}/init-reset`, { email }).then((res) => {
-      if (res.status === 201) {
-        return true;
-      }
-    });
+    return apiHydro.post(`${route.AUTH}/init-reset`, { email });
   },
   manualTFacturaProductsUpdate: () => {
     return apiHydro.get(`${route.PRODUCT}/updateDB`).then((res) => {
@@ -128,10 +130,12 @@ export const APIHydro = {
   getCheckout: () => {
     return apiHydro.get(`/${route.CHECKOUT}`);
   },
-  addProductImg: ({ productId, path, asset_id, publicId }) => {
-    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, asset_id, publicId });
+  addProductImg: ({ productId, path, assetId, publicId }) => {
+    //eslint-disable
+    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, assetId, publicId });
+    //eslint-enable
   },
-  deleteProductImg: ( productId ) => {
+  deleteProductImg: (productId) => {
     return apiHydro.delete(`/${route.CLOUDINARY}/img/delete/${productId}`);
   },
 };

@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { APIHydro } from "src/api";
 import { TableRow } from "./index";
 import { dateTransform } from "./Utils";
+import { success } from "src/components/notifications";
 
 const colsTitles = ["ultima Actualizacion", "precio", "actualizar"];
 
@@ -22,7 +23,7 @@ export function UsdPriceManager({ setLoader }) {
     try {
       const res = await APIHydro.manualUsdUpdate();
       if (res) {
-        //! TOAST
+        success("cotizacion actualizada");
         setThisLastUsdPrice(res.data);
         setLoader(false);
       }

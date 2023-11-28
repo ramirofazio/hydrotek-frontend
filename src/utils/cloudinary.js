@@ -1,19 +1,18 @@
 import axios from "axios";
 /* eslint-disable */
 
-
 export async function uploadImagesCloud(files = [], clientId) {
   const cloud_name = import.meta.env.CLOUDINARY_CLOUD_NAME;
 
-  const URL = 'https://api.cloudinary.com/v1_1/' + cloud_name + '/image/upload';
+  const URL = "https://api.cloudinary.com/v1_1/" + cloud_name + "/image/upload";
 
   const photos = [];
   const promises = [];
 
   files.forEach((file) => {
     const formdata = new FormData();
-    formdata.append('file', file);
-    formdata.append('upload_preset', clientId);
+    formdata.append("file", file);
+    formdata.append("upload_preset", clientId);
     promises.push(axios.post(URL, formdata));
   });
 
@@ -32,12 +31,8 @@ export async function uploadImagesCloud(files = [], clientId) {
   return photos;
 }
 
-
-
-
 // ? En desuso, pero puede ser muy util para pedidos desde el front
 export async function uploadImagesCloudinary(files, upload_preset, public_id, signatures) {
-  console.log(files);
   const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "";
   const preset_key = "user_avatar"; //import.meta.env.VITE_CLOUDINARY_API_SECRET || '';
 
@@ -72,6 +67,5 @@ export async function uploadImagesCloudinary(files, upload_preset, public_id, si
   } catch (err) {
     console.log(err);
   }
-  console.log(images_urls);
   return images_urls;
 }
