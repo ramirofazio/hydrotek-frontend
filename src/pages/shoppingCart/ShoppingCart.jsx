@@ -4,12 +4,13 @@ import { Input } from "src/components/inputs";
 import { useSelector } from "react-redux";
 import { Button } from "src/components/buttons";
 import { useNavigate } from "react-router-dom";
-import { Modal } from "src/components";
+import { Loader, Modal } from "src/components";
 import { useState } from "react";
 import { PaymentOk } from "./PaymentOk";
 import { PaymentFailed } from "./PaymentFailed";
 import { error } from "src/components/notifications";
 import getCheckout from "./checkouts";
+import CheckoutForm from "./CheckoutForm";
 
 export default function ShoppingCart({ deliveryPrice = 50 }) {
   const navigate = useNavigate();
@@ -19,21 +20,30 @@ export default function ShoppingCart({ deliveryPrice = 50 }) {
   const {
     session: { dni, id },
   } = useSelector((state) => state.user);
-  const [modal, setModal] = useState(false);
+
+  const [loader, setLoader] = useState(false);
+  const [cleanProducts, setCleanProducts] = useState(null);
+  const [paymentResponseModal, setPaymentResponseModal] = useState(false);
+  const [checkoutFormModal, setCheckoutFormModal] = useState(false);
 
   const paymentState = "any";
   const arrProducts = Object.values(products);
 
   async function payOrder() {
     if (arrProducts.length) {
+      setLoader(true);
       const cleanProducts = arrProducts.map(({ quantity, productId }) => ({
         //? Acomodo los arrProducts como lo espera el BE
         qty: quantity,
         id: productId,
       }));
       getCheckout(id, dni, cleanProducts).then((res) => {
-        if (res.data) {
+        if (res) {
           window.location.replace(res.data);
+        } else {
+          setLoader(false);
+          setCheckoutFormModal(true);
+          setCleanProducts(cleanProducts);
         }
       });
     } else {
@@ -43,7 +53,16 @@ export default function ShoppingCart({ deliveryPrice = 50 }) {
 
   return (
     <main className="content mx-auto mb-[6rem] mt-5  flex w-[92%] flex-col ">
-      <Modal isOpen={modal} onClose={() => setModal(false)}>
+      {loader && <Loader />}
+      {checkoutFormModal && (
+        <CheckoutForm
+          isOpen={checkoutFormModal}
+          onClose={() => setCheckoutFormModal(false)}
+          cleanProducts={cleanProducts}
+          setLoader={setLoader}
+        />
+      )}
+      <Modal isOpen={paymentResponseModal} onClose={() => setPaymentResponseModal(false)}>
         {paymentState === "ok" && <PaymentOk />}
         {paymentState === "err" && <PaymentFailed />}
       </Modal>
