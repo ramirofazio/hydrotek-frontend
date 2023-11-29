@@ -73,7 +73,7 @@ export function UploadProductImgs({ modal, setModal }) {
 
     try {
       const responses = await Promise.all(promises);
-      responses.forEach(async ({ data }, index) => {
+      responses.forEach(async ({ data },  index) => {
         console.log(data);
         /* eslint-disable */
         const { secure_url, assetId, public_id } = data;
