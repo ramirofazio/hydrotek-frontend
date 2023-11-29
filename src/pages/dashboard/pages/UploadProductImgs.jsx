@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal } from "src/components";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { APIHydro } from "src/api";
 
 export function UploadProductImgs({ modal, setModal }) {
   const [newImgs, setNewImgs] = useState([]);
@@ -37,10 +38,18 @@ export function UploadProductImgs({ modal, setModal }) {
     }
   };
 
-  function deleteImg(fileName) {
+  function deleteLocalImg(fileName) {
     setNewImgs((prev) => {
       let previusImgs = { ...prev };
       delete previusImgs[fileName];
+      return previusImgs;
+    });
+  }
+
+  function deleteDbImg(productImgId) {
+    setNewImgs((prev) => {
+      let previusImgs = { ...prev };
+      delete previusImgs[productImgId];
       return previusImgs;
     });
   }
@@ -56,18 +65,20 @@ export function UploadProductImgs({ modal, setModal }) {
       const formdata = new FormData();
       formdata.append("file", file.URL);
       formdata.append("upload_preset", "product_image");
-      formdata.append("public_id", `${productId}/${i}`);
+      //formdata.append("public_id", `${productId}/${i}`);
+      //formdata.append("upload_preset", "product_image");
+      formdata.append("public_id_prefix", `HYD/products/${productId}`);
       promises.push(axios.post(URL, formdata));
     });
 
     try {
       const responses = await Promise.all(promises);
-      responses.forEach(async ({ data }) => {
+      responses.forEach(async ({ data }, index) => {
         console.log(data);
         /* eslint-disable */
         const { secure_url, assetId, public_id } = data;
-        const api = await APIHydro.addProductImg({ path: secure_url, assetId, publicId: public_id, productId });
-        console.log(api);
+        await APIHydro.addProductImg({ path: secure_url, assetId, publicId: public_id, productId, index });
+        toast.success(`Se subío la imagen correctamente`);
       });
       /* eslint-enable */
       //setLoader(false);
@@ -88,9 +99,19 @@ export function UploadProductImgs({ modal, setModal }) {
           </span>
           <h1 className="w-fit border-b-2 border-dashed">Imagenes previas: {modal?.prevImgs?.length}</h1>
           {modal.prevImgs?.length
-            ? modal.prevImgs.map((i, index) => {
-                return <img className="w-[50px]" key={index} src={i} alt="" />;
-              })
+            ? modal.prevImgs.map((img, i) => (
+                <div className="rounded border-2" key={i}>
+                  <span className="flex justify-between px-0.5 ">
+                    <p className="left-0.5 top-0 mx-0.5 text-2xl font-bold text-white">{i}</p>
+                    <i
+                      onClick={() => deleteLocalImg(img?.id)}
+                      className="ri-close-circle-line right-[1px] top-0 mx-0.5  text-3xl text-red-600"
+                    ></i>
+                  </span>
+                  <p className=" overflow-hidden">{img?.originalName}</p>
+                  <img className="mx-auto aspect-square w-[75px]" src={img?.path} key={i} />
+                </div>
+              ))
             : null}
         </div>
         <div className=" min-w text-center">
@@ -100,13 +121,12 @@ export function UploadProductImgs({ modal, setModal }) {
           {newImgs && Object.values(newImgs)?.length ? (
             <picture className="mt-6 grid grid-cols-8 gap-4 border-2 border-red-500">
               {Object.values(newImgs)?.map((img, i) => {
-                console.log("img" + i, img);
                 return (
                   <div className="rounded border-2" key={i}>
                     <span className="flex justify-between px-0.5 ">
                       <p className="left-0.5 top-0 mx-0.5 text-2xl font-bold text-white">{i}</p>
                       <i
-                        onClick={() => deleteImg(img?.originalName)}
+                        onClick={() => deleteLocalImg(img?.originalName)}
                         className="ri-close-circle-line right-[1px] top-0 mx-0.5  text-3xl text-red-600"
                       ></i>
                     </span>

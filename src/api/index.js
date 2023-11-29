@@ -136,9 +136,9 @@ export const APIHydro = {
   getSavedPosts: (userId) => {
     return apiHydro.get(`/${route.USER}/savedPosts/${userId}`);
   },
-  addProductImg: ({ productId, path, assetId, publicId }) => {
+  addProductImg: ({ productId, path, assetId, publicId, index }) => {
     //eslint-disable
-    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, assetId, publicId });
+    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, assetId, publicId, index });
     //eslint-enable
   },
   deleteProductImg: (productId) => {
