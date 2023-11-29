@@ -10,8 +10,6 @@ export default function Root() {
   const dispatch = useDispatch();
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const { userInfo } = useLoaderData();
-  console.log(userInfo);
-
 
   function handleCart() {
     if (userInfo && userInfo.accessToken) {
@@ -61,7 +59,7 @@ export default function Root() {
       <Aurora />
       <Navbar />
       <Outlet />
-      <Footer />
+      <Footer userInfo={userInfo} />
     </div>
   );
 }

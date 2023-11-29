@@ -5,7 +5,7 @@ import { Modal } from "src/components";
 import axios from "axios";
 import { APIHydro } from "src/api";
 
-const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicado", "subir imagen"];
+const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicado", "destacado", "subir imagen"];
 
 export function Products() {
   const navigate = useNavigate();
@@ -31,8 +31,8 @@ export function Products() {
       formdata.append("public_id", productId);
 
       /* eslint-disable */
-      const { secure_url, asset_id, public_id } = (await axios.post(URL, formdata)).data;
-      await APIHydro.addProductImg({ path: secure_url, asset_id, publicId: public_id, productId });
+      const { secure_url, assetId, public_id } = (await axios.post(URL, formdata)).data;
+      await APIHydro.addProductImg({ path: secure_url, assetId, publicId: public_id, productId });
       /* eslint-enable */
 
       setLoader(false);
@@ -45,8 +45,7 @@ export function Products() {
 
   async function deleteProductImg(productId) {
     try {
-      const deleted = await APIHydro.deleteProductImg(productId);
-      console.log(deleted);
+      await APIHydro.deleteProductImg(productId);
       setModal(false);
       navigate("/admin/dashboard");
     } catch (e) {
@@ -86,6 +85,15 @@ export function Products() {
     }); */
     //setNewImgs(rawImgs);
   }
+  async function handleAddFeaturedProduct(productId) {
+    try {
+      await APIHydro.addFeaturedProduct(productId);
+      navigate("/admin/dashboard");
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <main className="w-full">
       <UploadProductImg modal={modal} setModal={setModal} />
@@ -112,7 +120,7 @@ export function Products() {
           </tr>
         </thead>
         <tbody>
-          {products.map(({ id, arsPrice, name, published, updated, images }) => {
+          {products.map(({ id, arsPrice, name, published, updated, images, featured }) => {
             const path = images[0]?.path;
             const [loader, setLoader] = useState(false);
             return (
@@ -133,6 +141,16 @@ export function Products() {
                       className={`ri-${published ? "check" : "close"}-fill text-2xl text-${
                         published ? "green" : "red"
                       }-500`}
+                    />
+                  }
+                />
+                <TableRow
+                  content={
+                    <i
+                      className={`ri-${featured ? "star-s-fill" : "star-s-line"} icons text-2xl text${
+                        featured ? "GoldGradient" : "-red-500"
+                      }`}
+                      onClick={() => handleAddFeaturedProduct(id)}
                     />
                   }
                 />

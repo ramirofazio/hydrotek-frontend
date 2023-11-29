@@ -8,17 +8,20 @@ export function InitResetPasswordModal({ close }) {
   const [email, setEmail] = useState(null);
   const [loader, setLoader] = useState(false);
   const [thisError, setThisError] = useState(null);
-  const handleInitResetSubmit = (e) => {
+
+  const handleInitResetSubmit = async (e) => {
     setLoader(true);
     e.preventDefault();
     if (email) {
       try {
-        const res = APIHydro.initResetPassword(email);
-        if (res) {
-          setLoader(false);
-          close();
+        const res = await APIHydro.initResetPassword(email);
+        if (res.data === 200) {
           success(`Hemos enviado un mail a ${email}`);
+        } else {
+          error("Hubo un error, vuelve a intentarlo");
         }
+        setLoader(false);
+        close();
       } catch (e) {
         setLoader(false);
         close();

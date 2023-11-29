@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 
 export function success(message) {
-  const notify = () => toast.success(message, {});
+  const notify = () => toast.success("¡" + message + "!", {});
   return notify();
 }
 

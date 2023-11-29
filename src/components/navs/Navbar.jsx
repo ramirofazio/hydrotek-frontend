@@ -12,14 +12,6 @@ export const Navbar = () => {
   const shoppingCart = useSelector((s) => s.shoppingCart);
   const { id, role } = useSelector((s) => s.user.session);
 
-  /*
-! Hay un bug en la actualizacion de redux user.session al hacer logout y se sigue mostrando el icono de dashboard si es admin.
-! Si es user sigue haciendo redireccion al perfil cuando se apreta el icono de user, en admin tambien.
-! tiene que ver con alguna logica de `ProtectedRoute.jsx` CREO. Se vuelve a guardar el user en redux
-
-?   -R
-*/
-
   const [cartQty, setCartQty] = useState(null);
 
   useEffect(() => {
@@ -44,13 +36,7 @@ export const Navbar = () => {
             ) : (
               <NavLink
                 to={l.path}
-                className={({ isActive, isPending }) =>
-                  isActive
-                    ? "textGoldGradient"
-                    : isPending
-                    ? "pending"
-                    : "flex items-center rounded-md border-b-2 border-transparent p-2 text-white"
-                }
+                className={({ isActive }) => (isActive ? "textGoldGradient" : "link-animation text-white")}
               >
                 {l.name}
               </NavLink>
@@ -79,11 +65,13 @@ export const Navbar = () => {
               pathname.match("/shoppingCart/*") ? "text-gold/50" : "icons text-gold"
             }`}
           />
-          {cartQty && (
-            <p className="absolute -bottom-2 -right-1 h-[23px] w-[23px] rounded-full border-[0.5px] bg-base text-center text-sm font-bold  text-white">
-              {cartQty}
-            </p>
-          )}
+          <p
+            className={`${
+              cartQty ? "opacity-100" : "opacity-0"
+            } absolute -bottom-2 -right-1 h-[23px]  w-[23px] rounded-full border-[0.5px] bg-base text-center text-sm font-bold  text-white`}
+          >
+            {cartQty}
+          </p>
         </div>
       </section>
     </nav>

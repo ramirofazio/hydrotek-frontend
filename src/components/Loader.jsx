@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-//import { logos } from "assets/index";
 
 export function Loader({ className }) {
   useEffect(() => {
@@ -15,7 +14,6 @@ export function Loader({ className }) {
       <main
         className={`grid aspect-square  h-20 place-content-center place-items-center rounded-md bg-black/70 lg:h-40 ${className}`}
       >
-        {/* <img src={logos.hydBlack} className="animate-pulse" />  //?OTRA OPCION */}
         <i className="ri-loader-2-fill animate-spin text-6xl text-gold" />
       </main>
     </main>

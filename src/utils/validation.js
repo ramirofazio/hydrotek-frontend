@@ -54,3 +54,26 @@ export function isValidChangePassword({ actualPassword, newPassword, newConfirmP
 
   return errs;
 }
+
+export function isValidGuestCheckout({ firstName, lastName, email, dni }) {
+  const errs = {};
+  if (email) {
+    if (!regex.isValidEmail.test(email)) errs.email = "ingrese un email valido";
+  }
+  if (dni) {
+    if (dni.length < 8 || dni.length > 10) errs.dni = "no es un dni valido";
+  }
+  if (firstName) {
+    if (firstName.length < 5) errs.firstName = "ingrese nombre completo";
+    if (firstName.length >= 10) errs.firstName = "demasiado largo";
+    if (regex.containNumber.test(firstName)) errs.firstName = "no puede tener numeros";
+  }
+
+  if (lastName) {
+    if (lastName.length < 5) errs.lastName = "ingrese nombre completo";
+    if (lastName.length >= 100) errs.lastName = "demasiado largo";
+    if (regex.containNumber.test(lastName)) errs.lastName = "no puede tener numeros";
+  }
+
+  return errs;
+}
