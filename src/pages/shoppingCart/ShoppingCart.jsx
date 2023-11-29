@@ -4,26 +4,41 @@ import { Input } from "src/components/inputs";
 import { useSelector } from "react-redux";
 import { Button } from "src/components/buttons";
 import { useNavigate } from "react-router-dom";
-//import { APIHydro } from "src/api";
 import { Modal } from "src/components";
 import { useState } from "react";
 import { PaymentOk } from "./PaymentOk";
 import { PaymentFailed } from "./PaymentFailed";
+import { error } from "src/components/notifications";
+import getCheckout from "./checkouts";
 
 export default function ShoppingCart({ deliveryPrice = 50 }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const { products, totalPrice } = useSelector((state) => state.shoppingCart);
+  const {
+    session: { dni, id },
+  } = useSelector((state) => state.user);
   const [modal, setModal] = useState(false);
 
   const paymentState = "any";
   const arrProducts = Object.values(products);
 
-  function payOrder() {
-    //genera el chekout
-    //const checkout = APIHydro.getCheckout()
-    // redirecciona
+  async function payOrder() {
+    if (arrProducts.length) {
+      const cleanProducts = arrProducts.map(({ quantity, productId }) => ({
+        //? Acomodo los arrProducts como lo espera el BE
+        qty: quantity,
+        id: productId,
+      }));
+      getCheckout(id, dni, cleanProducts).then((res) => {
+        if (res.data) {
+          window.location.replace(res.data);
+        }
+      });
+    } else {
+      error("No hay productos en el carrito");
+    }
   }
 
   return (
