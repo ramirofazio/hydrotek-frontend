@@ -15,8 +15,8 @@ export function Products() {
   const [newImgs, setNewImgs] = useState(false);
 
   useEffect(() => {
-    console.log(newImgs);
-  }, [newImgs]);
+    console.log(modal);
+  }, [modal]);
 
   async function uploadProductImage(file, productId, setLoader) {
     try {
@@ -73,7 +73,17 @@ export function Products() {
       reader.readAsDataURL(file);
     }
     console.log(rawImgs);
-    setNewImgs(rawImgs);
+    setModal((prev) => {
+      return {
+        ...prev,
+        newImgs: rawImgs,
+      };
+    });
+    /* setModal({
+      ...modal,
+      newImgs: rawImgs,
+    }); */
+    //setNewImgs(rawImgs);
   }
   async function handleAddFeaturedProduct(productId) {
     try {
@@ -86,50 +96,7 @@ export function Products() {
 
   return (
     <main className="w-full">
-      <Modal isOpen={Boolean(modal)} onClose={() => setModal(false)}>
-        <div className="flex flex-col items-center ">
-          {/* <button
-            onClick={() => deleteProductImg(modal.productId)}
-            className="mx-auto my-2 flex items-center justify-center gap-2 rounded-lg border-2 border-red-500 bg-slate-800 p-1"
-          >
-            <i className="ri-delete-bin-2-fill self-center text-2xl capitalize text-red-500"></i>
-            <h1> Presione para borrar las imagenes</h1>
-          </button> */}
-          {modal?.prevImgs?.length && (
-            <div className="flex border-2 text-center">
-              <h1>Imganes previas: </h1>
-              {modal.prevImgs.map((i, index) => {
-                return <img className="w-[75px]" key={index} src={i} alt="" />;
-              })}
-            </div>
-          )}
-
-          <div className="flex border-2 text-center">
-            {newImgs ? (
-              Object.values(newImgs).map((i, index) => {
-                return <img className="w-[120px]" key={index} src={i.URL} alt="" />;
-              })
-            ) : (
-              <h1>No hay imagenes para este producto</h1>
-            )}
-          </div>
-          <label
-            htmlFor={`fileInput-${modal.productId}`}
-            className="mt-8 w-fit cursor-pointer  rounded border-2 bg-blue px-5 py-3 text-white hover:font-medium"
-          >
-            Cargar imagenes
-            <input
-              type="file"
-              id={`fileInput-${modal.productId}`}
-              accept="image/*"
-              multiple
-              title="Cargar imagenes"
-              className="hidden"
-              onChange={handleImages}
-            />
-          </label>
-        </div>
-      </Modal>
+      <UploadProductImg modal={modal} setModal={setModal} />
       {/* <Modal isOpen={Boolean(modal)} onClose={() => setModal(false)}>
         <button
           onClick={() => deleteProductImg(modal.productId)}
@@ -218,23 +185,64 @@ export function Products() {
   );
 }
 
-function UploadProductImg() {
-  return {
-    /* <TableRow
-      content={
+function UploadProductImg({ modal, setModal }) {
+  const [newImgs, setNewImgs] = useState(false);
+
+  useEffect(() => {
+    console.log(newImgs)
+  }, [newImgs]) 
+
+  function handleImages() {
+    console.log("handleando");
+    setNewImgs(["hola", "beba", "como"]);
+  }
+
+  return (
+    <Modal isOpen={Boolean(modal)} onClose={() => setModal(false)}>
+      <div className="flex flex-col items-center ">
+        {/* <button
+            onClick={() => deleteProductImg(modal.productId)}
+            className="mx-auto my-2 flex items-center justify-center gap-2 rounded-lg border-2 border-red-500 bg-slate-800 p-1"
+          >
+            <i className="ri-delete-bin-2-fill self-center text-2xl capitalize text-red-500"></i>
+            <h1> Presione para borrar las imagenes</h1>
+          </button> */}
+        {modal?.prevImgs && modal?.prevImgs?.length ? (
+          <div className="flex border-2 text-center">
+            <h1>Imganes previas: </h1>
+            {modal.prevImgs.map((i, index) => {
+              return <img className="w-[75px]" key={index} src={i} alt="" />;
+            })}
+          </div>
+        ) : null}
+        <h1>-------</h1>
+        <div className="flex border-2 text-center">
+          {newImgs && newImgs.length ? (
+            newImgs.map((n, i) => <h1 key={i}>{n}</h1>)
+          ) : (
+            <h1>No hay imagenes para este producto</h1>
+            /* Object.values(newImgs).map((img, index) => {
+              console.log(index, img);
+              return <img className="w-[120px]" key={index} src={img.URL} alt="" />;
+            }) */
+          )}
+        </div>
         <label
-          htmlFor={`fileInput${id}`}
-          className={`${loader ? "icons ri-loader-2-line text-2xl" : "icons ri-image-2-fill text-2xl"}`}
+          htmlFor={`fileInput-${modal.productId}`}
+          className="mt-8 w-fit cursor-pointer  rounded border-2 bg-blue px-5 py-3 text-white hover:font-medium"
         >
+          Cargar imagenes
           <input
             type="file"
-            id={`fileInput${id}`}
+            id={`fileInput-${modal.productId}`}
             accept="image/*"
+            multiple
+            title="Cargar imagenes"
             className="hidden"
-            onChange={(e) => uploadProductImage(e.target.files[0], id, setLoader)}
+            onChange={handleImages}
           />
         </label>
-      }
-    /> */
-  };
+      </div>
+    </Modal>
+  );
 }
