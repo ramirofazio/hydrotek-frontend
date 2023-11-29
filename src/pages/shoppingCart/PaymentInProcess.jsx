@@ -19,6 +19,10 @@ export function PaymentInProcess({ transactionId }) {
     dispatch(emptyCart());
   }, []);
 
+  const mensajeWhatsApp = `Hola, acabo de hacer una compra en la web. Elegi el metodo *EFECTIVO*. Mi identificador de transacción es: *${
+    transactionId || "0000000000000000"
+  }*`;
+
   return (
     <main className="grid gap-6 text-center">
       <h1>{t("shopping-cart.payment-ok")}</h1>
@@ -26,8 +30,12 @@ export function PaymentInProcess({ transactionId }) {
         <i className="ri-time-line text-6xl text-yellow-600"></i>
       </p>
       <h2>{t("shopping-cart.we-contact-you-process")}</h2>
+      <i
+        className="ri-whatsapp-line icons textGoldGradient mx-auto w-fit text-6xl hover:text-green-600"
+        onClick={() => window.open(`https://wa.me/5491170823697?text=${encodeURIComponent(mensajeWhatsApp)}`, "_blank")}
+      />
       <h2 className="textGoldGradient">
-        Identificador de transacción: <strong onClick={copyToClipboard}>{transactionId}</strong>
+        Identificador de transacción: <strong onClick={copyToClipboard}>{transactionId || "0000000000000000"}</strong>
       </h2>
     </main>
   );
