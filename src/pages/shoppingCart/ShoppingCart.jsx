@@ -105,15 +105,15 @@ export default function ShoppingCart({ deliveryPrice = 50 }) {
           <div className="flex flex-col gap-5  ">
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.subtotal")}</h1>
-              <strong className="textGoldGradient hover:pointer-events-none ">{"$" + totalPrice || "--"}</strong>
+              <strong className="textGoldGradient pointer-events-none border-0">{"$" + totalPrice || "--"}</strong>
             </div>
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.delivery")}</h1>
-              <strong className="textGoldGradient hover:pointer-events-none ">{"$" + deliveryPrice || "--"}</strong>
+              <strong className="textGoldGradient pointer-events-none border-0">{"$" + deliveryPrice || "--"}</strong>
             </div>
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.total-price")}</h1>
-              <strong className="textGoldGradient hover:pointer-events-none ">{`$${
+              <strong className="textGoldGradient pointer-events-none border-0">{`$${
                 totalPrice + deliveryPrice
               }`}</strong>
             </div>
