@@ -8,12 +8,21 @@ const shoppingCart = createSlice({
     totalPrice: 0,
   },
   reducers: {
+    emptyCart: (state) => {
+      state.products = {};
+      state.totalPrice = 0;
+    },
     saveSingInShoppingCart: (state, action) => {
       const { totalPrice, products } = action.payload;
 
       const productsDictionary = {};
       products.forEach((p) => {
-        productsDictionary[p.productId] = { quantity: p.quantity, productId: p.productId, price: p.price, name:p.name };
+        productsDictionary[p.productId] = {
+          quantity: p.quantity,
+          productId: p.productId,
+          price: p.price,
+          name: p.name,
+        };
       });
 
       state.totalPrice = totalPrice;
@@ -52,4 +61,5 @@ const shoppingCart = createSlice({
 });
 
 export const shoppingCartRdr = shoppingCart.reducer;
-export const { saveSingInShoppingCart, loadStorageShoppingCart, addProudct, removeProduct } = shoppingCart.actions;
+export const { saveSingInShoppingCart, loadStorageShoppingCart, addProudct, removeProduct, emptyCart } =
+  shoppingCart.actions;

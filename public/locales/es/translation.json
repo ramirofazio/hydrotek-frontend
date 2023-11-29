@@ -76,8 +76,9 @@
     "pay-purchase": "pagar compra",
     "no-products-on-cart": "no se encontraron productos guardados en tu carrito",
     "payment-ok": "Compra realizada con exito",
-    "payment-failed": "Ocurrio un problema al procesar el pago",
-    "we-contact-you": "te contactaremos por email para despachar el envío"
+    "payment-failed": "Ocurrio un problema al procesar tu compra",
+    "we-contact-you": "te contactaremos para despachar tus productos",
+    "we-contact-you-process": "te contactaremos para que termines el pago y despachar tus productos"
   },
   "order": {
     "order-data": "datos de la orden",

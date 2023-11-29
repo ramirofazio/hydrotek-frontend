@@ -15,12 +15,19 @@ export const actionsUser = {
   updateSavedPosts,
 };
 
-import { saveSingInShoppingCart, loadStorageShoppingCart, addProudct, removeProduct } from "./shoppingCart.js";
+import {
+  saveSingInShoppingCart,
+  loadStorageShoppingCart,
+  addProudct,
+  removeProduct,
+  emptyCart,
+} from "./shoppingCart.js";
 export const actionsShoppingCart = {
   saveSingInShoppingCart,
   loadStorageShoppingCart,
   addProudct,
   removeProduct,
+  emptyCart,
 };
 
 import { setToken } from "./auth.js";
