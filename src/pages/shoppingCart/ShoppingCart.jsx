@@ -13,7 +13,7 @@ import getCheckout from "./checkouts";
 import CheckoutForm from "./CheckoutForm";
 import { PaymentInProcess } from "./PaymentInProcess";
 
-export default function ShoppingCart({ deliveryPrice = 50 }) {
+export default function ShoppingCart() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
@@ -108,14 +108,8 @@ export default function ShoppingCart({ deliveryPrice = 50 }) {
               <strong className="textGoldGradient pointer-events-none border-0">{"$" + totalPrice || "--"}</strong>
             </div>
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
-              <h1>{t("order.delivery")}</h1>
-              <strong className="textGoldGradient pointer-events-none border-0">{"$" + deliveryPrice || "--"}</strong>
-            </div>
-            <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.total-price")}</h1>
-              <strong className="textGoldGradient pointer-events-none border-0">{`$${
-                totalPrice + deliveryPrice
-              }`}</strong>
+              <strong className="textGoldGradient pointer-events-none border-0">{`$${totalPrice}`}</strong>
             </div>
           </div>
 

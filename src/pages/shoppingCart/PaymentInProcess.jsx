@@ -3,10 +3,14 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { success } from "src/components/notifications";
 import { emptyCart } from "src/redux/reducers/shoppingCart";
+import { getOfStorage } from "src/utils/localStorage";
 
 export function PaymentInProcess({ transactionId }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  //todo: En algun momento habria que guardar esta info si es un user loggeado
+  const sendInfo = getOfStorage("deliveryInfo");
 
   const copyToClipboard = () => {
     navigator.clipboard
@@ -19,9 +23,25 @@ export function PaymentInProcess({ transactionId }) {
     dispatch(emptyCart());
   }, []);
 
-  const mensajeWhatsApp = `Hola, acabo de hacer una compra en la web. Elegi el metodo *EFECTIVO*. Mi identificador de transacción es: *${
-    transactionId || "0000000000000000"
-  }*`;
+  const mensajeWhatsApp = `¡Hola Hydrotek!
+
+Acabo de hacer una compra en la web. Elegi el metodo *EFECTIVO*
+Mi identificador de transacción es: *${transactionId}*.
+
+${
+  sendInfo
+    ? `Estos son mis datos de envío:
+
+*- DIRECCION:* ${sendInfo.adress}
+
+*- LOCALIDAD:* ${sendInfo.city}
+
+*- PROVINCIA:* ${sendInfo.province}
+
+*- CODIGO POSTAL:* ${sendInfo.postalCode}
+`
+    : "¡Necesito coordinar el retiro de mis productos!"
+}`;
 
   return (
     <main className="grid gap-6 text-center">
