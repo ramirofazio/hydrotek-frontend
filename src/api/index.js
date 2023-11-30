@@ -16,6 +16,9 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  saveDeliveryInfo: (data) => {
+    return apiHydro.patch(`${route.USER}/save-deliveryInfo`, data);
+  },
   guestCheckout: (data) => {
     return apiHydro.post(`${route.CHECKOUT}/guest`, data);
   },

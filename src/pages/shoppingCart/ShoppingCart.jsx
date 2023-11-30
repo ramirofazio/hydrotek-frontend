@@ -55,7 +55,7 @@ export default function ShoppingCart() {
   }
 
   return (
-    <main className="content mx-auto mb-[6rem] mt-5  flex w-[92%] flex-col ">
+    <main className="content mx-auto mb-[6rem] mt-5  flex w-[92%] flex-col">
       {loader && <Loader />}
       {checkoutFormModal && (
         <CheckoutForm
@@ -66,9 +66,9 @@ export default function ShoppingCart() {
         />
       )}
       {status && (
-        <Modal isOpen={paymentResponseModal} onClose={() => setPaymentResponseModal(false)}>
-          {status === "200" && <PaymentOk transactionId={transactionId} />}
-          {status === "2" && <PaymentInProcess transactionId={transactionId} />}
+        <Modal isOpen={paymentResponseModal} onClose={() => ""} payModal={true} panelSize={"max-w-xl"}>
+          {status === "200" && <PaymentOk transactionId={transactionId} setLoader={setLoader} />}
+          {status === "2" && <PaymentInProcess transactionId={transactionId} setLoader={setLoader} />}
           {status === "0" && <PaymentFailed />}
         </Modal>
       )}

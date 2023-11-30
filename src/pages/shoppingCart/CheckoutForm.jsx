@@ -8,6 +8,8 @@ import { Input } from "src/components/inputs";
 import { error } from "src/components/notifications";
 import { saveInStorage } from "src/utils/localStorage";
 import { isValidGuestCheckout, isValidSendInfo } from "src/utils/validation";
+import { DeliveryInfoForm } from "./DeliveryInfoForm";
+import { useNavigate } from "react-router-dom";
 
 const userInfoFields = [
   { name: "firstName", label: "nombre" },
@@ -16,21 +18,16 @@ const userInfoFields = [
   { name: "dni", label: "DNI" },
 ];
 
-const deliveryInfoFields = [
-  { name: "adress", label: "direccion" },
-  { name: "city", label: "localidad" },
-  { name: "province", label: "provincia" },
-  { name: "postalCode", label: "codigo postal" },
-];
-
 export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader }) {
+  const navigate = useNavigate();
+
   const [realtimeCorrection, setRealtimeCorrection] = useState(false);
   const [errs, setErrs] = useState({
     firstName: "",
     lastName: "",
     email: "",
     dni: "",
-    adress: "",
+    address: "",
     city: "",
     province: "",
     postalCode: "",
@@ -43,7 +40,7 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
   });
   const [deliveryInfo, setDeliveryInfo] = useState({
     active: false,
-    adress: "",
+    address: "",
     city: "",
     province: "",
     postalCode: "",
@@ -108,7 +105,7 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={"max-w-2xl"}>
+    <Modal isOpen={isOpen} onClose={onClose} panelSize={"max-w-2xl"}>
       <main className="my-4 grid  grid-cols-1 place-content-center gap-6 overflow-scroll text-center">
         <img src={logos.hydBlack} className="mx-auto w-20" />
         <Dialog.Title as="h1" className="textGoldGradient">
@@ -149,25 +146,22 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
               </strong>
             </p>
           </div>
-          {deliveryInfo.active &&
-            deliveryInfoFields.map(({ name, label }, index) => (
-              <Fragment key={index}>
-                <Input
-                  name={name}
-                  type={name === "postalCode" ? "number" : "text"}
-                  onChange={(e) => handleOnChange(e, "deliveryInfo")}
-                  value={deliveryInfo[name]}
-                  placeholder={label}
-                  className={`relative placeholder:capitalize ${
-                    errs[name] && realtimeCorrection && "border-red-500 focus:border-red-500/50"
-                  }`}
-                />
-                {errs[name] && realtimeCorrection && (
-                  <Error text={errs[name]} className={"py-0 capitalize !text-white"} />
-                )}
-              </Fragment>
-            ))}
-
+          {deliveryInfo.active && (
+            <DeliveryInfoForm
+              handleOnChange={handleOnChange}
+              realtimeCorrection={realtimeCorrection}
+              errs={errs}
+              deliveryInfo={deliveryInfo}
+            />
+          )}
+          {deliveryInfo.active && (
+            <p>
+              ¿No deseas volver a ingresar estos datos cada vez que realizas una compra?
+              <strong className="ml-1" onClick={() => navigate("/session/signUp")}>
+                ¡simplemente regístrate!
+              </strong>
+            </p>
+          )}
           <Button
             text={"continuar"}
             onClick={handleSubmit}

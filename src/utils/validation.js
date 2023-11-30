@@ -85,12 +85,12 @@ export function isValidGuestCheckout({ firstName, lastName, email, dni, phone })
   return errs;
 }
 
-export function isValidSendInfo({ adress, city, province, postalCode }) {
+export function isValidSendInfo({ address, city, province, postalCode }) {
   const errs = {};
 
-  if (adress) {
-    if (adress.length < 5) errs.adress = "demasiado corto";
-    if (adress.length >= 20) errs.adress = "demasiado largo";
+  if (address) {
+    if (address.length < 5) errs.address = "demasiado corto";
+    if (address.length >= 20) errs.address = "demasiado largo";
   }
   if (city) {
     if (city.length < 3) errs.city = "demasiado corto";
