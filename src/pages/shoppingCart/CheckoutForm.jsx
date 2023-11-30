@@ -105,7 +105,7 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} panelSize={"max-w-2xl"}>
+    <Modal isOpen={isOpen} onClose={onClose} panelSize={"!max-w-2xl"}>
       <main className="my-4 grid  grid-cols-1 place-content-center gap-6 overflow-scroll text-center">
         <img src={logos.hydBlack} className="mx-auto w-20" />
         <Dialog.Title as="h1" className="textGoldGradient">
