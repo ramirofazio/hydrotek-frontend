@@ -101,9 +101,9 @@ ${
         APIHydro.saveDeliveryInfo({ id, ...deliveryInfo })
           .then((res) => {
             if (res.status === 200) {
+              navigate("/", { replace: true });
               success("Datos de envio guardados con exito");
               window.open(`https://wa.me/5491170823697?text=${encodeURIComponent(mensajeWhatsApp)}`, "_blank");
-              navigate("/");
             }
           })
           .finally(() => setLoader(false));
