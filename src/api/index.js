@@ -141,8 +141,11 @@ export const APIHydro = {
     return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, assetId, publicId, index });
     //eslint-enable
   },
-  deleteProductImg: (productId) => {
-    return apiHydro.delete(`/${route.CLOUDINARY}/img/delete/${productId}`);
+  deleteAllProductImg: (productId) => {
+    return apiHydro.delete(`/${route.CLOUDINARY}/img/deleteAll/${productId}`);
+  },
+  deleteProductImg: ({ productImgId, publicId }) => {
+    return apiHydro.post(`/${route.CLOUDINARY}/img/deleteOne`, { productImgId, publicId });
   },
 };
 

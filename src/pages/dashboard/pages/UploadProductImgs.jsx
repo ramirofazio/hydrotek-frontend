@@ -3,11 +3,14 @@ import { Modal } from "src/components";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { APIHydro } from "src/api";
+import { useNavigate } from "react-router-dom";
 
 export function UploadProductImgs({ modal, setModal }) {
+  const navigate = useNavigate();
   const [newImgs, setNewImgs] = useState([]);
 
   useEffect(() => {
+    console.log(modal);
     console.log(newImgs);
   }, [newImgs]);
 
@@ -46,12 +49,29 @@ export function UploadProductImgs({ modal, setModal }) {
     });
   }
 
-  function deleteDbImg(productImgId) {
-    setNewImgs((prev) => {
-      let previusImgs = { ...prev };
-      delete previusImgs[productImgId];
-      return previusImgs;
-    });
+  async function deleteDbImg(img) {
+    try {
+      const { id, publicId } = img;
+      await APIHydro.deleteProductImg({ productImgId: id, publicId });
+      setModal(false);
+      navigate(0);
+      toast.success("Se borraron las imgs del producto");
+    } catch (e) {
+      console.log(e);
+      toast.error("Error al borrar imgs");
+    }
+  }
+
+  async function deleteAllProductImg(productId) {
+    try {
+      //setLoader
+      await APIHydro.deleteAllProductImg(productId);
+      setModal(false);
+      navigate(0);
+      toast.success("Se borraron las imgs del producto");
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   async function uploadImgs(files = [], productId) {
@@ -61,29 +81,29 @@ export function UploadProductImgs({ modal, setModal }) {
     const URL = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
     const promises = [];
 
-    files.forEach((file, i) => {
+    files.forEach((file) => {
       const formdata = new FormData();
       formdata.append("file", file.URL);
       formdata.append("upload_preset", "product_image");
-      //formdata.append("public_id", `${productId}/${i}`);
-      //formdata.append("upload_preset", "product_image");
       formdata.append("public_id_prefix", `HYD/products/${productId}`);
       promises.push(axios.post(URL, formdata));
+      //formdata.append("public_id", `${productId}/${i}`); // ? Util en casos particulares
     });
 
     try {
       const responses = await Promise.all(promises);
-      responses.forEach(async ({ data },  index) => {
+      responses.forEach(async ({ data }, index) => {
         console.log(data);
         /* eslint-disable */
         const { secure_url, assetId, public_id } = data;
         await APIHydro.addProductImg({ path: secure_url, assetId, publicId: public_id, productId, index });
-        toast.success(`Se subío la imagen correctamente`);
       });
+      toast.success(`Se subieron las img correctamente`);
+      setModal(false);
+      navigate(0);
       /* eslint-enable */
-      //setLoader(false);
-      //navigate("/admin/dashboard");
     } catch (err) {
+      toast.error("Error al subir fotos");
       //setLoader(false);
       console.log(err);
     }
@@ -97,40 +117,49 @@ export function UploadProductImgs({ modal, setModal }) {
             <p className="text-lg text-gold">{modal?.product?.id}</p>
             <p className="text-lg text-gold">{modal?.product?.name}</p>
           </span>
-          <h1 className="w-fit border-b-2 border-dashed">Imagenes previas: {modal?.prevImgs?.length}</h1>
-          {modal.prevImgs?.length
-            ? modal.prevImgs.map((img, i) => (
-                <div className="rounded border-2" key={i}>
-                  <span className="flex justify-between px-0.5 ">
-                    <p className="left-0.5 top-0 mx-0.5 text-2xl font-bold text-white">{i}</p>
+          <div className="flex items-center ">
+            <h1 className="w-fit border-b-2 border-dashed">Imagenes previas: {modal?.prevImgs?.length}</h1>
+            <button
+              disabled={modal.prevImgs?.length ? false : true}
+              onClick={() => deleteAllProductImg(modal?.product?.id)}
+              className="mx-auto mt-2 rounded-lg border-2 border-red-700 bg-slate-800 p-2 px-4 text-white hover:text-red-600 disabled:opacity-50 disabled:hover:text-white "
+            >
+              Borrar todas las imagenes previas
+            </button>
+          </div>
+          {modal.prevImgs?.length ? (
+            <div className="my-2 flex flex-row gap-5">
+              {modal.prevImgs.map((img, i) => (
+                <div className="w-fit rounded border-2 " key={i}>
+                  <span className="ml-auto justify-between px-0.5 ">
                     <i
-                      onClick={() => deleteLocalImg(img?.id)}
-                      className="ri-close-circle-line right-[1px] top-0 mx-0.5  text-3xl text-red-600"
+                      onClick={() => deleteDbImg(img)}
+                      className="ri-close-circle-line right-[1px] top-0 mx-0.5  text-4xl text-red-600"
                     ></i>
                   </span>
-                  <p className=" overflow-hidden">{img?.originalName}</p>
                   <img className="mx-auto aspect-square w-[75px]" src={img?.path} key={i} />
                 </div>
-              ))
-            : null}
+              ))}
+            </div>
+          ) : null}
         </div>
         <div className=" min-w text-center">
           <h1 className="mr-auto w-fit border-b-2 border-dashed">
             Imagenes por cargar: {Object.values(newImgs)?.length}
           </h1>
           {newImgs && Object.values(newImgs)?.length ? (
-            <picture className="mt-6 grid grid-cols-8 gap-4 border-2 border-red-500">
+            <picture className="mt-6 grid grid-cols-8 gap-4 ">
               {Object.values(newImgs)?.map((img, i) => {
                 return (
-                  <div className="rounded border-2" key={i}>
+                  <div className="flex flex-col justify-between rounded border-2" key={i}>
+                    <p className=" overflow-hidden">{img?.originalName}</p>
                     <span className="flex justify-between px-0.5 ">
-                      <p className="left-0.5 top-0 mx-0.5 text-2xl font-bold text-white">{i}</p>
+                      <p className="left-0.5 top-0 mx-0.5 text-3xl font-bold text-white">{i}</p>
                       <i
                         onClick={() => deleteLocalImg(img?.originalName)}
-                        className="ri-close-circle-line right-[1px] top-0 mx-0.5  text-3xl text-red-600"
+                        className="ri-close-circle-line right-[1px] top-0 mx-0.5  text-4xl text-red-600"
                       ></i>
                     </span>
-                    <p className=" overflow-hidden">{img?.originalName}</p>
                     <img className="mx-auto aspect-square max-w-[100px]" src={img.URL} key={i} />
                   </div>
                 );
@@ -156,8 +185,9 @@ export function UploadProductImgs({ modal, setModal }) {
           />
         </label>
         <button
+          disabled={newImgs && Object.values(newImgs).length ? false : true}
           onClick={() => uploadImgs(Object.values(newImgs), modal.product.id)}
-          className="rounded-xl border-2 border-green-900 bg-green-700 px-8 py-3 font-secondary text-lg font-bold text-white hover:bg-opacity-70"
+          className="rounded-xl border-2 border-green-900 bg-green-700 px-8 py-3 font-secondary text-lg font-bold text-white hover:bg-opacity-70 disabled:opacity-50"
         >
           Subir imagenes
         </button>

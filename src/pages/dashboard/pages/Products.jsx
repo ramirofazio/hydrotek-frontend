@@ -16,15 +16,6 @@ export function Products() {
   useEffect(() => {
     console.log(modal);
   }, [modal]);
-  async function deleteProductImg(productId) {
-    try {
-      await APIHydro.deleteProductImg(productId);
-      setModal(false);
-      navigate("/admin/dashboard");
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   async function handleAddFeaturedProduct(productId) {
     try {

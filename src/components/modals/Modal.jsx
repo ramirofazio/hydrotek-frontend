@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-export function Modal({ isOpen, onClose, children, className }) {
+export function Modal({ isOpen, onClose, children, panelSize }) {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -29,7 +29,7 @@ export function Modal({ isOpen, onClose, children, className }) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className={`w-full max-w-md transform overflow-hidden rounded-2xl border-2 border-gold bg-base/90 p-8 text-left align-middle shadow-xl transition-all ${className}`}
+                  className={`w-full max-w-md transform overflow-hidden rounded-2xl border-2 border-gold bg-base/90 p-8 text-left align-middle shadow-xl transition-all ${panelSize}`}
                 >
                   <i
                     className="ri-close-fill icons absolute right-2 top-2 w-fit text-3xl text-white"
