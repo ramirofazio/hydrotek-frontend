@@ -5,6 +5,7 @@ import { TableRow } from "./index";
 import { APIHydro } from "src/api";
 
 import { UploadProductImgs } from "./UploadProductImgs";
+import { success } from "src/components/notifications";
 
 const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicado", "destacado", "subir imagen"];
 
@@ -13,10 +14,14 @@ export function Products() {
   const { products } = useLoaderData();
   const [modal, setModal] = useState(false);
 
-  async function handleAddFeaturedProduct(productId) {
+  async function handleAddFeaturedProduct(productId, productName) {
     try {
-      await APIHydro.addFeaturedProduct(productId);
-      navigate("/admin/dashboard");
+      await APIHydro.addFeaturedProduct(productId).then((res) => {
+        if (res.status === 200) {
+          success(`${productName} agregado a destacados`);
+          navigate("/admin/dashboard");
+        }
+      });
     } catch (e) {
       console.log(e);
     }
@@ -67,14 +72,14 @@ export function Products() {
                       className={`ri-${featured ? "star-s-fill" : "star-s-line"} icons text-2xl text${
                         featured ? "GoldGradient" : "-red-500"
                       }`}
-                      onClick={() => handleAddFeaturedProduct(id)}
+                      onClick={() => handleAddFeaturedProduct(id, name)}
                     />
                   }
                 />
 
                 <TableRow
                   onClick={() => setModal({ prevImgs: images, product: { id, name } })}
-                  content={<i className="ri-image-2-fill text-2xl">{images?.length}</i>}
+                  content={<i className="icons ri-image-2-fill text-2xl">{images?.length}</i>}
                 />
               </tr>
             );
