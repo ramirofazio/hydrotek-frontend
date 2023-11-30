@@ -10,7 +10,7 @@ import { Button } from "src/components/buttons";
 import { APIHydro } from "src/api";
 import { useNavigate } from "react-router-dom";
 
-export function PaymentOk({ transactionId, setLoader }) {
+export function PaymentInProcess({ transactionId, setLoader }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ export function PaymentOk({ transactionId, setLoader }) {
   useEffect(() => {
     mensajeWhatsApp = `¡Hola Hydrotek! Soy ${name || ""}.
 
-Acabo de hacer una compra en la web.
+Acabo de hacer una compra en la web. Elegi el metodo *EFECTIVO*
 Mi identificador de transacción es: *${transactionId}*.
 
 ${
@@ -119,11 +119,11 @@ ${
     <main className="grid gap-6 text-center">
       <h1>{t("shopping-cart.payment-ok")}</h1>
       <p className="mx-auto w-fit">
-        <i className="ri-checkbox-circle-line text-6xl text-green-600"></i>
+        <i className="ri-time-line text-6xl text-yellow-600"></i>
       </p>
       {!deliveryInfo.active && (
         <>
-          <h2>{t("shopping-cart.we-contact-you")}</h2>
+          <h2>{t("shopping-cart.we-contact-you-process")}</h2>
           <i
             className="ri-whatsapp-line icons textGoldGradient mx-auto w-fit text-6xl hover:text-green-600"
             onClick={() =>

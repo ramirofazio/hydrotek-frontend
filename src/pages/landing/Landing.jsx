@@ -32,7 +32,7 @@ export default function Landing() {
             className="animate-pulse  place-self-end md:w-[70%] lg:w-[45%] lg:place-self-center"
           />
         </section>
-        {featuredProducts.length && (
+        {featuredProducts?.length && (
           <div className="py-10">
             <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
             <Swiper
@@ -62,7 +62,7 @@ export default function Landing() {
               {featuredProducts.map((p, i) => (
                 <SwiperSlide key={i} className="grid place-items-center ">
                   <ProductCard
-                    id={i}
+                    id={p.id}
                     key={i}
                     name={p.name}
                     imgUrl={p.imgUrl}

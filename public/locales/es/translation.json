@@ -75,9 +75,10 @@
     "promotional-code": "codigo de descuento",
     "pay-purchase": "pagar compra",
     "no-products-on-cart": "no se encontraron productos guardados en tu carrito",
-    "payment-ok": "Compra realizada con exito",
-    "payment-failed": "Ocurrio un problema al procesar el pago",
-    "we-contact-you": "te contactaremos por email para despachar el envío"
+    "payment-ok": "¡Compra realizada con exito!",
+    "payment-failed": "Ocurrio un problema al procesar tu compra",
+    "we-contact-you": "Apreta el boton de whatsapp para coordinar el retiro de tus productos",
+    "we-contact-you-process": "Apreta el boton de whatsapp para coordinar el pago y retiro de tus productos"
   },
   "order": {
     "order-data": "datos de la orden",
@@ -110,7 +111,7 @@
     "seeSavedPosts": "Ver las publicaciones que has guardado recientemente."
   },
   "about": {
-    "content": "Hydrotek nació en 2020 para llenar un vacío en el mercado. Nos dimos cuenta de que faltaban productos y recursos para la hidroponía en nuestro país, y decidimos actuar. Desde entonces, nos hemos destacado por nuestros productos innovadores, creados por personas que son apasionadas cultivadoras.",
+    "content": "Hydrotek nació en 2020 para llenar un vacío en el mercado. Nos dimos cuenta de la falta tanto de productos  como de recursos para la hidroponía en nuestro país y decidimos actuar. Desde entonces nos hemos destacado por nuestros productos innovadores, creados por personas que son apasionadas cultivadoras.",
     "content2": "Lo que nos hace únicos es nuestra búsqueda constante de la calidad y la excelencia. Cuidamos cada detalle, desde las piezas más pequeñas hasta el diseño industrial de nuestros productos. En Hydrotek, siempre aspiramos a ser eficientes y perfeccionistas en lo que hacemos.",
     "content3": "Nuestra cultura empresarial se basa en la creación de un ambiente de trabajo agradable, honesto y amigable. Nos tomamos en serio nuestras relaciones, tanto con nuestros clientes como con nuestros colaboradores. Valoramos la retroalimentación y la comunicación abierta, construyendo relaciones que van más allá del trabajo.",
     "content4": "Nuestros valores fundamentales son la honestidad, el compromiso, el deseo de crecer y la empatía. Estos valores son la brújula que guía nuestras decisiones y acciones en todo momento.",

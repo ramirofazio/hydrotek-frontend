@@ -41,7 +41,7 @@ export function Routes() {
         {
           path: "/",
           element: <Landing />,
-          loader: async () => {
+          loader: async () => { // * Rompera hasta mergear PR del back
             return featuredProductsLoader();
           },
           index: true,
@@ -158,7 +158,7 @@ export function Routes() {
               element: <Dashboard />,
               loader: async () => {
                 const [products, users, lastUsdPrice] = await Promise.all([
-                  allProductsLoader(),
+                  allProductsLoader(), // TODO Refactorizar en childrens de la ruta "/admin/dashboard" para un uso mas efectivo
                   allUsersLoader(),
                   getLastUsdPrice(),
                 ]);

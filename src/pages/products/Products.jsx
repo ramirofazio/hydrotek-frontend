@@ -24,11 +24,8 @@ export default function Products() {
               id={p.id}
               key={i}
               name={p.name}
-              imgUrl={p.images[0]?.path || undefined}
-              price={p.arsPrice.toLocaleString("es-AR", {
-                style: "currency",
-                currency: "ARS",
-              })}
+              imgUrl={p.images ? p.images[0]?.path : undefined}
+              price={p.arsPrice}
             />
           ))
         ) : (

@@ -7,7 +7,7 @@ const route = {
   CART: "shoppingCart",
   BLOG: "blog",
   CLOUDINARY: "cloudinary",
-  CHECKOUT: "checkout",
+  CHECKOUT: "mobbex",
   TFACTURA: "tFactura",
   APIDOLAR: "apidolar",
 };
@@ -16,6 +16,18 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  saveDeliveryInfo: (data) => {
+    return apiHydro.patch(`${route.USER}/save-deliveryInfo`, data);
+  },
+  guestCheckout: (data) => {
+    return apiHydro.post(`${route.CHECKOUT}/guest`, data);
+  },
+  userWithoutDniCheckout: (data) => {
+    return apiHydro.post(`${route.CHECKOUT}/update-dni`, data);
+  },
+  userWithDniCheckout: (data) => {
+    return apiHydro.post(`${route.CHECKOUT}`, data);
+  },
   getFeaturedProducts: () => {
     return apiHydro.get(`${route.PRODUCT}/featured-products`);
   },
@@ -127,16 +139,16 @@ export const APIHydro = {
   getSavedPosts: (userId) => {
     return apiHydro.get(`/${route.USER}/savedPosts/${userId}`);
   },
-  getCheckout: () => {
-    return apiHydro.get(`/${route.CHECKOUT}`);
-  },
-  addProductImg: ({ productId, path, assetId, publicId }) => {
+  addProductImg: ({ productId, path, assetId, publicId, index }) => {
     //eslint-disable
-    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, assetId, publicId });
+    return apiHydro.put(`/${route.PRODUCT}/img/add`, { productId, path, assetId, publicId, index });
     //eslint-enable
   },
-  deleteProductImg: (productId) => {
-    return apiHydro.delete(`/${route.CLOUDINARY}/img/delete/${productId}`);
+  deleteAllProductImg: (productId) => {
+    return apiHydro.delete(`/${route.CLOUDINARY}/img/deleteAll/${productId}`);
+  },
+  deleteProductImg: ({ productImgId, publicId }) => {
+    return apiHydro.post(`/${route.CLOUDINARY}/img/deleteOne`, { productImgId, publicId });
   },
 };
 
