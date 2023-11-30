@@ -27,7 +27,6 @@ export default function ShoppingCart() {
 
   const [loader, setLoader] = useState(false);
   const [cleanProducts, setCleanProducts] = useState(null);
-  const [paymentResponseModal, setPaymentResponseModal] = useState(true);
   const [checkoutFormModal, setCheckoutFormModal] = useState(false);
 
   const arrProducts = Object.values(products);
@@ -66,7 +65,7 @@ export default function ShoppingCart() {
         />
       )}
       {status && (
-        <Modal isOpen={paymentResponseModal} onClose={() => ""} payModal={true} panelSize={"max-w-xl"}>
+        <Modal isOpen={true} onClose={() => ""} payModal={true} panelSize={"max-w-xl"}>
           {status === "200" && <PaymentOk transactionId={transactionId} setLoader={setLoader} />}
           {status === "2" && <PaymentInProcess transactionId={transactionId} setLoader={setLoader} />}
           {status === "0" && <PaymentFailed />}

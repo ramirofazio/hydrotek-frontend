@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { success } from "src/components/notifications";
+import { error, success } from "src/components/notifications";
 import { emptyCart } from "src/redux/reducers/shoppingCart";
 import { deleteOfStorage, getOfStorage } from "src/utils/localStorage";
 import { DeliveryInfoForm } from "./DeliveryInfoForm";
