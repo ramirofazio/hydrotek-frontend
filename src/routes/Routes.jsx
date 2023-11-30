@@ -41,9 +41,9 @@ export function Routes() {
         {
           path: "/",
           element: <Landing />,
-          /* loader: async () => { // * Comentado hasta mergear PR del back
+          loader: async () => { // * Rompera hasta mergear PR del back
             return featuredProductsLoader();
-          }, */
+          },
           index: true,
         },
         {

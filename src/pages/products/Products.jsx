@@ -8,7 +8,7 @@ export default function Products() {
   const { t } = useTranslation();
   const data = useLoaderData();
   let { products, quantity } = data;
-  console.log(products);
+
   return (
     <div className="mx-auto w-[90%]">
       <div>

@@ -15,7 +15,6 @@ export default function Root() {
     if (userInfo && userInfo.accessToken) {
       //? Si esta logueado
       const arrProducts = Object.values(shoppingCart.products);
-      console.log("redux", shoppingCart.products);
       if (arrProducts.length) {
         return APIHydro.updateShoppingCart({
           userId: userInfo.session.id,
