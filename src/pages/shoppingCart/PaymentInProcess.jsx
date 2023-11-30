@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { success } from "src/components/notifications";
 import { emptyCart } from "src/redux/reducers/shoppingCart";
-import { deleteOfStorage, getOfStorage } from "src/utils/localStorage";
+import { getOfStorage } from "src/utils/localStorage";
 
-export function PaymentOk({ transactionId }) {
+export function PaymentInProcess({ transactionId }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -21,15 +21,11 @@ export function PaymentOk({ transactionId }) {
 
   useEffect(() => {
     dispatch(emptyCart());
-
-    // return () => {
-    //   deleteOfStorage("sendInfo");
-    // };
   }, []);
 
   const mensajeWhatsApp = `¡Hola Hydrotek!
 
-Acabo de hacer una compra en la web.
+Acabo de hacer una compra en la web. Elegi el metodo *EFECTIVO*
 Mi identificador de transacción es: *${transactionId}*.
 
 ${
@@ -51,9 +47,9 @@ ${
     <main className="grid gap-6 text-center">
       <h1>{t("shopping-cart.payment-ok")}</h1>
       <p className="mx-auto w-fit">
-        <i className="ri-checkbox-circle-line text-6xl text-green-600"></i>
+        <i className="ri-time-line text-6xl text-yellow-600"></i>
       </p>
-      <h2>{t("shopping-cart.we-contact-you")}</h2>
+      <h2>{t("shopping-cart.we-contact-you-process")}</h2>
       <i
         className="ri-whatsapp-line icons textGoldGradient mx-auto w-fit text-6xl hover:text-green-600"
         onClick={() => window.open(`https://wa.me/5491170823697?text=${encodeURIComponent(mensajeWhatsApp)}`, "_blank")}

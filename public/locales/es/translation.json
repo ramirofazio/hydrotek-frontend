@@ -75,9 +75,10 @@
     "promotional-code": "codigo de descuento",
     "pay-purchase": "pagar compra",
     "no-products-on-cart": "no se encontraron productos guardados en tu carrito",
-    "payment-ok": "Compra realizada con exito",
-    "payment-failed": "Ocurrio un problema al procesar el pago",
-    "we-contact-you": "te contactaremos por email para despachar el envío"
+    "payment-ok": "¡Compra realizada con exito!",
+    "payment-failed": "Ocurrio un problema al procesar tu compra",
+    "we-contact-you": "Apreta el boton de whatsapp para coordinar el envio/retiro de tus productos",
+    "we-contact-you-process": "Apreta el boton de whatsapp para coordinar el pago y envio/retiro de tus productos"
   },
   "order": {
     "order-data": "datos de la orden",
