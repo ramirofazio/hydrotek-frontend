@@ -78,7 +78,7 @@ export function Products() {
 
                 <TableRow
                   onClick={() => setModal({ prevImgs: images, product: { id, name } })}
-                  content={<i className="ri-image-2-fill text-2xl"></i>}
+                  content={<i className="ri-image-2-fill text-2xl">{images?.length}</i>}
                 />
               </tr>
             );

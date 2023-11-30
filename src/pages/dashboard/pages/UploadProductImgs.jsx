@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Modal } from "src/components";
+import { Modal, Loader } from "src/components";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { APIHydro } from "src/api";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export function UploadProductImgs({ modal, setModal }) {
   const navigate = useNavigate();
+  const [loader, setLoader] = useState(false);
   const [newImgs, setNewImgs] = useState([]);
 
   useEffect(() => {
@@ -51,12 +52,15 @@ export function UploadProductImgs({ modal, setModal }) {
 
   async function deleteDbImg(img) {
     try {
+      setLoader(true);
       const { id, publicId } = img;
       await APIHydro.deleteProductImg({ productImgId: id, publicId });
+      setLoader(false);
       setModal(false);
-      navigate(0);
       toast.success("Se borraron las imgs del producto");
+      navigate(0);
     } catch (e) {
+      setLoader(false);
       console.log(e);
       toast.error("Error al borrar imgs");
     }
@@ -64,18 +68,20 @@ export function UploadProductImgs({ modal, setModal }) {
 
   async function deleteAllProductImg(productId) {
     try {
-      //setLoader
+      setLoader(true);
       await APIHydro.deleteAllProductImg(productId);
+      setLoader(false);
       setModal(false);
       navigate(0);
       toast.success("Se borraron las imgs del producto");
     } catch (e) {
+      setLoader(false);
       console.log(e);
     }
   }
 
   async function uploadImgs(files = [], productId) {
-    //setLoader(true);
+    setLoader(true);
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
     const URL = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
@@ -98,19 +104,21 @@ export function UploadProductImgs({ modal, setModal }) {
         const { secure_url, assetId, public_id } = data;
         await APIHydro.addProductImg({ path: secure_url, assetId, publicId: public_id, productId, index });
       });
+      setLoader(false);
       toast.success(`Se subieron las img correctamente`);
       setModal(false);
       navigate(0);
       /* eslint-enable */
     } catch (err) {
       toast.error("Error al subir fotos");
-      //setLoader(false);
+      setLoader(false);
       console.log(err);
     }
   }
 
   return (
     <Modal panelSize="min-w-full" isOpen={Boolean(modal)} onClose={() => setModal(false)}>
+      {loader && <Loader />}
       <section className="flex flex-col gap-2 ">
         <div className="text-center">
           <span className="my-2 flex items-center justify-between border-b-2 border-b-gold">
@@ -151,7 +159,7 @@ export function UploadProductImgs({ modal, setModal }) {
             <picture className="mt-6 grid grid-cols-8 gap-4 ">
               {Object.values(newImgs)?.map((img, i) => {
                 return (
-                  <div className="flex flex-col justify-between rounded border-2" key={i}>
+                  <div className="flex flex-col justify-between rounded border-2 p-0.5" key={i}>
                     <p className=" overflow-hidden">{img?.originalName}</p>
                     <span className="flex justify-between px-0.5 ">
                       <p className="left-0.5 top-0 mx-0.5 text-3xl font-bold text-white">{i}</p>
