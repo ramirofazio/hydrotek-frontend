@@ -1,5 +1,5 @@
 import { Dialog } from "@headlessui/react";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { APIHydro } from "src/api";
 import { logos } from "src/assets";
 import { Error, Modal } from "src/components";
@@ -14,7 +14,6 @@ const userInfoFields = [
   { name: "lastName", label: "apellido" },
   { name: "email", label: "correo electronico" },
   { name: "dni", label: "DNI" },
-  { name: "phone", label: "numero de telefono" },
 ];
 
 const deliveryInfoFields = [
@@ -31,7 +30,6 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
     lastName: "",
     email: "",
     dni: "",
-    phone: "",
     adress: "",
     city: "",
     province: "",
@@ -42,7 +40,6 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
     lastName: "",
     email: "",
     dni: "",
-    phone: "",
   });
   const [deliveryInfo, setDeliveryInfo] = useState({
     active: false,
@@ -114,13 +111,15 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
     <Modal isOpen={isOpen} onClose={onClose} className={"max-w-2xl"}>
       <main className="my-4 grid  grid-cols-1 place-content-center gap-6 overflow-scroll text-center">
         <img src={logos.hydBlack} className="mx-auto w-20" />
-        <Dialog.Title className="textGoldGradient">completa tus datos</Dialog.Title>
+        <Dialog.Title as="h1" className="textGoldGradient">
+          completa tus datos
+        </Dialog.Title>
         <form onSubmit={handleSubmit} className="grid gap-6">
           {userInfoFields.map(({ name, label }, index) => (
             <Fragment key={index}>
               <Input
                 name={name}
-                type={name === "phone" || name === "dni" ? "number" : "text"}
+                type={name === "dni" ? "number" : "text"}
                 onChange={(e) => handleOnChange(e, "userInfo")}
                 value={userInfo[name]}
                 placeholder={label}
@@ -133,13 +132,23 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
               )}
             </Fragment>
           ))}
-          <p>
-            La opcion predeterminada es <b className="underline">retiro en sucursal.</b> <br />
-            <br /> ¿{deliveryInfo.active ? "No necesitas" : "Necesitas"} envio?
-            <strong className="ml-2" onClick={() => setDeliveryInfo({ ...deliveryInfo, active: !deliveryInfo.active })}>
-              Apreta aca
-            </strong>
-          </p>
+          <div>
+            {!deliveryInfo.active && (
+              <p>
+                La opcion predeterminada es <b className="underline">retiro en sucursal.</b> <br />
+                <br />
+              </p>
+            )}
+            <p>
+              ¿{deliveryInfo.active ? "No necesitas" : "Necesitas"} envio?
+              <strong
+                className="ml-2"
+                onClick={() => setDeliveryInfo({ ...deliveryInfo, active: !deliveryInfo.active })}
+              >
+                Apreta aca
+              </strong>
+            </p>
+          </div>
           {deliveryInfo.active &&
             deliveryInfoFields.map(({ name, label }, index) => (
               <Fragment key={index}>

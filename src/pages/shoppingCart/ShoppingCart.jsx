@@ -1,6 +1,5 @@
 import { CartArticleCard } from "src/components/cards";
 import { useTranslation } from "react-i18next";
-import { Input } from "src/components/inputs";
 import { useSelector } from "react-redux";
 import { Button } from "src/components/buttons";
 import { useNavigate, useSearchParams } from "react-router-dom";
