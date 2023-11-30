@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { TableRow } from "./index";
 
@@ -11,11 +11,7 @@ const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicad
 export function Products() {
   const navigate = useNavigate();
   const { products } = useLoaderData();
-  console.log(products);
   const [modal, setModal] = useState(false);
-  useEffect(() => {
-    console.log(modal);
-  }, [modal]);
 
   async function handleAddFeaturedProduct(productId) {
     try {

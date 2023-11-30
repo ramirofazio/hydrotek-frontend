@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Modal, Loader } from "src/components";
 import { toast } from "react-hot-toast";
 import axios from "axios";
@@ -9,11 +9,6 @@ export function UploadProductImgs({ modal, setModal }) {
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const [newImgs, setNewImgs] = useState([]);
-
-  useEffect(() => {
-    console.log(modal);
-    console.log(newImgs);
-  }, [newImgs]);
 
   const handleImgs = ({ target }) => {
     const files = target.files;
@@ -99,16 +94,15 @@ export function UploadProductImgs({ modal, setModal }) {
     try {
       const responses = await Promise.all(promises);
       responses.forEach(async ({ data }, index) => {
-        console.log(data);
         /* eslint-disable */
         const { secure_url, assetId, public_id } = data;
         await APIHydro.addProductImg({ path: secure_url, assetId, publicId: public_id, productId, index });
+        /* eslint-enable */
       });
       setLoader(false);
       toast.success(`Se subieron las img correctamente`);
       setModal(false);
       navigate(0);
-      /* eslint-enable */
     } catch (err) {
       toast.error("Error al subir fotos");
       setLoader(false);
