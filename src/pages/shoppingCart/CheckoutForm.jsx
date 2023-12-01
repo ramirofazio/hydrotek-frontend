@@ -84,8 +84,7 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
 
     if (Object.values(errs).length === 0 && Object.values(userInfo).every((p) => p !== "")) {
       if (deliveryInfo.active && Object.values(deliveryInfo).every((p) => p !== "")) {
-        //todo: En algun momento habria que guardar esta info si es un user loggeado
-        saveInStorage("deliveryInfo", deliveryInfo);
+        saveInStorage("deliveryInfo", { ...deliveryInfo, active: false });
       }
       setLoader(true);
       onClose();

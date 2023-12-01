@@ -11,6 +11,7 @@ import { error } from "src/components/notifications";
 import getCheckout from "./checkouts";
 import CheckoutForm from "./CheckoutForm";
 import { PaymentInProcess } from "./PaymentInProcess";
+import { saveInStorage } from "src/utils/localStorage";
 
 export default function ShoppingCart() {
   const navigate = useNavigate();
@@ -41,12 +42,14 @@ export default function ShoppingCart() {
       }));
       getCheckout(id, dni, cleanProducts).then((res) => {
         if (res) {
+          //? Guardo products para recuperar el paymentModals y poder crear la orden
           window.location.replace(res.data);
         } else {
           setLoader(false);
           setCheckoutFormModal(true);
           setCleanProducts(cleanProducts);
         }
+        saveInStorage("order", { totalPrice, items: arrProducts });
       });
     } else {
       error("No hay productos en el carrito");

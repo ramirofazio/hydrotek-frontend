@@ -18,8 +18,9 @@ export function PaymentInProcess({ transactionId, setLoader }) {
   const session = useSelector((s) => s.user.session);
   const profile = useSelector((s) => s.user.profile);
   const { city, address, province, postalCode } = profile;
-  const { id, name } = session;
+  const { id, name, email } = session;
   let mensajeWhatsApp = "";
+  const order = getOfStorage("order");
 
   const [realtimeCorrection, setRealtimeCorrection] = useState(false);
   const [deliveryInfo, setDeliveryInfo] = useState(
@@ -39,13 +40,23 @@ export function PaymentInProcess({ transactionId, setLoader }) {
   });
 
   useEffect(() => {
-    mensajeWhatsApp = `¡Hola Hydrotek! Soy ${name || ""}.
+    dispatch(emptyCart());
+
+    return () => {
+      deleteOfStorage("deliveryInfo");
+      deleteOfStorage("order");
+    };
+  }, []);
+
+  useEffect(() => {
+    mensajeWhatsApp = `¡Hola Hydrotek!${(name && ` Soy ${name}`) || ""}.
 
 Acabo de hacer una compra en la web. Elegi el metodo *EFECTIVO*
 Mi identificador de transacción es: *${transactionId}*.
 
 ${
-  deliveryInfo.active
+  (!deliveryInfo.active && !id && deliveryInfo.address !== "") ||
+  (id && name && deliveryInfo.active && Boolean(isValidSendInfo(deliveryInfo)))
     ? `Estos son mis datos de envío:
 
 *- DIRECCION:* ${deliveryInfo.address}
@@ -57,7 +68,20 @@ ${
 *- CODIGO POSTAL:* ${deliveryInfo.postalCode}
 `
     : "¡Necesito coordinar el retiro de mis productos!"
-}`;
+}
+
+
+${order.items && "*- PRODUCTOS:*"}
+
+${
+  order.items &&
+  order.items
+    .map((item) => {
+      return `- ${item.name.toUpperCase()} x${item.quantity}`;
+    })
+    .join("\n")
+}
+`;
   });
 
   function handleOnChange(e) {
@@ -83,36 +107,35 @@ ${
       .catch((err) => console.error("Error al copiar al portapapeles", err));
   };
 
-  useEffect(() => {
-    dispatch(emptyCart());
-
-    return () => {
-      deleteOfStorage("deliveryInfo");
-    };
-  }, []);
-
   function handleSubmit(e) {
     e.preventDefault();
     setRealtimeCorrection(true);
     if (deliveryInfo.active) setErrs(isValidSendInfo(deliveryInfo));
+
     if (Object.values(errs).length === 0) {
       setLoader(true);
       try {
         APIHydro.saveDeliveryInfo({ id, ...deliveryInfo })
           .then((res) => {
             if (res.status === 200) {
-              navigate("/", { replace: true });
               success("Datos de envio guardados con exito");
-              window.open(`https://wa.me/5491170823697?text=${encodeURIComponent(mensajeWhatsApp)}`, "_blank");
+              APIHydro.createOrder({ id, email, items: order }).then((res) => {
+                if (res.status === 201) {
+                  success("Orden creada y guardada con exito");
+                }
+              });
             }
           })
           .finally(() => setLoader(false));
       } catch (e) {
-        error("hubo un problema guardando tus datos de envio");
+        error("hubo un problema");
         console.log(e);
         setLoader(false);
       }
     }
+
+    navigate("/", { replace: true });
+    window.open(`https://wa.me/5491170823697?text=${encodeURIComponent(mensajeWhatsApp)}`, "_blank");
   }
 
   return (
@@ -126,9 +149,7 @@ ${
           <h2>{t("shopping-cart.we-contact-you-process")}</h2>
           <i
             className="ri-whatsapp-line icons textGoldGradient mx-auto w-fit text-6xl hover:text-green-600"
-            onClick={() =>
-              window.open(`https://wa.me/5491170823697?text=${encodeURIComponent(mensajeWhatsApp)}`, "_blank")
-            }
+            onClick={handleSubmit}
           />
           <h2 className="textGoldGradient">
             Identificador de transacción: <br />
@@ -136,21 +157,23 @@ ${
           </h2>
         </>
       )}
-      <div>
-        {!deliveryInfo.active && (
+      {id && name && (
+        <div>
+          {!deliveryInfo.active && (
+            <p className="text-[14px]">
+              La opcion predeterminada es <br /> <b className="underline">retiro en sucursal.</b> <br />
+              <br />
+            </p>
+          )}
           <p className="text-[14px]">
-            La opcion predeterminada es <br /> <b className="underline">retiro en sucursal.</b> <br />
-            <br />
+            ¿{deliveryInfo.active ? "No necesitas" : "Necesitas"} envio?
+            <strong className="ml-2" onClick={() => setDeliveryInfo({ ...deliveryInfo, active: !deliveryInfo.active })}>
+              Apreta aca
+            </strong>
           </p>
-        )}
-        <p className="text-[14px]">
-          ¿{deliveryInfo.active ? "No necesitas" : "Necesitas"} envio?
-          <strong className="ml-2" onClick={() => setDeliveryInfo({ ...deliveryInfo, active: !deliveryInfo.active })}>
-            Apreta aca
-          </strong>
-        </p>
-      </div>
-      {deliveryInfo.active && (
+        </div>
+      )}
+      {id && name && deliveryInfo.active && (
         <form onSubmit={handleSubmit} className="grid gap-6">
           <h2 className="textGoldGradient font-bold">completa tus datos</h2>
           <DeliveryInfoForm
@@ -173,7 +196,7 @@ ${
           )}
           <Button
             text={"continuar"}
-            onClick={handleSubmit}
+            onClick={(e) => handleSubmit(e)}
             className={"mx-20"}
             disabled={deliveryInfo.active && !Object.values(deliveryInfo).every((p) => p !== "")}
           />

@@ -6,8 +6,9 @@ export default async function getCheckout(id, dni, cleanProducts) {
     if (id && dni) {
       return APIHydro.userWithDniCheckout({ userId: id, identifier: dni, items: cleanProducts });
     } else if (id && !dni) {
+      //todo: Hacer modal con input mas lindo y mas validado
       const newDni = parseInt(prompt("¡Necesitamos tu DNI para continuar con la compra!"), 10);
-      if (isNaN(newDni) || newDni < 10000000 || newDni > 9999999999) {
+      if (isNaN(newDni) || newDni < 8 || newDni > 10) {
         error("DNI no válido");
         throw new Error("DNI no válido: ", newDni);
       }
