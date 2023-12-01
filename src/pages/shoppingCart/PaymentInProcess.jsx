@@ -18,7 +18,7 @@ export function PaymentInProcess({ transactionId, setLoader }) {
   const session = useSelector((s) => s.user.session);
   const profile = useSelector((s) => s.user.profile);
   const { city, address, province, postalCode } = profile;
-  const { id, name, email } = session;
+  const { id, name } = session;
   let mensajeWhatsApp = "";
   const order = getOfStorage("order");
 
@@ -112,14 +112,14 @@ ${
     setRealtimeCorrection(true);
     if (deliveryInfo.active) setErrs(isValidSendInfo(deliveryInfo));
 
-    if (Object.values(errs).length === 0) {
+    if ((deliveryInfo.active && Object.values(errs).length === 0) || (id && name)) {
       setLoader(true);
       try {
         APIHydro.saveDeliveryInfo({ id, ...deliveryInfo })
           .then((res) => {
             if (res.status === 200) {
               success("Datos de envio guardados con exito");
-              APIHydro.createOrder({ id, email, items: order }).then((res) => {
+              APIHydro.createOrder({ id, totalPrice: order.totalPrice, items: [...order.items] }).then((res) => {
                 if (res.status === 201) {
                   success("Orden creada y guardada con exito");
                 }
