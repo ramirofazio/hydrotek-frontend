@@ -16,6 +16,9 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  toggleActiveProduct: (id) => {
+    return apiHydro.patch(`${route.PRODUCT}/toggle-active?id=${id}`);
+  },
   markOrderAsPay: (fresaId) => {
     return apiHydro.patch(`${route.USER}/mark-order-as-pay?fresaId=${fresaId}`);
   },

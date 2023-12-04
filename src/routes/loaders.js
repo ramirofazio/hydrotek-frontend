@@ -52,7 +52,9 @@ export async function getLastUsdPrice() {
 }
 
 export async function featuredProductsLoader() {
-  return (await APIHydro.getFeaturedProducts()).data;
+  const products = (await APIHydro.getFeaturedProducts()).data;
+  const cleanProducts = products.filter((p) => p.published === true);
+  return cleanProducts;
 }
 
 export async function ordersLoader(userId) {

@@ -16,7 +16,20 @@ export function Products() {
     try {
       await APIHydro.addFeaturedProduct(productId).then((res) => {
         if (res.status === 200) {
-          success(`${productName} agregado a destacados`);
+          success(`${productName} modificado`);
+          navigate("/admin/dashboard");
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function handleToggleActive(productId, productName) {
+    try {
+      await APIHydro.toggleActiveProduct(productId).then((res) => {
+        if (res.status === 200) {
+          success(`${productName} modificado`);
           navigate("/admin/dashboard");
         }
       });
@@ -58,9 +71,10 @@ export function Products() {
                 <TableRow
                   content={
                     <i
-                      className={`ri-${published ? "check" : "close"}-fill text-2xl text-${
+                      className={`ri-${published ? "check" : "close"}-fill icons text-2xl text-${
                         published ? "green" : "red"
                       }-500`}
+                      onClick={() => handleToggleActive(id, name)}
                     />
                   }
                 />
