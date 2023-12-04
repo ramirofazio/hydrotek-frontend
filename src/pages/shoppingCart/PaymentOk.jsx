@@ -10,7 +10,7 @@ import { Button } from "src/components/buttons";
 import { APIHydro } from "src/api";
 import { useNavigate } from "react-router-dom";
 
-export function PaymentOk({ transactionId, setLoader }) {
+export function PaymentOk({ transactionId, status, setLoader }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -111,26 +111,32 @@ ${
     setRealtimeCorrection(true);
     if (deliveryInfo.active) setErrs(isValidSendInfo(deliveryInfo));
 
-    if ((deliveryInfo.active && Object.values(errs).length === 0) || (id && name)) {
-      setLoader(true);
-      try {
-        APIHydro.saveDeliveryInfo({ id, ...deliveryInfo })
-          .then((res) => {
-            if (res.status === 200) {
-              success("Datos de envio guardados con exito");
-              APIHydro.createOrder({ id, totalPrice: order.totalPrice, items: [...order.items] }).then((res) => {
-                if (res.status === 201) {
-                  success("Orden creada y guardada con exito");
-                }
-              });
-            }
-          })
-          .finally(() => setLoader(false));
-      } catch (e) {
-        error("hubo un problema");
-        console.log(e);
-        setLoader(false);
+    try {
+      if (id && name && order) {
+        APIHydro.createOrder({
+          id,
+          totalPrice: order.totalPrice,
+          fresaId: transactionId,
+          status: status,
+          items: [...order.items],
+        }).then((res) => {
+          if (res.status === 201) {
+            success("Orden creada y guardada con exito");
+          }
+        });
       }
+
+      if (deliveryInfo.active && Object.values(errs).length === 0 && id) {
+        APIHydro.saveDeliveryInfo({ id, ...deliveryInfo }).then((res) => {
+          if (res.status === 200) {
+            success("Datos de envio guardados con exito");
+          }
+        });
+      }
+    } catch (e) {
+      error("hubo un problema");
+      console.log(e);
+      setLoader(false);
     }
 
     navigate("/", { replace: true });

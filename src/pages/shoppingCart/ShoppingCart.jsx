@@ -69,8 +69,8 @@ export default function ShoppingCart() {
       )}
       {status && (
         <Modal isOpen={true} onClose={() => ""} payModal={true} panelSize={"!max-w-xl"}>
-          {status === "200" && <PaymentOk transactionId={transactionId} setLoader={setLoader} />}
-          {status === "2" && <PaymentInProcess transactionId={transactionId} setLoader={setLoader} />}
+          {status === "200" && <PaymentOk transactionId={transactionId} status={status} setLoader={setLoader} />}
+          {status === "2" && <PaymentInProcess transactionId={transactionId} status={status} setLoader={setLoader} />}
           {status === "0" && <PaymentFailed />}
         </Modal>
       )}
