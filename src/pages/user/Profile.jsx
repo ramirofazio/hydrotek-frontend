@@ -1,10 +1,10 @@
 import { borders } from "src/assets";
 import { Header, ButtonList, MyBuys, MyData, MySavedPosts } from "./";
 import { Avatar } from "src/components/user";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { deleteOfStorage, getOfStorage } from "src/utils/localStorage";
+import { getOfStorage } from "src/utils/localStorage";
 
 export function Profile() {
   const { t } = useTranslation();
