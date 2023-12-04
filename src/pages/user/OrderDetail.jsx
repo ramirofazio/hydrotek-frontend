@@ -1,15 +1,13 @@
 import { t } from "i18next";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { logos } from "src/assets";
 import { RoundedGoldGradientBorder } from "src/components/border";
 import { IconButtonWithBgGold } from "src/components/buttons";
 
 export function OrderDetail() {
   const navigate = useNavigate();
-  const orders = useSelector((s) => s.user.profile.orders);
-  let { orderId } = useParams();
-  const thisOrder = orders.find((o) => o.id === orderId);
+  const { fresaId, date, totalPrice, status, products } = useLoaderData();
 
   useEffect(() => {
     window.scrollBy(0, -window.innerHeight);
@@ -18,10 +16,22 @@ export function OrderDetail() {
   return (
     <main className="mx-8 grid gap-6 py-6 lg:mx-10 xl:mx-20">
       <IconButtonWithBgGold icon={"ri-arrow-left-s-line"} onClick={() => navigate(-1)} />
-      <h1 className="text-center text-2xl leading-6 lg:text-left">
-        {t("order.resume")} DE LA <br className="lg:hidden" />
-        <span className="textGoldGradient"> ORDEN #{orderId}</span>
-      </h1>
+      <div className="flex flex-col gap-10 lg:flex-row">
+        <h1 className="text-center text-2xl leading-6 lg:text-left">
+          {t("order.resume")} DE LA <br className="lg:hidden" />
+          <span className="textGoldGradient"> ORDEN #{fresaId}</span>
+        </h1>
+        <h1 className="text-center text-2xl leading-6 lg:text-left">
+          FECHA DE COMPRA <br className="lg:hidden" />
+          <span className="textGoldGradient">{new Date(date).toLocaleDateString()}</span>
+        </h1>
+        <h1 className="text-center text-2xl leading-6 lg:text-left">
+          ESTADO <br className="lg:hidden" />
+          <span className={`${status !== 200 ? "text-red-500" : "textGoldGradient"}`}>
+            {status === 200 ? "pagado" : "a pagar"}
+          </span>
+        </h1>
+      </div>
       <div className="border-b-2 border-gold" />
       <div className="lg:flex lg:justify-between">
         <h1 className="textGoldGradient lg:flex-1">{t("common.products")}</h1>
@@ -29,25 +39,33 @@ export function OrderDetail() {
         <h1 className="textGoldGradient hidden lg:mx-10 lg:inline lg:w-72 lg:text-right">{t("common.unitPrice")}</h1>
         <h1 className="textGoldGradient hidden lg:mx-10 lg:inline lg:w-72 lg:text-right">{t("common.total")}</h1>
       </div>
-      {thisOrder.products.map(({ img, productName, qty, unitPrice }, index) => (
+      {products.map(({ product: { images, name }, quantity, price }, index) => (
         <>
           <section key={index} className="grid gap-4 lg:flex lg:items-center lg:justify-between">
             <RoundedGoldGradientBorder width={"w-32"}>
-              <img src={img} className="aspect-square rounded-full object-contain" />
+              <img src={images[0]?.path || logos.hydBlack} className="aspect-square rounded-full object-contain" />
             </RoundedGoldGradientBorder>
-            <h1 className="lg:flex-1">{productName}</h1>
+            <h1 className="lg:flex-1">{name}</h1>
             <h1 className="lg:mx-8 lg:w-72 lg:text-right">
               <span className="textGoldGradient lg:hidden ">{t("common.qty")}</span>
               <br className="lg:hidden" />
-              {qty}
+              {quantity}
             </h1>
             <h1 className="lg:mx-8 lg:w-72 lg:text-right">
               <span className="textGoldGradient lg:hidden">{t("common.unitPrice")}</span>
-              <br className="lg:hidden" />$ {unitPrice.toLocaleString()}
+              <br className="lg:hidden" />
+              {price.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS",
+              })}
             </h1>
             <h1 className="lg:mx-8 lg:w-72  lg:text-right">
               <span className="textGoldGradient lg:hidden">{t("common.total")}</span>
-              <br className="lg:hidden" />$ {(qty * unitPrice).toLocaleString()}
+              <br className="lg:hidden" />
+              {totalPrice.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS",
+              })}
             </h1>
             <div className="border-b-2 border-gold" />
             {/* <h1 className="mx-10 text-center text-2xl leading-6">{t("order.comment")}</h1>

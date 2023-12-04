@@ -16,6 +16,24 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  toggleActiveProduct: (id) => {
+    return apiHydro.patch(`${route.PRODUCT}/toggle-active?id=${id}`);
+  },
+  markOrderAsPay: (fresaId) => {
+    return apiHydro.patch(`${route.USER}/mark-order-as-pay?fresaId=${fresaId}`);
+  },
+  getAllOrders: () => {
+    return apiHydro.get(`${route.USER}/get-all-orders`);
+  },
+  getOneOrder: (id) => {
+    return apiHydro.get(`${route.USER}/get-one-order?id=${id}`);
+  },
+  getUserOrders: (id) => {
+    return apiHydro.get(`${route.USER}/orders?id=${id}`);
+  },
+  createOrder: (data) => {
+    return apiHydro.post(`${route.CART}/create-new-order`, data);
+  },
   saveDeliveryInfo: (data) => {
     return apiHydro.patch(`${route.USER}/save-deliveryInfo`, data);
   },

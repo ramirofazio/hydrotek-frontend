@@ -36,7 +36,7 @@ export function Dashboard() {
     if (text === "salir") {
       window.close() || window.location.replace("/");
       deleteOfStorage("selected");
-    } else if (text === "blog" || text === "ordenes") {
+    } else if (text === "blog") {
       setShow(true);
     } else {
       setSelected(text);

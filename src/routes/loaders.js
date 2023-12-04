@@ -7,7 +7,6 @@ export async function autoLoginLoader() {
     try {
       const userInfo = await APIHydro.loginByJWT({ accessToken: token });
       saveInStorage("accessToken", userInfo.data.accessToken);
-      console.log(userInfo);
       return { userInfo: userInfo.data };
     } catch (e) {
       deleteOfStorage("accessToken");
@@ -53,5 +52,19 @@ export async function getLastUsdPrice() {
 }
 
 export async function featuredProductsLoader() {
-  return (await APIHydro.getFeaturedProducts()).data;
+  const products = (await APIHydro.getFeaturedProducts()).data;
+  const cleanProducts = products.filter((p) => p.published === true);
+  return cleanProducts;
+}
+
+export async function ordersLoader(userId) {
+  return (await APIHydro.getUserOrders(userId)).data;
+}
+
+export async function oneOrderLoader(orderId) {
+  return (await APIHydro.getOneOrder(orderId)).data;
+}
+
+export async function getAllOrders() {
+  return (await APIHydro.getAllOrders()).data;
 }

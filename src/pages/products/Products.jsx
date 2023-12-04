@@ -9,6 +9,8 @@ export default function Products() {
   const data = useLoaderData();
   let { products, quantity } = data;
 
+  const cleanProducts = products.filter((p) => p.published === true);
+
   return (
     <div className="mx-auto w-[90%]">
       <div>
@@ -18,8 +20,8 @@ export default function Products() {
 */}
       </div>
       <div className="content mx-auto mt-10  grid place-items-center gap-4  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {products?.length ? (
-          products.map((p, i) => (
+        {cleanProducts?.length ? (
+          cleanProducts.map((p, i) => (
             <ProductCard
               id={p.id}
               key={i}
