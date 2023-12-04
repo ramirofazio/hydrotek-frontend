@@ -11,6 +11,8 @@ import {
   allUsersLoader,
   getLastUsdPrice,
   featuredProductsLoader,
+  ordersLoader,
+  oneOrderLoader,
 } from "./loaders";
 import DefaultError from "pages/error/Default.jsx";
 import Products from "pages/products/Products.jsx";
@@ -41,7 +43,8 @@ export function Routes() {
         {
           path: "/",
           element: <Landing />,
-          loader: async () => { // * Rompera hasta mergear PR del back
+          loader: async () => {
+            // * Rompera hasta mergear PR del back
             return featuredProductsLoader();
           },
           index: true,
@@ -118,24 +121,31 @@ export function Routes() {
           children: [
             {
               path: "/user/profile/:userId",
-              loader: async ({ params }) => {
-                let dictionary = {};
-                const { data } = await APIHydro.getSavedPosts(params.userId);
-                const posts = data?.map((p) => {
-                  dictionary[p.postId] = p.postId;
-                  return p.post;
-                });
-                return {
-                  posts,
-                  dictionary,
-                };
+              //   loader: async ({ params }) => {
+              //     let dictionary = {};
+              //     const { data } = await APIHydro.getSavedPosts(params.userId);
+              //     const posts = data?.map((p) => {
+              //       dictionary[p.postId] = p.postId;
+              //       return p.post;
+              //     });
+              //     return {
+              //       posts,
+              //       dictionary,
+              //     };
+              //   },
+              //! Desactivo porque los post no estan integrados todavia
+              loader: ({ params }) => {
+                return ordersLoader(params.userId);
               },
               element: <Profile />,
               index: true,
             },
             {
-              path: "order/:orderId",
+              path: "/user/profile/:userId/order/:orderId",
               element: <OrderDetail />,
+              loader: ({ params }) => {
+                return oneOrderLoader(params.orderId);
+              },
             },
           ],
         },

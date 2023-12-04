@@ -16,6 +16,12 @@ const route = {
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  getOneOrder: (id) => {
+    return apiHydro.get(`${route.USER}/get-one-order?id=${id}`);
+  },
+  getUserOrders: (id) => {
+    return apiHydro.get(`${route.USER}/orders?id=${id}`);
+  },
   createOrder: (data) => {
     return apiHydro.post(`${route.CART}/create-new-order`, data);
   },

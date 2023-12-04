@@ -54,3 +54,11 @@ export async function getLastUsdPrice() {
 export async function featuredProductsLoader() {
   return (await APIHydro.getFeaturedProducts()).data;
 }
+
+export async function ordersLoader(userId) {
+  return (await APIHydro.getUserOrders(userId)).data;
+}
+
+export async function oneOrderLoader(orderId) {
+  return (await APIHydro.getOneOrder(orderId)).data;
+}

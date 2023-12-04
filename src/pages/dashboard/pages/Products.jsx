@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { TableRow } from "./index";
-
 import { APIHydro } from "src/api";
-
 import { UploadProductImgs } from "./UploadProductImgs";
 import { success } from "src/components/notifications";
 

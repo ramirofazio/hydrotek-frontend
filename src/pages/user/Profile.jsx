@@ -25,12 +25,6 @@ export function Profile() {
   });
   const selectedSection = componentMapping[selectedBtn];
 
-  useEffect(() => {
-    return () => {
-      deleteOfStorage("selectedBtn");
-    };
-  }, []);
-
   return (
     <main className="grid h-screen gap-10 lg:my-4 lg:grid-cols-2 xl:mx-20">
       <Header t={t} />
