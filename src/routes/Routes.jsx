@@ -13,6 +13,7 @@ import {
   featuredProductsLoader,
   ordersLoader,
   oneOrderLoader,
+  getAllOrders,
 } from "./loaders";
 import DefaultError from "pages/error/Default.jsx";
 import Products from "pages/products/Products.jsx";
@@ -167,12 +168,13 @@ export function Routes() {
               path: "/admin/dashboard",
               element: <Dashboard />,
               loader: async () => {
-                const [products, users, lastUsdPrice] = await Promise.all([
+                const [products, users, lastUsdPrice, allOrders] = await Promise.all([
                   allProductsLoader(), // TODO Refactorizar en childrens de la ruta "/admin/dashboard" para un uso mas efectivo
                   allUsersLoader(),
                   getLastUsdPrice(),
+                  getAllOrders(),
                 ]);
-                return { products, users, lastUsdPrice };
+                return { products, users, lastUsdPrice, allOrders };
               },
               index: true,
             },

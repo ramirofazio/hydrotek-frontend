@@ -62,3 +62,7 @@ export async function ordersLoader(userId) {
 export async function oneOrderLoader(orderId) {
   return (await APIHydro.getOneOrder(orderId)).data;
 }
+
+export async function getAllOrders() {
+  return (await APIHydro.getAllOrders()).data;
+}
