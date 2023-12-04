@@ -10,7 +10,7 @@ import { Button } from "src/components/buttons";
 import { APIHydro } from "src/api";
 import { useNavigate } from "react-router-dom";
 
-export function PaymentInProcess({ transactionId, setLoader }) {
+export function PaymentInProcess({ transactionId, status, setLoader }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
