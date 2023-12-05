@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { APIHydro } from "src/api";
 import { TableRow } from "./index";
 import { success } from "src/components/notifications";
@@ -7,9 +7,8 @@ import { success } from "src/components/notifications";
 const colsTitles = ["ultima Actualizacion", "Cant. Productos", "actualizar"];
 
 export function TFacturaProductsManager({ setLoader }) {
+  const navigate = useNavigate();
   const { products } = useLoaderData();
-
-  const [thisProducts, setThisProducts] = useState({ date: products[0]?.updated, qty: products.length }); //? Agarro la propiedad 'updated' del primer producto
 
   const handleManualProductUpdate = async () => {
     const res = confirm(
@@ -23,8 +22,8 @@ export function TFacturaProductsManager({ setLoader }) {
       const res = await APIHydro.manualTFacturaProductsUpdate();
       if (res) {
         success("Productos actualizados");
-        setThisProducts({ date: res.data[0].updated, qty: res.data.length });
         setLoader(false);
+        navigate();
       }
     } catch (e) {
       console.log(e);
@@ -53,8 +52,8 @@ export function TFacturaProductsManager({ setLoader }) {
           </thead>
           <tbody>
             <tr>
-              <TableRow content={`${thisProducts.date} HS`} />
-              <TableRow content={`${thisProducts.qty} Productos`} />
+              <TableRow content={`${products[0]?.updated} HS`} />
+              <TableRow content={`${products.length} Productos`} />
               <TableRow
                 content={
                   <i className={"icons ri-refresh-fill text-3xl text-red-500"} onClick={handleManualProductUpdate} />

@@ -3,7 +3,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { TableRow } from "./index";
 import { APIHydro } from "src/api";
 import { UploadProductImgs } from "./UploadProductImgs";
-import { success } from "src/components/notifications";
+import { error, success } from "src/components/notifications";
 
 const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicado", "destacado", "subir imagen"];
 
@@ -12,7 +12,9 @@ export function Products() {
   const { products } = useLoaderData();
   const [modal, setModal] = useState(false);
 
-  async function handleAddFeaturedProduct(productId, productName) {
+  async function handleAddFeaturedProduct(productId, productName, productPrice) {
+    if (!productPrice) return error("No podes activar un producto sin precio");
+
     try {
       await APIHydro.addFeaturedProduct(productId).then((res) => {
         if (res.status === 200) {
@@ -25,7 +27,9 @@ export function Products() {
     }
   }
 
-  async function handleToggleActive(productId, productName) {
+  async function handleToggleActive(productId, productName, productPrice) {
+    if (!productPrice) return error("No podes activar un producto sin precio");
+
     try {
       await APIHydro.toggleActiveProduct(productId).then((res) => {
         if (res.status === 200) {
@@ -65,7 +69,7 @@ export function Products() {
                     style: "currency",
                     currency: "ARS",
                   })}
-                  style="text-left"
+                  style={`text-left ${arsPrice === 0 && "bg-red-500/20"}`}
                 />
                 <TableRow content={updated} />
                 <TableRow
@@ -74,7 +78,7 @@ export function Products() {
                       className={`ri-${published ? "check" : "close"}-fill icons text-2xl text-${
                         published ? "green" : "red"
                       }-500`}
-                      onClick={() => handleToggleActive(id, name)}
+                      onClick={() => handleToggleActive(id, name, arsPrice)}
                     />
                   }
                 />
@@ -84,7 +88,7 @@ export function Products() {
                       className={`ri-${featured ? "star-s-fill" : "star-s-line"} icons text-2xl text${
                         featured ? "GoldGradient" : "-red-500"
                       }`}
-                      onClick={() => handleAddFeaturedProduct(id, name)}
+                      onClick={() => handleAddFeaturedProduct(id, name, arsPrice)}
                     />
                   }
                 />
