@@ -169,7 +169,7 @@ export const APIHydro = {
     return apiHydro.post(`/${route.CLOUDINARY}/img/deleteOne`, { productImgId, publicId });
   },
   updateCategory: (productId, categoryId) => {
-    return apiHydro.put(`/${route.PRODUCT}/updateCategoty`, { productId, categoryId });
+    return apiHydro.put(`/${route.PRODUCT}/updateType`, { productId, categoryId: parseInt(categoryId) });
   }
 };
 

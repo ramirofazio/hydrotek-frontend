@@ -4,6 +4,7 @@ import { TableRow } from "./index";
 import { APIHydro } from "src/api";
 import { UploadProductImgs } from "./UploadProductImgs";
 import { success } from "src/components/notifications";
+import { categories } from "src/utils";
 
 const colsTitles = [
   "id",
@@ -14,14 +15,6 @@ const colsTitles = [
   "destacado",
   "subir imagen",
   "categoría",
-];
-
-const categoryOpts = [
-  { id: 0, name: "Elija categoría" },
-  { id: 1, name: "sistemas" },
-  { id: 2, name: "insumos" },
-  { id: 3, name: "fertilizantes" },
-  { id: 4, name: "aditivos" },
 ];
 
 export function Products() {
@@ -56,19 +49,19 @@ export function Products() {
     }
   }
 
-  async function handleCategory(productId, categoryId) {
+  async function handleCategory(e, productId, productName) {
     try {
-      await APIHydro.updateCategory(productId, categoryId).then((res) => {
+      await APIHydro.updateCategory(productId, e.target.value).then((res) => {
         if (res.status === 200) {
-          //success(`${productName} modificado`);
-          navigate("/admin/dashboard");
+          success(`se modifico ${productName}`);
+          //navigate("/admin/dashboard");
         }
       });
     } catch (e) {
       console.log(e);
     }
   }
-  const es = true
+
   return (
     <main className="w-full">
       <UploadProductImgs modal={modal} setModal={setModal} />
@@ -127,25 +120,17 @@ export function Products() {
 
                 <TableRow
                   content={
-                    <select onChange={handleCategory} className="text-black">
-                      <option >cacatua</option>
-                      <option >yutboman</option>
-                      <option selected={ es ? true : false} className={`text-black ${ es ? 'selected' : ""}`}>
-                        zaracatunga
-                      </option>
-                      {/* {categoryOpts.map((c, i) => {
-                        console.log(c.id);
-                        return (
-                          <option
-                            className={`text-black ${c.id === 2 ? "selected" : ""}`}
-                            id={c.id}
-                            value={c.id}
-                            key={i}
-                          >
-                            {c.name}
-                          </option>
-                        );
-                      })} */}
+                    <select onChange={(e) => handleCategory(e, id, name)} className="text-black">
+                      <option value={0}>Elija categoría</option>
+                      {categories.map((c, i) => (
+                        <option
+                          selected={c.id && c.id === typeId ? true : false}
+                          key={i}
+                          value={c.id}
+                        >
+                          {c.name}
+                        </option>
+                      ))}
                     </select>
                   }
                 />
