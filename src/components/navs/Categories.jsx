@@ -25,9 +25,8 @@ export function Categories() {
           <Listbox.Options className="relative inset-0 top-1 z-40 flex flex-col place-items-center gap-2 rounded-sm bg-black/60 py-2 text-sm text-white/80  lg:absolute lg:inset-auto lg:mt-0.5">
             {categories.map((c, i) => (
               <NavLink
-                to="/products/0"
+                to={`/products/type=${c.id}`}
                 key={i}
-                //Eg de filtrado onClick={dispatch(setCategory(c.value))*/}
               >
                 <Listbox.Option value={c.value} className="p-2 px-3 hover:text-white">
                   {c.name}

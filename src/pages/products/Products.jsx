@@ -8,7 +8,7 @@ export default function Products() {
   const { t } = useTranslation();
   const data = useLoaderData();
   let { products, quantity } = data;
-
+  console.log(data);
   const cleanProducts = products.filter((p) => p.published === true);
 
   return (

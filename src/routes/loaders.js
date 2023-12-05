@@ -31,6 +31,15 @@ export async function productsLoader(pag) {
   return products.data;
 }
 
+export async function filteredProductsLoader(typeId) {
+  const products = await APIHydro.getFilteredProducts(typeId);
+  console.log("loader", products.data);
+  return {
+    products: products.data,
+    quantity: products.data.length,
+  };
+}
+
 export async function productDetailLoader({ params }) {
   const product = await APIHydro.getProductDetail(params.id);
   return product.data;

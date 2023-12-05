@@ -14,6 +14,7 @@ import {
   ordersLoader,
   oneOrderLoader,
   getAllOrders,
+  filteredProductsLoader,
 } from "./loaders";
 import DefaultError from "pages/error/Default.jsx";
 import Products from "pages/products/Products.jsx";
@@ -53,7 +54,14 @@ export function Routes() {
         {
           path: "/products/:pag",
           loader: async ({ params }) => {
-            return productsLoader(params.pag);
+            console.log(params);
+            if (params.pag.length < 4) {
+              return productsLoader(params.pag);
+            } else { // ? si entra en este if es por que se lo redirigio desde Categories.jsx
+              const query = params.pag.split("=");
+              console.log(query);
+              return filteredProductsLoader(query[1]);
+            }
           },
           element: <Products />,
         },

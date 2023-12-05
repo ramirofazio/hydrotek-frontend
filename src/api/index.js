@@ -170,6 +170,9 @@ export const APIHydro = {
   },
   updateCategory: (productId, categoryId) => {
     return apiHydro.put(`/${route.PRODUCT}/updateType`, { productId, categoryId: parseInt(categoryId) });
+  },
+  getFilteredProducts: (typeId) =>  {
+    return apiHydro.get(`${route.PRODUCT}/filter/${typeId}`);
   }
 };
 
