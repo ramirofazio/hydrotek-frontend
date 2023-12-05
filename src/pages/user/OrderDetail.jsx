@@ -17,19 +17,22 @@ export function OrderDetail() {
     <main className="mx-8 grid gap-6 py-6 lg:mx-10 xl:mx-20">
       <IconButtonWithBgGold icon={"ri-arrow-left-s-line"} onClick={() => navigate(-1)} />
       <div className="flex flex-col gap-10 lg:flex-row">
-        <h1 className="text-center text-2xl leading-6 lg:text-left">
-          {t("order.resume")} DE LA <br className="lg:hidden" />
-          <span className="textGoldGradient"> ORDEN #{fresaId}</span>
+        <h1>
+          {t("order.resume")} DE LA ORDEN
+          <br className="lg:hidden" />
+          <strong className="pointer-events-none text-sm lg:ml-2 lg:text-xl">{fresaId}</strong>
         </h1>
-        <h1 className="text-center text-2xl leading-6 lg:text-left">
+        <h1>
           FECHA DE COMPRA <br className="lg:hidden" />
-          <span className="textGoldGradient">{new Date(date).toLocaleDateString()}</span>
+          <strong className="pointer-events-none text-sm lg:text-xl">{new Date(date).toLocaleDateString()}</strong>
         </h1>
-        <h1 className="text-center text-2xl leading-6 lg:text-left">
+        <h1>
           ESTADO <br className="lg:hidden" />
-          <span className={`${status !== 200 ? "text-red-500" : "textGoldGradient"}`}>
+          <strong
+            className={`pointer-events-none text-sm lg:text-xl ${status !== 200 ? "text-red-500" : "textGoldGradient"}`}
+          >
             {status === 200 ? "pagado" : "a pagar"}
-          </span>
+          </strong>
         </h1>
       </div>
       <div className="border-b-2 border-gold" />
