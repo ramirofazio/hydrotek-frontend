@@ -41,9 +41,11 @@ export default function ShoppingCart() {
         id: productId,
       }));
       getCheckout(id, dni, cleanProducts).then((res) => {
-        if (res) {
+        if (res?.data) {
           //? Guardo products para recuperar el paymentModals y poder crear la orden
           window.location.replace(res.data);
+        } else if (res === "no dni") {
+          navigate(`/user/profile/${id}`);
         } else {
           setLoader(false);
           setCheckoutFormModal(true);
