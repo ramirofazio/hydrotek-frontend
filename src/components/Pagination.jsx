@@ -9,11 +9,21 @@ export const Pagination = ({ nButtons, path }) => {
   const location = useLocation();
   const currentPage = parseInt(location.pathname.substring(path.length));
 
+  const scrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   // ? Si la persona filtro por categorias no se mostrara la paginación, toca crear un sistema de filtrado mas grande
   return (
     <div className={`flex items-center gap-4 ${pag.length > 4 && "hidden"}`}>
       <button
-        onClick={() => navigate(`${path}${currentPage - 1}`)}
+        onClick={() => {
+          navigate(`${path}${currentPage - 1}`);
+          scrollUp();
+        }}
         className="hidden rounded-xl p-2 text-white transition  hover:bg-gold hover:text-base disabled:text-opacity-30 disabled:hover:bg-opacity-5 lg:inline"
         disabled={currentPage === 0}
       >
@@ -22,7 +32,10 @@ export const Pagination = ({ nButtons, path }) => {
       <div className="flex items-center gap-1.5 text-sm sm:gap-2">
         {quantity.map((n, index) => (
           <button
-            onClick={() => navigate(`${path}${index}`)}
+            onClick={() => {
+              navigate(`${path}${index}`);
+              scrollUp();
+            }}
             key={index}
             className={`goldGradient  grid h-10 w-10 place-content-center rounded-full p-1 text-sm text-white transition-all sm:text-lg md:p-2.5 ${
               currentPage === index
@@ -35,7 +48,10 @@ export const Pagination = ({ nButtons, path }) => {
         ))}
       </div>
       <button
-        onClick={() => navigate(`${path}${currentPage + 1}`)}
+        onClick={() => {
+          navigate(`${path}${currentPage + 1}`);
+          scrollUp();
+        }}
         className="hidden rounded-xl p-2 text-white transition  hover:bg-gold hover:text-base disabled:text-opacity-30 disabled:hover:bg-opacity-5 lg:inline"
         disabled={currentPage === nButtons - 1}
       >
