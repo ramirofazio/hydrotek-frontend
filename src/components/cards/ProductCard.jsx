@@ -14,8 +14,6 @@ import "swiper/css";
 export function ProductCard({ images, name, price, id, showBtn = true }) {
   const { t } = useTranslation();
 
-  console.log("card", images);
-
   return (
     <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>
       <Link to={`/productDetail/${id}`}>
