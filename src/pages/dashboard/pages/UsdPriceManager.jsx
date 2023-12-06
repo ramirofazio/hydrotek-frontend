@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { APIHydro } from "src/api";
 import { TableRow } from "./index";
 import { dateTransform } from "./Utils";
@@ -8,9 +8,8 @@ import { success } from "src/components/notifications";
 const colsTitles = ["ultima Actualizacion", "precio", "actualizar"];
 
 export function UsdPriceManager({ setLoader }) {
+  const navigate = useNavigate();
   const { lastUsdPrice } = useLoaderData();
-
-  const [thisLastUsdPrice, setThisLastUsdPrice] = useState(lastUsdPrice);
 
   const handleManualUsdUpdate = async () => {
     const res = confirm(
@@ -24,8 +23,8 @@ export function UsdPriceManager({ setLoader }) {
       const res = await APIHydro.manualUsdUpdate();
       if (res) {
         success("cotizacion actualizada");
-        setThisLastUsdPrice(res.data);
         setLoader(false);
+        navigate();
       }
     } catch (e) {
       console.log(e);
@@ -54,8 +53,8 @@ export function UsdPriceManager({ setLoader }) {
           </thead>
           <tbody>
             <tr>
-              <TableRow content={`${dateTransform(thisLastUsdPrice.date)} HS`} />
-              <TableRow content={`$1 USD = $${thisLastUsdPrice.price} ARS`} />
+              <TableRow content={`${dateTransform(lastUsdPrice.date)} HS`} />
+              <TableRow content={`$1 USD = $${lastUsdPrice.price} ARS`} />
               <TableRow
                 content={
                   <i className={"icons ri-refresh-fill text-3xl text-red-500"} onClick={handleManualUsdUpdate} />

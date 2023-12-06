@@ -20,6 +20,10 @@ export function Orders() {
       return;
     }
 
+    const res = confirm("¿Seguro que quieres marcar esta orden como paga?");
+
+    if (!res) return;
+
     try {
       APIHydro.markOrderAsPay(fresaId).then((res) => {
         if (res.status === 200) {

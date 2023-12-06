@@ -27,16 +27,11 @@ export function MyBuys() {
             <div className="lg:flex lg:flex-1 lg:flex-col lg:items-start lg:pl-5">
               <h2 className="mt-2">{new Date(date).toLocaleDateString()}</h2>
               <h2>
-                {t("profile.order")} #{fresaId}
+                {t("profile.order")} <strong className="pointer-events-none">{fresaId}</strong>
               </h2>
             </div>
-            <NavLink
-              to={`order/${fresaId}`}
-              className={
-                "textGoldGradient mt-4 border-b-[1px] border-gold transition hover:cursor-pointer hover:opacity-50 lg:mt-0 lg:text-xs"
-              }
-            >
-              DETALLES
+            <NavLink to={`order/${fresaId}`} className={"mt-4 lg:mt-0 lg:text-xs"}>
+              <strong>DETALLES</strong>
             </NavLink>
           </article>
         ))}
