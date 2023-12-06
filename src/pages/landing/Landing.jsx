@@ -65,7 +65,7 @@ export default function Landing() {
                     id={p.id}
                     key={i}
                     name={p.name}
-                    imgUrl={p.imgUrl}
+                    images={p.images}
                     price={p.arsPrice.toLocaleString("es-AR", {
                       style: "currency",
                       currency: "ARS",

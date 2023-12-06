@@ -1,31 +1,42 @@
 import { ProductDescription } from "./index";
-import { logos } from "assets/index";
 import { useLoaderData } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFlip } from "swiper/modules";
+import "swiper/css/effect-flip";
+import "swiper/css";
+import { logos } from "src/assets";
 
 export default function ProductDetail() {
   //const { t } = useTranslation();
   const product = useLoaderData();
-  const { id, name, arsPrice, description, image } = product;
-
+  const { id, name, arsPrice, description, images } = product;
 
   return (
-    <main className="content mx-auto my-5 grid w-[92%] gap-8  md:grid-cols-2">
-      {/* <Carrousel //? Resolver incorporación del carrucel
-        content={[
-          {
-            component: (
-              <div className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center bg-productBorderGradient bg-contain bg-clip-content bg-center bg-no-repeat">
-                <img src={product} alt="foto del producto" className="m-10 w-[40%] md:m-20" />
-              </div>
-            ),
-            qty: 3,
-          },
-        ]}
-      /> */}
-      <picture className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center  bg-productBorderGradient bg-contain bg-clip-content bg-center bg-no-repeat">
-        <img src={logos.hydBlack} alt="foto del producto" className="m-10 w-[40%]  md:w-[60%] lg:w-[50%]" />
+    <main className="content  mx-auto my-5 grid w-[92%] gap-8 lg:grid-cols-2  lg:place-items-center">
+      <picture className="flex h-full min-h-[150px] w-full min-w-[150px] items-center justify-center bg-productBorderGradient  bg-contain bg-clip-content bg-center bg-no-repeat lg:max-w-xl">
+        <Swiper
+          loop={true}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          flipEffect={{ slideShadows: false }}
+          modules={[Autoplay, EffectFlip]}
+          effect="flip"
+        >
+          {images.length ? (
+            images.map(({ path }, i) => (
+              <SwiperSlide key={i}>
+                <img src={path} alt="foto del producto" className="mx-auto w-[50%] md:w-[30%] lg:w-[60%]" />
+              </SwiperSlide>
+            ))
+          ) : (
+            <img src={logos.hydBlack} alt="foto del producto" className="mx-auto w-[50%] md:w-[30%] lg:w-[60%]" />
+          )}
+        </Swiper>
       </picture>
-      <ProductDescription productId={id} price={arsPrice} name={name} description={description} key={id} img={image} />
+      <ProductDescription productId={id} price={arsPrice} name={name} description={description} key={id} img={images} />
       {/*
     // ? Comentado hasta saber si van a o no reseñas
     <section className="border-t-[1px] border-gold py-5  md:col-span-2">

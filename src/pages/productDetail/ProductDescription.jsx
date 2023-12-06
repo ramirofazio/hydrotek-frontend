@@ -10,27 +10,23 @@ export function ProductDescription({ productId, description, name, price, img, /
   const dispatch = useDispatch();
 
   return (
-    <article className="grid place-items-center gap-4 md:items-center md:justify-items-start md:gap-1">
+    <article className="ml-2 grid place-items-start md:ml-0 md:place-items-center lg:my-auto lg:h-[60%] xl:gap-10">
       {/* <div className="flex w-full items-center justify-between">
         <Rating value={rating} />
         <p className="text-sm">{stock || "(25)"}</p>
       </div> */}
-      <div>
-        <h1>{name || "Nombre del articulo"}</h1>
-        <h2 className="textGoldGradient ">
-          {price.toLocaleString("es-AR", {
-            style: "currency",
-            currency: "ARS",
-          })}
-        </h2>
-      </div>
-      <div>
-        <Quantity price={price} stock={stock} productId={productId} />
-      </div>
+      <h1 className="text-2xl lg:text-3xl xl:underline xl:decoration-gold">{name || "Nombre del articulo"}</h1>
+      <h2 className="textGoldGradient text-lg font-bold">
+        {price.toLocaleString("es-AR", {
+          style: "currency",
+          currency: "ARS",
+        })}
+      </h2>
+      <Quantity price={price} stock={stock} productId={productId} />
 
       <Button
         text={t("common.buy-now")}
-        className="mt-2"
+        className="mx-auto mt-2"
         onClick={() => {
           dispatch(actionsShoppingCart.addProudct({ productId, name, price }));
           addProduct({ name: name, img: img });
