@@ -41,9 +41,11 @@ export default function ShoppingCart() {
         id: productId,
       }));
       getCheckout(id, dni, cleanProducts).then((res) => {
-        if (res) {
+        if (res?.data) {
           //? Guardo products para recuperar el paymentModals y poder crear la orden
           window.location.replace(res.data);
+        } else if (res === "no dni") {
+          navigate(`/user/profile/${id}`);
         } else {
           setLoader(false);
           setCheckoutFormModal(true);
@@ -79,7 +81,9 @@ export default function ShoppingCart() {
       </header>
       <section className="grid place-items-center gap-10 lg:place-items-start ">
         {arrProducts.length ? (
-          arrProducts.map((a, i) => <CartArticleCard productId={a.productId} name={a.name} price={a.price} key={i} />)
+          arrProducts.map((a, i) => (
+            <CartArticleCard productId={a.productId} name={a.name} price={a.price} key={i} img={a.img} />
+          ))
         ) : (
           <div className="mt-10 flex w-[90%] flex-col gap-10 rounded-md border-2  p-8 text-center md:w-[50%] lg:max-w-[45%] lg:place-self-center s:w-[65%]">
             <h1 className="">{t("shopping-cart.no-products-on-cart")}</h1>
@@ -106,11 +110,19 @@ export default function ShoppingCart() {
           <div className="flex flex-col gap-5  ">
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.subtotal")}</h1>
-              <strong className="textGoldGradient pointer-events-none border-0">{"$" + totalPrice || "--"}</strong>
+              <strong className="textGoldGradient pointer-events-none border-0">
+                {totalPrice.toLocaleString("es-AR", {
+                  style: "currency",
+                  currency: "ARS",
+                }) || "--"}
+              </strong>
             </div>
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.total-price")}</h1>
-              <strong className="textGoldGradient pointer-events-none border-0">{`$${totalPrice}`}</strong>
+              <strong className="textGoldGradient pointer-events-none border-0">{`${totalPrice.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS",
+              })}`}</strong>
             </div>
           </div>
 

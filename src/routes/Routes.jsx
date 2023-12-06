@@ -54,12 +54,10 @@ export function Routes() {
         {
           path: "/products/:pag",
           loader: async ({ params }) => {
-            console.log(params);
             if (params.pag.length < 4) {
               return productsLoader(params.pag);
             } else { // ? si entra en este if es por que se lo redirigio desde Categories.jsx
               const query = params.pag.split("=");
-              console.log(query);
               return filteredProductsLoader(query[1]);
             }
           },

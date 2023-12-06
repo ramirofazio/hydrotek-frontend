@@ -141,6 +141,7 @@ ${
 
     navigate("/", { replace: true });
     window.open(`https://wa.me/5491170823697?text=${encodeURIComponent(mensajeWhatsApp)}`, "_blank");
+    deleteOfStorage("shoppingCart");
   }
 
   return (

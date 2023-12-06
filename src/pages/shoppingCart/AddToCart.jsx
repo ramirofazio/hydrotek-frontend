@@ -8,7 +8,7 @@ export function AddToCart({ productId, productImg, productName, price, className
     <button
       className={`textGoldGradient icons flex items-center  text-3xl ${className}`}
       onClick={() => {
-        dispatch(actionsShoppingCart.addProudct({ productId, productName, price }));
+        dispatch(actionsShoppingCart.addProudct({ productId, productName, price, productImg }));
         addProduct({ name: productName, img: productImg });
       }}
     >
