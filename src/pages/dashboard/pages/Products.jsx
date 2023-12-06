@@ -20,7 +20,6 @@ const colsTitles = [
 export function Products() {
   const navigate = useNavigate();
   const { products } = useLoaderData();
-  console.log(products);
   const [modal, setModal] = useState(false);
 
   async function handleAddFeaturedProduct(productId, productName, productPrice) {

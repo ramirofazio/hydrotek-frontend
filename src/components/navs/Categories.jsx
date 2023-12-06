@@ -11,8 +11,6 @@ export function Categories() {
 
   if (param?.pag && param?.pag.length > 4) {
     const categoryId = param.pag.split("=")[1];
-    console.log(categoryId);
-    console.log("Category", param.pag);
     selectedCategory = parseInt(categoryId);
   }
   return (
