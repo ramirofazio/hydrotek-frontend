@@ -3,13 +3,24 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { TableRow } from "./index";
 import { APIHydro } from "src/api";
 import { UploadProductImgs } from "./UploadProductImgs";
+import { categories } from "src/utils";
 import { error, success } from "src/components/notifications";
 
-const colsTitles = ["id", "nombre", "precio", "ultima actualización", "publicado", "destacado", "subir imagen"];
+const colsTitles = [
+  "id",
+  "nombre",
+  "precio",
+  "ultima actualización",
+  "publicado",
+  "destacado",
+  "subir imagen",
+  "categoría",
+];
 
 export function Products() {
   const navigate = useNavigate();
   const { products } = useLoaderData();
+  console.log(products);
   const [modal, setModal] = useState(false);
 
   async function handleAddFeaturedProduct(productId, productName, productPrice) {
@@ -18,7 +29,7 @@ export function Products() {
     try {
       await APIHydro.addFeaturedProduct(productId).then((res) => {
         if (res.status === 200) {
-          success(`${productName} modificado`);
+          success(`se destacó ${productName}`);
           navigate("/admin/dashboard");
         }
       });
@@ -35,6 +46,19 @@ export function Products() {
         if (res.status === 200) {
           success(`${productName} modificado`);
           navigate("/admin/dashboard");
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function handleCategory(e, productId, productName) {
+    try {
+      await APIHydro.updateCategory(productId, e.target.value).then((res) => {
+        if (res.status === 200) {
+          success(`se modifico ${productName}`);
+          //navigate("/admin/dashboard");
         }
       });
     } catch (e) {
@@ -59,7 +83,7 @@ export function Products() {
           </tr>
         </thead>
         <tbody>
-          {products.map(({ id, arsPrice, name, published, updated, images, featured }) => {
+          {products.map(({ id, arsPrice, name, published, updated, images, featured, typeId }) => {
             return (
               <tr key={id} className="even:bg-gold/10">
                 <TableRow content={id} />
@@ -96,6 +120,19 @@ export function Products() {
                 <TableRow
                   onClick={() => setModal({ prevImgs: images, product: { id, name } })}
                   content={<i className="icons ri-image-2-fill text-2xl">{images?.length}</i>}
+                />
+
+                <TableRow
+                  content={
+                    <select onChange={(e) => handleCategory(e, id, name)} className="text-black">
+                      <option value={0}>Elija categoría</option>
+                      {categories.map((c, i) => (
+                        <option selected={c.id && c.id === typeId ? true : false} key={i} value={c.id}>
+                          {c.name}
+                        </option>
+                      ))}
+                    </select>
+                  }
                 />
               </tr>
             );

@@ -6,10 +6,10 @@ export const links = [
 ];
 
 export const categories = [
-  { name: "SISTEMAS", value: 1 },
-  { name: "PLUGS", value: 2 },
-  { name: "SAFE ROOTS", value: 3 },
-  { name: "CANASTAS", value: 4 },
+  { id: 1, name: "sistemas" },
+  { id: 2, name: "insumos" },
+  { id: 3, name: "fertilizantes" },
+  { id: 4, name: "aditivos" },
 ];
 
 export const socialLinks = {

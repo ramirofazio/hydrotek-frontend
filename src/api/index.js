@@ -168,6 +168,12 @@ export const APIHydro = {
   deleteProductImg: ({ productImgId, publicId }) => {
     return apiHydro.post(`/${route.CLOUDINARY}/img/deleteOne`, { productImgId, publicId });
   },
+  updateCategory: (productId, categoryId) => {
+    return apiHydro.put(`/${route.PRODUCT}/updateType`, { productId, categoryId: parseInt(categoryId) });
+  },
+  getFilteredProducts: (typeId) =>  {
+    return apiHydro.get(`${route.PRODUCT}/filter/${typeId}`);
+  }
 };
 
 export function addAuthWithToken(token) {
