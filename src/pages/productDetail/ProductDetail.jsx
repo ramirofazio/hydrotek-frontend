@@ -5,11 +5,19 @@ import { Autoplay, EffectFlip } from "swiper/modules";
 import "swiper/css/effect-flip";
 import "swiper/css";
 import { logos } from "src/assets";
+import { useEffect } from "react";
 
 export default function ProductDetail() {
   //const { t } = useTranslation();
   const product = useLoaderData();
   const { id, name, arsPrice, description, images } = product;
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   return (
     <main className="content  mx-auto my-5 grid w-[92%] gap-8 lg:grid-cols-2  lg:place-items-center">
