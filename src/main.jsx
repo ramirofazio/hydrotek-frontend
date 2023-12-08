@@ -10,6 +10,8 @@ import "./index.css";
 import "./i18n";
 import "remixicon/fonts/remixicon.css";
 
+// test git changes
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
     <Provider store={store}>
