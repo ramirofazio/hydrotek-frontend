@@ -1,6 +1,6 @@
 import { products, backgrounds } from "assets";
 import { Quantity } from "..";
-import { logos } from "src/assets";
+
 
 export function CartArticleCard({ img, name, price, productId }) {
   return (

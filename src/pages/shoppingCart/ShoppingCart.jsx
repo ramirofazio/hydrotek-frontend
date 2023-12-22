@@ -12,6 +12,7 @@ import getCheckout from "./checkouts";
 import CheckoutForm from "./CheckoutForm";
 import { PaymentInProcess } from "./PaymentInProcess";
 import { saveInStorage } from "src/utils/localStorage";
+import { logos } from "src/assets";
 
 export default function ShoppingCart() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export default function ShoppingCart() {
   const transactionId = searchParams.get("transactionId");
 
   const { products, totalPrice } = useSelector((state) => state.shoppingCart);
+  console.log(products);
   const {
     session: { dni, id },
   } = useSelector((state) => state.user);
@@ -82,7 +84,7 @@ export default function ShoppingCart() {
       <section className="grid place-items-center gap-10 lg:place-items-start ">
         {arrProducts.length ? (
           arrProducts.map((a, i) => (
-            <CartArticleCard productId={a.productId} name={a.name} price={a.price} key={i} img={a.img} />
+            <CartArticleCard productId={a.productId} name={a.name} price={a.price} key={i} img={a.image ? a.image : logos.hydBlack} />
           ))
         ) : (
           <div className="mt-10 flex w-[90%] flex-col gap-10 rounded-md border-2  p-8 text-center md:w-[50%] lg:max-w-[45%] lg:place-self-center s:w-[65%]">
