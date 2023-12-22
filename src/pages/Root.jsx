@@ -14,9 +14,11 @@ export default function Root() {
   function handleCart() {
     if (userInfo && userInfo.accessToken) {
       //? Si esta logueado
+
       const arrProducts = Object.values(shoppingCart.products);
       if (arrProducts.length) {
         return APIHydro.updateShoppingCart({
+          //! Se le esta mandanod el producto con toda la info y el BE lo espera de otra forma para el shopping cart.
           userId: userInfo.session.id,
           shoppingCart: { totalPrice: shoppingCart.totalPrice, products: arrProducts },
         });

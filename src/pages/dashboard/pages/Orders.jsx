@@ -99,12 +99,12 @@ export function Orders() {
           </tr>
         </thead>
         <tbody>
-          {allOrders.map(({ user: { name, email }, date, fresaId, status, totalPrice }, index) => {
+          {allOrders.map(({ user, date, fresaId, status, totalPrice }, index) => {
             return (
               <tr key={index} className="even:bg-gold/10">
                 <TableRow content={fresaId} />
-                <TableRow content={name} style="capitalize" />
-                <TableRow content={email} style />
+                <TableRow content={user?.name || "INVITADO"} style={`capitalize ${!user?.name && "text-red-500"}`} />
+                <TableRow content={user?.email || "INVITADO"} style={`${!user?.name && "text-red-500"}`} />
                 <TableRow content={new Date(date).toLocaleDateString() + " " + new Date(date).toLocaleTimeString()} />
 
                 <TableRow

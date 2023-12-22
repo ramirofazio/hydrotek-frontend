@@ -113,7 +113,7 @@ ${
     if (deliveryInfo.active) setErrs(isValidSendInfo(deliveryInfo));
 
     try {
-      if (id && name && order) {
+      if (order) {
         APIHydro.createOrder({
           id,
           totalPrice: order.totalPrice,
