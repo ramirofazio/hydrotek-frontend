@@ -154,7 +154,7 @@ ${
         <>
           <h2>{t("shopping-cart.we-contact-you")}</h2>
           <i
-            className="ri-whatsapp-line icons textGoldGradient mx-auto w-fit text-6xl hover:text-green-600"
+            className="ri-whatsapp-line animate-pulse icons textGoldGradient mx-auto w-fit text-6xl hover:text-green-600"
             onClick={handleSubmit}
           />
           <h2 className="textGoldGradient">
