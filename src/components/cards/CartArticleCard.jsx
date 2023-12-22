@@ -1,4 +1,4 @@
-import { products, backgrounds } from "assets";
+import { backgrounds } from "assets";
 import { Quantity } from "..";
 
 
