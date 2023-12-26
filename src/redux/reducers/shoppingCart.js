@@ -17,12 +17,13 @@ const shoppingCart = createSlice({
 
       const productsDictionary = {};
       products.forEach((p) => {
+        console.log(p)
         productsDictionary[p.productId] = {
           quantity: p.quantity,
           productId: p.productId,
           price: p.price,
           name: p.name,
-          image: p.product.images[0].path
+          img: p.product?.images[0]?.path
         };
       });
 
