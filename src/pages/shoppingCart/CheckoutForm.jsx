@@ -91,6 +91,7 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
       try {
         APIHydro.guestCheckout({ ...userInfo, items: cleanProducts }).then((res) => {
           if (res) {
+            saveInStorage("guestInfo", userInfo);
             window.location.replace(res.data);
           }
         });

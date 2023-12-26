@@ -17,7 +17,7 @@ const shoppingCart = createSlice({
 
       const productsDictionary = {};
       products.forEach((p) => {
-        console.log(p)
+
         productsDictionary[p.productId] = {
           quantity: p.quantity,
           productId: p.productId,

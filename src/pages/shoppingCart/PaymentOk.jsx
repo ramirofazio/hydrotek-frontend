@@ -21,6 +21,7 @@ export function PaymentOk({ transactionId, status, setLoader }) {
   const { id, name } = session;
   let mensajeWhatsApp = "";
   const order = getOfStorage("order");
+  const guestInfo = getOfStorage("guestInfo");
 
   const [realtimeCorrection, setRealtimeCorrection] = useState(false);
   const [deliveryInfo, setDeliveryInfo] = useState(
@@ -41,15 +42,30 @@ export function PaymentOk({ transactionId, status, setLoader }) {
 
   useEffect(() => {
     dispatch(emptyCart());
-
+    if (order) {
+      APIHydro.createOrder({
+        id,
+        name: `${guestInfo.firstName} ${guestInfo.lastName}`,
+        email: guestInfo.email,
+        totalPrice: order.totalPrice,
+        fresaId: transactionId,
+        status: status,
+        items: [...order.items],
+      }).then((res) => {
+        if (res.status === 201) {
+          success("Orden creada y guardada con exito");
+        }
+      });
+    }
     return () => {
       deleteOfStorage("deliveryInfo");
       deleteOfStorage("order");
+      deleteOfStorage("guestInfo");
     };
   }, []);
 
   useEffect(() => {
-    mensajeWhatsApp = `¡Hola Hydrotek!${(name && ` Soy ${name}`) || ""}.
+    mensajeWhatsApp = `¡Hola Hydrotek! Soy ${name || guestInfo.firstName}.
 
 Acabo de hacer una compra en la web.
 Mi identificador de transacción es: *${transactionId}*.
@@ -112,20 +128,6 @@ ${
     if (deliveryInfo.active) setErrs(isValidSendInfo(deliveryInfo));
 
     try {
-      if (order) {
-        APIHydro.createOrder({
-          id,
-          totalPrice: order.totalPrice,
-          fresaId: transactionId,
-          status: status,
-          items: [...order.items],
-        }).then((res) => {
-          if (res.status === 201) {
-            success("Orden creada y guardada con exito");
-          }
-        });
-      }
-
       if (deliveryInfo.active && Object.values(errs).length === 0 && id) {
         APIHydro.saveDeliveryInfo({ id, ...deliveryInfo }).then((res) => {
           if (res.status === 200) {
@@ -154,7 +156,7 @@ ${
         <>
           <h2>{t("shopping-cart.we-contact-you")}</h2>
           <i
-            className="ri-whatsapp-line animate-pulse icons textGoldGradient mx-auto w-fit text-6xl hover:text-green-600"
+            className="ri-whatsapp-line icons textGoldGradient mx-auto w-fit animate-pulse text-6xl hover:text-green-600"
             onClick={handleSubmit}
           />
           <h2 className="textGoldGradient">
