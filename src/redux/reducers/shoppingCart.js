@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { logos } from "src/assets";
 import { getOfStorage } from "src/utils/localStorage";
 
 const shoppingCart = createSlice({
@@ -22,7 +23,7 @@ const shoppingCart = createSlice({
           productId: p.productId,
           price: p.price,
           name: p.name,
-          image: p.product.images[0].path
+          image: p.product.images[0]?.path || logos.hydBlack,
         };
       });
 
