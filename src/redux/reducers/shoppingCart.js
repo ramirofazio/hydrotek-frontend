@@ -22,6 +22,7 @@ const shoppingCart = createSlice({
           productId: p.productId,
           price: p.price,
           name: p.name,
+          image: p.product.images[0].path
         };
       });
 
