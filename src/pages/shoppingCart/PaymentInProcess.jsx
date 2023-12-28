@@ -45,8 +45,8 @@ export function PaymentInProcess({ transactionId, status, setLoader }) {
     if (order) {
       APIHydro.createOrder({
         id,
-        name: `${guestInfo.firstName} ${guestInfo.lastName}`,
-        email: guestInfo.email,
+        name: guestInfo && `${guestInfo.firstName} ${guestInfo.lastName}`,
+        email: guestInfo && guestInfo.email,
         totalPrice: order.totalPrice,
         fresaId: transactionId,
         status: status,
