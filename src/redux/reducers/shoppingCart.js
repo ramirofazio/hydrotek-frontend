@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { logos } from "src/assets";
 import { getOfStorage } from "src/utils/localStorage";
 
 const shoppingCart = createSlice({
@@ -17,13 +18,12 @@ const shoppingCart = createSlice({
 
       const productsDictionary = {};
       products.forEach((p) => {
-
         productsDictionary[p.productId] = {
           quantity: p.quantity,
           productId: p.productId,
           price: p.price,
           name: p.name,
-          img: p.product?.images[0]?.path
+          img: p.product?.images[0]?.path || logos.hydBlack,
         };
       });
 
