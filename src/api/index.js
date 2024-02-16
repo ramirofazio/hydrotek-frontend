@@ -10,12 +10,28 @@ const route = {
   CHECKOUT: "mobbex",
   TFACTURA: "tFactura",
   APIDOLAR: "apidolar",
+  PROMO_CODES: "promotionalCode",
 };
 
 // * Para una clara visualizacion de las rutas abrir
 // * ---> "http://localhost:3000/docu"
 
 export const APIHydro = {
+  validateCoupon: (coupon) => {
+    return apiHydro.get(`${route.PROMO_CODES}/validate/${coupon}`);
+  },
+  createPromotionalCode: (body) => {
+    return apiHydro.post(`${route.PROMO_CODES}`, body);
+  },
+  editPromotionalCode: (body) => {
+    return apiHydro.patch(`${route.PROMO_CODES}`, body);
+  },
+  removePromotionalCode: (id) => {
+    return apiHydro.delete(`${route.PROMO_CODES}/${id}`);
+  },
+  getPromotionalCodes: () => {
+    return apiHydro.get(`${route.PROMO_CODES}`);
+  },
   toggleActiveProduct: (id) => {
     return apiHydro.patch(`${route.PRODUCT}/toggle-active?id=${id}`);
   },
@@ -171,9 +187,9 @@ export const APIHydro = {
   updateCategory: (productId, categoryId) => {
     return apiHydro.put(`/${route.PRODUCT}/updateType`, { productId, categoryId: parseInt(categoryId) });
   },
-  getFilteredProducts: (typeId) =>  {
+  getFilteredProducts: (typeId) => {
     return apiHydro.get(`${route.PRODUCT}/filter/${typeId}`);
-  }
+  },
 };
 
 export function addAuthWithToken(token) {

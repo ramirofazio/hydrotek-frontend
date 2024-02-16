@@ -5,3 +5,4 @@ export { Users } from "./Users";
 export { TableRow } from "./Utils";
 export { MoreActions } from "./MoreActions";
 export { UsdPriceManager } from "./UsdPriceManager";
+export { PromotionalCodes } from "./PromotionalCodes";

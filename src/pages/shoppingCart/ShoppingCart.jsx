@@ -7,12 +7,14 @@ import { Loader, Modal } from "src/components";
 import { useState } from "react";
 import { PaymentOk } from "./PaymentOk";
 import { PaymentFailed } from "./PaymentFailed";
-import { error } from "src/components/notifications";
+import { error, success } from "src/components/notifications";
 import getCheckout from "./checkouts";
 import CheckoutForm from "./CheckoutForm";
 import { PaymentInProcess } from "./PaymentInProcess";
 import { saveInStorage } from "src/utils/localStorage";
 import { logos } from "src/assets";
+import { Input } from "src/components/inputs";
+import { APIHydro } from "src/api";
 
 export default function ShoppingCart() {
   const navigate = useNavigate();
@@ -23,7 +25,6 @@ export default function ShoppingCart() {
   const transactionId = searchParams.get("transactionId");
 
   const { products, totalPrice } = useSelector((state) => state.shoppingCart);
-  console.log(products);
   const {
     session: { dni, id },
   } = useSelector((state) => state.user);
@@ -31,6 +32,8 @@ export default function ShoppingCart() {
   const [loader, setLoader] = useState(false);
   const [cleanProducts, setCleanProducts] = useState(null);
   const [checkoutFormModal, setCheckoutFormModal] = useState(false);
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
 
   const arrProducts = Object.values(products);
 
@@ -60,6 +63,27 @@ export default function ShoppingCart() {
     }
   }
 
+  const handleApplyCoupon = (e) => {
+    e.preventDefault();
+
+    try {
+      APIHydro.validateCoupon(coupon.toUpperCase())
+        .then((res) => {
+          if (res.status === 200) {
+            success("Cupon aplicado con exito");
+            setDiscount(res.data.discount);
+          }
+        })
+        .catch((e) => {
+          error("Hubo un problema al aplicar tu cupon");
+          setDiscount(0);
+        });
+    } catch (e) {
+      console.log(e);
+      error("Hubo un problema al aplicar tu cupon");
+    }
+  };
+
   return (
     <main className="content mx-auto mb-[6rem] mt-5  flex w-[92%] flex-col">
       {loader && <Loader />}
@@ -84,7 +108,13 @@ export default function ShoppingCart() {
       <section className="grid place-items-center gap-10 lg:place-items-start ">
         {arrProducts.length ? (
           arrProducts.map((a, i) => (
-            <CartArticleCard productId={a.productId} name={a.name} price={a.price} key={i} img={a.img ? a.img : logos.hydBlack} />
+            <CartArticleCard
+              productId={a.productId}
+              name={a.name}
+              price={a.price}
+              key={i}
+              img={a.img ? a.img : logos.hydBlack}
+            />
           ))
         ) : (
           <div className="mt-10 flex w-[90%] flex-col gap-10 rounded-md border-2  p-8 text-center md:w-[50%] lg:max-w-[45%] lg:place-self-center s:w-[65%]">
@@ -98,15 +128,27 @@ export default function ShoppingCart() {
         )}
       </section>
       <section className={`mt-10 lg:grid lg:grid-cols-5 lg:items-center`}>
-        {/* <article className="flex  flex-col place-items-center gap-4 lg:col-span-2">
-          <h1 className="mx-auto w-fit text-lg ">{t("shopping-cart.promotional-code")}</h1>
-          <div className="w-[75%] lg:w-full">
-            <Input type="text" placeholder="codigo" className="!p-1 !text-lg uppercase lg:!pl-6 " />
-          </div>
-          <button className="rounded-2xl bg-gold-gradient px-8 py-1">
-            <h1 className="text-[0.95rem]">{t("common.add")}</h1>
-          </button>
-        </article> */}
+        <article className="mx-auto  w-[90%] rounded-lg border-2 border-gold bg-black px-5 py-8 md:px-[6rem] lg:col-span-5">
+          <form
+            className="mx-auto flex w-[75%] flex-col items-center justify-center gap-4 lg:w-full"
+            onSubmit={handleApplyCoupon}
+          >
+            <h1 className="my-1 w-fit text-lg">{t("shopping-cart.promotional-code")}</h1>
+            <Input
+              type="text"
+              placeholder="codigo"
+              className="relative !p-1 !text-lg uppercase lg:!pl-6"
+              onChange={(e) => setCoupon(e.target.value)}
+              disabled={discount}
+            />
+            <Button
+              text={"Aplicar"}
+              className={"!bg-gold text-xl hover:opacity-50"}
+              onClick={handleApplyCoupon}
+              disabled={!coupon}
+            />
+          </form>
+        </article>
         <article className="mx-auto my-10 w-[90%] rounded-lg border-2 border-gold bg-black px-5 py-8 md:px-[6rem] lg:col-span-5">
           <h1 className="mx-auto my-5 w-fit md:mx-0">{t("order.order-data")}</h1>
           <div className="flex flex-col gap-5  ">

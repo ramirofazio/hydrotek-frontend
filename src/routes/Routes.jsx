@@ -15,6 +15,7 @@ import {
   oneOrderLoader,
   getAllOrders,
   filteredProductsLoader,
+  getPromotionalCodes,
 } from "./loaders";
 import DefaultError from "pages/error/Default.jsx";
 import Products from "pages/products/Products.jsx";
@@ -56,7 +57,8 @@ export function Routes() {
           loader: async ({ params }) => {
             if (params.pag.length < 4) {
               return productsLoader(params.pag);
-            } else { // ? si entra en este if es por que se lo redirigio desde Categories.jsx
+            } else {
+              // ? si entra en este if es por que se lo redirigio desde Categories.jsx
               const query = params.pag.split("=");
               return filteredProductsLoader(query[1]);
             }
@@ -174,13 +176,14 @@ export function Routes() {
               path: "/admin/dashboard",
               element: <Dashboard />,
               loader: async () => {
-                const [products, users, lastUsdPrice, allOrders] = await Promise.all([
+                const [products, users, lastUsdPrice, allOrders, promotionalCodes] = await Promise.all([
                   allProductsLoader(), // TODO Refactorizar en childrens de la ruta "/admin/dashboard" para un uso mas efectivo
                   allUsersLoader(),
                   getLastUsdPrice(),
                   getAllOrders(),
+                  getPromotionalCodes(),
                 ]);
-                return { products, users, lastUsdPrice, allOrders };
+                return { products, users, lastUsdPrice, allOrders, promotionalCodes };
               },
               index: true,
             },
