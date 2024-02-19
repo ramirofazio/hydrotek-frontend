@@ -56,6 +56,11 @@ export function PromotionalCodes() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!newPromotionalCode.code && !newPromotionalCode.discount) {
+      error("Por favor, completa los datos");
+      return;
+    }
+
     try {
       if (newPromotionalCode.edit) {
         APIHydro.editPromotionalCode({

@@ -21,6 +21,7 @@ import {
   addProudct,
   removeProduct,
   emptyCart,
+  applyDiscount,
 } from "./shoppingCart.js";
 export const actionsShoppingCart = {
   saveSingInShoppingCart,
@@ -28,6 +29,7 @@ export const actionsShoppingCart = {
   addProudct,
   removeProduct,
   emptyCart,
+  applyDiscount,
 };
 
 import { setToken } from "./auth.js";

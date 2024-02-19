@@ -1,6 +1,6 @@
 import { CartArticleCard } from "src/components/cards";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "src/components/buttons";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Loader, Modal } from "src/components";
@@ -15,8 +15,10 @@ import { saveInStorage } from "src/utils/localStorage";
 import { logos } from "src/assets";
 import { Input } from "src/components/inputs";
 import { APIHydro } from "src/api";
+import { applyDiscount } from "src/redux/reducers/shoppingCart";
 
 export default function ShoppingCart() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
@@ -24,7 +26,7 @@ export default function ShoppingCart() {
   const status = searchParams.get("status");
   const transactionId = searchParams.get("transactionId");
 
-  const { products, totalPrice } = useSelector((state) => state.shoppingCart);
+  const { products, totalPrice, finalPrice } = useSelector((state) => state.shoppingCart);
   const {
     session: { dni, id },
   } = useSelector((state) => state.user);
@@ -45,7 +47,7 @@ export default function ShoppingCart() {
         qty: quantity,
         id: productId,
       }));
-      getCheckout(id, dni, cleanProducts).then((res) => {
+      getCheckout(id, dni, cleanProducts, discount).then((res) => {
         if (res?.data) {
           //? Guardo products para recuperar el paymentModals y poder crear la orden
           window.location.replace(res.data);
@@ -56,7 +58,10 @@ export default function ShoppingCart() {
           setCheckoutFormModal(true);
           setCleanProducts(cleanProducts);
         }
-        saveInStorage("order", { totalPrice, items: arrProducts });
+
+        const orderPrice = discount ? finalPrice : totalPrice;
+
+        saveInStorage("order", { totalPrice: orderPrice, discount: discount, items: arrProducts });
       });
     } else {
       error("No hay productos en el carrito");
@@ -65,22 +70,27 @@ export default function ShoppingCart() {
 
   const handleApplyCoupon = (e) => {
     e.preventDefault();
+    setLoader(true);
 
     try {
       APIHydro.validateCoupon(coupon.toUpperCase())
         .then((res) => {
           if (res.status === 200) {
+            setLoader(false);
             success("Cupon aplicado con exito");
             setDiscount(res.data.discount);
+            dispatch(applyDiscount(res.data.discount));
           }
         })
         .catch((e) => {
           error("Hubo un problema al aplicar tu cupon");
           setDiscount(0);
+          setLoader(false);
         });
     } catch (e) {
       console.log(e);
       error("Hubo un problema al aplicar tu cupon");
+      setLoader(false);
     }
   };
 
@@ -93,6 +103,7 @@ export default function ShoppingCart() {
           onClose={() => setCheckoutFormModal(false)}
           cleanProducts={cleanProducts}
           setLoader={setLoader}
+          discount={discount}
         />
       )}
       {status && (
@@ -137,7 +148,7 @@ export default function ShoppingCart() {
             <Input
               type="text"
               placeholder="codigo"
-              className="relative !p-1 !text-lg uppercase lg:!pl-6"
+              className={`relative !p-1 !text-lg uppercase lg:!pl-6 ${discount && "opacity-50"}`}
               onChange={(e) => setCoupon(e.target.value)}
               disabled={discount}
             />
@@ -145,7 +156,7 @@ export default function ShoppingCart() {
               text={"Aplicar"}
               className={"!bg-gold text-xl hover:opacity-50"}
               onClick={handleApplyCoupon}
-              disabled={!coupon}
+              disabled={!coupon || discount}
             />
           </form>
         </article>
@@ -161,9 +172,18 @@ export default function ShoppingCart() {
                 }) || "--"}
               </strong>
             </div>
+            {discount > 0 && (
+              <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
+                <h1>{t("order.discount")}</h1>
+                <strong className="textGoldGradient pointer-events-none border-0">{discount} %</strong>
+              </div>
+            )}
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.total-price")}</h1>
-              <strong className="textGoldGradient pointer-events-none border-0">{`${totalPrice.toLocaleString("es-AR", {
+              <strong className="textGoldGradient pointer-events-none border-0">{`${(discount
+                ? finalPrice
+                : totalPrice
+              ).toLocaleString("es-AR", {
                 style: "currency",
                 currency: "ARS",
               })}`}</strong>

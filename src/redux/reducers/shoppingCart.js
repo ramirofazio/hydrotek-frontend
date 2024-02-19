@@ -7,8 +7,16 @@ const shoppingCart = createSlice({
   initialState: {
     products: {},
     totalPrice: 0,
+    discount: 0,
+    finalPrice: 0,
   },
   reducers: {
+    applyDiscount: (state, action) => {
+      const discountPercentaje = action.payload;
+      const discount = (discountPercentaje / 100) * state.totalPrice;
+      state.discount = action.payload;
+      state.finalPrice = state.totalPrice - discount;
+    },
     emptyCart: (state) => {
       state.products = {};
       state.totalPrice = 0;
@@ -63,5 +71,5 @@ const shoppingCart = createSlice({
 });
 
 export const shoppingCartRdr = shoppingCart.reducer;
-export const { saveSingInShoppingCart, loadStorageShoppingCart, addProudct, removeProduct, emptyCart } =
+export const { saveSingInShoppingCart, loadStorageShoppingCart, addProudct, removeProduct, emptyCart, applyDiscount } =
   shoppingCart.actions;
