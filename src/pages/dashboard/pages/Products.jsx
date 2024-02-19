@@ -124,7 +124,7 @@ export function Products() {
                 <TableRow
                   content={
                     <select onChange={(e) => handleCategory(e, id, name)} className="text-black">
-                      <option value={0}>Elija categoría</option>
+                      <option value={0}>Seleccione</option>
                       {categories.map((c, i) => (
                         <option selected={c.id && c.id === typeId ? true : false} key={i} value={c.id}>
                           {c.name}

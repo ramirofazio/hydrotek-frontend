@@ -29,6 +29,17 @@
     @apply textGoldGradient border-b-[0.1px] border-gold font-extrabold transition hover:cursor-pointer hover:opacity-50;
   }
 
+  select {
+    -webkit-appearance: none; /* Oculta la flecha en navegadores basados en WebKit */
+    -moz-appearance: none; /* Oculta la flecha en navegadores basados en Mozilla */
+    appearance: none; /* Oculta la flecha en navegadores compatibles con la propiedad "appearance" */
+    @apply rounded-md  border-2 border-gold bg-transparent p-1 text-center capitalize !text-white;
+  }
+
+  option {
+    @apply bg-base;
+  }
+
   ::-webkit-scrollbar {
     @apply h-1 w-1 xl:w-2;
   }
