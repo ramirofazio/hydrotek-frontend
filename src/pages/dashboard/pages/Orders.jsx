@@ -5,7 +5,7 @@ import { APIHydro } from "src/api";
 import { useState } from "react";
 import { Modal } from "src/components";
 
-const colsTitles = ["fresa id", "nombre", "email", "fecha", "precio total", "productos", "estado"];
+const colsTitles = ["fresa id", "nombre", "email", "fecha", "precio total", "descuento", "productos", "estado"];
 
 export function Orders() {
   const navigate = useNavigate();
@@ -99,11 +99,11 @@ export function Orders() {
           </tr>
         </thead>
         <tbody>
-          {allOrders.map(({ user, date, fresaId, status, totalPrice, name, email }, index) => {
+          {allOrders.map(({ user, date, fresaId, status, totalPrice, name, email, discount }, index) => {
             return (
               <tr key={index} className="even:bg-gold/10">
                 <TableRow content={fresaId} />
-                <TableRow content={user?.name || name || "INVITADO"} style={`capitalize`} />
+                <TableRow content={user?.name || name || "INVITADO"} style={`capitalize text-center`} />
                 <TableRow content={user?.email || email || "INVITADO"} style />
                 <TableRow content={new Date(date).toLocaleDateString() + " " + new Date(date).toLocaleTimeString()} />
 
@@ -112,6 +112,10 @@ export function Orders() {
                     style: "currency",
                     currency: "ARS",
                   })}
+                />
+                <TableRow
+                  content={`${discount} %`}
+                  style={`${discount > 15 && "text-red-500"} font-bold text-center`}
                 />
                 <TableRow
                   content={

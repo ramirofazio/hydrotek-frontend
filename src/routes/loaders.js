@@ -76,3 +76,7 @@ export async function oneOrderLoader(orderId) {
 export async function getAllOrders() {
   return (await APIHydro.getAllOrders()).data;
 }
+
+export async function getPromotionalCodes() {
+  return (await APIHydro.getPromotionalCodes()).data;
+}

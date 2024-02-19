@@ -1,6 +1,6 @@
 import { Pages, DashboardHeader } from ".";
 import { IconButtonWithBgGold } from "src/components/buttons";
-import { Products, Blog, Orders, Users, MoreActions } from "./pages/index";
+import { Products, Blog, Orders, Users, MoreActions, PromotionalCodes } from "./pages/index";
 import { useEffect, useState } from "react";
 import { deleteOfStorage, getOfStorage, saveInStorage } from "src/utils/localStorage";
 import { WorkInProgressModal } from "src/components";
@@ -11,6 +11,7 @@ const buttons = [
   { icon: "ri-shopping-cart-2-fill", text: "ordenes" },
   { icon: "ri-user-3-fill", text: "usuarios" },
   { icon: "ri-pencil-line", text: "blog" },
+  { icon: "ri-coupon-2-fill", text: "cupones" },
   { icon: "ri-more-fill", text: "más acciones" },
 ];
 
@@ -20,6 +21,7 @@ const componentMapping = {
   productos: <Products />,
   blog: <Blog />,
   "más acciones": <MoreActions />,
+  cupones: <PromotionalCodes />,
 };
 
 export function Dashboard() {

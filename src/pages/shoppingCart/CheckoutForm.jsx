@@ -18,7 +18,7 @@ const userInfoFields = [
   { name: "dni", label: "DNI" },
 ];
 
-export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader }) {
+export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader, discount }) {
   const navigate = useNavigate();
 
   const [realtimeCorrection, setRealtimeCorrection] = useState(false);
@@ -89,7 +89,7 @@ export default function CheckoutForm({ isOpen, onClose, cleanProducts, setLoader
       setLoader(true);
       onClose();
       try {
-        APIHydro.guestCheckout({ ...userInfo, items: cleanProducts }).then((res) => {
+        APIHydro.guestCheckout({ ...userInfo, items: cleanProducts, discount: discount }).then((res) => {
           if (res) {
             saveInStorage("guestInfo", userInfo);
             window.location.replace(res.data);
