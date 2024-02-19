@@ -2,7 +2,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { TableRow } from "./index";
 import { error, success } from "src/components/notifications";
 import { APIHydro } from "src/api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Modal } from "src/components";
 import { Input } from "src/components/inputs";
 import { Button } from "src/components/buttons";

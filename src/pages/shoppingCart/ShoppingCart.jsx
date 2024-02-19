@@ -82,7 +82,7 @@ export default function ShoppingCart() {
             dispatch(applyDiscount(res.data.discount));
           }
         })
-        .catch((e) => {
+        .catch(() => {
           error("Hubo un problema al aplicar tu cupon");
           setDiscount(0);
           setLoader(false);
