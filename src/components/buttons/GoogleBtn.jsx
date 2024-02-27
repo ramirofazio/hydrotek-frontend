@@ -35,7 +35,7 @@ export const GoogleBtn = ({ classname, pClassname, setLoading, ...props }) => {
     /* eslint-disable */
     flow: "auth-code",
     ux_mode: "redirect",
-    redirect_uri: "https://www.hydrotek.store", //? Only works on producion
+    redirect_uri: "https://www.hydrotek.store/session/signIn", //? Only works on producion
 
     /* eslint-enable */
 
