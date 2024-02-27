@@ -35,10 +35,8 @@ export const GoogleBtn = ({ classname, pClassname, setLoading, ...props }) => {
     /* eslint-disable */
     flow: "auth-code",
     ux_mode: "redirect",
-    redirect_uri:
-      import.meta.VITE_ENV === "production"
-        ? "https://hydrotek.store/session/singIn"
-        : "http://localhost:5173/session/signIn",
+    redirect_uri: "https://hydrotek.store/session/singIn", //? Only works on producion
+
     /* eslint-enable */
 
     // ? Para autotizacion flow=implicit & ux_mode=popup, usar onSuccess & onError
