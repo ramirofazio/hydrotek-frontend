@@ -2,6 +2,7 @@ export const logos = {
   hydPurple: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325846/HYD/logos/purpleLogo.png",
   hydBlack: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325847/HYD/logos/blackLogo.png",
   hydText: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325845/HYD/logos/textLogo.png",
+  google: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1709067988/HYD/logos/google.png",
 };
 
 export const backgrounds = {

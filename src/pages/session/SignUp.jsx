@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Auth3Button } from "components/buttons";
+import { Button, GoogleBtn } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -8,8 +8,6 @@ import { APIHydro } from "src/api";
 import { borders, backgrounds, logos } from "assets";
 import { isValidSignUp } from "src/utils/validation";
 import { Error, Modal } from "src/components";
-
-const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-xl xl:mr-10" }];
 
 export function SignUp() {
   const { t } = useTranslation();
@@ -175,16 +173,11 @@ export function SignUp() {
           </form>
         </section>
         <section className=" flex w-full justify-around  lg:w-[90%]">
-          {authBtns.map(({ socialNetwork, icon }, index) => (
-            <Auth3Button
-              key={index}
-              icon={icon}
-              text={`INICIAR SESIÓN CON ${socialNetwork}`}
-              classname={" !bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-[#141414] lg:py-3 group lg:aspect-auto"}
-              pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
-              setLoading={setLoading}
-            />
-          ))}
+          <GoogleBtn
+            classname={" !bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-[#141414] lg:py-3 group lg:aspect-auto"}
+            pClassname={"hidden lg:inline group-hover:text-gold transition font-primary"}
+            setLoading={setLoading}
+          />
         </section>
         <section className="relative mx-4 my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:w-[90%] lg:gap-2">
           <p className="z-10 !text-white lg:text-base">

@@ -1,4 +1,4 @@
 export { Button } from "./Button";
-export { Auth3Button } from "./Auth3Button";
+export { GoogleBtn } from "./GoogleBtn";
 export { IconButtonWithBgGold } from "./IconButtonWithBgGold";
 export { GoBack } from "./GoBack";

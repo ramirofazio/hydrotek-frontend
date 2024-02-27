@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Loader, Error, Modal } from "src/components";
-import { Button, Auth3Button } from "components/buttons";
+import { Button, GoogleBtn } from "components/buttons";
 import { Input, PasswordInput } from "components/inputs";
 import { backgrounds, logos } from "src/assets";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,6 @@ import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 import { useDispatch } from "react-redux";
 import { saveInStorage, getOfStorage } from "src/utils/localStorage";
 import { InitResetPasswordModal } from "./InitResetPasswordModal";
-const authBtns = [{ socialNetwork: "GOOGLE", icon: "ri-google-fill ri-xl lg:mr-10" }];
 
 export function SignIn() {
   const { t } = useTranslation();
@@ -127,16 +126,11 @@ export function SignIn() {
         </section>
         <div className="w-[80%] border-[1px] border-dashed border-white/40" />
         <section className="flex w-full justify-around p-6 lg:flex-col lg:items-center lg:gap-4 xl:gap-6">
-          {authBtns.map(({ socialNetwork, icon }, index) => (
-            <Auth3Button
-              key={index}
-              icon={icon}
-              text={`INICIAR SESIÓN CON ${socialNetwork}`}
-              classname={"!bg-gold lg:flex lg:items-center lg:pl-10 lg:!bg-base lg:aspect-auto lg:py-3 group"}
-              pClassname={"hidden lg:inline group-hover:text-gold transition font-primary "}
-              setLoading={setLoading}
-            />
-          ))}
+          <GoogleBtn
+            classname={"!bg-gold lg:flex lg:items-center l  g:pl-10 lg:!bg-base lg:aspect-auto lg:py-3 group"}
+            pClassname={"hidden lg:inline group-hover:text-gold transition font-primary "}
+            setLoading={setLoading}
+          />
         </section>
         <section className="z-20 my-2 grid w-full gap-6 px-6 text-center lg:my-6 lg:gap-2">
           <p>

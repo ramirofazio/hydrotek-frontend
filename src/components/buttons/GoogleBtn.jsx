@@ -6,12 +6,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { saveInStorage } from "src/utils/localStorage";
 import { WorkInProgressModal } from "../modals";
+import { logos } from "src/assets";
 
-export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...props }) => {
+export const GoogleBtn = ({ classname, pClassname, setLoading, ...props }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [isOpen, setIsOpen] = useState(false);
 
   const [redirect, setRedirect] = useState(false);
   const location = useLocation();
@@ -38,9 +37,7 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
     ux_mode: "redirect",
     redirect_uri:
       import.meta.VITE_ENV === "production"
-        ? "https://hydrotek.store/session/signIn"
-        : import.meta.VITE_ENV === "staging"
-        ? "http://85.31.231.196:51732/session/signIn"
+        ? "https://hydrotek.store/session/singIn"
         : "http://localhost:5173/session/signIn",
     /* eslint-enable */
 
@@ -81,12 +78,11 @@ export const Auth3Button = ({ text, icon, classname, pClassname, setLoading, ...
   return (
     <button
       onClick={() => googleLogin()}
-      className={`aspect-square rounded-full border-2 border-gold bg-transparent p-4 uppercase tracking-widest text-white transition hover:bg-gold hover:text-gold  ${classname}`}
+      className={`aspect-square rounded-full border-2 border-gold bg-transparent p-1 uppercase tracking-widest text-white transition hover:bg-gold hover:text-gold xl:p-4  ${classname}`}
       {...props}
     >
-      <i className={icon}></i>
-      <p className={`font-primary ${pClassname}`}>{text}</p>
-      <WorkInProgressModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <img loading="lazy" src={logos.google} className="h-10 w-10 xl:mr-10 xl:h-6 xl:w-6"></img>
+      <p className={`font-primary ${pClassname}`}>INICIAR SESIÓN CON GOOGLE</p>
     </button>
   );
 };
