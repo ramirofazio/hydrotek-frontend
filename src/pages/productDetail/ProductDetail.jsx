@@ -12,6 +12,8 @@ export default function ProductDetail() {
   const product = useLoaderData();
   const { id, name, arsPrice, description, images } = product;
 
+  document.title = name + "- Hydrotek";
+
   useEffect(() => {
     window.scrollTo({
       top: 0,

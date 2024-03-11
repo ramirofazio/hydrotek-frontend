@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 import { error } from "src/components/notifications";
 
 export default function Products() {
+  document.title = "Productos - Hydrotek";
+
   const { t } = useTranslation();
   const data = useLoaderData();
   let { products, quantity } = data;

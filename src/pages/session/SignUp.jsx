@@ -10,6 +10,8 @@ import { isValidSignUp } from "src/utils/validation";
 import { Error, Modal } from "src/components";
 
 export function SignUp() {
+  document.title = "Registrate en Hydrotek";
+
   const { t } = useTranslation();
   const navigate = useNavigate();
 

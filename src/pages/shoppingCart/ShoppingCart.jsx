@@ -18,6 +18,8 @@ import { APIHydro } from "src/api";
 import { applyDiscount } from "src/redux/reducers/shoppingCart";
 
 export default function ShoppingCart() {
+  document.title = "Tu carrito - Hydrotek";
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();

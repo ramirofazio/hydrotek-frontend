@@ -3,6 +3,8 @@ import { logos } from "src/assets";
 import Atropos from "atropos/react";
 
 export default function DefaultError() {
+  document.title = "Not Fount (aka 404) - Hydrotek";
+
   console.log(useRouteError());
 
   return (

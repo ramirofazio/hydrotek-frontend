@@ -12,6 +12,8 @@ import { saveInStorage, getOfStorage } from "src/utils/localStorage";
 import { InitResetPasswordModal } from "./InitResetPasswordModal";
 
 export function SignIn() {
+  document.title = "Ingresa a Hydrotek";
+
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();

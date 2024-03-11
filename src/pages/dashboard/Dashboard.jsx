@@ -25,6 +25,8 @@ const componentMapping = {
 };
 
 export function Dashboard() {
+  document.title = "Panel de administrador - Hydrotek";
+
   const [selected, setSelected] = useState(getOfStorage("selected") || "productos");
   const [show, setShow] = useState(false);
 

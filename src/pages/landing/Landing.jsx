@@ -7,6 +7,8 @@ import { ValidateModal } from "./ValidateModal";
 import { useLoaderData } from "react-router-dom";
 
 export default function Landing() {
+  document.title = "Hydrotek";
+
   const { t } = useTranslation();
   const featuredProducts = useLoaderData();
 

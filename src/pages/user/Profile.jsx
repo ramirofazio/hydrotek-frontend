@@ -10,6 +10,7 @@ export function Profile() {
   const { t } = useTranslation();
   const user = useSelector((state) => state.user);
 
+  document.title = `Tu perfil - Hydrotek`;
   const componentMapping = {
     MyData: <MyData />,
     MyBuys: <MyBuys />,

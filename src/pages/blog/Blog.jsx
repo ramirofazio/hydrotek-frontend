@@ -8,6 +8,8 @@ import { actionsUser } from "src/redux/reducers";
 import { APIHydro } from "src/api";
 
 export function Blog() {
+  document.title = "Blog - Hydrotek";
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
   let posts = useLoaderData();
