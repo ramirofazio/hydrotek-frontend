@@ -33,13 +33,13 @@ export function ModalNav({ role, userId, pathname }) {
                     <Categories />
                   </li>
                 ) : (
-                  <li key={i} className="">
+                  <li key={i} className="link-animation line-clamp-1">
                     <NavLink
                       to={l.path}
                       className={({ isActive, isPending }) => (isActive ? "border-b-[1px] " : isPending ? "" : "")}
                     >
                       {/* {l.name} // ? porquen no esntra el sobrenosotros */}
-                      <Popover.Button className="line-clamp-1 text-lg">{l.name}</Popover.Button>
+                      <Popover.Button className="text-lg">{l.name}</Popover.Button>
                     </NavLink>
                   </li>
                 )
