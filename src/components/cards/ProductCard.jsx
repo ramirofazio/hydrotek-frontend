@@ -17,8 +17,8 @@ export function ProductCard({ images, name, price, id, showBtn = true }) {
   return (
     <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>
       <Link to={`/productDetail/${id}`}>
-        <Atropos highlight={false} activeOffset={200} shadow={false} className="h-full w-full cursor-pointer xl:pb-4">
-          <div className="relative mx-auto grid aspect-square !h-[250px] place-content-center place-items-center  p-6">
+        <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer xl:pb-4">
+          <div className="relative mx-auto  flex aspect-square !h-[250px] items-center justify-center  p-6">
             <img src={backgrounds.productBorderGradient} className="absolute" data-atropos-offset={-5} />
             <Swiper
               loop={true}
@@ -30,7 +30,7 @@ export function ProductCard({ images, name, price, id, showBtn = true }) {
               flipEffect={{ slideShadows: false }}
               modules={[Autoplay, EffectFlip]}
               effect="flip"
-              className="absolute w-[50%]"
+              className="absolute !flex w-[50%] !items-center !justify-center"
             >
               {images?.length ? (
                 images.map(({ path }, i) => (

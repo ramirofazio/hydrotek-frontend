@@ -39,7 +39,7 @@ export function ModalNav({ role, userId, pathname }) {
                       className={({ isActive, isPending }) => (isActive ? "border-b-[1px] " : isPending ? "" : "")}
                     >
                       {/* {l.name} // ? porquen no esntra el sobrenosotros */}
-                      <Popover.Button className="">{l.name}</Popover.Button>
+                      <Popover.Button className="line-clamp-1 text-lg">{l.name}</Popover.Button>
                     </NavLink>
                   </li>
                 )
