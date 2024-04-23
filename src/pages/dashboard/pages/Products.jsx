@@ -5,6 +5,7 @@ import { APIHydro } from "src/api";
 import { UploadProductImgs } from "./UploadProductImgs";
 import { categories } from "src/utils";
 import { error, success } from "src/components/notifications";
+import { UpdateProductCoupon } from "./UpdateProductCoupon";
 
 const colsTitles = [
   "id",
@@ -15,13 +16,15 @@ const colsTitles = [
   "destacado",
   "subir imagen",
   "categoría",
+  "Cupones vinculados",
 ];
 
 export function Products() {
   const navigate = useNavigate();
   const { products } = useLoaderData();
-  const [modal, setModal] = useState(false);
-
+  const [imgModal, setImgModal] = useState(false);
+  const [couponModal, setCouponModal] = useState(false);
+  console.log(products);
   async function handleAddFeaturedProduct(productId, productName, productPrice) {
     if (!productPrice) return error("No podes activar un producto sin precio");
 
@@ -67,7 +70,8 @@ export function Products() {
 
   return (
     <main className="w-full">
-      <UploadProductImgs modal={modal} setModal={setModal} />
+      <UploadProductImgs modal={imgModal} setModal={setImgModal} />
+      <UpdateProductCoupon modal={couponModal} setModal={setCouponModal} />
       <table className="my-4 w-full text-white">
         <thead className="border border-gold">
           <tr className="goldGradient text-base uppercase">
@@ -117,8 +121,8 @@ export function Products() {
                 />
 
                 <TableRow
-                  onClick={() => setModal({ prevImgs: images, product: { id, name } })}
-                  content={<i className="icons ri-image-2-fill text-2xl">{images?.length}</i>}
+                  onClick={() => setImgModal({ prevImgs: images, product: { id, name } })}
+                  content={<i className="icons ri-image-2-fill text-2xl"> {images?.length}</i>}
                 />
 
                 <TableRow
@@ -132,6 +136,14 @@ export function Products() {
                       ))}
                     </select>
                   }
+                />
+                <TableRow
+                  content={
+                    <div className="mx-auto w-fit ">
+                      <i className="ri-coupon-2-fill icons  text-2xl"> 2</i>
+                    </div>
+                  }
+                  style
                 />
               </tr>
             );
