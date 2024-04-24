@@ -5,7 +5,7 @@ import { APIHydro } from "src/api";
 import { UploadProductImgs } from "./UploadProductImgs";
 import { categories } from "src/utils";
 import { error, success } from "src/components/notifications";
-import { UpdateProductCoupon } from "./UpdateProductCoupon";
+import { UpdateProductPromCodes } from "./UpdateProductPromCodes";
 
 const colsTitles = [
   "id",
@@ -25,7 +25,7 @@ export function Products() {
   const [imgModal, setImgModal] = useState(false);
   const [couponModal, setCouponModal] = useState(false);
   const [related, setRelated] = useState([]);
-  console.log(products);
+
   async function handleAddFeaturedProduct(productId, productName, productPrice) {
     if (!productPrice) return error("No podes activar un producto sin precio");
 
@@ -76,7 +76,7 @@ export function Products() {
   return (
     <main className="w-full">
       <UploadProductImgs modal={imgModal} setModal={setImgModal} />
-      <UpdateProductCoupon
+      <UpdateProductPromCodes
         related={related}
         allCodes={_promotionalCodes}
         modal={couponModal}
