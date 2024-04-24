@@ -21,9 +21,10 @@ const colsTitles = [
 
 export function Products() {
   const navigate = useNavigate();
-  const { products } = useLoaderData();
+  const { products, _promotionalCodes } = useLoaderData();
   const [imgModal, setImgModal] = useState(false);
   const [couponModal, setCouponModal] = useState(false);
+  const [related, setRelated] = useState([]);
   console.log(products);
   async function handleAddFeaturedProduct(productId, productName, productPrice) {
     if (!productPrice) return error("No podes activar un producto sin precio");
@@ -67,11 +68,20 @@ export function Products() {
       console.log(e);
     }
   }
+  function handleCodesModal(productId, promotionalCodes) {
+    setRelated({ productId, promotionalCodes });
+    setCouponModal(true);
+  }
 
   return (
     <main className="w-full">
       <UploadProductImgs modal={imgModal} setModal={setImgModal} />
-      <UpdateProductCoupon modal={couponModal} setModal={setCouponModal} />
+      <UpdateProductCoupon
+        related={related}
+        allCodes={_promotionalCodes}
+        modal={couponModal}
+        setModal={setCouponModal}
+      />
       <table className="my-4 w-full text-white">
         <thead className="border border-gold">
           <tr className="goldGradient text-base uppercase">
@@ -86,7 +96,7 @@ export function Products() {
           </tr>
         </thead>
         <tbody>
-          {products.map(({ id, arsPrice, name, published, updated, images, featured, typeId }) => {
+          {products.map(({ id, arsPrice, name, published, updated, images, featured, typeId, promotionalCodes }) => {
             return (
               <tr key={id} className="even:bg-gold/10">
                 <TableRow content={id} />
@@ -139,8 +149,13 @@ export function Products() {
                 />
                 <TableRow
                   content={
-                    <div className="mx-auto w-fit ">
-                      <i className="ri-coupon-2-fill icons  text-2xl"> 2</i>
+                    <div
+                      onClick={() => {
+                        handleCodesModal(id, promotionalCodes);
+                      }}
+                      className="mx-auto w-fit"
+                    >
+                      <i className="ri-coupon-2-fill icons text-2xl"> {promotionalCodes?.length || 0}</i>
                     </div>
                   }
                   style

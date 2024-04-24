@@ -104,8 +104,8 @@ export const APIHydro = {
   getAllUsers: () => {
     return apiHydro.get(`/${route.USER}`);
   },
-  getAllProducts: () => {
-    return apiHydro.get(`/${route.PRODUCT}/all`);
+  getAllProducts: ({ includeCode = false }) => {
+    return apiHydro.get(`/${route.PRODUCT}/all?includeCode=${includeCode}`);
   },
   getProductsPaginated: ({ pag, productsPerPage }) => {
     return apiHydro.post(`/${route.PRODUCT}/pag`, { pag, productsPerPage }); //ejemplo para traer todos los productos

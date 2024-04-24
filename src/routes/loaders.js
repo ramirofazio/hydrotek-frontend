@@ -45,7 +45,7 @@ export async function productDetailLoader({ params }) {
 }
 
 export async function allProductsLoader() {
-  const products = await APIHydro.getAllProducts();
+  const products = await APIHydro.getAllProducts({ includeCode: true });
   return products.data;
 }
 
