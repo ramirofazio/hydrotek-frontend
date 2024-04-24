@@ -16,7 +16,7 @@ const colsTitles = [
   "destacado",
   "subir imagen",
   "categoría",
-  "Cupones vinculados",
+  "Códigos pomocionales",
 ];
 
 export function Products() {
@@ -96,7 +96,7 @@ export function Products() {
           <tr className="goldGradient text-base uppercase">
             {colsTitles.map((t, index) => (
               <th
-                className="border-r-2 border-r-blue px-2  py-2 text-xs last:border-none xl:px-0 xl:text-center xl:text-sm"
+                className="min-w-[150px] border-r-2 border-r-blue px-4 py-2 text-xs last:border-none xl:px-0 xl:text-center xl:text-sm"
                 key={index}
               >
                 {t}

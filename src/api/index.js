@@ -198,6 +198,9 @@ export const APIHydro = {
     console.log("index", promotionalCodeId, productId);
     return apiHydro.post(`${route.PROMO_CODES}/un-relate`, { productId, promotionalCodeId });
   },
+  setPromCodeState: ({ promotionalCodeId }) => {
+    return apiHydro.patch(`${route.PROMO_CODES}/state/:${promotionalCodeId}`);
+  },
 };
 
 export function addAuthWithToken(token) {

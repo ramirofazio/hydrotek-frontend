@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 export function UpdateProductPromCodes({ modal, setModal, related, setRelated, allCodes }) {
   const [loading, setLoading] = useState(false);
   let { productId, promotionalCodes } = related;
-  console.log("all", allCodes);
   const colsTitles = ["codigo", "descuento", "estado", "desvincular"];
 
   async function unRelatePromCode(promotionalCodeId) {

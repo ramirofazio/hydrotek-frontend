@@ -3,14 +3,15 @@ import { TableRow } from "./index";
 import { error, success } from "src/components/notifications";
 import { APIHydro } from "src/api";
 import { useState } from "react";
-import { Modal } from "src/components";
+import { Modal, Loader } from "src/components";
 import { Input } from "src/components/inputs";
 import { Button } from "src/components/buttons";
 
-const colsTitles = ["codigo", "descuento", "editar", "eliminar"];
+const colsTitles = ["codigo", "descuento", "editar", "estado", "eliminar"];
 
 export function PromotionalCodes() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const { promotionalCodes } = useLoaderData();
 
   const [modal, setModal] = useState(false);
@@ -103,6 +104,21 @@ export function PromotionalCodes() {
     });
   };
 
+  async function hanldeState(active) {
+    try {
+      setLoading(true);
+      const res = await APIHydro.setPromCodeState(active);
+      if (res) {
+        success("Código desvinculado con exito");
+      }
+    } catch (err) {
+      console.log(err);
+      error(`Error ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main className="w-full">
       <Modal
@@ -113,6 +129,7 @@ export function PromotionalCodes() {
         }}
         panelSize={"!max-w-4xl"}
       >
+        {loading && <Loader />}
         <h1 className="text-center">
           {newPromotionalCode.edit ? (
             <>
@@ -160,7 +177,7 @@ export function PromotionalCodes() {
           </tr>
         </thead>
         <tbody>
-          {promotionalCodes.map(({ id, code, discount }, index) => {
+          {promotionalCodes.map(({ id, code, discount, active }, index) => {
             return (
               <tr key={index} className="even:bg-gold/10">
                 <TableRow content={code} />
@@ -173,6 +190,21 @@ export function PromotionalCodes() {
                     />
                   }
                 />
+                <TableRow
+                  content={
+                    <i
+                      onClick={() => hanldeState(active)}
+                      className={`ri-checkbox-blank-circle-fill flex items-center justify-center gap-2 text-xl hover:cursor-pointer hover:opacity-70 ${
+                        active ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      <p className="font-primary text-base uppercase text-white">
+                        {active ? "habilitado" : "deshabilitado"}
+                      </p>
+                    </i>
+                  }
+                />
+
                 <TableRow
                   content={
                     <i
