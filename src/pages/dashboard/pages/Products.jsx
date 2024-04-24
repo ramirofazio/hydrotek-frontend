@@ -21,7 +21,7 @@ const colsTitles = [
 
 export function Products() {
   const navigate = useNavigate();
-  const { products, promotionalCodes } = useLoaderData();
+  const { products, _promotionalCodes } = useLoaderData();
 
   const [imgModal, setImgModal] = useState(false);
   const [couponModal, setCouponModal] = useState(false);
@@ -87,7 +87,7 @@ export function Products() {
       <UpdateProductPromCodes
         related={related}
         setRelated={setRelated}
-        allCodes={promotionalCodes}
+        allCodes={_promotionalCodes}
         modal={couponModal}
         setModal={setCouponModal}
       />

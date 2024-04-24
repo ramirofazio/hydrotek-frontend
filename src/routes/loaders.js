@@ -78,5 +78,6 @@ export async function getAllOrders() {
 }
 
 export async function getPromotionalCodes() {
-  return (await APIHydro.getPromotionalCodes()).data;
+  const _promotionalCodes = (await APIHydro.getPromotionalCodes()).data;
+  return _promotionalCodes;
 }

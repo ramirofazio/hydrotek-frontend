@@ -12,7 +12,8 @@ const colsTitles = ["codigo", "descuento", "editar", "estado", "eliminar"];
 export function PromotionalCodes() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const { promotionalCodes } = useLoaderData();
+  const { _promotionalCodes } = useLoaderData();
+  let [promotionalCodes, setPromotionalCodes] = useState(_promotionalCodes);
 
   const [modal, setModal] = useState(false);
   const [newPromotionalCode, setNewPromotionalCode] = useState({
@@ -104,12 +105,24 @@ export function PromotionalCodes() {
     });
   };
 
-  async function hanldeState(active) {
+  async function hanldeState(id, active) {
     try {
       setLoading(true);
-      const res = await APIHydro.setPromCodeState(active);
+      const res = await APIHydro.setPromCodeState({ promotionalCodeId: id, active: !active });
       if (res) {
-        success("Código desvinculado con exito");
+        setPromotionalCodes(
+          promotionalCodes.map((code) => {
+            if (code.id === id) {
+              return {
+                ...code,
+                active: !active,
+              };
+            } else {
+              return code;
+            }
+          })
+        );
+        success("Estado actualizado");
       }
     } catch (err) {
       console.log(err);
@@ -172,7 +185,7 @@ export function PromotionalCodes() {
               </th>
             ))}
             <th className="grid place-items-center border-r-2  border-r-blue px-2 py-2 text-xs last:border-none xl:px-0 xl:text-center">
-              <i className="ri-add-fill icons font-bold" onClick={handleAddPromotionalCode} />
+              <i className="ri-add-fill icons text-xl font-bold" onClick={handleAddPromotionalCode} />
             </th>
           </tr>
         </thead>
@@ -180,8 +193,8 @@ export function PromotionalCodes() {
           {promotionalCodes.map(({ id, code, discount, active }, index) => {
             return (
               <tr key={index} className="even:bg-gold/10">
-                <TableRow content={code} />
-                <TableRow content={`${discount} %`} />
+                <TableRow content={<p className="font-primary text-base text-white">{code}</p>} />
+                <TableRow content={<p className="font-primary text-base text-white">{`${discount} %`}</p>} />
                 <TableRow
                   content={
                     <i
@@ -193,7 +206,7 @@ export function PromotionalCodes() {
                 <TableRow
                   content={
                     <i
-                      onClick={() => hanldeState(active)}
+                      onClick={() => hanldeState(id, active)}
                       className={`ri-checkbox-blank-circle-fill flex items-center justify-center gap-2 text-xl hover:cursor-pointer hover:opacity-70 ${
                         active ? "text-green-500" : "text-red-500"
                       }`}
@@ -208,7 +221,7 @@ export function PromotionalCodes() {
                 <TableRow
                   content={
                     <i
-                      className="ri-close-fill icons text-2xl text-red-500"
+                      className="ri-close-fill icons text-3xl text-red-500"
                       onClick={() => handleRemovePromotionalCode(id)}
                     />
                   }

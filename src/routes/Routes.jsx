@@ -176,14 +176,14 @@ export function Routes() {
               path: "/admin/dashboard",
               element: <Dashboard />,
               loader: async () => {
-                const [products, users, lastUsdPrice, allOrders, promotionalCodes] = await Promise.all([
+                const [products, users, lastUsdPrice, allOrders, _promotionalCodes] = await Promise.all([
                   allProductsLoader(), // TODO Refactorizar en childrens de la ruta "/admin/dashboard" para un uso mas efectivo
                   allUsersLoader(),
                   getLastUsdPrice(),
                   getAllOrders(),
                   getPromotionalCodes(),
                 ]);
-                return { products, users, lastUsdPrice, allOrders, promotionalCodes };
+                return { products, users, lastUsdPrice, allOrders, _promotionalCodes };
               },
               index: true,
             },
