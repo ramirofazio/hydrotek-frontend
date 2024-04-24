@@ -70,7 +70,14 @@ export function Products() {
     }
   }
   function handleCodesModal(productId, promotionalCodes) {
-    setRelated({ productId, promotionalCodes });
+    setRelated({
+      productId,
+      promotionalCodes: promotionalCodes.map(({ promotionalCode }) => {
+        return {
+          ...promotionalCode,
+        };
+      }),
+    });
     setCouponModal(true);
   }
 
@@ -79,6 +86,7 @@ export function Products() {
       <UploadProductImgs modal={imgModal} setModal={setImgModal} />
       <UpdateProductPromCodes
         related={related}
+        setRelated={setRelated}
         allCodes={promotionalCodes}
         modal={couponModal}
         setModal={setCouponModal}

@@ -4,25 +4,49 @@ import { TableRow } from "./index";
 import { APIHydro } from "src/api";
 import toast from "react-hot-toast";
 
-export function UpdateProductPromCodes({ modal, setModal, related, allCodes }) {
+export function UpdateProductPromCodes({ modal, setModal, related, setRelated, allCodes }) {
   const [loading, setLoading] = useState(false);
-  const { productId, promotionalCodes } = related;
+  let { productId, promotionalCodes } = related;
   console.log("all", allCodes);
   const colsTitles = ["codigo", "descuento", "estado", "desvincular"];
 
-  async function removeRelatedCode() {
-    const res = await APIHydro.removePromotionalCode();
+  async function unRelatePromCode(promotionalCodeId) {
+    try {
+      setLoading(true);
+      const res = await APIHydro.unRelatePromotionalCode({ productId, promotionalCodeId });
+      if (res) {
+        setRelated({
+          productId,
+          promotionalCodes: promotionalCodes.filter((code) => code.id !== promotionalCodeId),
+        });
+        toast.success("Código desvinculado con exito");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(`Error ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  async function relateNewPromCode() {
+  async function relatePromCode({ target }) {
     try {
-      const res = await APIHydro.removePromotionalCode();
+      setLoading(true);
+      if (target.value === "") return;
+      const newPromCode = allCodes.find((code) => code.id === target.value);
+      if (promotionalCodes.find((code) => code.id === newPromCode.id)) {
+        return toast.error("Este código ya esta vinculado");
+      }
+      const res = await APIHydro.relatePromotionalCode({ productId, promotionalCodeId: target.value });
       if (res) {
+        promotionalCodes.push(newPromCode);
         toast.success("Código vinculado con exito");
       }
     } catch (err) {
       console.log(err);
       toast.error(`Error ${err.message}`);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -50,12 +74,11 @@ export function UpdateProductPromCodes({ modal, setModal, related, allCodes }) {
         </thead>
         <tbody>
           {promotionalCodes?.length &&
-            promotionalCodes.map(({ promotionalCode }, index) => {
-              const { id, code, discount, active } = promotionalCode;
+            promotionalCodes.map(({ id, code, discount, active }, index) => {
               return (
                 <tr key={index} className="even:bg-gold/10">
-                  <TableRow content={code} />
-                  <TableRow content={`${discount} %`} />
+                  <TableRow content={<p className="font-primary text-base text-white">{code}</p>} />
+                  <TableRow content={<p className="font-primary text-base text-white">{`${discount} %`}</p>} />
                   <TableRow
                     content={
                       <i
@@ -63,13 +86,15 @@ export function UpdateProductPromCodes({ modal, setModal, related, allCodes }) {
                           active ? "text-green-500" : "text-red-500"
                         }`}
                       >
-                        <p className="font-primary uppercase">{active ? "habilitado" : "deshabilitado"}</p>
+                        <p className="font-primary text-base uppercase text-white">
+                          {active ? "habilitado" : "deshabilitado"}
+                        </p>
                       </i>
                     }
                   />
                   <TableRow
                     content={
-                      <i className="ri-close-fill icons text-3xl text-red-500" onClick={() => removeRelatedCode(id)} />
+                      <i className="ri-close-fill icons text-3xl text-red-500" onClick={() => unRelatePromCode(id)} />
                     }
                   />
                 </tr>
@@ -79,7 +104,7 @@ export function UpdateProductPromCodes({ modal, setModal, related, allCodes }) {
       </table>
       <div className="mx-auto mt-10 flex w-fit flex-col gap-2 border-y-2 py-4">
         <p className="text-xl">Vincular nuevo código promocional</p>
-        <select onChange={() => relateNewPromCode()} className="">
+        <select onChange={(e) => relatePromCode(e)} className="hover:cursor-pointer">
           <option value="" className="">
             Elija un codigo
           </option>
@@ -90,7 +115,7 @@ export function UpdateProductPromCodes({ modal, setModal, related, allCodes }) {
               </option>
             ))
           ) : (
-            <option value="">No hay código promocionales</option>
+            <option value="">No hay códigos promocionales</option>
           )}
         </select>
       </div>
