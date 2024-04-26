@@ -141,15 +141,15 @@ export default function ShoppingCart() {
         )}
       </section>
       {promotionalCode && (
-        <section className="mx-auto my-4 flex w-[70%] items-center justify-between border-2">
-          <h3>
-            Cupón <strong className="yellowGradient">{promotionalCode.code}</strong>
+        <section className="mx-auto my-4 flex flex-col items-center rounded-lg border-2 p-2  ">
+          <h3 className=" items-center text-white md:flex md:gap-5">
+            Código <strong className="yellowGradient">{promotionalCode.code}</strong>
+            <i
+              className="ri-delete-bin-line icons text-background mx-2 self-end text-lg text-red-500 hover:text-opacity-70  md:text-xl lg:text-2xl"
+              onClick={() => dispatch(removeDiscount())}
+            />
           </h3>
-          <h3 className="yellowGradient mr-10 font-bold">{promotionalCode.discount} %</h3>
-          <i
-            className="ri-delete-bin-line icons text-background text-xl text-red-500"
-            onClick={() => dispatch(removeDiscount)}
-          />
+          <h3 className="yellowGradient mx-auto w-fit font-bold  text-white md:my-2">{promotionalCode.discount} %</h3>
         </section>
       )}
       <section className={`mt-10 lg:grid lg:grid-cols-5 lg:items-center`}>
@@ -170,7 +170,7 @@ export default function ShoppingCart() {
               text={"Aplicar"}
               className={"!bg-gold text-xl hover:opacity-50"}
               onClick={handleApplyCoupon}
-              disabled={!coupon || discount}
+              disabled={!coupon || promotionalCode}
             />
           </form>
         </article>
@@ -195,7 +195,7 @@ export default function ShoppingCart() {
             )}
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.total-price")}</h1>
-              <strong className="textGoldGradient pointer-events-none border-0">{`${(discount
+              <strong className="textGoldGradient pointer-events-none border-0">{`${(promotionalCode
                 ? finalPrice
                 : totalPrice
               ).toLocaleString("es-AR", {

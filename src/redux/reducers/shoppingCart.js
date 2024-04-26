@@ -17,7 +17,7 @@ const shoppingCart = createSlice({
       let aplied = false;
       const cartProducts = state.products;
       const validProducts = action.payload.products;
-      const discount = action.payload.discount;
+      const discount = action.payload.promotionalCode.discount;
 
       validProducts.map((p) => {
         if (cartProducts[p.productId]) {
@@ -53,12 +53,19 @@ const shoppingCart = createSlice({
     removeDiscount: (state) => {
       state.finalPrice = state.totalPrice;
       state.promotionalCode = "";
-      state.products = [...state.products].map((p) => {
+      // const a = Object.values(state.products).map((p) => {
+      //   let product = { ...p };
+      //   delete product.discountPrice;
+      //   console.log(product);
+      //   return product;
+      // });
+      // console.log(a);
+      Object.values(state.products).map((p) => {
         let product = { ...p };
-        delete product.discountPrice;
-        console.log(product);
+        state.products[p.productId].discountPrice = false;
         return product;
       });
+      console.log("ENTRO", state);
     },
     emptyCart: (state) => {
       state.products = {};
