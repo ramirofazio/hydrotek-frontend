@@ -15,7 +15,7 @@ import { saveInStorage } from "src/utils/localStorage";
 import { logos } from "src/assets";
 import { Input } from "src/components/inputs";
 import { APIHydro } from "src/api";
-import { applyDiscount } from "src/redux/reducers/shoppingCart";
+import { applyDiscount, removeDiscount } from "src/redux/reducers/shoppingCart";
 
 export default function ShoppingCart() {
   document.title = "Tu carrito - Hydrotek";
@@ -28,7 +28,7 @@ export default function ShoppingCart() {
   const status = searchParams.get("status");
   const transactionId = searchParams.get("transactionId");
 
-  const { products, totalPrice, finalPrice } = useSelector((state) => state.shoppingCart);
+  const { products, totalPrice, finalPrice, promotionalCode } = useSelector((state) => state.shoppingCart);
   const {
     session: { dni, id },
   } = useSelector((state) => state.user);
@@ -78,17 +78,14 @@ export default function ShoppingCart() {
       APIHydro.validateCoupon(coupon.toUpperCase())
         .then((res) => {
           if (res.status === 200) {
-            console.log(products);
             console.log(res.data);
+            dispatch(applyDiscount(res.data));
             setLoader(false);
-            success("Cupon aplicado con exito");
-            setDiscount(res.data.discount);
-            dispatch(applyDiscount(res.data.discount));
           }
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log(e);
           error("Hubo un problema al aplicar tu cupon");
-          setDiscount(0);
           setLoader(false);
         });
     } catch (e) {
@@ -127,6 +124,7 @@ export default function ShoppingCart() {
               productId={a.productId}
               name={a.name}
               price={a.price}
+              discountPrice={a.discountPrice || false}
               key={i}
               img={a.img ? a.img : logos.hydBlack}
             />
@@ -142,6 +140,18 @@ export default function ShoppingCart() {
           </div>
         )}
       </section>
+      {promotionalCode && (
+        <section className="mx-auto my-4 flex w-[70%] items-center justify-between border-2">
+          <h3>
+            Cupón <strong className="yellowGradient">{promotionalCode.code}</strong>
+          </h3>
+          <h3 className="yellowGradient mr-10 font-bold">{promotionalCode.discount} %</h3>
+          <i
+            className="ri-delete-bin-line icons text-background text-xl text-red-500"
+            onClick={() => dispatch(removeDiscount)}
+          />
+        </section>
+      )}
       <section className={`mt-10 lg:grid lg:grid-cols-5 lg:items-center`}>
         <article className="mx-auto  w-[90%] rounded-lg border-2 border-gold bg-black px-5 py-8 md:px-[6rem] lg:col-span-5">
           <form
@@ -164,6 +174,7 @@ export default function ShoppingCart() {
             />
           </form>
         </article>
+        {}
         <article className="mx-auto my-10 w-[90%] rounded-lg border-2 border-gold bg-black px-5 py-8 md:px-[6rem] lg:col-span-5">
           <h1 className="mx-auto my-5 w-fit md:mx-0">{t("order.order-data")}</h1>
           <div className="flex flex-col gap-5  ">
