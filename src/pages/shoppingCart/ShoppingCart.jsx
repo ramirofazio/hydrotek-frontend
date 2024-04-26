@@ -7,7 +7,7 @@ import { Loader, Modal } from "src/components";
 import { useState } from "react";
 import { PaymentOk } from "./PaymentOk";
 import { PaymentFailed } from "./PaymentFailed";
-import { error, success } from "src/components/notifications";
+import { error } from "src/components/notifications";
 import getCheckout from "./checkouts";
 import CheckoutForm from "./CheckoutForm";
 import { PaymentInProcess } from "./PaymentInProcess";
@@ -37,7 +37,6 @@ export default function ShoppingCart() {
   const [cleanProducts, setCleanProducts] = useState(null);
   const [checkoutFormModal, setCheckoutFormModal] = useState(false);
   const [coupon, setCoupon] = useState("");
-  const [discount, setDiscount] = useState(0);
 
   const arrProducts = Object.values(products);
 
@@ -49,7 +48,7 @@ export default function ShoppingCart() {
         qty: quantity,
         id: productId,
       }));
-      getCheckout(id, dni, cleanProducts, discount).then((res) => {
+      getCheckout(id, dni, cleanProducts, 0).then((res) => {
         if (res?.data) {
           //? Guardo products para recuperar el paymentModals y poder crear la orden
           window.location.replace(res.data);
@@ -61,9 +60,9 @@ export default function ShoppingCart() {
           setCleanProducts(cleanProducts);
         }
 
-        const orderPrice = discount ? finalPrice : totalPrice;
+        const orderPrice = promotionalCode.discount ? finalPrice : totalPrice;
 
-        saveInStorage("order", { totalPrice: orderPrice, discount: discount, items: arrProducts });
+        saveInStorage("order", { totalPrice: orderPrice, discount: promotionalCode.discount, items: arrProducts });
       });
     } else {
       error("No hay productos en el carrito");
@@ -104,7 +103,7 @@ export default function ShoppingCart() {
           onClose={() => setCheckoutFormModal(false)}
           cleanProducts={cleanProducts}
           setLoader={setLoader}
-          discount={discount}
+          discount={promotionalCode?.discount || 0}
         />
       )}
       {status && (
@@ -162,9 +161,9 @@ export default function ShoppingCart() {
             <Input
               type="text"
               placeholder="codigo"
-              className={`relative !p-1 !text-lg uppercase lg:!pl-6 ${discount && "opacity-50"}`}
+              className={`relative !p-1 !text-lg uppercase lg:!pl-6 ${promotionalCode?.discount && "opacity-50"}`}
               onChange={(e) => setCoupon(e.target.value)}
-              disabled={discount}
+              disabled={promotionalCode?.discount}
             />
             <Button
               text={"Aplicar"}
@@ -187,10 +186,10 @@ export default function ShoppingCart() {
                 }) || "--"}
               </strong>
             </div>
-            {discount > 0 && (
+            {promotionalCode.discount > 0 && (
               <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
                 <h1>{t("order.discount")}</h1>
-                <strong className="textGoldGradient pointer-events-none border-0">{discount} %</strong>
+                <strong className="textGoldGradient pointer-events-none border-0">{promotionalCode.discount} %</strong>
               </div>
             )}
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
