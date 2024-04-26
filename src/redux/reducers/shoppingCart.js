@@ -12,10 +12,19 @@ const shoppingCart = createSlice({
   },
   reducers: {
     applyDiscount: (state, action) => {
-      const discountPercentaje = action.payload;
+      console.log(action.payload);
+      const cartProducts = state.products;
+      const validProducts = action.payload.products;
+      const discountPercentaje = action.payload.discount;
       const discount = (discountPercentaje / 100) * state.totalPrice;
-      state.discount = action.payload;
-      state.finalPrice = state.totalPrice - discount;
+      validProducts.map((p) => {
+        if (cartProducts[p.productId]) {
+          cartProducts[p.productId] = "aplico";
+        }
+      });
+      state.discount = discountPercentaje;
+
+      // state.finalPrice = state.totalPrice - discount;
     },
     emptyCart: (state) => {
       state.products = {};

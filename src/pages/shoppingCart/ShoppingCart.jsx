@@ -78,6 +78,8 @@ export default function ShoppingCart() {
       APIHydro.validateCoupon(coupon.toUpperCase())
         .then((res) => {
           if (res.status === 200) {
+            console.log(products);
+            console.log(res.data);
             setLoader(false);
             success("Cupon aplicado con exito");
             setDiscount(res.data.discount);
