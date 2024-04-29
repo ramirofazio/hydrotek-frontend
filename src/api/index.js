@@ -190,6 +190,17 @@ export const APIHydro = {
   getFilteredProducts: (typeId) => {
     return apiHydro.get(`${route.PRODUCT}/filter/${typeId}`);
   },
+  relatePromotionalCode: ({ productId, promotionalCodeId }) => {
+    console.log("index", promotionalCodeId, productId);
+    return apiHydro.post(`${route.PROMO_CODES}/relate`, { productId, promotionalCodeId });
+  },
+  unRelatePromotionalCode: ({ productId, promotionalCodeId }) => {
+    console.log("index", promotionalCodeId, productId);
+    return apiHydro.post(`${route.PROMO_CODES}/un-relate`, { productId, promotionalCodeId });
+  },
+  setPromCodeState: ({ promotionalCodeId, active }) => {
+    return apiHydro.patch(`${route.PROMO_CODES}/state`, { promotionalCodeId, active });
+  },
 };
 
 export function addAuthWithToken(token) {

@@ -5,7 +5,7 @@ import { APIHydro } from "src/api";
 import { UploadProductImgs } from "./UploadProductImgs";
 import { categories } from "src/utils";
 import { error, success } from "src/components/notifications";
-import { UpdateProductCoupon } from "./UpdateProductCoupon";
+import { UpdateProductPromCodes } from "./UpdateProductPromCodes";
 
 const colsTitles = [
   "id",
@@ -16,16 +16,17 @@ const colsTitles = [
   "destacado",
   "subir imagen",
   "categoría",
-  "Cupones vinculados",
+  "Códigos pomocionales",
 ];
 
 export function Products() {
   const navigate = useNavigate();
   const { products, _promotionalCodes } = useLoaderData();
+
   const [imgModal, setImgModal] = useState(false);
   const [couponModal, setCouponModal] = useState(false);
   const [related, setRelated] = useState([]);
-  console.log(products);
+
   async function handleAddFeaturedProduct(productId, productName, productPrice) {
     if (!productPrice) return error("No podes activar un producto sin precio");
 
@@ -69,15 +70,23 @@ export function Products() {
     }
   }
   function handleCodesModal(productId, promotionalCodes) {
-    setRelated({ productId, promotionalCodes });
+    setRelated({
+      productId,
+      promotionalCodes: promotionalCodes.map(({ promotionalCode }) => {
+        return {
+          ...promotionalCode,
+        };
+      }),
+    });
     setCouponModal(true);
   }
 
   return (
     <main className="w-full">
       <UploadProductImgs modal={imgModal} setModal={setImgModal} />
-      <UpdateProductCoupon
+      <UpdateProductPromCodes
         related={related}
+        setRelated={setRelated}
         allCodes={_promotionalCodes}
         modal={couponModal}
         setModal={setCouponModal}
@@ -87,7 +96,7 @@ export function Products() {
           <tr className="goldGradient text-base uppercase">
             {colsTitles.map((t, index) => (
               <th
-                className="border-r-2 border-r-blue px-2  py-2 text-xs last:border-none xl:px-0 xl:text-center xl:text-sm"
+                className="min-w-[150px] border-r-2 border-r-blue px-4 py-2 text-xs last:border-none xl:px-0 xl:text-center xl:text-sm"
                 key={index}
               >
                 {t}

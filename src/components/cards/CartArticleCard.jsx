@@ -1,8 +1,7 @@
 import { backgrounds } from "assets";
 import { Quantity } from "..";
 
-
-export function CartArticleCard({ img, name, price, productId }) {
+export function CartArticleCard({ img, name, price, discountPrice, productId }) {
   return (
     <main className="grid grid-cols-2 gap-2 border-b-[1px] border-gold py-8 sm:grid-cols-3  sm:gap-0 lg:max-w-[75%] lg:gap-8">
       <picture className=" relative flex items-center justify-center  sm:max-w-[200px]">
@@ -12,12 +11,30 @@ export function CartArticleCard({ img, name, price, productId }) {
       </picture>
       <article className="flex flex-col justify-center gap-1 break-normal break-all  lg:col-span-2">
         <h1 className="text-lg">{name}</h1>
-        <h2 className=" textGoldGradient font-bold">
-          {price.toLocaleString("es-AR", {
-            style: "currency",
-            currency: "ARS",
-          })}
-        </h2>
+        {discountPrice ? (
+          <span>
+            <h2 className="font-bold text-gold text-opacity-70 line-through">
+              {price.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS",
+              })}
+            </h2>
+            <h2 className="textGoldGradient  font-bold">
+              {discountPrice.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS",
+              })}
+            </h2>
+          </span>
+        ) : (
+          <h2 className=" textGoldGradient font-bold">
+            {price.toLocaleString("es-AR", {
+              style: "currency",
+              currency: "ARS",
+            })}
+          </h2>
+        )}
+
         <article className="col-span-2 mt-4 hidden w-fit sm:inline ">
           <Quantity productName={name} price={price} productId={productId} />
         </article>

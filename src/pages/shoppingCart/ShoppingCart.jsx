@@ -7,7 +7,7 @@ import { Loader, Modal } from "src/components";
 import { useState } from "react";
 import { PaymentOk } from "./PaymentOk";
 import { PaymentFailed } from "./PaymentFailed";
-import { error, success } from "src/components/notifications";
+import { error } from "src/components/notifications";
 import getCheckout from "./checkouts";
 import CheckoutForm from "./CheckoutForm";
 import { PaymentInProcess } from "./PaymentInProcess";
@@ -15,7 +15,7 @@ import { saveInStorage } from "src/utils/localStorage";
 import { logos } from "src/assets";
 import { Input } from "src/components/inputs";
 import { APIHydro } from "src/api";
-import { applyDiscount } from "src/redux/reducers/shoppingCart";
+import { applyDiscount, removeDiscount } from "src/redux/reducers/shoppingCart";
 
 export default function ShoppingCart() {
   document.title = "Tu carrito - Hydrotek";
@@ -28,7 +28,7 @@ export default function ShoppingCart() {
   const status = searchParams.get("status");
   const transactionId = searchParams.get("transactionId");
 
-  const { products, totalPrice, finalPrice } = useSelector((state) => state.shoppingCart);
+  const { products, totalPrice, finalPrice, promotionalCode } = useSelector((state) => state.shoppingCart);
   const {
     session: { dni, id },
   } = useSelector((state) => state.user);
@@ -37,7 +37,6 @@ export default function ShoppingCart() {
   const [cleanProducts, setCleanProducts] = useState(null);
   const [checkoutFormModal, setCheckoutFormModal] = useState(false);
   const [coupon, setCoupon] = useState("");
-  const [discount, setDiscount] = useState(0);
 
   const arrProducts = Object.values(products);
 
@@ -49,7 +48,7 @@ export default function ShoppingCart() {
         qty: quantity,
         id: productId,
       }));
-      getCheckout(id, dni, cleanProducts, discount).then((res) => {
+      getCheckout(id, dni, cleanProducts, 0).then((res) => {
         if (res?.data) {
           //? Guardo products para recuperar el paymentModals y poder crear la orden
           window.location.replace(res.data);
@@ -61,9 +60,9 @@ export default function ShoppingCart() {
           setCleanProducts(cleanProducts);
         }
 
-        const orderPrice = discount ? finalPrice : totalPrice;
+        const orderPrice = promotionalCode.discount ? finalPrice : totalPrice;
 
-        saveInStorage("order", { totalPrice: orderPrice, discount: discount, items: arrProducts });
+        saveInStorage("order", { totalPrice: orderPrice, discount: promotionalCode.discount, items: arrProducts });
       });
     } else {
       error("No hay productos en el carrito");
@@ -75,23 +74,21 @@ export default function ShoppingCart() {
     setLoader(true);
 
     try {
-      APIHydro.validateCoupon(coupon.toUpperCase())
-        .then((res) => {
-          if (res.status === 200) {
-            setLoader(false);
-            success("Cupon aplicado con exito");
-            setDiscount(res.data.discount);
-            dispatch(applyDiscount(res.data.discount));
-          }
-        })
-        .catch(() => {
-          error("Hubo un problema al aplicar tu cupon");
-          setDiscount(0);
+      APIHydro.validateCoupon(coupon.toUpperCase()).then((res) => {
+        if (res.status === 200) {
+          dispatch(applyDiscount(res.data));
           setLoader(false);
-        });
+        }
+      });
     } catch (e) {
       console.log(e);
-      error("Hubo un problema al aplicar tu cupon");
+      if (e.status === 404) {
+        error("No hay productos que apliquen al descuento");
+      } else {
+        error("Código no disponible");
+      }
+      setLoader(false);
+    } finally {
       setLoader(false);
     }
   };
@@ -105,7 +102,7 @@ export default function ShoppingCart() {
           onClose={() => setCheckoutFormModal(false)}
           cleanProducts={cleanProducts}
           setLoader={setLoader}
-          discount={discount}
+          discount={promotionalCode?.discount || 0}
         />
       )}
       {status && (
@@ -125,6 +122,7 @@ export default function ShoppingCart() {
               productId={a.productId}
               name={a.name}
               price={a.price}
+              discountPrice={a.discountPrice || false}
               key={i}
               img={a.img ? a.img : logos.hydBlack}
             />
@@ -140,6 +138,18 @@ export default function ShoppingCart() {
           </div>
         )}
       </section>
+      {promotionalCode && (
+        <section className="mx-auto my-4 flex flex-col items-center rounded-lg border-2 p-2  ">
+          <h3 className=" items-center text-white md:flex md:gap-5">
+            Código <strong className="yellowGradient">{promotionalCode.code}</strong>
+            <i
+              className="ri-delete-bin-line icons text-background mx-2 self-end text-lg text-red-500 hover:text-opacity-70  md:text-xl lg:text-2xl"
+              onClick={() => dispatch(removeDiscount())}
+            />
+          </h3>
+          <h3 className="yellowGradient mx-auto w-fit font-bold  text-white md:my-2">{promotionalCode.discount} %</h3>
+        </section>
+      )}
       <section className={`mt-10 lg:grid lg:grid-cols-5 lg:items-center`}>
         <article className="mx-auto  w-[90%] rounded-lg border-2 border-gold bg-black px-5 py-8 md:px-[6rem] lg:col-span-5">
           <form
@@ -150,18 +160,19 @@ export default function ShoppingCart() {
             <Input
               type="text"
               placeholder="codigo"
-              className={`relative !p-1 !text-lg uppercase lg:!pl-6 ${discount && "opacity-50"}`}
+              className={`relative !p-1 !text-lg uppercase lg:!pl-6 ${promotionalCode?.discount && "opacity-50"}`}
               onChange={(e) => setCoupon(e.target.value)}
-              disabled={discount}
+              disabled={promotionalCode?.discount}
             />
             <Button
               text={"Aplicar"}
               className={"!bg-gold text-xl hover:opacity-50"}
               onClick={handleApplyCoupon}
-              disabled={!coupon || discount}
+              disabled={!coupon || promotionalCode}
             />
           </form>
         </article>
+        {}
         <article className="mx-auto my-10 w-[90%] rounded-lg border-2 border-gold bg-black px-5 py-8 md:px-[6rem] lg:col-span-5">
           <h1 className="mx-auto my-5 w-fit md:mx-0">{t("order.order-data")}</h1>
           <div className="flex flex-col gap-5  ">
@@ -174,15 +185,15 @@ export default function ShoppingCart() {
                 }) || "--"}
               </strong>
             </div>
-            {discount > 0 && (
+            {promotionalCode.discount > 0 && (
               <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
                 <h1>{t("order.discount")}</h1>
-                <strong className="textGoldGradient pointer-events-none border-0">{discount} %</strong>
+                <strong className="textGoldGradient pointer-events-none border-0">{promotionalCode.discount} %</strong>
               </div>
             )}
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.total-price")}</h1>
-              <strong className="textGoldGradient pointer-events-none border-0">{`${(discount
+              <strong className="textGoldGradient pointer-events-none border-0">{`${(promotionalCode
                 ? finalPrice
                 : totalPrice
               ).toLocaleString("es-AR", {
