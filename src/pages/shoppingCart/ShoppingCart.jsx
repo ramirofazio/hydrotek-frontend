@@ -74,22 +74,21 @@ export default function ShoppingCart() {
     setLoader(true);
 
     try {
-      APIHydro.validateCoupon(coupon.toUpperCase())
-        .then((res) => {
-          if (res.status === 200) {
-            console.log(res.data);
-            dispatch(applyDiscount(res.data));
-            setLoader(false);
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-          error("Hubo un problema al aplicar tu cupon");
+      APIHydro.validateCoupon(coupon.toUpperCase()).then((res) => {
+        if (res.status === 200) {
+          dispatch(applyDiscount(res.data));
           setLoader(false);
-        });
+        }
+      });
     } catch (e) {
       console.log(e);
-      error("Hubo un problema al aplicar tu cupon");
+      if (e.status === 404) {
+        error("No hay productos que apliquen al descuento");
+      } else {
+        error("Código no disponible");
+      }
+      setLoader(false);
+    } finally {
       setLoader(false);
     }
   };

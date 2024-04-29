@@ -53,19 +53,11 @@ const shoppingCart = createSlice({
     removeDiscount: (state) => {
       state.finalPrice = state.totalPrice;
       state.promotionalCode = "";
-      // const a = Object.values(state.products).map((p) => {
-      //   let product = { ...p };
-      //   delete product.discountPrice;
-      //   console.log(product);
-      //   return product;
-      // });
-      // console.log(a);
       Object.values(state.products).map((p) => {
         let product = { ...p };
         state.products[p.productId].discountPrice = false;
         return product;
       });
-      console.log("ENTRO", state);
     },
     emptyCart: (state) => {
       state.products = {};
