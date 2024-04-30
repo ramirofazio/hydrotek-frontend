@@ -43,12 +43,18 @@ export default function ShoppingCart() {
   async function payOrder() {
     if (arrProducts.length) {
       setLoader(true);
-      const cleanProducts = arrProducts.map(({ quantity, productId }) => ({
-        //? Acomodo los arrProducts como lo espera el BE
-        qty: quantity,
-        id: productId,
-      }));
-      getCheckout(id, dni, cleanProducts, 0).then((res) => {
+      const cleanProducts = arrProducts.map(({ quantity, productId, discountPrice }) => {
+        let rawProduct = {
+          qty: quantity,
+          id: productId,
+        };
+        if (discountPrice) {
+          rawProduct.discountPrice = discountPrice;
+        }
+        console.log(rawProduct);
+        return rawProduct;
+      });
+      getCheckout(id, dni, cleanProducts, promotionalCode.discount).then((res) => {
         if (res?.data) {
           //? Guardo products para recuperar el paymentModals y poder crear la orden
           window.location.replace(res.data);

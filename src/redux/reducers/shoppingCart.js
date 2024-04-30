@@ -22,8 +22,9 @@ const shoppingCart = createSlice({
       validProducts.map((p) => {
         if (cartProducts[p.productId]) {
           aplied = true;
-
-          const discountPrice = (discount / 100) * cartProducts[p.productId].price;
+          const originalPrice = cartProducts[p.productId].price;
+          const discountMount = (discount / 100) * cartProducts[p.productId].price;
+          const discountPrice = originalPrice - discountMount;
           const productCopy = {
             ...cartProducts[p.productId],
             discountPrice,

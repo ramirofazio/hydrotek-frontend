@@ -4,7 +4,7 @@ import { error } from "src/components/notifications";
 export default async function getCheckout(id, dni, cleanProducts, discount) {
   try {
     if (id && dni) {
-      return APIHydro.userWithDniCheckout({ userId: id, identifier: dni, items: cleanProducts, discount: discount });
+      return APIHydro.userWithDniCheckout({ userId: id, identifier: dni, items: cleanProducts, discount });
     } else if (id && !dni) {
       error("Es necesario el DNI para el proceso de compra. Por favor, agreguelo");
       return "no dni";
