@@ -45,7 +45,7 @@ export async function productDetailLoader({ params }) {
 }
 
 export async function allProductsLoader() {
-  const products = await APIHydro.getAllProducts();
+  const products = await APIHydro.getAllProducts({ includeCode: true });
   return products.data;
 }
 
@@ -78,5 +78,6 @@ export async function getAllOrders() {
 }
 
 export async function getPromotionalCodes() {
-  return (await APIHydro.getPromotionalCodes()).data;
+  const _promotionalCodes = (await APIHydro.getPromotionalCodes()).data;
+  return _promotionalCodes;
 }

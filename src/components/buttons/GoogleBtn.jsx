@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { saveInStorage } from "src/utils/localStorage";
-import { WorkInProgressModal } from "../modals";
+// import { WorkInProgressModal } from "../modals";
 import { logos } from "src/assets";
 
 export const GoogleBtn = ({ classname, pClassname, setLoading, ...props }) => {

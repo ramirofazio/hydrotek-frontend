@@ -104,8 +104,8 @@ export const APIHydro = {
   getAllUsers: () => {
     return apiHydro.get(`/${route.USER}`);
   },
-  getAllProducts: () => {
-    return apiHydro.get(`/${route.PRODUCT}/all`);
+  getAllProducts: ({ includeCode = false }) => {
+    return apiHydro.get(`/${route.PRODUCT}/all?includeCode=${includeCode}`);
   },
   getProductsPaginated: ({ pag, productsPerPage }) => {
     return apiHydro.post(`/${route.PRODUCT}/pag`, { pag, productsPerPage }); //ejemplo para traer todos los productos
@@ -189,6 +189,17 @@ export const APIHydro = {
   },
   getFilteredProducts: (typeId) => {
     return apiHydro.get(`${route.PRODUCT}/filter/${typeId}`);
+  },
+  relatePromotionalCode: ({ productId, promotionalCodeId }) => {
+    console.log("index", promotionalCodeId, productId);
+    return apiHydro.post(`${route.PROMO_CODES}/relate`, { productId, promotionalCodeId });
+  },
+  unRelatePromotionalCode: ({ productId, promotionalCodeId }) => {
+    console.log("index", promotionalCodeId, productId);
+    return apiHydro.post(`${route.PROMO_CODES}/un-relate`, { productId, promotionalCodeId });
+  },
+  setPromCodeState: ({ promotionalCodeId, active }) => {
+    return apiHydro.patch(`${route.PROMO_CODES}/state`, { promotionalCodeId, active });
   },
 };
 

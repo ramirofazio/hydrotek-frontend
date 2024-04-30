@@ -5,6 +5,7 @@ import { APIHydro } from "src/api";
 import { UploadProductImgs } from "./UploadProductImgs";
 import { categories } from "src/utils";
 import { error, success } from "src/components/notifications";
+import { UpdateProductPromCodes } from "./UpdateProductPromCodes";
 
 const colsTitles = [
   "id",
@@ -15,12 +16,16 @@ const colsTitles = [
   "destacado",
   "subir imagen",
   "categoría",
+  "Códigos pomocionales",
 ];
 
 export function Products() {
   const navigate = useNavigate();
-  const { products } = useLoaderData();
-  const [modal, setModal] = useState(false);
+  const { products, _promotionalCodes } = useLoaderData();
+
+  const [imgModal, setImgModal] = useState(false);
+  const [couponModal, setCouponModal] = useState(false);
+  const [related, setRelated] = useState([]);
 
   async function handleAddFeaturedProduct(productId, productName, productPrice) {
     if (!productPrice) return error("No podes activar un producto sin precio");
@@ -64,16 +69,34 @@ export function Products() {
       console.log(e);
     }
   }
+  function handleCodesModal(productId, promotionalCodes) {
+    setRelated({
+      productId,
+      promotionalCodes: promotionalCodes.map(({ promotionalCode }) => {
+        return {
+          ...promotionalCode,
+        };
+      }),
+    });
+    setCouponModal(true);
+  }
 
   return (
     <main className="w-full">
-      <UploadProductImgs modal={modal} setModal={setModal} />
+      <UploadProductImgs modal={imgModal} setModal={setImgModal} />
+      <UpdateProductPromCodes
+        related={related}
+        setRelated={setRelated}
+        allCodes={_promotionalCodes}
+        modal={couponModal}
+        setModal={setCouponModal}
+      />
       <table className="my-4 w-full text-white">
         <thead className="border border-gold">
           <tr className="goldGradient text-base uppercase">
             {colsTitles.map((t, index) => (
               <th
-                className="border-r-2 border-r-blue px-2  py-2 text-xs last:border-none xl:px-0 xl:text-center xl:text-sm"
+                className="min-w-[150px] border-r-2 border-r-blue px-4 py-2 text-xs last:border-none xl:px-0 xl:text-center xl:text-sm"
                 key={index}
               >
                 {t}
@@ -82,7 +105,7 @@ export function Products() {
           </tr>
         </thead>
         <tbody>
-          {products.map(({ id, arsPrice, name, published, updated, images, featured, typeId }) => {
+          {products.map(({ id, arsPrice, name, published, updated, images, featured, typeId, promotionalCodes }) => {
             return (
               <tr key={id} className="even:bg-gold/10">
                 <TableRow content={id} />
@@ -117,8 +140,8 @@ export function Products() {
                 />
 
                 <TableRow
-                  onClick={() => setModal({ prevImgs: images, product: { id, name } })}
-                  content={<i className="icons ri-image-2-fill text-2xl">{images?.length}</i>}
+                  onClick={() => setImgModal({ prevImgs: images, product: { id, name } })}
+                  content={<i className="icons ri-image-2-fill text-2xl"> {images?.length}</i>}
                 />
 
                 <TableRow
@@ -132,6 +155,19 @@ export function Products() {
                       ))}
                     </select>
                   }
+                />
+                <TableRow
+                  content={
+                    <div
+                      onClick={() => {
+                        handleCodesModal(id, promotionalCodes);
+                      }}
+                      className="mx-auto w-fit"
+                    >
+                      <i className="ri-coupon-2-fill icons text-2xl"> {promotionalCodes?.length || 0}</i>
+                    </div>
+                  }
+                  style
                 />
               </tr>
             );
