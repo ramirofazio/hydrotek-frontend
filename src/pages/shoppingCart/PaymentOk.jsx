@@ -48,7 +48,7 @@ export function PaymentOk({ transactionId, status, setLoader }) {
         name: guestInfo && `${guestInfo.firstName} ${guestInfo.lastName}`,
         email: guestInfo && guestInfo.email,
         totalPrice: order.totalPrice,
-        discount: order.discount,
+        discount: order.discount ? order.discount : 0,
         fresaId: transactionId,
         status: status,
         items: [...order.items],

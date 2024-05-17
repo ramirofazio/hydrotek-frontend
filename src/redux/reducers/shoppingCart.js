@@ -11,7 +11,6 @@ const shoppingCart = createSlice({
     discount: 0,
     totalPrice: 0,
     finalPrice: false,
-    discountAmount: 0,
   },
   reducers: {
     applyDiscount: (state, action) => {
@@ -19,16 +18,13 @@ const shoppingCart = createSlice({
       const cartProducts = state.products;
       const validProducts = action.payload.products;
       const discount = action.payload.promotionalCode.discount;
-      let discountAmountSum = 0;
 
       validProducts.map((p) => {
         if (cartProducts[p.productId]) {
           aplied = true;
           const originalPrice = cartProducts[p.productId].price;
-          const discountAmount = (discount / 100) * cartProducts[p.productId].price;
-          discountAmountSum += discountAmount;
-
-          const discountPrice = originalPrice - discountAmount;
+          const discountMount = (discount / 100) * cartProducts[p.productId].price;
+          const discountPrice = originalPrice - discountMount;
           const productCopy = {
             ...cartProducts[p.productId],
             discountPrice,
@@ -49,8 +45,6 @@ const shoppingCart = createSlice({
             return total + producto.price;
           }
         }, 0);
-
-        state.discountAmount = discountAmountSum;
         state.finalPrice = newTotalPrice;
         toast.success("Código promocional aplicado");
       } else {

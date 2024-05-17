@@ -15,7 +15,11 @@ export default function Root() {
     if (userInfo && userInfo.accessToken) {
       //? Si esta logueado
 
-      const arrProducts = Object.values(shoppingCart.products);
+      let arrProducts = Object.values(shoppingCart.products);
+      arrProducts = arrProducts.map((product) => {
+        const mockProduct = { ...product };
+        delete mockProduct["discountPrice"];
+      });
       if (arrProducts.length) {
         return APIHydro.updateShoppingCart({
           //! Se le esta mandanod el producto con toda la info y el BE lo espera de otra forma para el shopping cart.
@@ -27,7 +31,13 @@ export default function Root() {
       }
     } else {
       //? Si no esta logueado
-      saveInStorage("shoppingCart", shoppingCart);
+      const newProducts = {};
+      for (const product in shoppingCart.products) {
+        const rawProduct = shoppingCart.products[product];
+        delete rawProduct["discountPrice"];
+        newProducts[product] = rawProduct;
+      }
+      saveInStorage("shoppingCart", { ...shoppingCart, products: newProducts });
     }
   }
 

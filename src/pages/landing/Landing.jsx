@@ -34,7 +34,8 @@ export default function Landing() {
             className="animate-pulse  place-self-end md:w-[70%] lg:w-[45%] lg:place-self-center"
           />
         </section>
-        {featuredProducts?.length && (
+
+        {featuredProducts?.length > 0 && (
           <div className="py-10">
             <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
             <Swiper
