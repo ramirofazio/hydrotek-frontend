@@ -198,7 +198,7 @@ export default function ShoppingCart() {
               </div>
             )}
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
-              <h1 className="text-red-500">{t("order.total-price")}</h1>
+              <h1>{t("order.total-price")}</h1>
               <strong className="textGoldGradient pointer-events-none border-0">{`${(promotionalCode
                 ? totalPrice - finalPrice
                 : totalPrice
