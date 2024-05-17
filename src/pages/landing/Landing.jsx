@@ -11,7 +11,7 @@ export default function Landing() {
 
   const { t } = useTranslation();
   const featuredProducts = useLoaderData();
-  console.log(featuredProducts);
+
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
