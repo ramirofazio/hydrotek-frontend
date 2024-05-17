@@ -9,6 +9,7 @@ import "atropos/css";
 import "./index.css";
 import "./i18n";
 import "remixicon/fonts/remixicon.css";
+import ExternalTags from "./components/ExternalTags";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           },
         }}
       />
+      <ExternalTags />
     </Provider>
   </GoogleOAuthProvider>
 );

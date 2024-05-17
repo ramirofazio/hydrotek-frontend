@@ -28,7 +28,7 @@ export default function ShoppingCart() {
   const status = searchParams.get("status");
   const transactionId = searchParams.get("transactionId");
 
-  const { products, totalPrice, finalPrice, promotionalCode } = useSelector((state) => state.shoppingCart);
+  const { products, totalPrice, finalPrice } = useSelector((state) => state.shoppingCart);
   const {
     session: { dni, id },
   } = useSelector((state) => state.user);
@@ -194,13 +194,13 @@ export default function ShoppingCart() {
             {promotionalCode.discount > 0 && (
               <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
                 <h1>{t("order.discount")}</h1>
-                <strong className="textGoldGradient pointer-events-none border-0">{promotionalCode.discount} %</strong>
+                <strong className="textGoldGradient pointer-events-none border-0">{discount} %</strong>
               </div>
             )}
             <div className="md:flex  md:justify-between md:border-b-[1px] md:border-dashed md:border-gold">
               <h1>{t("order.total-price")}</h1>
-              <strong className="textGoldGradient pointer-events-none border-0">{`${(promotionalCode
-                ? totalPrice - finalPrice
+              <strong className="textGoldGradient pointer-events-none border-0">{`${(discount
+                ? finalPrice
                 : totalPrice
               ).toLocaleString("es-AR", {
                 style: "currency",
