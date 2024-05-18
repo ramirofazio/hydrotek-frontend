@@ -50,7 +50,7 @@ export function UpdateProductPromCodes({ modal, setModal, related, setRelated, a
   }
 
   return (
-    <Modal panelSize="min-h-[40vh] min-w-[80vw]" isOpen={Boolean(modal)} onClose={() => setModal(false)}>
+    <Modal panelSize="min-w-full min-h-screen" isOpen={Boolean(modal)} onClose={() => setModal(false)}>
       {loading && <Loader />}
       <h1 className="textGoldGradient my-4 border-gold font-bold lg:mx-auto  lg:w-fit lg:border-b-2 xl:border-b-2 xl:text-3xl">
         CÓDIGOS PROMOCIONALES VINCULADOS

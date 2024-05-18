@@ -16,5 +16,5 @@ export const socialLinks = {
   facebook: "https://www.facebook.com/hydrotek.store",
   instagram: "https://www.instagram.com/hydrotek.store/",
   whatsapp: "https://wa.me/5491170823697?text=Hola%21%20Vengo%20de%20la%20web.",
-  mail: "mailto:hydrotek@gmail.com",
+  mail: "mailto:hydrotek321@gmail.com",
 };
