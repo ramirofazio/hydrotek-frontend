@@ -28,7 +28,7 @@ export default function ShoppingCart() {
   const status = searchParams.get("status");
   const transactionId = searchParams.get("transactionId");
 
-  const { products, totalPrice, finalPrice } = useSelector((state) => state.shoppingCart);
+  const { products, totalPrice, finalPrice, promotionalCode, discount } = useSelector((state) => state.shoppingCart);
   const {
     session: { dni, id },
   } = useSelector((state) => state.user);
