@@ -1,5 +1,5 @@
 import { Outlet, useLoaderData } from "react-router-dom";
-import { Footer, Aurora, Navbar } from "src/components";
+import { Footer, Navbar } from "src/components";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { saveInStorage } from "src/utils/localStorage";
@@ -67,7 +67,8 @@ export default function Root() {
 
   return (
     <div className={`relative overflow-hidden`}>
-      <Aurora />
+      <div id="circuit" className="absolute -z-10 h-full w-full bg-circuit bg-center bg-repeat" />
+
       <Navbar />
       <Outlet />
       <Footer userInfo={userInfo} />

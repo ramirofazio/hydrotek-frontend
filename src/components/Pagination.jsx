@@ -38,9 +38,7 @@ export const Pagination = ({ nButtons, path }) => {
             }}
             key={index}
             className={`goldGradient  grid h-10 w-10 place-content-center rounded-full p-1 text-sm text-white transition-all sm:text-lg md:p-2.5 ${
-              currentPage === index
-                ? "shadow-primary/80  font-medium shadow ease-in"
-                : " opacity-40 ease-out hover:opacity-60"
+              currentPage === index ? "pointer-events-none opacity-50" : "hover:opacity-50"
             }`}
           >
             <span>{index + 1}</span>

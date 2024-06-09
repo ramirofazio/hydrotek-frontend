@@ -26,7 +26,7 @@ export default function Landing() {
         <section className="relative flex flex-col pt-5  lg:flex-row lg:place-items-center lg:pt-10">
           <InfoCard />
           <img
-            src={products.aboutUs}
+            src={products.landing}
             className="absolute inset-x-0 bottom-0 z-20 mx-auto -mb-32 scale-75 lg:inset-x-auto  lg:inset-y-0 lg:bottom-auto lg:right-10 lg:top-20 lg:mb-auto  xl:right-20 xl:scale-100"
           />
           <img
@@ -63,7 +63,7 @@ export default function Landing() {
               }}
             >
               {featuredProducts.map((p, i) => (
-                <SwiperSlide key={i} className="grid place-items-center ">
+                <SwiperSlide key={i} className="grid place-items-center pb-20">
                   <ProductCard
                     id={p.id}
                     key={i}

@@ -84,7 +84,7 @@ export function SignUp() {
           <div className="absolute z-0 flex w-full justify-between p-0">
             <img
               className="w-[50%] max-w-[150px] animate-pulse md:max-w-[200px] xl:max-w-[300px]"
-              src={borders.profile}
+              src={borders.signUpCircuit2}
             />
             <img
               className="w-[50%] max-w-[150px] animate-pulse md:max-w-[200px] xl:max-w-[300px]"
@@ -158,7 +158,7 @@ export function SignUp() {
             {apiErr && <Error className="col-span-2" text={apiErr.message} />}
             <Button
               text={t("session.signUpSubmitBtn")}
-              className={`!bg-gold hover:!bg-base md:col-span-2 lg:w-[40%]  `}
+              className={`!rounded-full !bg-gold hover:!bg-base md:col-span-2 lg:w-[40%] `}
               pClassname={"xl:text-lg font-primary"}
               onClick={handleSubmit}
               disabled={
@@ -196,7 +196,7 @@ export function SignUp() {
             />
             <img
               className="w-[50%] max-w-[150px] rotate-180 animate-pulse md:max-w-[200px] xl:max-w-[300px]"
-              src={borders.profile}
+              src={borders.signUpCircuit2}
             />
           </div>
         </section>

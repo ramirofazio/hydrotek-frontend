@@ -32,7 +32,7 @@ export function Profile() {
       <section className=" lg:flex lg:flex-col lg:gap-20 lg:border-r-2 lg:border-gold lg:pr-10">
         <div className="relative grid place-content-center place-items-center">
           <img
-            src={borders.profile}
+            src={borders.userProfile}
             className="absolute left-5 top-0  w-48 animate-pulse sm:!left-40  lg:!left-10 xl:!left-20 xs:left-12"
           />
           <Avatar
@@ -42,7 +42,7 @@ export function Profile() {
             avatar={user.profile.avatar}
           />
           <img
-            src={borders.profile}
+            src={borders.userProfile}
             className="absolute bottom-0 right-5 w-48 rotate-180 animate-pulse sm:!right-40 lg:!right-10 xl:!right-20 xs:right-12"
           />
         </div>

@@ -118,7 +118,7 @@ export function SignIn() {
             <Button
               disabled={err && true}
               text={"INGRESAR"}
-              className={`!bg-gold hover:!bg-base disabled:pointer-events-none disabled:opacity-30 lg:w-[60%] ${
+              className={`!rounded-full !bg-gold hover:!bg-base disabled:pointer-events-none disabled:opacity-30 lg:w-[60%] ${
                 !canRegister && "pointer-events-none opacity-30"
               }`}
               pClassname={"xl:text-xl font-primary"}

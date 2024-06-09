@@ -23,7 +23,7 @@ export default function Products() {
 <SearchBar />
 
       </div> */}
-      <div className="content mx-auto mt-10  grid place-items-center gap-4  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="content mx-auto my-20  grid place-items-center gap-4  gap-y-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {cleanProducts?.length ? (
           cleanProducts.map((p, i) => (
             <ProductCard id={p.id} key={i} name={p.name} images={p.images} price={p.arsPrice} />

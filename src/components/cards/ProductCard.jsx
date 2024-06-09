@@ -18,7 +18,7 @@ export function ProductCard({ images, name, price, id, showBtn = true }) {
     <div className={`grid h-full w-fit p-4 md:w-[100%] xl:p-0`}>
       <Link to={`/productDetail/${id}`}>
         <Atropos highlight={false} shadow={false} className="h-full w-full cursor-pointer xl:pb-4">
-          <div className="relative mx-auto  flex aspect-square !h-[250px] items-center justify-center  p-6">
+          <div className="relative mx-auto  flex aspect-square w-[250px] items-center justify-center p-6 md:w-[300px]">
             <img src={backgrounds.productBorderGradient} className="absolute" data-atropos-offset={-5} />
             <Swiper
               loop={true}
@@ -52,16 +52,16 @@ export function ProductCard({ images, name, price, id, showBtn = true }) {
           </div>
         </Atropos>
       </Link>
-      <div className={`${!showBtn && "hidden"} mx-auto grid place-items-center gap-2 pb-12 text-center`}>
-        <h1 className="text-center text-sm md:place-self-start">{name || "NOMBRE DEL PRODUCTO"}</h1>
-        <h2 className="textGoldGradient mb-4 md:mb-2 md:place-self-start">
+      <div className={`${!showBtn && "hidden"} mx-auto grid w-[250px] gap-4 md:w-[300px]`}>
+        <h1 className="line-clamp-1 text-sm">{name || "NOMBRE DEL PRODUCTO"}</h1>
+        <h2 className="textGoldGradient mb-4 font-semibold md:mb-2">
           {price?.toLocaleString("es-AR", {
             style: "currency",
             currency: "ARS",
           })}
         </h2>
         {showBtn && (
-          <div className="flex  items-center gap-3 md:gap-8 md:place-self-center s:gap-5">
+          <div className="flex w-full justify-between">
             <Link to={`/productDetail/${id}`} className="md:place-self-start">
               <Button text={t("common.see")} pClassname={"font-primary"} />
             </Link>
