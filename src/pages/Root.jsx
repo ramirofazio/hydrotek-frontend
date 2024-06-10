@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { saveInStorage } from "src/utils/localStorage";
 import { APIHydro } from "src/api";
 import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
+import StickyCursor from "src/components/StickyCursor";
 
 export default function Root() {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ export default function Root() {
   return (
     <div className={`relative overflow-hidden`}>
       <div id="circuit" className="absolute -z-10 h-full w-full bg-circuit bg-center bg-repeat" />
-
+      <StickyCursor />
       <Navbar />
       <Outlet />
       <Footer userInfo={userInfo} />

@@ -10,7 +10,6 @@ import "./index.css";
 import "./i18n";
 import "remixicon/fonts/remixicon.css";
 import ExternalTags from "./components/ExternalTags";
-import StickyCursor from "./components/StickyCursor";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
@@ -20,9 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </div>
     )}
     <Provider store={store}>
-      {setTimeout(() => {
-        <StickyCursor />;
-      }, 1500)}
       <Routes />
       <Toaster
         position="bottom-right"

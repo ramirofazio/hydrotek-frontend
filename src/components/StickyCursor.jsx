@@ -4,11 +4,11 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 export default function StickyCursor() {
   const cursorSize = 150;
   const mouse = {
-    x: useMotionValue(0),
-    y: useMotionValue(0),
+    x: useMotionValue(window.innerWidth / 2),
+    y: useMotionValue(window.innerHeight / 2),
   };
 
-  const smoothOptions = { damping: 50, stiffness: 250, mass: 0.6 };
+  const smoothOptions = { damping: 100, stiffness: 150, mass: 0.6 };
   const smoothMouse = {
     x: useSpring(mouse.x, smoothOptions),
     y: useSpring(mouse.y, smoothOptions),
