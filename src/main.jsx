@@ -20,7 +20,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </div>
     )}
     <Provider store={store}>
-      <StickyCursor />
+      {setTimeout(() => {
+        <StickyCursor />;
+      }, 1500)}
       <Routes />
       <Toaster
         position="bottom-right"
