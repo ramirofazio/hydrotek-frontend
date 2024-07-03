@@ -14,12 +14,15 @@ import ExternalTags from "./components/ExternalTags";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
     {import.meta.env.VITE_ENV === "develop" && (
-      <div className="text-background to-background/80 absolute top-0 z-50 w-full bg-gradient-to-b from-gold p-2 text-center text-xs font-bold">
+      <div className="absolute top-0 z-50 w-full bg-gradient-to-b from-gold to-background/80 p-2 text-center text-xs font-bold text-background">
         DEVELOP
       </div>
     )}
     <Provider store={store}>
-      <Routes />
+      <ExternalTags />
+      <div id="main_wrapper">
+        <Routes />
+      </div>
       <Toaster
         position="bottom-right"
         toastOptions={{
@@ -34,7 +37,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           },
         }}
       />
-      <ExternalTags />
     </Provider>
   </GoogleOAuthProvider>
 );

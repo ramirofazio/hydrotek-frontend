@@ -118,5 +118,11 @@
     "content4": "Nuestros valores fundamentales son la honestidad, el compromiso, el deseo de crecer y la empatía. Estos valores son la brújula que guía nuestras decisiones y acciones en todo momento.",
     "content5": "Queremos marcar la diferencia en la comunidad y para nuestros clientes. Nuestro objetivo es mostrar que la hidroponía es fácil y altamente productiva. Facilitamos la vida de los cultivadores hidropónicos al ofrecer herramientas y productos diseñados para simplificar su trabajo. Además, nos esforzamos por educar de manera sencilla a aquellos que recién comienzan en la hidroponía. En Hydrotek, estamos comprometidos en ayudar a la comunidad y a nuestros clientes a través de soluciones innovadoras y educación accesible.",
     "content6": "Asimismo, ofrecemos sistemas hidropónicos de recirculado como RDWC y DWC, y brindamos asesoramiento en hidroponía. Nuestros productos incluyen fertilizantes, nutrientes, safe roots, canastas, plugs, juntas, y otros elementos esenciales para el cultivo hidropónico de cannabis. Además, estamos orgullosos de anunciar la apertura de nuestra fábrica en Argentina, CABA, donde continuaremos expandiendo nuestra línea de productos y brindando soluciones innovadoras para la hidroponia."
+  },
+  "validation-modal": {
+    "title": "¿ERES MAYOR DE 21 AÑOS DE EDAD?",
+    "description": "Este sitio contiene informacion que no es recomendable para personas menores a 21 años de edad.",
+    "action-button-1": "Soy mayor de 21 años",
+    "action-button-2": "Soy menor de 21 años"
   }
 }
