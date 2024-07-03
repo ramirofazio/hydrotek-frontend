@@ -37,7 +37,13 @@ export const AgeValidationModal = () => {
       }
     >
       <main className="mt-10 flex flex-col gap-5">
-        <Button onClick={() => saveInStorage("validAge", true)} className={"!bg-gold py-4 font-bold hover:opacity-50"}>
+        <Button
+          onClick={() => {
+            saveInStorage("validAge", true);
+            window.location.reload();
+          }}
+          className={"!bg-gold py-4 font-bold hover:opacity-50"}
+        >
           {t("validation-modal.action-button-1")}
         </Button>
         <Button
