@@ -27,7 +27,7 @@ export function Profile() {
   const selectedSection = componentMapping[selectedBtn];
 
   return (
-    <main className="grid h-screen gap-10 lg:my-4 lg:grid-cols-2 xl:mx-20">
+    <main className="grid  gap-10 lg:grid-cols-2 xl:mx-20">
       <Header t={t} />
       <section className=" lg:flex lg:flex-col lg:gap-20 lg:border-r-2 lg:border-gold lg:pr-10">
         <div className="relative grid place-content-center place-items-center">
@@ -49,7 +49,7 @@ export function Profile() {
         <ButtonList selectedBtn={selectedBtn} setSelectedBtn={setSelectedBtn} t={t} />
       </section>
       <div className="mx-8 border-b-2 border-gold lg:hidden" />
-      <section className="grid place-items-center">{selectedSection}</section>
+      <section className="grid place-items-center bg-base">{selectedSection}</section>
     </main>
   );
 }

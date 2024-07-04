@@ -48,7 +48,7 @@ export function Dashboard() {
   };
 
   return (
-    <main className="grid w-full place-content-center gap-4  p-8 text-center lg:place-content-stretch lg:text-left">
+    <main className="grid min-h-screen w-full place-content-center  gap-4 p-8 text-center lg:place-content-stretch lg:text-left">
       <DashboardHeader />
       <WorkInProgressModal isOpen={show} onClose={() => setShow(false)} dashboard={true} />
       <section className="flex w-full flex-col items-center gap-4 lg:flex-row">

@@ -6,26 +6,27 @@ import { saveInStorage } from "src/utils/localStorage";
 import { APIHydro } from "src/api";
 import { actionsShoppingCart, actionsUser } from "src/redux/reducers";
 import StickyCursor from "src/components/StickyCursor";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function Root() {
   const dispatch = useDispatch();
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const { userInfo } = useLoaderData();
 
-  function handleCart() {
+  const handleCart = useDebouncedCallback(() => {
     if (userInfo && userInfo.accessToken) {
       //? Si esta logueado
-
-      let arrProducts = Object.values(shoppingCart.products);
-      arrProducts = arrProducts.map((product) => {
-        const mockProduct = { ...product };
-        delete mockProduct["discountPrice"];
+      const arrProducts = Object.values(shoppingCart.products);
+      const cleanProducts = arrProducts.map((p) => {
+        const res = { quantity: p.quantity, productId: p.productId };
+        return res;
       });
-      if (arrProducts.length) {
+
+      if (cleanProducts.length) {
         return APIHydro.updateShoppingCart({
           //! Se le esta mandanod el producto con toda la info y el BE lo espera de otra forma para el shopping cart.
           userId: userInfo.session.id,
-          shoppingCart: { totalPrice: shoppingCart.totalPrice, products: arrProducts },
+          shoppingCart: { totalPrice: shoppingCart.totalPrice, products: cleanProducts },
         });
       } else {
         return APIHydro.resetShoppingCart({ userId: userInfo.session.id });
@@ -40,13 +41,12 @@ export default function Root() {
       }
       saveInStorage("shoppingCart", { ...shoppingCart, products: newProducts });
     }
-  }
+    //? Para no duplicar tantos pedidos. Se ejecuta cuando el user deja de interactuar en 800ms ;)
+  }, [800]);
 
   useEffect(() => {
-    window.addEventListener("beforeunload", handleCart);
-    return () => {
-      window.removeEventListener("beforeunload", handleCart);
-    };
+    //? Se guarda el carrito en DB o localStorage cada vez que se actualiza el shopping cart
+    handleCart();
   }, [shoppingCart]);
 
   useEffect(() => {

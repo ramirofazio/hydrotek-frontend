@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const shoppingCart = createSlice({
   name: "shoppingCart",
   initialState: {
-    products: {},
+    products: [],
     promotionalCode: "",
     discount: 0,
     totalPrice: 0,

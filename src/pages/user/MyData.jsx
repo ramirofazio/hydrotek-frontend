@@ -93,6 +93,8 @@ export function MyData() {
         profile: { avatar: newAvatar ? newAvatar : userData.avatar },
       };
 
+      console.log(data);
+
       APIHydro.updateUser(data).then((res) => {
         if (res.data) {
           dispatch(actionsUser.updateDataFromProfile(res.data));
