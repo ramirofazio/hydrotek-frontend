@@ -10,11 +10,11 @@ export function OrderDetail() {
   const { fresaId, date, totalPrice, status, products } = useLoaderData();
 
   useEffect(() => {
-    window.scrollBy(0, -window.innerHeight);
-  }, [window]);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
 
   return (
-    <main className="mx-8 grid gap-6 py-6 lg:mx-10 xl:mx-20">
+    <main className="mx-8 grid min-h-screen gap-6 py-6 lg:mx-10 xl:mx-20">
       <IconButtonWithBgGold icon={"ri-arrow-left-s-line"} onClick={() => navigate(-1)} />
       <div className="flex flex-col gap-10 lg:flex-row">
         <h1>
