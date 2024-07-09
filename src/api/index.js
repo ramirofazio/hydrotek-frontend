@@ -56,9 +56,10 @@ export const APIHydro = {
   guestCheckout: (data) => {
     return apiHydro.post(`${route.CHECKOUT}/guest`, data);
   },
-  userWithoutDniCheckout: (data) => {
-    return apiHydro.post(`${route.CHECKOUT}/update-dni`, data);
-  },
+  //! DEPRECADO
+  //   userWithoutDniCheckout: (data) => {
+  //     return apiHydro.post(`${route.CHECKOUT}/update-dni`, data);
+  //   },
   userWithDniCheckout: (data) => {
     return apiHydro.post(`${route.CHECKOUT}`, data);
   },

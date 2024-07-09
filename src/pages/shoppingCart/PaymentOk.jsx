@@ -10,7 +10,7 @@ import { Button } from "src/components/buttons";
 import { APIHydro } from "src/api";
 import { useNavigate } from "react-router-dom";
 
-export function PaymentOk({ transactionId, status, setLoader }) {
+export function PaymentOk({ transactionId, setLoader }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,22 +42,22 @@ export function PaymentOk({ transactionId, status, setLoader }) {
 
   useEffect(() => {
     dispatch(emptyCart());
-    if (order) {
-      APIHydro.createOrder({
-        id,
-        name: guestInfo && `${guestInfo.firstName} ${guestInfo.lastName}`,
-        email: guestInfo && guestInfo.email,
-        totalPrice: order.totalPrice,
-        discount: order.discount ? order.discount : 0,
-        fresaId: transactionId,
-        status: status,
-        items: [...order.items],
-      }).then((res) => {
-        if (res.status === 201) {
-          success("Orden creada y guardada con exito");
-        }
-      });
-    }
+    // if (order) {
+    //   APIHydro.createOrder({
+    //     id,
+    //     name: guestInfo && `${guestInfo.firstName} ${guestInfo.lastName}`,
+    //     email: guestInfo && guestInfo.email,
+    //     totalPrice: order.totalPrice,
+    //     discount: order.discount ? order.discount : 0,
+    //     fresaId: transactionId,
+    //     status: status,
+    //     items: [...order.items],
+    //   }).then((res) => {
+    //     if (res.status === 201) {
+    //       success("Orden creada y guardada con exito");
+    //     }
+    //   });
+    // }
     return () => {
       deleteOfStorage("deliveryInfo");
       deleteOfStorage("order");

@@ -113,8 +113,8 @@ export default function ShoppingCart() {
       )}
       {status && (
         <Modal isOpen={true} onClose={() => ""} payModal={true} panelSize={"!max-w-xl"}>
-          {status === "200" && <PaymentOk transactionId={transactionId} status={status} setLoader={setLoader} />}
-          {status === "2" && <PaymentInProcess transactionId={transactionId} status={status} setLoader={setLoader} />}
+          {status === "200" && <PaymentOk transactionId={transactionId} setLoader={setLoader} />}
+          {status === "2" && <PaymentInProcess transactionId={transactionId} setLoader={setLoader} />}
           {status === "0" && <PaymentFailed />}
         </Modal>
       )}
@@ -149,7 +149,7 @@ export default function ShoppingCart() {
           <h3 className=" items-center text-white md:flex md:gap-5">
             Código <strong className="yellowGradient">{promotionalCode.code}</strong>
             <i
-              className="ri-delete-bin-line icons text-background mx-2 self-end text-lg text-red-500 hover:text-opacity-70  md:text-xl lg:text-2xl"
+              className="ri-delete-bin-line icons mx-2 self-end text-lg text-background text-red-500 hover:text-opacity-70  md:text-xl lg:text-2xl"
               onClick={() => dispatch(removeDiscount())}
             />
           </h3>
