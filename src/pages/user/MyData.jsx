@@ -127,7 +127,7 @@ export function MyData() {
   };
 
   return (
-    <main className="mx-8 grid text-center sm:w-full sm:px-6  lg:h-screen xl:w-full xl:pr-6">
+    <main className="mx-8 grid text-center sm:w-full sm:px-6  xl:w-full xl:pr-6">
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ChangePassword close={() => setIsModalOpen(!isModalOpen)} userId={userId} />
       </Modal>
