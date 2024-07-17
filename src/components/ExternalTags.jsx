@@ -5,7 +5,7 @@ export default function ExternalTags() {
   return (
     <>
       <head>
-        {process.env.VITE_ENV === "production" && (
+        {import.meta.env.VITE_ENV === "production" && (
           <meta name="google-site-verification" content="google5955a7d19ab9c10f.html" />
         )}
       </head>
