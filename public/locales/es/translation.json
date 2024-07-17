@@ -25,6 +25,9 @@
     "sorry": "lo sentimos ",
     "know": "CONOCE"
   },
+  "landing": {
+    "action-1": "cultivo<br className='lg:hidden'/>sin tierra<br />crecimiento<br className='hidden lg:block'/>sin límites"
+  },
   "session": {
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
     "haveAccount": "¿YA TENES UNA CUENTA?",

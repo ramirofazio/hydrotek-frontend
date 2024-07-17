@@ -18,7 +18,7 @@ export function InfoCard({ text }) {
           </Link>
         </div>
       </div>
-      <div className="mx-auto mt-3 w-fit p-4 sm:mt-10 md:hidden xs:mt-5 font-primary">
+      <div className="mx-auto mt-3 w-fit p-4 font-primary sm:mt-10 md:hidden xs:mt-5">
         <Link to={`/products/0`}>
           <Button className="text-sm s:text-lg" text={t("common.see-products")} />
         </Link>
