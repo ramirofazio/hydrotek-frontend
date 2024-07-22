@@ -25,6 +25,10 @@
     "sorry": "lo sentimos ",
     "know": "CONOCE"
   },
+  "landing": {
+    "action-1": "cultiva<br className='lg:hidden'/>hydro",
+    "action-2": "crecimiento<br className='hidden lg:block'/>sin límites"
+  },
   "session": {
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
     "haveAccount": "¿YA TENES UNA CUENTA?",

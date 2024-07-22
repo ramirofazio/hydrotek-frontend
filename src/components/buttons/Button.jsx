@@ -1,3 +1,5 @@
+import { Text } from "../text/Text";
+
 export const Button = ({ text, className, pClassname, onClick, children, ...props }) => {
   return (
     <button
@@ -5,7 +7,7 @@ export const Button = ({ text, className, pClassname, onClick, children, ...prop
       onClick={onClick}
       {...props}
     >
-      <p className={`font-primary ${pClassname}`}>{text || children}</p>
+      <Text className={`font-primary ${pClassname}`} content={text || children}></Text>
     </button>
   );
 };
