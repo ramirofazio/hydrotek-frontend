@@ -6,7 +6,7 @@ export const logos = {
 };
 
 export const backgrounds = {
-  landing: "/images/landing_background.png",
+  maceta: "/images/maceta.webp",
   productBorder: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/productBorder.png",
   borderTop: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/borderTop.png",
   borderBottom: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/borderBottom.png",
@@ -28,7 +28,7 @@ export const backgrounds = {
 };
 
 export const borders = {
-  aboutUs: "/images/about_us_border.png",
+  aboutUs: "/images/about_us_border.webp",
   userProfile: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/profileBorder.png",
   signUpCircuit: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1695829833/HYD/others/signUpCircuit.png",
   signUpCircuit2: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693325909/HYD/others/profileBorder.png",
@@ -40,7 +40,7 @@ export const products = {
   landing: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693949259/HYD/aboutUs/img.png",
   defaultOne: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693948929/HYD/others/defaultProduct.png",
   defaultTwo: "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693949259/HYD/others/defaultProduct2.png",
-  aboutUs: "/images/about_us.png",
+  aboutUs: "/images/about_us.webp",
 };
 
 export const defaultPost = "https://res.cloudinary.com/djdtbqhxm/image/upload/v1693605622/HYD/others/postExample.png";

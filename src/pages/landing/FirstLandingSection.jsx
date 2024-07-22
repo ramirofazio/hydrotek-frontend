@@ -8,22 +8,35 @@ import { SwiperSlide, Swiper } from "swiper/react";
 
 const FirstLandingSection = () => {
   const { t } = useTranslation();
+
   return (
     <section className="relative flex flex-col items-center justify-between gap-10 py-10 sm:py-20 lg:flex-row lg:items-stretch lg:pt-10 s:gap-16">
-      <div className="flex flex-1 flex-col  lg:gap-20 lg:py-10">
-        <Text
-          Tag="h1"
-          content={t("landing.action-1")}
-          className={
-            "z-10 text-center text-3xl leading-[40px]  sm:!text-5xl sm:!leading-[60px] lg:text-left xl:!text-6xl xl:!leading-[70px] s:text-4xl"
-          }
-        />
+      <div className="flex flex-1 flex-col lg:gap-20 lg:py-10">
+        <div className="relative w-fit max-w-[500px]">
+          <Text
+            Tag="h1"
+            content={t("landing.action-1")}
+            className={
+              "z-10 text-3xl leading-[40px]  sm:!text-5xl sm:!leading-[60px] lg:text-left xl:!text-6xl xl:!leading-[70px] s:text-4xl"
+            }
+          />
+          <Text
+            Tag="h3"
+            content={t("landing.action-2")}
+            className={
+              "z-10 min-w-[70vw] text-xl sm:min-w-[60vw] sm:!text-2xl sm:leading-[40px] lg:min-w-[30vw] lg:text-left xl:!text-3xl xl:!leading-[50px]"
+            }
+          />
+          <div className="absolute bottom-0 right-0">
+            <Image placeholder="blur" src={backgrounds.maceta} className="w-[100px] sm:!w-[150px] s:w-[120px]" />
+          </div>
+        </div>
         <Button
           text={t("common.see-products")}
           pClassname={"text-[16px] py-2"}
           className={"z-10 hidden w-full max-w-[500px] lg:block"}
         ></Button>
-        <div className="absolute -left-40 top-0 hidden rotate-180 md:block lg:top-auto">
+        <div className="pointer-events-none absolute -left-40 top-0 hidden rotate-180 md:block lg:top-auto">
           <Image placeholder="blur" src={backgrounds.goldCircuit} className="blur-md" />
         </div>
       </div>

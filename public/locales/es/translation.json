@@ -26,7 +26,8 @@
     "know": "CONOCE"
   },
   "landing": {
-    "action-1": "cultivo<br className='lg:hidden'/>sin tierra<br />crecimiento<br className='hidden lg:block'/>sin límites"
+    "action-1": "cultiva<br className='lg:hidden'/>hydro",
+    "action-2": "crecimiento<br className='hidden lg:block'/>sin límites"
   },
   "session": {
     "dontHaveAccount": "¿NO TIENES UNA CUENTA?",
