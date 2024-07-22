@@ -36,9 +36,6 @@ const FirstLandingSection = () => {
           pClassname={"text-[16px] py-2"}
           className={"z-10 hidden w-full max-w-[500px] lg:block"}
         ></Button>
-        <div className="pointer-events-none absolute -left-40 top-0 hidden rotate-180 md:block lg:top-auto">
-          <Image placeholder="blur" src={backgrounds.goldCircuit} className="blur-md" />
-        </div>
       </div>
       <Swiper
         loop={true}
