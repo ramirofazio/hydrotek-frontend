@@ -66,15 +66,15 @@ const shoppingCart = createSlice({
       state.finalPrice = false;
     },
     saveSingInShoppingCart: (state, action) => {
+      //! ESTO ESTA RARISIMO. NO SE PORQUE ESTAN GUARDANDOSE ASI LOS PRODUCTOS
       const { totalPrice, products } = action.payload;
-
       const productsDictionary = {};
       products.forEach((p) => {
         productsDictionary[p.productId] = {
           quantity: p.quantity,
           productId: p.productId,
-          price: p.price,
-          name: p.name,
+          price: p.price || Number(p.product.arsPrice),
+          name: p.name || p.product.name,
           img: p.product?.images[0]?.path || logos.hydBlack,
         };
       });
@@ -87,6 +87,7 @@ const shoppingCart = createSlice({
       const shoppingCart = getOfStorage("shoppingCart");
       if (shoppingCart?.totalPrice > 0) {
         const { totalPrice, products } = shoppingCart;
+
         state.totalPrice = totalPrice;
         state.finalPrice = totalPrice;
         state.products = products;

@@ -1,10 +1,11 @@
-import { InfoCard, ProductCard } from "src/components/cards";
+import { ProductCard } from "src/components/cards";
 import { useTranslation } from "react-i18next";
-import { backgrounds, products } from "assets";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { ValidateModal } from "./ValidateModal";
 import { useLoaderData } from "react-router-dom";
+import FirstLandingSection from "./FirstLandingSection";
+import { Text } from "src/components/text/Text";
 
 export default function Landing() {
   document.title = "Hydrotek";
@@ -20,24 +21,14 @@ export default function Landing() {
   };
 
   return (
-    <div className="content h-full">
+    <div className="content mx-5 h-full lg:mx-10 xl:mx-24">
       <ValidateModal />
-      <section className=" flex flex-col gap-[5rem]">
-        <section className="relative flex flex-col pt-5  lg:flex-row lg:place-items-center lg:pt-10">
-          <InfoCard />
-          <img
-            src={products.landing}
-            className="absolute inset-x-0 bottom-0 z-20 mx-auto -mb-32 scale-75 lg:inset-x-auto  lg:inset-y-0 lg:bottom-auto lg:right-10 lg:top-20 lg:mb-auto  xl:right-20 xl:scale-100"
-          />
-          <img
-            src={backgrounds.goldCircuit}
-            className="animate-pulse  place-self-end md:w-[70%] lg:w-[45%] lg:place-self-center"
-          />
-        </section>
+      <section className="flex flex-col">
+        <FirstLandingSection />
 
-        {featuredProducts?.length > 0 && (
-          <div className="py-10">
-            <h1 className="mx-auto mb-10 w-fit xl:text-3xl">{t("common.top-sellers")}</h1>
+        {!featuredProducts?.length > 0 && (
+          <div className="py-10 sm:py-20">
+            <Text Tag="h2" className="text-center text-2xl" content={t("common.top-sellers")} />
             <Swiper
               loop={true}
               autoplay={{
