@@ -26,7 +26,7 @@ export default function Landing() {
       <section className="flex flex-col">
         <FirstLandingSection />
 
-        {!featuredProducts?.length > 0 && (
+        {featuredProducts?.length > 0 && (
           <div className="py-10 sm:py-20">
             <Text Tag="h2" className="text-center text-2xl" content={t("common.top-sellers")} />
             <Swiper
